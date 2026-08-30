@@ -574,9 +574,79 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
               </button>
             </div>
             {inputs.adFormats.banner.enabled && (
-              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400 pt-1">
-                <span>Refresh: 30s</span>
-                <span>Active 4 min/session</span>
+              <div className="space-y-2 pt-1">
+                {/* Active Time Slider */}
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+                    <label htmlFor="admob-banner-time-slider" className="cursor-pointer">Active Time/Session:</label>
+                    <span className="font-bold text-purple-600 dark:text-purple-400">
+                      {inputs.adFormats.banner.showPerSessionMinutes < 1
+                        ? `${Math.round(inputs.adFormats.banner.showPerSessionMinutes * 60)}s`
+                        : `${inputs.adFormats.banner.showPerSessionMinutes.toFixed(inputs.adFormats.banner.showPerSessionMinutes % 1 === 0 ? 0 : 1)} min`}
+                    </span>
+                  </div>
+                  <input
+                    id="admob-banner-time-slider"
+                    aria-label="Active banner display time per session slider"
+                    type="range"
+                    min="0.1"
+                    max="15.0"
+                    step="0.1"
+                    value={inputs.adFormats.banner.showPerSessionMinutes}
+                    onChange={(e) =>
+                      onChange({
+                        ...inputs,
+                        adFormats: {
+                          ...inputs.adFormats,
+                          banner: {
+                            ...inputs.adFormats.banner,
+                            showPerSessionMinutes: parseFloat(e.target.value),
+                          },
+                        },
+                      })
+                    }
+                    className="w-full h-1 bg-neutral-200 dark:bg-neutral-800 rounded appearance-none cursor-pointer accent-purple-500"
+                  />
+                </div>
+
+                {/* Auto Refresh Slider */}
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+                    <label htmlFor="admob-banner-refresh-slider" className="cursor-pointer">Auto-Refresh Interval:</label>
+                    <span className="font-bold text-purple-600 dark:text-purple-400">
+                      {inputs.adFormats.banner.refreshIntervalSeconds || 30}s
+                    </span>
+                  </div>
+                  <input
+                    id="admob-banner-refresh-slider"
+                    aria-label="Banner refresh interval in seconds slider"
+                    type="range"
+                    min="20"
+                    max="120"
+                    step="5"
+                    value={inputs.adFormats.banner.refreshIntervalSeconds || 30}
+                    onChange={(e) =>
+                      onChange({
+                        ...inputs,
+                        adFormats: {
+                          ...inputs.adFormats,
+                          banner: {
+                            ...inputs.adFormats.banner,
+                            refreshIntervalSeconds: parseInt(e.target.value),
+                          },
+                        },
+                      })
+                    }
+                    className="w-full h-1 bg-neutral-200 dark:bg-neutral-800 rounded appearance-none cursor-pointer accent-purple-500"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-[10px] font-mono text-neutral-500 dark:text-neutral-400 pt-0.5 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+                  <span>Estimated Yield:</span>
+                  <span className="font-semibold text-neutral-700 dark:text-neutral-300">
+                    {((inputs.adFormats.banner.showPerSessionMinutes * 60) / (inputs.adFormats.banner.refreshIntervalSeconds || 30)).toFixed(1)} imp/session
+                  </span>
+                </div>
               </div>
             )}
           </div>
