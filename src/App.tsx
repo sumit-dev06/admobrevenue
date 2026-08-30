@@ -25,6 +25,7 @@ import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
 import { GlossarySection } from "./components/GlossarySection";
 import { EmbedWidgetModal } from "./components/EmbedWidgetModal";
 import { ExportReportModal } from "./components/ExportReportModal";
+import { MobileStickyBar } from "./components/MobileStickyBar";
 import { Footer } from "./components/Footer";
 import {
   Sparkles,
@@ -200,7 +201,7 @@ export function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-28 lg:pb-8 space-y-6 sm:space-y-8">
         {/* Hero Section */}
         <section className="text-center max-w-3xl mx-auto space-y-3 pt-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 text-xs font-semibold shadow-sm">
@@ -379,6 +380,24 @@ export function App() {
         adSenseResults={adSenseResults}
         adMobInputs={adMobInputs}
         adMobResults={admobResults}
+      />
+
+      {/* Mobile Floating Sticky Bottom Revenue Bar */}
+      <MobileStickyBar
+        activeMode={activeMode}
+        currency={currency}
+        monthlyRevenue={
+          activeMode === "admob"
+            ? admobResults.monthlyRevenue
+            : activeMode === "portfolio"
+            ? adSenseResults.monthlyRevenue * 2 + admobResults.monthlyRevenue
+            : adSenseResults.monthlyRevenue
+        }
+        rateLabel={activeMode === "admob" ? "ARPDAU" : "Page RPM"}
+        rateValue={activeMode === "admob" ? `$${admobResults.arpdau}` : `$${adSenseResults.pageRpm}`}
+        onOpenExport={() => setIsExportOpen(true)}
+        onOpenEmbed={() => setIsEmbedOpen(true)}
+        onShare={handleShare}
       />
 
       {/* Footer */}

@@ -1,4 +1,9 @@
-import React from "react";
+import os
+
+components_dir = os.path.join(os.getcwd(), "src/components")
+
+# 1. Update ModeSelector.tsx with swipeable carousel on mobile
+mode_selector_code = r"""import React from "react";
 import { PlatformMode } from "../types";
 import {
   Globe,
@@ -131,3 +136,9 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
     </div>
   );
 };
+"""
+
+with open(os.path.join(components_dir, "ModeSelector.tsx"), "w", encoding="utf-8") as f:
+    f.write(mode_selector_code)
+
+print("ModeSelector.tsx updated for mobile!")
