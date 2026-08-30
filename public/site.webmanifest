@@ -1,6 +1,7 @@
 {
-  "name": "AdSense & AdMob Revenue Calculator",
-  "short_name": "AdRevPro",
+  "name": "Ad Revenue Calculator",
+  "short_name": "Ad Revenue Calc",
+  "description": "Accurate Google AdMob & AdSense revenue calculator and earnings forecast tool.",
   "icons": [
     {
       "src": "/favicon.svg",

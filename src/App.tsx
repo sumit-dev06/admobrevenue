@@ -16,6 +16,7 @@ import { SeoFaqSection } from "./components/SeoFaqSection";
 import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
 import { GlossarySection } from "./components/GlossarySection";
 import { MobileStickyBar } from "./components/MobileStickyBar";
+import { PwaInstallBanner } from "./components/PwaInstallBanner";
 import { Footer } from "./components/Footer";
 
 // Lazy load heavy components to drastically reduce initial bundle size and speed up TBT
@@ -256,11 +257,14 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
         </div>
       )}
 
+      {/* PWA Install Notification Banner */}
+      <PwaInstallBanner />
+
       {/* Top Header */}
       <Navbar
         currentCurrency={currency}
         onCurrencyChange={setCurrency}
-                onOpenEmbed={() => setIsEmbedOpen(true)}
+        onOpenEmbed={() => setIsEmbedOpen(true)}
         onOpenExport={() => setIsExportOpen(true)}
         onShare={handleShare}
         activePlatform={activePlatform as "admob" | "adsense"}
