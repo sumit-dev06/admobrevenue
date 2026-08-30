@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,7 +13,7 @@ console.log('⚡ [2/3] Building SSR pre-rendering bundle...');
 execSync('npx vite build --ssr src/entry-server.tsx --outDir dist-ssr', { stdio: 'inherit', cwd: root });
 
 console.log('✨ [3/3] Pre-rendering static HTML pages for instant SEO & Google Crawling...');
-const { render } = await import(path.join(root, 'dist-ssr', 'entry-server.js'));
+const { render } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
 
 const template = fs.readFileSync(path.join(root, 'dist', 'index.html'), 'utf-8');
 
