@@ -119,33 +119,33 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({ id, children, classNam
       {isOpen && (
         <div
           ref={popoverRef}
-          className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 sm:w-80 p-3.5 bg-neutral-950 text-white rounded-xl border border-dashed border-neutral-700 shadow-2xl space-y-2 text-left font-mono animate-in fade-in zoom-in-95 duration-150"
+          className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 sm:w-80 p-3.5 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 shadow-2xl space-y-2 text-left font-mono animate-in fade-in zoom-in-95 duration-150"
         >
-          <div className="flex items-start justify-between pb-1.5 border-b border-dashed border-neutral-800">
+          <div className="flex items-start justify-between pb-1.5 border-b border-dashed border-neutral-200 dark:border-neutral-800">
             <div>
-              <div className="text-xs font-bold text-emerald-400">{def.term}</div>
-              <div className="text-[10px] text-neutral-400">{def.fullName}</div>
+              <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400">{def.term}</div>
+              <div className="text-[10px] text-neutral-500 dark:text-neutral-400">{def.fullName}</div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 text-neutral-400 hover:text-white"
+              className="p-1 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          <p className="text-[11px] text-neutral-300 leading-relaxed font-sans">
+          <p className="text-[11px] text-neutral-600 dark:text-neutral-300 leading-relaxed font-sans">
             {def.definition}
           </p>
 
           {def.formula && (
-            <div className="p-2 rounded bg-neutral-900 border border-dashed border-neutral-800 text-[10px] text-emerald-300 font-mono">
+            <div className="p-2 rounded bg-neutral-50 dark:bg-neutral-900 border border-dashed border-neutral-200 dark:border-neutral-800 text-[10px] text-emerald-600 dark:text-emerald-300 font-mono">
               {def.formula}
             </div>
           )}
 
           {def.tip && (
-            <div className="text-[10px] text-neutral-400 font-sans italic">
+            <div className="text-[10px] text-neutral-500 dark:text-neutral-400 font-sans italic">
               💡 {def.tip}
             </div>
           )}

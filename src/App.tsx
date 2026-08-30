@@ -33,14 +33,14 @@ import {
 } from "lucide-react";
 
 export function App() {
-  // Theme state
+  // Theme state (Defaults to clean light mode, persists toggle)
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("adrev_theme");
       if (saved) return saved === "dark";
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return false;
     }
-    return true;
+    return false;
   });
 
   // Currency
