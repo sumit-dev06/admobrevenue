@@ -26,7 +26,7 @@ export const ContactPage = React.memo(() => (
 export const PrivacyPage = React.memo(() => (
   <div className={pageWrapperClasses}>
     <h1 className={h1Classes}>Privacy Policy</h1>
-    <p className="text-neutral-500">Last updated: August 2026</p>
+    <p className="text-neutral-600 dark:text-neutral-400">Last updated: August 2026</p>
     <p>At AdMobRevenue, your privacy is our priority. This Privacy Policy explains how we collect, use, and protect your information.</p>
     <h2 className={h2Classes}>Information We Collect</h2>
     <p>We do not collect any personal data when you use the calculators. Your inputs (such as DAU, selected ad formats, etc.) are saved locally on your device using <code className="bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded">localStorage</code> to provide a persistent experience. We use Google Analytics to understand general website traffic and usage patterns.</p>
@@ -41,7 +41,7 @@ export const PrivacyPage = React.memo(() => (
 export const TermsPage = React.memo(() => (
   <div className={pageWrapperClasses}>
     <h1 className={h1Classes}>Terms of Service</h1>
-    <p className="text-neutral-500">Last updated: August 2026</p>
+    <p className="text-neutral-600 dark:text-neutral-400">Last updated: August 2026</p>
     <p>By accessing or using AdMobRevenue, you agree to be bound by these Terms of Service.</p>
     <h2 className={h2Classes}>Use of the Tool</h2>
     <p>AdMobRevenue provides estimation tools for educational and planning purposes only. You agree not to use the site for any unlawful purpose or in any way that could damage, disable, or impair the service.</p>

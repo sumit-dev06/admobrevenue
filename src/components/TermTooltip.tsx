@@ -100,6 +100,7 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({ id, children, classNam
     <span className="relative inline-flex items-center gap-1">
       <button
         type="button"
+        aria-expanded={isOpen}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -112,13 +113,14 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({ id, children, classNam
         title={`Click for ${def.term} explanation`}
       >
         {children || def.term}
-        <HelpCircle className="w-3 h-3 text-neutral-400 hover:text-emerald-500 transition-colors shrink-0" />
+        <HelpCircle className="w-3 h-3 text-neutral-400 hover:text-emerald-500 transition-colors shrink-0" aria-hidden="true" />
       </button>
 
       {/* Popover */}
       {isOpen && (
         <div
           ref={popoverRef}
+          role="tooltip"
           className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 sm:w-80 p-3.5 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 shadow-2xl space-y-2 text-left font-mono animate-in fade-in zoom-in-95 duration-150"
         >
           <div className="flex items-start justify-between pb-1.5 border-b border-dashed border-neutral-200 dark:border-neutral-800">
@@ -127,10 +129,12 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({ id, children, classNam
               <div className="text-[10px] text-neutral-500 dark:text-neutral-400">{def.fullName}</div>
             </div>
             <button
+              type="button"
               onClick={() => setIsOpen(false)}
-              className="p-1 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+              aria-label="Close tooltip"
+              className="p-1 text-neutral-400 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           </div>
 

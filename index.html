@@ -4,7 +4,6 @@
     <!-- Anti-Flicker Script for Platform Memory -->
     <style>
       html.anti-flicker-hide body { opacity: 0 !important; visibility: hidden !important; }
-      body { transition: opacity 0.15s ease-in-out; }
     </style>
     <script>
       (function() {
@@ -13,10 +12,7 @@
           var pageParam = params.get("page");
           var saved = localStorage.getItem("adrev_platform");
           var platform = pageParam || saved || "admob";
-          
           var isIndex = window.location.pathname === "/" || window.location.pathname === "/index.html";
-          
-          // If we are on the root URL (AdMob pre-rendered) but we need AdSense, hide the body
           if (isIndex && platform === "adsense") {
             document.documentElement.classList.add("anti-flicker-hide");
           }
@@ -25,7 +21,7 @@
     </script>
 
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
     <title>Google AdMob & AdSense Revenue Calculator 2026</title>
@@ -37,14 +33,32 @@
     <meta name="google-site-verification" content="YgG_6nzvta97x9p98mn3npLxKA_4Gq34ug36_Dw7v1w" />
     <link rel="canonical" href="https://admobrevenue.pages.dev/" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9P76WQ3E3"></script>
+    <!-- Google tag (gtag.js) - Performance Deferred -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-L9P76WQ3E3');
+
+      (function() {
+        var loaded = false;
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-L9P76WQ3E3';
+          s.async = true;
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(function() { setTimeout(loadGtag, 2500); });
+        } else {
+          window.addEventListener('load', function() { setTimeout(loadGtag, 2500); });
+        }
+        ['touchstart', 'scroll', 'mousemove', 'keydown', 'click'].forEach(function(evt) {
+          window.addEventListener(evt, loadGtag, { once: true, passive: true });
+        });
+      })();
     </script>
 
     <!-- Open Graph / Facebook -->

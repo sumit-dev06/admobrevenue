@@ -39,19 +39,19 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
       {/* Top Header */}
       <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+          <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-600 dark:text-neutral-300 font-semibold">
             Estimated Net Payout
           </span>
         </div>
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300">
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">
           {currency} Normalized
         </span>
       </div>
 
       {/* Main Monthly Revenue Ticker */}
       <div className="py-2">
-        <div className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 uppercase">
+        <div className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400 uppercase font-semibold">
           Monthly Revenue Run-Rate
         </div>
         <div className="flex items-baseline gap-2 mt-1">
@@ -66,25 +66,25 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
         {/* Daily */}
         <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/80 border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1">
-          <div className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 uppercase">Daily</div>
+          <div className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 uppercase font-semibold">Daily</div>
           <div className="text-base font-bold font-mono text-neutral-950 dark:text-white">
             {formatCurrency(dailyRevenue, currency)}
           </div>
-          <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-mono">~30.4 days</div>
+          <div className="text-[9px] text-neutral-500 dark:text-neutral-400 font-mono">~30.4 days</div>
         </div>
 
         {/* Annual */}
         <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/80 border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1">
-          <div className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 uppercase">Annual</div>
+          <div className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 uppercase font-semibold">Annual</div>
           <div className="text-base font-bold font-mono text-neutral-950 dark:text-white">
             {formatCurrency(annualRevenue, currency)}
           </div>
-          <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-mono">12 mo + season</div>
+          <div className="text-[9px] text-neutral-500 dark:text-neutral-400 font-mono">12 mo + season</div>
         </div>
 
         {/* Rate metric */}
         <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/80 border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1 col-span-2 sm:col-span-1">
-          <div className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 uppercase">
+          <div className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 uppercase font-semibold">
             <TermTooltip id={isAdMob ? "arpdau" : "pagerpm"}>
               <span>{rateMetricLabel}</span>
             </TermTooltip>
@@ -93,7 +93,7 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
             {rateMetricValue}
           </div>
           {secondaryRateLabel && secondaryRateValue && (
-            <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-mono">
+            <div className="text-[9px] text-neutral-600 dark:text-neutral-400 font-mono">
               <TermTooltip id={isAdMob ? "ecpm" : "viewability"}>
                 <span>{secondaryRateLabel}: {secondaryRateValue}</span>
               </TermTooltip>

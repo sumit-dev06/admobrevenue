@@ -76,12 +76,16 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
           {/* Account Country */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs font-mono">
-              <TermTooltip id="accountCountry">
-                <span className="text-neutral-500 uppercase text-[10px]">Account Country</span>
-              </TermTooltip>
-              <span className="text-[10px] text-neutral-400 font-mono">Tax & Bank</span>
+              <label htmlFor="admob-account-country">
+                <TermTooltip id="accountCountry">
+                  <span className="text-neutral-600 dark:text-neutral-400 uppercase text-[10px] font-semibold">Account Country</span>
+                </TermTooltip>
+              </label>
+              <span className="text-[10px] text-neutral-500 font-mono">Tax & Bank</span>
             </div>
             <select
+              id="admob-account-country"
+              aria-label="AdMob Account Country for tax and currency settings"
               value={inputs.accountCountry || "US"}
               onChange={(e) => onChange({ ...inputs, accountCountry: e.target.value })}
               className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer"
@@ -97,16 +101,20 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
           {/* User Traffic Country */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs font-mono">
-              <TermTooltip id="trafficCountry">
-                <span className="text-neutral-500 uppercase text-[10px]">Audience Location</span>
-              </TermTooltip>
-              <span className="text-[10px] text-emerald-500 font-mono font-bold">
+              <label htmlFor="admob-traffic-country">
+                <TermTooltip id="trafficCountry">
+                  <span className="text-neutral-600 dark:text-neutral-400 uppercase text-[10px] font-semibold">Audience Location</span>
+                </TermTooltip>
+              </label>
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono font-bold">
                 {inputs.targetCountry && inputs.targetCountry !== "ALL"
                   ? `${COUNTRIES.find((c) => c.code === inputs.targetCountry)?.tier.toUpperCase()} CPM`
                   : "Blended"}
               </span>
             </div>
             <select
+              id="admob-traffic-country"
+              aria-label="AdMob Audience Location Country"
               value={inputs.targetCountry || "ALL"}
               onChange={(e) => handleTrafficCountryChange(e.target.value)}
               className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer"
@@ -141,10 +149,11 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
         {(!inputs.targetCountry || inputs.targetCountry === "ALL") && (
           <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 space-y-2">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-neutral-500 text-[10px] uppercase">Global Tier Allocation</span>
+              <span className="text-neutral-600 dark:text-neutral-400 text-[10px] uppercase font-semibold">Global Tier Allocation</span>
               <div className="flex gap-1">
                 {REGIONAL_PRESETS.slice(0, 3).map((p) => (
                   <button
+                    type="button"
                     key={p.id}
                     onClick={() =>
                       onChange({
@@ -152,7 +161,8 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                         geoDistribution: { tier1: p.t1, tier2: p.t2, tier3: p.t3 },
                       })
                     }
-                    className="px-1.5 py-0.5 text-[9px] font-mono rounded border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 text-neutral-500"
+                    aria-label={`Apply ${p.name} tier preset`}
+                    className="px-1.5 py-0.5 text-[9px] font-mono rounded border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 text-neutral-600 dark:text-neutral-400 cursor-pointer"
                   >
                     {p.name.split(" (")[0]}
                   </button>
@@ -162,16 +172,16 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
 
             <div className="grid grid-cols-3 gap-2 text-xs font-mono">
               <div className="p-2 rounded-lg border border-dashed border-neutral-200 dark:border-neutral-800">
-                <div className="text-neutral-500 text-[10px]">Tier 1</div>
-                <div className="font-bold text-emerald-500">{inputs.geoDistribution.tier1}%</div>
+                <div className="text-neutral-600 dark:text-neutral-400 text-[10px]">Tier 1</div>
+                <div className="font-bold text-emerald-600 dark:text-emerald-400">{inputs.geoDistribution.tier1}%</div>
               </div>
               <div className="p-2 rounded-lg border border-dashed border-neutral-200 dark:border-neutral-800">
-                <div className="text-neutral-500 text-[10px]">Tier 2</div>
-                <div className="font-bold text-amber-500">{inputs.geoDistribution.tier2}%</div>
+                <div className="text-neutral-600 dark:text-neutral-400 text-[10px]">Tier 2</div>
+                <div className="font-bold text-amber-600 dark:text-amber-400">{inputs.geoDistribution.tier2}%</div>
               </div>
               <div className="p-2 rounded-lg border border-dashed border-neutral-200 dark:border-neutral-800">
-                <div className="text-neutral-500 text-[10px]">Tier 3</div>
-                <div className="font-bold text-neutral-400">{inputs.geoDistribution.tier3}%</div>
+                <div className="text-neutral-600 dark:text-neutral-400 text-[10px]">Tier 3</div>
+                <div className="font-bold text-neutral-600 dark:text-neutral-300">{inputs.geoDistribution.tier3}%</div>
               </div>
             </div>
           </div>
@@ -182,31 +192,35 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
       <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
           <div className="flex items-center gap-2">
-            <Smartphone className="w-4 h-4 text-emerald-500" />
+            <Smartphone className="w-4 h-4 text-emerald-500" aria-hidden="true" />
             <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-white">
               App Category & Metrics
             </span>
           </div>
           <div className="flex items-center gap-1 border border-dashed border-neutral-300 dark:border-neutral-800 p-0.5 rounded-lg text-xs font-mono">
             <button
+              type="button"
               onClick={() => onChange({ ...inputs, mode: "quick" })}
               className={
-                "px-2.5 py-0.5 rounded-md transition-all " +
+                "px-2.5 py-0.5 rounded-md transition-all cursor-pointer " +
                 (inputs.mode === "quick"
                   ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold"
-                  : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white")
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white")
               }
+              aria-label="Switch to Quick Mode"
             >
               Quick
             </button>
             <button
+              type="button"
               onClick={() => onChange({ ...inputs, mode: "advanced" })}
               className={
-                "px-2.5 py-0.5 rounded-md transition-all " +
+                "px-2.5 py-0.5 rounded-md transition-all cursor-pointer " +
                 (inputs.mode === "advanced"
                   ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold"
-                  : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white")
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white")
               }
+              aria-label="Switch to Advanced Mode"
             >
               Advanced
             </button>
@@ -216,16 +230,18 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
         {/* Category & Benchmarks */}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-neutral-500 uppercase">App Genre</span>
+            <label htmlFor="admob-category" className="text-neutral-600 dark:text-neutral-400 uppercase font-semibold text-[11px]">App Genre</label>
             <div className="flex items-center gap-1">
               <TermTooltip id="ecpm">
-                <span className="text-emerald-500 font-bold">
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold">
                   Rewarded T1: ${selectedCategory.baseEcpm.rewarded.tier1}
                 </span>
               </TermTooltip>
             </div>
           </div>
           <select
+            id="admob-category"
+            aria-label="AdMob App Genre and Industry Category"
             value={inputs.categoryId}
             onChange={(e) => handleCategoryChange(e.target.value)}
             className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2.5 focus:outline-none focus:border-emerald-500 cursor-pointer"
@@ -241,11 +257,13 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
         {/* DAU Control */}
         <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 space-y-2">
           <div className="flex items-center justify-between text-xs font-mono">
-            <div className="flex items-center gap-1">
-              <Users className="w-3.5 h-3.5 text-neutral-400" />
-              <span className="text-neutral-500 uppercase">Daily Active Users (DAU)</span>
-            </div>
+            <label htmlFor="admob-dau-number" className="flex items-center gap-1 cursor-pointer">
+              <Users className="w-3.5 h-3.5 text-neutral-500" aria-hidden="true" />
+              <span className="text-neutral-600 dark:text-neutral-400 uppercase font-semibold text-[11px]">Daily Active Users (DAU)</span>
+            </label>
             <input
+              id="admob-dau-number"
+              aria-label="Daily Active Users (DAU) number input"
               type="number"
               min="500"
               max="5000000"
@@ -257,6 +275,8 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             />
           </div>
           <input
+            id="admob-dau-slider"
+            aria-label="Daily Active Users range slider"
             type="range"
             min="1000"
             max="100000"
@@ -273,12 +293,14 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
         {/* OS */}
         <div className="bg-white dark:bg-neutral-900 rounded-2xl p-4 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-2">
           <div className="flex justify-between text-xs font-mono">
-            <span className="text-neutral-500">Platform Split</span>
+            <label htmlFor="admob-platform-slider" className="text-neutral-600 dark:text-neutral-400 font-semibold cursor-pointer">Platform Split</label>
             <span className="font-bold text-neutral-900 dark:text-white">
               {inputs.platformSplit.ios}% iOS / {inputs.platformSplit.android}% Android
             </span>
           </div>
           <input
+            id="admob-platform-slider"
+            aria-label="Platform Split percentage slider (iOS vs Android)"
             type="range"
             min="0"
             max="100"
@@ -302,12 +324,15 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             <div className="text-[10px] text-neutral-500 font-mono">MAX / Unity / Mintegral (+25%)</div>
           </div>
           <button
+            type="button"
+            aria-label={`Bidding Mediation: ${inputs.hasMediation ? "Enabled" : "Disabled"}`}
+            aria-pressed={inputs.hasMediation}
             onClick={() => onChange({ ...inputs, hasMediation: !inputs.hasMediation })}
             className={
-              "px-3 py-1 text-xs font-mono font-bold rounded-lg border border-dashed transition-all " +
+              "px-3 py-1 text-xs font-mono font-bold rounded-lg border border-dashed transition-all cursor-pointer " +
               (inputs.hasMediation
-                ? "bg-emerald-500/10 border-emerald-500 text-emerald-500"
-                : "border-neutral-300 dark:border-neutral-700 text-neutral-500")
+                ? "bg-emerald-500/10 border-emerald-500 text-emerald-600 dark:text-emerald-400"
+                : "border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400")
             }
           >
             {inputs.hasMediation ? "Enabled" : "Disabled"}
@@ -322,7 +347,7 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             Ad Formats Frequency
           </span>
           <TermTooltip id="ecpm">
-            <span className="text-[10px] font-mono text-neutral-400">eCPM Guide</span>
+            <span className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400">eCPM Guide</span>
           </TermTooltip>
         </div>
 
@@ -332,6 +357,9 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             <div className="flex items-center justify-between text-xs font-mono">
               <span className="font-bold text-neutral-900 dark:text-white">Rewarded Video</span>
               <button
+                type="button"
+                aria-label={`Rewarded Video: ${inputs.adFormats.rewardedVideo.enabled ? "Active" : "Off"}`}
+                aria-pressed={inputs.adFormats.rewardedVideo.enabled}
                 onClick={() =>
                   onChange({
                     ...inputs,
@@ -345,10 +373,10 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                   })
                 }
                 className={
-                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed " +
+                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed cursor-pointer " +
                   (inputs.adFormats.rewardedVideo.enabled
-                    ? "border-emerald-500 text-emerald-500 bg-emerald-500/10"
-                    : "border-neutral-300 dark:border-neutral-700 text-neutral-400")
+                    ? "border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-500")
                 }
               >
                 {inputs.adFormats.rewardedVideo.enabled ? "Active" : "Off"}
@@ -356,13 +384,15 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             </div>
             {inputs.adFormats.rewardedVideo.enabled && (
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px] font-mono text-neutral-500">
-                  <span>Views/User/Day:</span>
-                  <span className="font-bold text-emerald-400">
+                <div className="flex justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+                  <label htmlFor="admob-rewarded-slider" className="cursor-pointer">Views/User/Day:</label>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">
                     {inputs.adFormats.rewardedVideo.impressionsPerUserPerDay}x
                   </span>
                 </div>
                 <input
+                  id="admob-rewarded-slider"
+                  aria-label="Rewarded video impressions per user per day slider"
                   type="range"
                   min="0.2"
                   max="4.0"
@@ -391,6 +421,9 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             <div className="flex items-center justify-between text-xs font-mono">
               <span className="font-bold text-neutral-900 dark:text-white">Interstitial</span>
               <button
+                type="button"
+                aria-label={`Interstitial: ${inputs.adFormats.interstitial.enabled ? "Active" : "Off"}`}
+                aria-pressed={inputs.adFormats.interstitial.enabled}
                 onClick={() =>
                   onChange({
                     ...inputs,
@@ -404,10 +437,10 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                   })
                 }
                 className={
-                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed " +
+                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed cursor-pointer " +
                   (inputs.adFormats.interstitial.enabled
-                    ? "border-blue-500 text-blue-500 bg-blue-500/10"
-                    : "border-neutral-300 dark:border-neutral-700 text-neutral-400")
+                    ? "border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-500/10"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-500")
                 }
               >
                 {inputs.adFormats.interstitial.enabled ? "Active" : "Off"}
@@ -415,13 +448,15 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             </div>
             {inputs.adFormats.interstitial.enabled && (
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px] font-mono text-neutral-500">
-                  <span>Ads/Session:</span>
-                  <span className="font-bold text-blue-400">
+                <div className="flex justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+                  <label htmlFor="admob-interstitial-slider" className="cursor-pointer">Ads/Session:</label>
+                  <span className="font-bold text-blue-600 dark:text-blue-400">
                     {inputs.adFormats.interstitial.impressionsPerUserPerSession}x
                   </span>
                 </div>
                 <input
+                  id="admob-interstitial-slider"
+                  aria-label="Interstitial ads per user session slider"
                   type="range"
                   min="0.2"
                   max="3.0"
@@ -450,6 +485,9 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             <div className="flex items-center justify-between text-xs font-mono">
               <span className="font-bold text-neutral-900 dark:text-white">App Open Splash</span>
               <button
+                type="button"
+                aria-label={`App Open Splash: ${inputs.adFormats.appOpen.enabled ? "Active" : "Off"}`}
+                aria-pressed={inputs.adFormats.appOpen.enabled}
                 onClick={() =>
                   onChange({
                     ...inputs,
@@ -463,10 +501,10 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                   })
                 }
                 className={
-                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed " +
+                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed cursor-pointer " +
                   (inputs.adFormats.appOpen.enabled
-                    ? "border-amber-500 text-amber-500 bg-amber-500/10"
-                    : "border-neutral-300 dark:border-neutral-700 text-neutral-400")
+                    ? "border-amber-500 text-amber-600 dark:text-amber-400 bg-amber-500/10"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-500")
                 }
               >
                 {inputs.adFormats.appOpen.enabled ? "Active" : "Off"}
@@ -474,13 +512,15 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             </div>
             {inputs.adFormats.appOpen.enabled && (
               <div className="space-y-1">
-                <div className="flex justify-between text-[11px] font-mono text-neutral-500">
-                  <span>Opens/User/Day:</span>
-                  <span className="font-bold text-amber-400">
+                <div className="flex justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
+                  <label htmlFor="admob-appopen-slider" className="cursor-pointer">Opens/User/Day:</label>
+                  <span className="font-bold text-amber-600 dark:text-amber-400">
                     {inputs.adFormats.appOpen.impressionsPerUserPerDay}x
                   </span>
                 </div>
                 <input
+                  id="admob-appopen-slider"
+                  aria-label="App Open ads per user per day slider"
                   type="range"
                   min="0.2"
                   max="2.5"
@@ -509,6 +549,9 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             <div className="flex items-center justify-between text-xs font-mono">
               <span className="font-bold text-neutral-900 dark:text-white">Adaptive Banner</span>
               <button
+                type="button"
+                aria-label={`Adaptive Banner: ${inputs.adFormats.banner.enabled ? "Active" : "Off"}`}
+                aria-pressed={inputs.adFormats.banner.enabled}
                 onClick={() =>
                   onChange({
                     ...inputs,
@@ -522,17 +565,17 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                   })
                 }
                 className={
-                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed " +
+                  "px-2 py-0.5 rounded text-[10px] font-bold border border-dashed cursor-pointer " +
                   (inputs.adFormats.banner.enabled
-                    ? "border-purple-500 text-purple-500 bg-purple-500/10"
-                    : "border-neutral-300 dark:border-neutral-700 text-neutral-400")
+                    ? "border-purple-500 text-purple-600 dark:text-purple-400 bg-purple-500/10"
+                    : "border-neutral-300 dark:border-neutral-700 text-neutral-500")
                 }
               >
                 {inputs.adFormats.banner.enabled ? "Active" : "Off"}
               </button>
             </div>
             {inputs.adFormats.banner.enabled && (
-              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 pt-1">
+              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400 pt-1">
                 <span>Refresh: 30s</span>
                 <span>Active 4 min/session</span>
               </div>

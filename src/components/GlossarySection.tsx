@@ -29,14 +29,17 @@ export const GlossarySection: React.FC = () => {
           </span>
         </div>
         <div className="relative">
+          <label htmlFor="glossary-search" className="sr-only">Search monetization terms</label>
           <input
+            id="glossary-search"
+            aria-label="Search monetization glossary terms"
             type="text"
             placeholder="Search terms..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-7 pr-2.5 py-1 text-xs font-mono bg-neutral-50 dark:bg-neutral-800 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"
+            className="pl-7 pr-2.5 py-1 text-xs font-mono bg-neutral-50 dark:bg-neutral-800 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none text-neutral-900 dark:text-white"
           />
-          <Search className="w-3 h-3 text-neutral-400 absolute left-2.5 top-2.5" />
+          <Search className="w-3 h-3 text-neutral-500 absolute left-2.5 top-2.5" aria-hidden="true" />
         </div>
       </div>
 

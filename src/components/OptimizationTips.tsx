@@ -79,7 +79,7 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-3">
       <div className="flex items-center gap-2 pb-2 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-        <Lightbulb className="w-4 h-4 text-amber-500" />
+        <Lightbulb className="w-4 h-4 text-amber-500" aria-hidden="true" />
         <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-white">
           Optimization Audit
         </span>
@@ -95,11 +95,11 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
               <span className="text-xs font-bold font-mono text-neutral-900 dark:text-white">
                 {t.title}
               </span>
-              <span className="shrink-0 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-dashed border-emerald-500/50 text-emerald-500 bg-emerald-500/10">
+              <span className="shrink-0 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-dashed border-emerald-500/50 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
                 {t.impact}
               </span>
             </div>
-            <p className="text-[11px] text-neutral-500 font-mono leading-relaxed">
+            <p className="text-[11px] text-neutral-600 dark:text-neutral-400 font-mono leading-relaxed">
               {t.desc}
             </p>
           </div>

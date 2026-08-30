@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, startTransition } from "react";
+import React, { useState, useEffect, useMemo, startTransition, Suspense, lazy } from "react";
 import {
   CurrencyCode,
   AdSenseInputs,
@@ -10,17 +10,23 @@ import { Navbar } from "./components/Navbar";
 import { AdMobCalculator } from "./components/AdMobCalculator";
 import { AdSenseCalculator } from "./components/AdSenseCalculator";
 import { RevenueSummaryCard } from "./components/RevenueSummaryCard";
-import { RevenueCharts } from "./components/RevenueCharts";
 import { OptimizationTips } from "./components/OptimizationTips";
 import { FormulaDeepDive } from "./components/FormulaDeepDive";
 import { SeoFaqSection } from "./components/SeoFaqSection";
 import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
 import { GlossarySection } from "./components/GlossarySection";
-import { EmbedWidgetModal } from "./components/EmbedWidgetModal";
-import { ExportReportModal } from "./components/ExportReportModal";
 import { MobileStickyBar } from "./components/MobileStickyBar";
 import { Footer } from "./components/Footer";
-import { AboutPage, ContactPage, PrivacyPage, TermsPage, DisclaimerPage } from "./components/TrustPages";
+
+// Lazy load heavy components to drastically reduce initial bundle size and speed up TBT
+const RevenueCharts = lazy(() => import("./components/RevenueCharts").then(m => ({ default: m.RevenueCharts })));
+const EmbedWidgetModal = lazy(() => import("./components/EmbedWidgetModal").then(m => ({ default: m.EmbedWidgetModal })));
+const ExportReportModal = lazy(() => import("./components/ExportReportModal").then(m => ({ default: m.ExportReportModal })));
+const AboutPage = lazy(() => import("./components/TrustPages").then(m => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => import("./components/TrustPages").then(m => ({ default: m.ContactPage })));
+const PrivacyPage = lazy(() => import("./components/TrustPages").then(m => ({ default: m.PrivacyPage })));
+const TermsPage = lazy(() => import("./components/TrustPages").then(m => ({ default: m.TermsPage })));
+const DisclaimerPage = lazy(() => import("./components/TrustPages").then(m => ({ default: m.DisclaimerPage })));
 
 import {
   CheckCircle2,
@@ -273,11 +279,31 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
 
       {/* Main Container */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-28 lg:pb-8 overflow-x-hidden">
-        {activePlatform === "about" && <AboutPage />}
-        {activePlatform === "contact" && <ContactPage />}
-        {activePlatform === "privacy" && <PrivacyPage />}
-        {activePlatform === "terms" && <TermsPage />}
-        {activePlatform === "disclaimer" && <DisclaimerPage />}
+        {activePlatform === "about" && (
+          <Suspense fallback={<div className="min-h-96" />}>
+            <AboutPage />
+          </Suspense>
+        )}
+        {activePlatform === "contact" && (
+          <Suspense fallback={<div className="min-h-96" />}>
+            <ContactPage />
+          </Suspense>
+        )}
+        {activePlatform === "privacy" && (
+          <Suspense fallback={<div className="min-h-96" />}>
+            <PrivacyPage />
+          </Suspense>
+        )}
+        {activePlatform === "terms" && (
+          <Suspense fallback={<div className="min-h-96" />}>
+            <TermsPage />
+          </Suspense>
+        )}
+        {activePlatform === "disclaimer" && (
+          <Suspense fallback={<div className="min-h-96" />}>
+            <DisclaimerPage />
+          </Suspense>
+        )}
         
         {(activePlatform === "admob" || activePlatform === "adsense") && (
           <>
@@ -309,7 +335,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
                   </>
                 )}
               </h1>
-              <p className="text-xs text-neutral-500 font-mono mt-0.5">
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono mt-0.5">
                 {activePlatform === "admob"
                   ? "Forecast app ARPDAU and eCPMs across Rewarded, Interstitial, and App Open ads."
                   : "Forecast website Page RPM across 26 niches, ad placements, and audience locations."}
@@ -319,6 +345,8 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
             {/* Action Buttons */}
             <div className="flex items-center gap-2 font-mono text-xs">
               <button
+                type="button"
+                aria-label="Reset parameters to original defaults"
                 onClick={() => {
                   if (activePlatform === "admob") {
                     setAdMobInputs(DEFAULT_ADMOB_INPUTS);
@@ -329,24 +357,26 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
                   }
                   showToast("Reset to defaults!");
                 }}
-                className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-500 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px]"
+                className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-600 dark:text-neutral-400 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px] cursor-pointer"
                 title="Reset parameters to original defaults"
               >
                 Reset
               </button>
 
               <button
+                type="button"
+                aria-label={activePlatform === "admob" ? "Switch to AdSense" : "Switch to AdMob"}
                 onClick={() => handlePlatformChange(activePlatform === "admob" ? "adsense" : "admob")}
-                className="px-3 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-white text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5 transition-colors bg-white dark:bg-neutral-900"
+                className="px-3 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-white text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5 transition-colors bg-white dark:bg-neutral-900 cursor-pointer"
               >
                 {activePlatform === "admob" ? (
                   <>
-                    <Globe className="w-3.5 h-3.5 text-blue-500" />
+                    <Globe className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
                     <span>Switch to AdSense</span>
                   </>
                 ) : (
                   <>
-                    <Smartphone className="w-3.5 h-3.5 text-emerald-500" />
+                    <Smartphone className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
                     <span>Switch to AdMob</span>
                   </>
                 )}
@@ -399,11 +429,26 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
                   mediationLiftRevenue={admobResults.mediationLiftRevenue}
                   onExportCSV={() => setIsExportOpen(true)}
                 />
-                <RevenueCharts
-                  formatBreakdown={admobResults.formatBreakdown}
-                  monthlyForecast={admobResults.monthlyForecast}
-                  currency={currency}
-                />
+                <Suspense
+                  fallback={
+                    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+                      <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+                        <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
+                          Visual Breakdown
+                        </span>
+                      </div>
+                      <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
+                        Loading charts...
+                      </div>
+                    </div>
+                  }
+                >
+                  <RevenueCharts
+                    formatBreakdown={admobResults.formatBreakdown}
+                    monthlyForecast={admobResults.monthlyForecast}
+                    currency={currency}
+                  />
+                </Suspense>
               </>
             ) : (
               <>
@@ -421,12 +466,27 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
                   adBlockLossRevenue={adSenseResults.adBlockLossRevenue}
                   onExportCSV={() => setIsExportOpen(true)}
                 />
-                <RevenueCharts
-                  formatBreakdown={adSenseResults.formatBreakdown}
-                  monthlyForecast={adSenseResults.monthlyForecast}
-                  deviceBreakdown={adSenseResults.deviceBreakdown}
-                  currency={currency}
-                />
+                <Suspense
+                  fallback={
+                    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+                      <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+                        <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
+                          Visual Breakdown
+                        </span>
+                      </div>
+                      <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
+                        Loading charts...
+                      </div>
+                    </div>
+                  }
+                >
+                  <RevenueCharts
+                    formatBreakdown={adSenseResults.formatBreakdown}
+                    monthlyForecast={adSenseResults.monthlyForecast}
+                    deviceBreakdown={adSenseResults.deviceBreakdown}
+                    currency={currency}
+                  />
+                </Suspense>
               </>
             )}
           </div>
@@ -457,17 +517,25 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       </main>
 
       {/* Modals */}
-      <EmbedWidgetModal isOpen={isEmbedOpen} onClose={() => setIsEmbedOpen(false)} />
-      <ExportReportModal
-        isOpen={isExportOpen}
-        onClose={() => setIsExportOpen(false)}
-        platform={activePlatform as "admob" | "adsense"}
-        currency={currency}
-        adSenseInputs={adSenseInputs}
-        adSenseResults={adSenseResults}
-        adMobInputs={adMobInputs}
-        adMobResults={admobResults}
-      />
+      {isEmbedOpen && (
+        <Suspense fallback={null}>
+          <EmbedWidgetModal isOpen={isEmbedOpen} onClose={() => setIsEmbedOpen(false)} />
+        </Suspense>
+      )}
+      {isExportOpen && (
+        <Suspense fallback={null}>
+          <ExportReportModal
+            isOpen={isExportOpen}
+            onClose={() => setIsExportOpen(false)}
+            platform={activePlatform as "admob" | "adsense"}
+            currency={currency}
+            adSenseInputs={adSenseInputs}
+            adSenseResults={adSenseResults}
+            adMobInputs={adMobInputs}
+            adMobResults={admobResults}
+          />
+        </Suspense>
+      )}
 
       {/* Mobile Floating Sticky Bar */}
       {(activePlatform === "admob" || activePlatform === "adsense") && (
