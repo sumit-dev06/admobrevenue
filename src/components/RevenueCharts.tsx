@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CurrencyCode } from "../types";
 import { formatCurrency } from "../utils/currency";
 import {
@@ -13,7 +13,6 @@ import {
   Cell,
   CartesianGrid,
 } from "recharts";
-import { BarChart2, PieChart as PieIcon } from "lucide-react";
 
 interface RevenueChartsProps {
   formatBreakdown: { name: string; revenue: number; percentage: number }[];
@@ -30,6 +29,11 @@ export const RevenueCharts: React.FC<RevenueChartsProps> = ({
   currency,
 }) => {
   const [activeTab, setActiveTab] = useState<"forecast" | "formats">("forecast");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const customTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -78,7 +82,11 @@ export const RevenueCharts: React.FC<RevenueChartsProps> = ({
         </div>
       </div>
 
-      {activeTab === "forecast" ? (
+      {!isMounted ? (
+        <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
+          Loading interactive charts...
+        </div>
+      ) : activeTab === "forecast" ? (
         <div>
           <div className="h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -132,7 +140,7 @@ export const RevenueCharts: React.FC<RevenueChartsProps> = ({
             </ResponsiveContainer>
           </div>
           <div className="grid grid-cols-2 gap-1.5 text-xs font-mono">
-            {formatBreakdown.map((item, idx) => (
+            {formatBreakdown.map((item) => (
               <div
                 key={item.name}
                 className="flex items-center justify-between p-1.5 rounded-lg border border-dashed border-neutral-200 dark:border-neutral-800"

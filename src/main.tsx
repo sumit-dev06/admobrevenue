@@ -1,5 +1,5 @@
 import React, { StrictMode, Component, ErrorInfo, ReactNode } from "react";
-import { createRoot, hydrateRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 
@@ -23,7 +23,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
+    console.error("Uncaught error in React render tree:", error, errorInfo);
   }
 
   public render() {
@@ -36,7 +36,9 @@ class ErrorBoundary extends Component<Props, State> {
           </p>
           <button
             onClick={() => {
-              localStorage.clear();
+              try {
+                localStorage.clear();
+              } catch (e) {}
               window.location.href = window.location.pathname;
             }}
             style={{
@@ -59,17 +61,13 @@ class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-const rootElement = document.getElementById("root")!;
-const appNode = (
-  <StrictMode>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
-  </StrictMode>
-);
-
-if (rootElement.hasChildNodes()) {
-  hydrateRoot(rootElement, appNode);
-} else {
-  createRoot(rootElement).render(appNode);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </StrictMode>
+  );
 }
