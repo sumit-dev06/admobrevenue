@@ -246,15 +246,6 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
   const adSenseResults = useMemo(() => calculateAdSenseRevenue(adSenseInputs), [adSenseInputs]);
 
 
-  // Remove anti-flicker class after initial hydration/mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Small timeout ensures the DOM has swapped before revealing
-      setTimeout(() => {
-        document.documentElement.classList.remove("anti-flicker-hide");
-      }, 10);
-    }
-  }, []);
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-950 font-sans transition-colors duration-150">
       {/* Toast Notification */}

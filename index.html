@@ -1,25 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Anti-Flicker Script for Platform Memory -->
-    <style>
-      html.anti-flicker-hide body { opacity: 0 !important; visibility: hidden !important; }
-    </style>
-    <script>
-      (function() {
-        try {
-          var params = new URLSearchParams(window.location.search);
-          var pageParam = params.get("page");
-          var saved = localStorage.getItem("adrev_platform");
-          var platform = pageParam || saved || "admob";
-          var isIndex = window.location.pathname === "/" || window.location.pathname === "/index.html";
-          if (isIndex && platform === "adsense") {
-            document.documentElement.classList.add("anti-flicker-hide");
-          }
-        } catch (e) {}
-      })();
-    </script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
