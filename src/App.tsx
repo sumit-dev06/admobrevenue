@@ -118,7 +118,23 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       try {
         const saved = localStorage.getItem("adrev_admob_inputs");
         if (saved) {
-          return { ...DEFAULT_ADMOB_INPUTS, ...JSON.parse(saved) };
+          const parsed = JSON.parse(saved);
+          return {
+            ...DEFAULT_ADMOB_INPUTS,
+            ...parsed,
+            adFormats: {
+              ...DEFAULT_ADMOB_INPUTS.adFormats,
+              ...(parsed?.adFormats || {}),
+              rewardedVideo: { ...DEFAULT_ADMOB_INPUTS.adFormats.rewardedVideo, ...(parsed?.adFormats?.rewardedVideo || {}) },
+              interstitial: { ...DEFAULT_ADMOB_INPUTS.adFormats.interstitial, ...(parsed?.adFormats?.interstitial || {}) },
+              appOpen: { ...DEFAULT_ADMOB_INPUTS.adFormats.appOpen, ...(parsed?.adFormats?.appOpen || {}) },
+              rewardedInterstitial: { ...DEFAULT_ADMOB_INPUTS.adFormats.rewardedInterstitial, ...(parsed?.adFormats?.rewardedInterstitial || {}) },
+              native: { ...DEFAULT_ADMOB_INPUTS.adFormats.native, ...(parsed?.adFormats?.native || {}) },
+              banner: { ...DEFAULT_ADMOB_INPUTS.adFormats.banner, ...(parsed?.adFormats?.banner || {}) },
+            },
+            geoDistribution: { ...DEFAULT_ADMOB_INPUTS.geoDistribution, ...(parsed?.geoDistribution || {}) },
+            platformSplit: { ...DEFAULT_ADMOB_INPUTS.platformSplit, ...(parsed?.platformSplit || {}) },
+          };
         }
       } catch (e) {
         console.error("Failed to load saved AdMob inputs", e);
@@ -133,7 +149,17 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       try {
         const saved = localStorage.getItem("adrev_adsense_inputs");
         if (saved) {
-          return { ...DEFAULT_ADSENSE_INPUTS, ...JSON.parse(saved) };
+          const parsed = JSON.parse(saved);
+          return {
+            ...DEFAULT_ADSENSE_INPUTS,
+            ...parsed,
+            selectedUnits: {
+              ...DEFAULT_ADSENSE_INPUTS.selectedUnits,
+              ...(parsed?.selectedUnits || {}),
+            },
+            geoDistribution: { ...DEFAULT_ADSENSE_INPUTS.geoDistribution, ...(parsed?.geoDistribution || {}) },
+            deviceDistribution: { ...DEFAULT_ADSENSE_INPUTS.deviceDistribution, ...(parsed?.deviceDistribution || {}) },
+          };
         }
       } catch (e) {
         console.error("Failed to load saved AdSense inputs", e);

@@ -48,7 +48,17 @@ export function calculateAdSenseRevenue(inputs: AdSenseInputs): AdSenseResults {
   const blendedCtr = inputs.customCtr !== undefined ? inputs.customCtr : category.baseCtr;
   const blendedCpc = inputs.customCpc !== undefined ? inputs.customCpc : rawBaseCpc;
 
-  const units = inputs.selectedUnits;
+  const units = Object.assign(
+    {
+      leaderboard: 1,
+      inArticle: 2,
+      sidebar: 1,
+      anchorAd: true,
+      vignetteAd: true,
+      multiplexAd: 1,
+    },
+    inputs.selectedUnits
+  );
   let totalUnitMultiplier = 0;
   const unitBreakdown: { name: string; multiplier: number; count: number }[] = [];
 
@@ -246,7 +256,15 @@ export function calculateAdMobRevenue(inputs: AdMobInputs): AdMobResults {
     return blendedBase * osMultiplier * mediationMultiplier * currentSeasonFactor;
   };
 
-  const formats = inputs.adFormats;
+  const rawFormats = inputs.adFormats || ({} as any);
+  const formats = {
+    rewardedVideo: Object.assign({ enabled: true, impressionsPerUserPerDay: 2.0 }, rawFormats.rewardedVideo),
+    interstitial: Object.assign({ enabled: false, impressionsPerUserPerSession: 1.0 }, rawFormats.interstitial),
+    appOpen: Object.assign({ enabled: false, impressionsPerUserPerDay: 1.0 }, rawFormats.appOpen),
+    rewardedInterstitial: Object.assign({ enabled: false, impressionsPerUserPerDay: 0.5 }, rawFormats.rewardedInterstitial),
+    native: Object.assign({ enabled: false, impressionsPerUserPerDay: 0 }, rawFormats.native),
+    banner: Object.assign({ enabled: false, refreshIntervalSeconds: 30, showPerSessionMinutes: 4.0 }, rawFormats.banner),
+  };
 
   if (formats.rewardedVideo.enabled && formats.rewardedVideo.impressionsPerUserPerDay > 0) {
     const dailyImps = inputs.dau * formats.rewardedVideo.impressionsPerUserPerDay * fillRateMultiplier;
