@@ -27,6 +27,53 @@ import {
   Zap,
 } from "lucide-react";
 
+const DEFAULT_ADMOB_INPUTS: AdMobInputs = {
+  mode: "quick",
+  dau: 1000,
+  categoryId: "hypercasual-games",
+  accountCountry: "IN",
+  targetCountry: "IN",
+  geoDistribution: { tier1: 0, tier2: 0, tier3: 100 },
+  platformSplit: { ios: 30, android: 70 },
+  sessionsPerUserPerDay: 3.5,
+  sessionDurationMinutes: 5.0,
+  adFormats: {
+    rewardedVideo: { enabled: true, impressionsPerUserPerDay: 2.0 },
+    interstitial: { enabled: false, impressionsPerUserPerSession: 1.0 },
+    appOpen: { enabled: false, impressionsPerUserPerDay: 1.0 },
+    rewardedInterstitial: { enabled: false, impressionsPerUserPerDay: 0.5 },
+    native: { enabled: false, impressionsPerUserPerDay: 0 },
+    banner: { enabled: false, refreshIntervalSeconds: 30, showPerSessionMinutes: 4.0 },
+  },
+  hasMediation: false,
+  fillRate: 95,
+  selectedMonth: new Date().getMonth(),
+  useSeasonality: true,
+};
+
+const DEFAULT_ADSENSE_INPUTS: AdSenseInputs = {
+  mode: "quick",
+  monthlyPageviews: 50000,
+  pagesPerVisit: 1.8,
+  categoryId: "tech-software-ai",
+  accountCountry: "US",
+  targetCountry: "ALL",
+  geoDistribution: { tier1: 60, tier2: 25, tier3: 15 },
+  deviceDistribution: { mobile: 65, desktop: 30, tablet: 5 },
+  selectedUnits: {
+    leaderboard: 1,
+    inArticle: 2,
+    sidebar: 1,
+    anchorAd: true,
+    vignetteAd: true,
+    multiplexAd: 1,
+  },
+  adBlockerRate: 25,
+  viewabilityRate: 75,
+  selectedMonth: new Date().getMonth(),
+  useSeasonality: true,
+};
+
 export function App() {
   // Theme state: defaults to clean light mode
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
@@ -38,64 +85,60 @@ export function App() {
     return false;
   });
 
-  // Currency
-  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  // Currency (persisted)
+  const [currency, setCurrency] = useState<CurrencyCode>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_currency") as CurrencyCode;
+      if (saved) return saved;
+    }
+    return "USD";
+  });
 
-  // Dedicated 2-Page Mode: "admob" (Apps) or "adsense" (Websites)
-  const [activePlatform, setActivePlatform] = useState<"admob" | "adsense">("admob");
+  // Dedicated 2-Page Mode: "admob" (Apps) or "adsense" (Websites) (persisted)
+  const [activePlatform, setActivePlatform] = useState<"admob" | "adsense">(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const pageParam = searchParams.get("page") as "admob" | "adsense";
+      if (pageParam === "admob" || pageParam === "adsense") return pageParam;
+      const saved = localStorage.getItem("adrev_platform") as "admob" | "adsense";
+      if (saved === "admob" || saved === "adsense") return saved;
+    }
+    return "admob";
+  });
 
   // Modals
   const [isEmbedOpen, setIsEmbedOpen] = useState<boolean>(false);
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // AdMob Inputs (Page 1)
-  const [adMobInputs, setAdMobInputs] = useState<AdMobInputs>({
-    mode: "quick",
-    dau: 1000,
-    categoryId: "hypercasual-games",
-    accountCountry: "IN",
-    targetCountry: "IN",
-    geoDistribution: { tier1: 0, tier2: 0, tier3: 100 },
-    platformSplit: { ios: 30, android: 70 },
-    sessionsPerUserPerDay: 3.5,
-    sessionDurationMinutes: 5.0,
-    adFormats: {
-      rewardedVideo: { enabled: true, impressionsPerUserPerDay: 2.0 },
-      interstitial: { enabled: false, impressionsPerUserPerSession: 1.0 },
-      appOpen: { enabled: false, impressionsPerUserPerDay: 1.0 },
-      rewardedInterstitial: { enabled: false, impressionsPerUserPerDay: 0.5 },
-      native: { enabled: false, impressionsPerUserPerDay: 0 },
-      banner: { enabled: false, refreshIntervalSeconds: 30, showPerSessionMinutes: 4.0 },
-    },
-    hasMediation: false,
-    fillRate: 95,
-    selectedMonth: new Date().getMonth(),
-    useSeasonality: true,
+  // AdMob Inputs (Page 1) (persisted)
+  const [adMobInputs, setAdMobInputs] = useState<AdMobInputs>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("adrev_admob_inputs");
+        if (saved) {
+          return { ...DEFAULT_ADMOB_INPUTS, ...JSON.parse(saved) };
+        }
+      } catch (e) {
+        console.error("Failed to load saved AdMob inputs", e);
+      }
+    }
+    return DEFAULT_ADMOB_INPUTS;
   });
 
-  // AdSense Inputs (Page 2)
-  const [adSenseInputs, setAdSenseInputs] = useState<AdSenseInputs>({
-    mode: "quick",
-    monthlyPageviews: 50000,
-    pagesPerVisit: 1.8,
-    categoryId: "tech-software-ai",
-    accountCountry: "US",
-    targetCountry: "ALL",
-    geoDistribution: { tier1: 60, tier2: 25, tier3: 15 },
-    deviceDistribution: { mobile: 65, desktop: 30, tablet: 5 },
-    selectedUnits: {
-      leaderboard: 1,
-      inArticle: 2,
-      sidebar: 1,
-      anchorAd: true,
-      vignetteAd: true,
-      multiplexAd: 1,
-    },
-    adBlockerRate: 25,
-    viewabilityRate: 75,
-    selectedMonth: new Date().getMonth(),
-    useSeasonality: true,
+  // AdSense Inputs (Page 2) (persisted)
+  const [adSenseInputs, setAdSenseInputs] = useState<AdSenseInputs>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("adrev_adsense_inputs");
+        if (saved) {
+          return { ...DEFAULT_ADSENSE_INPUTS, ...JSON.parse(saved) };
+        }
+      } catch (e) {
+        console.error("Failed to load saved AdSense inputs", e);
+      }
+    }
+    return DEFAULT_ADSENSE_INPUTS;
   });
 
   // Apply dark mode class to html root
@@ -108,6 +151,31 @@ export function App() {
       localStorage.setItem("adrev_theme", "light");
     }
   }, [isDarkMode]);
+
+  // Persist platform, currency, and inputs to localStorage whenever changed
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_platform", activePlatform);
+    }
+  }, [activePlatform]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_currency", currency);
+    }
+  }, [currency]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_admob_inputs", JSON.stringify(adMobInputs));
+    }
+  }, [adMobInputs]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_adsense_inputs", JSON.stringify(adSenseInputs));
+    }
+  }, [adSenseInputs]);
 
   // Sync URL parameters & history
   useEffect(() => {
@@ -220,8 +288,25 @@ export function App() {
               </p>
             </div>
 
-            {/* Quick Switch Button */}
+            {/* Action Buttons */}
             <div className="flex items-center gap-2 font-mono text-xs">
+              <button
+                onClick={() => {
+                  if (activePlatform === "admob") {
+                    setAdMobInputs(DEFAULT_ADMOB_INPUTS);
+                    localStorage.removeItem("adrev_admob_inputs");
+                  } else {
+                    setAdSenseInputs(DEFAULT_ADSENSE_INPUTS);
+                    localStorage.removeItem("adrev_adsense_inputs");
+                  }
+                  showToast("Reset to defaults!");
+                }}
+                className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-500 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px]"
+                title="Reset parameters to original defaults"
+              >
+                Reset
+              </button>
+
               <button
                 onClick={() => handlePlatformChange(activePlatform === "admob" ? "adsense" : "admob")}
                 className="px-3 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-white text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5 transition-colors bg-white dark:bg-neutral-900"
