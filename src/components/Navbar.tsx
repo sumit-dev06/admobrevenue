@@ -2,17 +2,13 @@ import React from "react";
 import { CurrencyCode } from "../types";
 import { CURRENCIES } from "../data/geoTiers";
 import {
-  Globe,
   Smartphone,
-  Layers,
-  Target,
-  GitCompare,
-  BarChart3,
+  Globe,
   Moon,
   Sun,
-  Code2,
   Download,
   Share2,
+  Code2,
 } from "lucide-react";
 
 interface NavbarProps {
@@ -23,8 +19,8 @@ interface NavbarProps {
   onOpenEmbed: () => void;
   onOpenExport: () => void;
   onShare: () => void;
-  activePlatform: string;
-  onPlatformChange: (p: any) => void;
+  activePlatform: "admob" | "adsense";
+  onPlatformChange: (p: "admob" | "adsense") => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -40,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-dashed border-neutral-300 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           {/* Brand */}
           <div
@@ -55,13 +51,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 admob<span className="text-emerald-500">revenue</span>
               </span>
               <span className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] font-mono uppercase rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-500">
-                2026.v1
+                2026 Engine
               </span>
             </div>
           </div>
 
-          {/* Quick Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 border border-dashed border-neutral-300 dark:border-neutral-800 p-1 rounded-xl bg-neutral-50 dark:bg-neutral-900/60 text-xs font-mono">
+          {/* Dedicated 2-Page Nav Switcher */}
+          <nav className="flex items-center gap-1 border border-dashed border-neutral-300 dark:border-neutral-800 p-1 rounded-xl bg-neutral-50 dark:bg-neutral-900/60 text-xs font-mono">
             <button
               onClick={() => onPlatformChange("admob")}
               className={
@@ -71,8 +67,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
               }
             >
-              <Smartphone className="w-3 h-3 text-emerald-500" />
-              AdMob
+              <Smartphone className="w-3.5 h-3.5 text-emerald-500" />
+              <span>AdMob (Apps)</span>
             </button>
             <button
               onClick={() => onPlatformChange("adsense")}
@@ -83,56 +79,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
               }
             >
-              <Globe className="w-3 h-3 text-blue-500" />
-              AdSense
-            </button>
-            <button
-              onClick={() => onPlatformChange("portfolio")}
-              className={
-                "flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all " +
-                (activePlatform === "portfolio"
-                  ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
-              }
-            >
-              <Layers className="w-3 h-3 text-amber-500" />
-              Portfolio
-            </button>
-            <button
-              onClick={() => onPlatformChange("goal")}
-              className={
-                "flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all " +
-                (activePlatform === "goal"
-                  ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
-              }
-            >
-              <Target className="w-3 h-3 text-purple-500" />
-              Goal
-            </button>
-            <button
-              onClick={() => onPlatformChange("compare")}
-              className={
-                "flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all " +
-                (activePlatform === "compare"
-                  ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
-              }
-            >
-              <GitCompare className="w-3 h-3 text-rose-500" />
-              A/B
-            </button>
-            <button
-              onClick={() => onPlatformChange("benchmarks")}
-              className={
-                "flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all " +
-                (activePlatform === "benchmarks"
-                  ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
-              }
-            >
-              <BarChart3 className="w-3 h-3 text-cyan-500" />
-              Benchmarks
+              <Globe className="w-3.5 h-3.5 text-blue-500" />
+              <span>AdSense (Web)</span>
             </button>
           </nav>
 
@@ -155,18 +103,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={onShare}
               className="p-1.5 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-800 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
-              title="Share Calculation"
+              title="Share Link"
             >
               <Share2 className="w-3.5 h-3.5" />
-            </button>
-
-            {/* Embed */}
-            <button
-              onClick={onOpenEmbed}
-              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono font-medium text-neutral-700 dark:text-neutral-300 border border-dashed border-neutral-300 dark:border-neutral-800 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
-            >
-              <Code2 className="w-3 h-3 text-emerald-500" />
-              <span>Embed</span>
             </button>
 
             {/* Export */}
