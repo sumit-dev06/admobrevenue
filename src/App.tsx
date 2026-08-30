@@ -20,6 +20,8 @@ import { EmbedWidgetModal } from "./components/EmbedWidgetModal";
 import { ExportReportModal } from "./components/ExportReportModal";
 import { MobileStickyBar } from "./components/MobileStickyBar";
 import { Footer } from "./components/Footer";
+import { AboutPage, ContactPage, PrivacyPage, TermsPage, DisclaimerPage } from "./components/TrustPages";
+
 import {
   CheckCircle2,
   Smartphone,
@@ -74,7 +76,7 @@ const DEFAULT_ADSENSE_INPUTS: AdSenseInputs = {
   useSeasonality: true,
 };
 
-export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense" } = {}) {
+export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer" } = {}) {
   // Theme state: defaults to clean light mode
   
   // Currency (persisted)
@@ -87,7 +89,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
   });
 
   // Dedicated 2-Page Mode: "admob" (Apps) or "adsense" (Websites) (persisted)
-  const [activePlatform, setActivePlatform] = useState<"admob" | "adsense">(() => {
+  const [activePlatform, setActivePlatform] = useState<string>(() => {
     if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
       const searchParams = new URLSearchParams(window.location.search);
@@ -190,8 +192,8 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
   useEffect(() => {
     if (typeof window !== "undefined") {
       const searchParams = new URLSearchParams(window.location.search);
-      const pageParam = searchParams.get("page") as "admob" | "adsense";
-      if (pageParam === "admob" || pageParam === "adsense") {
+      const pageParam = searchParams.get("page");
+      if (pageParam) {
         setActivePlatform(pageParam);
       }
       const calcParam = searchParams.get("calc");
@@ -209,7 +211,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
     }
   }, []);
 
-  const handlePlatformChange = (p: "admob" | "adsense") => {
+  const handlePlatformChange = (p: string) => {
     startTransition(() => setActivePlatform(p));
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
@@ -265,12 +267,21 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
                 onOpenEmbed={() => setIsEmbedOpen(true)}
         onOpenExport={() => setIsExportOpen(true)}
         onShare={handleShare}
-        activePlatform={activePlatform}
+        activePlatform={activePlatform as "admob" | "adsense"}
         onPlatformChange={handlePlatformChange}
       />
 
       {/* Main Container */}
       <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-28 lg:pb-8 overflow-x-hidden">
+        {activePlatform === "about" && <AboutPage />}
+        {activePlatform === "contact" && <ContactPage />}
+        {activePlatform === "privacy" && <PrivacyPage />}
+        {activePlatform === "terms" && <TermsPage />}
+        {activePlatform === "disclaimer" && <DisclaimerPage />}
+        
+        {(activePlatform === "admob" || activePlatform === "adsense") && (
+          <>
+
         {/* Page Banner */}
         <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -364,7 +375,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
 
             {/* Optimization Recommendations */}
             <OptimizationTips
-              platform={activePlatform}
+              platform={activePlatform as "admob" | "adsense"}
               adSenseInputs={adSenseInputs}
               adMobInputs={adMobInputs}
             />
@@ -440,6 +451,9 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
         <section>
           <SeoFaqSection />
         </section>
+      
+          </>
+        )}
       </main>
 
       {/* Modals */}
@@ -447,7 +461,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       <ExportReportModal
         isOpen={isExportOpen}
         onClose={() => setIsExportOpen(false)}
-        platform={activePlatform}
+        platform={activePlatform as "admob" | "adsense"}
         currency={currency}
         adSenseInputs={adSenseInputs}
         adSenseResults={adSenseResults}
@@ -456,8 +470,9 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       />
 
       {/* Mobile Floating Sticky Bar */}
+      {(activePlatform === "admob" || activePlatform === "adsense") && (
       <MobileStickyBar
-        activeMode={activePlatform}
+        activeMode={activePlatform as "admob" | "adsense"}
         currency={currency}
         monthlyRevenue={
           activePlatform === "admob" ? admobResults.monthlyRevenue : adSenseResults.monthlyRevenue
@@ -472,6 +487,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
         onOpenEmbed={() => setIsEmbedOpen(true)}
         onShare={handleShare}
       />
+      )}
 
       {/* Footer */}
       <Footer />

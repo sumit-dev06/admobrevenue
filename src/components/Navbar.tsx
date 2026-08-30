@@ -15,8 +15,8 @@ interface NavbarProps {
   onOpenEmbed: () => void;
   onOpenExport: () => void;
   onShare: () => void;
-  activePlatform: "admob" | "adsense";
-  onPlatformChange: (p: "admob" | "adsense") => void;
+  activePlatform: string;
+  onPlatformChange: (p: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
