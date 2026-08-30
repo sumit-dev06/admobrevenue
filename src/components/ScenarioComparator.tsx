@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CurrencyCode } from "../types";
 import { formatCurrency } from "../utils/currency";
-import { GitCompare, ArrowRight, CheckCircle2 } from "lucide-react";
+import { GitCompare } from "lucide-react";
 
 interface ScenarioComparatorProps {
   currency: CurrencyCode;
@@ -18,7 +18,6 @@ export const ScenarioComparator: React.FC<ScenarioComparatorProps> = ({ currency
   // Optimized: Mediation + Rewarded Video + App Open + Paced Interstitials
   const optDailyRev = (dau * (0.0003 * 4 + 0.0012 * 1.5 + 0.0025 * 2.0 + 0.0010 * 1.5)) * 1.25;
   const optMonthlyRev = optDailyRev * 30.4;
-  const optArpdau = optDailyRev / dau;
 
   const deltaMonthly = optMonthlyRev - baseMonthlyRev;
   const percentageLift = Math.round(((optMonthlyRev - baseMonthlyRev) / (baseMonthlyRev || 1)) * 100);

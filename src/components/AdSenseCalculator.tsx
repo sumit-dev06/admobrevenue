@@ -1,9 +1,9 @@
 import React from "react";
 import { AdSenseInputs, CurrencyCode } from "../types";
 import { ADSENSE_CATEGORIES } from "../data/adSenseData";
-import { COUNTRIES, REGIONAL_PRESETS } from "../data/geoTiers";
+import { COUNTRIES } from "../data/geoTiers";
 import { TermTooltip } from "./TermTooltip";
-import { Globe, Building, Eye, ShieldAlert } from "lucide-react";
+import { Globe } from "lucide-react";
 
 interface AdSenseCalculatorProps {
   inputs: AdSenseInputs;

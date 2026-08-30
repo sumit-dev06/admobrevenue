@@ -1,16 +1,26 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { execSync } from 'child_process';
+import { build } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 
 console.log('🚀 [1/3] Building client production bundle...');
-execSync('npx vite build', { stdio: 'inherit', cwd: root });
+await build({
+  root,
+  configFile: path.join(root, 'vite.config.ts'),
+});
 
 console.log('⚡ [2/3] Building SSR pre-rendering bundle...');
-execSync('npx vite build --ssr src/entry-server.tsx --outDir dist-ssr', { stdio: 'inherit', cwd: root });
+await build({
+  root,
+  configFile: path.join(root, 'vite.config.ts'),
+  build: {
+    ssr: path.join(root, 'src/entry-server.tsx'),
+    outDir: 'dist-ssr',
+  },
+});
 
 console.log('✨ [3/3] Pre-rendering static HTML pages for instant SEO & Google Crawling...');
 const { render } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);

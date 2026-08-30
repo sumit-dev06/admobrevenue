@@ -6,7 +6,6 @@ import { TermTooltip } from "./TermTooltip";
 import {
   Smartphone,
   Globe,
-  Building,
   Users,
 } from "lucide-react";
 

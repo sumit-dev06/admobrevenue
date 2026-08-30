@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CurrencyCode } from "../types";
 import { formatCurrency } from "../utils/currency";
-import { Target, CheckCircle2 } from "lucide-react";
+import { Target } from "lucide-react";
 
 interface ReverseGoalCalculatorProps {
   currency: CurrencyCode;
@@ -9,13 +9,10 @@ interface ReverseGoalCalculatorProps {
 
 export const ReverseGoalCalculator: React.FC<ReverseGoalCalculatorProps> = ({ currency }) => {
   const [targetIncome, setTargetIncome] = useState<number>(3000);
-  const [nicheTier, setNicheTier] = useState<"standard" | "high" | "emerging">("standard");
 
   // Standard: $12 RPM / $0.08 ARPDAU
-  // High: $35 RPM / $0.20 ARPDAU
-  // Emerging: $2.50 RPM / $0.02 ARPDAU
-  const rpm = nicheTier === "high" ? 35 : nicheTier === "standard" ? 12 : 2.5;
-  const arpdau = nicheTier === "high" ? 0.20 : nicheTier === "standard" ? 0.08 : 0.02;
+  const rpm = 12;
+  const arpdau = 0.08;
 
   const requiredPageviews = Math.round((targetIncome / rpm) * 1000);
   const requiredDailyVisitors = Math.round(requiredPageviews / (30.4 * 1.8));

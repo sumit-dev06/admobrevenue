@@ -1,6 +1,6 @@
 import React from "react";
 import { AdSenseInputs, AdMobInputs } from "../types";
-import { Lightbulb, ArrowRight } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 
 interface OptimizationTipsProps {
   platform: "adsense" | "admob";

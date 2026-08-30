@@ -1,5 +1,5 @@
 import React, { StrictMode, Component, ErrorInfo, ReactNode } from "react";
-import { createRoot, hydrateRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 
@@ -39,7 +39,9 @@ class ErrorBoundary extends Component<Props, State> {
             onClick={() => {
               try {
                 localStorage.clear();
-              } catch (e) {}
+              } catch {
+                // Ignore storage errors
+              }
               window.location.href = window.location.pathname;
             }}
             style={{

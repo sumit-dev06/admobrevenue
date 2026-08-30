@@ -32,7 +32,6 @@ import {
   CheckCircle2,
   Smartphone,
   Globe,
-  Zap,
 } from "lucide-react";
 
 const DEFAULT_ADMOB_INPUTS: AdMobInputs = {
@@ -194,6 +193,11 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
     }
   }, [adSenseInputs]);
 
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
   // Sync URL parameters & history
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -224,11 +228,6 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       url.searchParams.set("page", p);
       window.history.replaceState({}, "", url.toString());
     }
-  };
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3000);
   };
 
   const handleShare = () => {
