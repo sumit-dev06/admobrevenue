@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, startTransition } from "react";
 import {
   CurrencyCode,
   AdSenseInputs,
@@ -76,15 +76,7 @@ const DEFAULT_ADSENSE_INPUTS: AdSenseInputs = {
 
 export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense" } = {}) {
   // Theme state: defaults to clean light mode
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("adrev_theme");
-      if (saved) return saved === "dark";
-      return false;
-    }
-    return false;
-  });
-
+  
   // Currency (persisted)
   const [currency, setCurrency] = useState<CurrencyCode>(() => {
     if (typeof window !== "undefined") {
@@ -168,17 +160,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
     return DEFAULT_ADSENSE_INPUTS;
   });
 
-  // Apply dark mode class to html root
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("adrev_theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("adrev_theme", "light");
-    }
-  }, [isDarkMode]);
-
+  
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -228,7 +210,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
   }, []);
 
   const handlePlatformChange = (p: "admob" | "adsense") => {
-    setActivePlatform(p);
+    startTransition(() => setActivePlatform(p));
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       url.searchParams.set("page", p);
@@ -270,9 +252,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       <Navbar
         currentCurrency={currency}
         onCurrencyChange={setCurrency}
-        isDarkMode={isDarkMode}
-        onToggleTheme={() => setIsDarkMode(!isDarkMode)}
-        onOpenEmbed={() => setIsEmbedOpen(true)}
+                onOpenEmbed={() => setIsEmbedOpen(true)}
         onOpenExport={() => setIsExportOpen(true)}
         onShare={handleShare}
         activePlatform={activePlatform}

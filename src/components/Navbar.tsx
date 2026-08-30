@@ -1,11 +1,10 @@
 import React from "react";
 import { CurrencyCode } from "../types";
 import { CURRENCIES } from "../data/geoTiers";
+import { ThemeToggle } from "./ThemeToggle";
 import {
   Smartphone,
   Globe,
-  Moon,
-  Sun,
   Download,
   Share2,
 } from "lucide-react";
@@ -13,8 +12,6 @@ import {
 interface NavbarProps {
   currentCurrency: CurrencyCode;
   onCurrencyChange: (code: CurrencyCode) => void;
-  isDarkMode: boolean;
-  onToggleTheme: () => void;
   onOpenEmbed: () => void;
   onOpenExport: () => void;
   onShare: () => void;
@@ -25,8 +22,6 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   currentCurrency,
   onCurrencyChange,
-  isDarkMode,
-  onToggleTheme,
   onOpenExport,
   onShare,
   activePlatform,
@@ -113,13 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {/* Theme Toggle */}
-            <button
-              onClick={onToggleTheme}
-              className="p-1.5 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-800 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
-              aria-label="Toggle Theme"
-            >
-              {isDarkMode ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5 text-neutral-600" />}
-            </button>
+            <ThemeToggle />
           </div>
         </div>
       </div>
