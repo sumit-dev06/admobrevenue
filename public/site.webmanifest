@@ -1,0 +1,15 @@
+{
+  "name": "AdSense & AdMob Revenue Calculator",
+  "short_name": "AdRevPro",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#10b981"
+}

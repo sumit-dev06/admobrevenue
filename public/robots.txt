@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://admob-adsense-calculator.pages.dev/sitemap.xml
