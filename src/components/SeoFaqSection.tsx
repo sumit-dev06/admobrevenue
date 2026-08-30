@@ -23,7 +23,7 @@ export const SeoFaqSection: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 sm:p-6 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+    <div id="faq-section" className="bg-white dark:bg-neutral-900 rounded-2xl p-5 sm:p-6 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
       {/* Inject FAQ Schema */}
       <script
         type="application/ld+json"
