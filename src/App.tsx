@@ -74,7 +74,7 @@ const DEFAULT_ADSENSE_INPUTS: AdSenseInputs = {
   useSeasonality: true,
 };
 
-export function App() {
+export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense" } = {}) {
   // Theme state: defaults to clean light mode
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
@@ -96,6 +96,7 @@ export function App() {
 
   // Dedicated 2-Page Mode: "admob" (Apps) or "adsense" (Websites) (persisted)
   const [activePlatform, setActivePlatform] = useState<"admob" | "adsense">(() => {
+    if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
       const searchParams = new URLSearchParams(window.location.search);
       const pageParam = searchParams.get("page") as "admob" | "adsense";
