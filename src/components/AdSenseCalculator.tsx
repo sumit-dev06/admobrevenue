@@ -3,6 +3,7 @@ import { AdSenseInputs, CurrencyCode } from "../types";
 import { ADSENSE_CATEGORIES } from "../data/adSenseData";
 import { COUNTRIES } from "../data/geoTiers";
 import { TermTooltip } from "./TermTooltip";
+import { SearchableSelect, SearchableOption } from "./SearchableSelect";
 import { Globe } from "lucide-react";
 
 interface AdSenseCalculatorProps {
@@ -52,6 +53,43 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
     });
   };
 
+  const accountCountryOptions: SearchableOption[] = React.useMemo(
+    () =>
+      COUNTRIES.map((c) => ({
+        value: c.code,
+        label: `${c.flag} ${c.name} (${c.code})`,
+        badge: c.tier.toUpperCase(),
+      })),
+    []
+  );
+
+  const trafficCountryOptions: SearchableOption[] = React.useMemo(
+    () => [
+      {
+        value: "ALL",
+        label: "🌐 Global Traffic Mix (Custom Tier Slider)",
+        badge: "BLENDED",
+      },
+      ...COUNTRIES.map((c) => ({
+        value: c.code,
+        label: `${c.flag} ${c.name}`,
+        subLabel: `${c.cpmMultiplier}x RPM`,
+        badge: c.tier.toUpperCase(),
+      })),
+    ],
+    []
+  );
+
+  const categoryOptions: SearchableOption[] = React.useMemo(
+    () =>
+      ADSENSE_CATEGORIES.map((cat) => ({
+        value: cat.id,
+        label: cat.name,
+        badge: `$${cat.baseRpmTier1} T1`,
+      })),
+    []
+  );
+
   return (
     <div className="space-y-4">
       {/* Geographic Targeting & Account Country */}
@@ -79,19 +117,14 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
               </label>
               <span className="text-[10px] text-neutral-500 font-mono">Tax & Bank</span>
             </div>
-            <select
+            <SearchableSelect
               id="adsense-account-country"
-              aria-label="AdSense Account Country for tax and payment settings"
+              ariaLabel="AdSense Account Country for tax and payment settings"
+              searchPlaceholder="Search country name or code..."
+              options={accountCountryOptions}
               value={inputs.accountCountry || "US"}
-              onChange={(e) => onChange({ ...inputs, accountCountry: e.target.value })}
-              className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 cursor-pointer"
-            >
-              {COUNTRIES.map((c) => (
-                <option key={"acc-adsense-" + c.code} value={c.code}>
-                  {c.flag} {c.name} ({c.code})
-                </option>
-              ))}
-            </select>
+              onChange={(val) => onChange({ ...inputs, accountCountry: val })}
+            />
           </div>
 
           {/* User Traffic Country */}
@@ -108,36 +141,14 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
                   : "Blended"}
               </span>
             </div>
-            <select
+            <SearchableSelect
               id="adsense-traffic-country"
-              aria-label="AdSense Audience Location Country"
+              ariaLabel="AdSense Audience Location Country"
+              searchPlaceholder="Search audience country..."
+              options={trafficCountryOptions}
               value={inputs.targetCountry || "ALL"}
-              onChange={(e) => handleTrafficCountryChange(e.target.value)}
-              className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500 cursor-pointer"
-            >
-              <option value="ALL">🌐 Global Traffic Mix (Custom Tier Slider)</option>
-              <optgroup label="Tier 1 High-Yield Countries (US, UK, CA, DE, AU...)">
-                {COUNTRIES.filter((c) => c.tier === "tier1").map((c) => (
-                  <option key={"adsense-t1-" + c.code} value={c.code}>
-                    {c.flag} {c.name} (Tier 1 · {c.cpmMultiplier}x RPM)
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label="Tier 2 Moderate-Yield Countries (BR, MX, IT, ES, ZA...)">
-                {COUNTRIES.filter((c) => c.tier === "tier2").map((c) => (
-                  <option key={"adsense-t2-" + c.code} value={c.code}>
-                    {c.flag} {c.name} (Tier 2 · {c.cpmMultiplier}x RPM)
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label="Tier 3 High-Volume Emerging Countries (IN, PK, NG, PH...)">
-                {COUNTRIES.filter((c) => c.tier === "tier3").map((c) => (
-                  <option key={"adsense-t3-" + c.code} value={c.code}>
-                    {c.flag} {c.name} (Tier 3 · {c.cpmMultiplier}x RPM)
-                  </option>
-                ))}
-              </optgroup>
-            </select>
+              onChange={(val) => handleTrafficCountryChange(val)}
+            />
           </div>
         </div>
       </div>
@@ -191,19 +202,14 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
               </span>
             </TermTooltip>
           </div>
-          <select
+          <SearchableSelect
             id="adsense-category"
-            aria-label="AdSense Website Niche Category"
+            ariaLabel="AdSense Website Niche Category"
+            searchPlaceholder="Search finance, tech, travel, news..."
+            options={categoryOptions}
             value={inputs.categoryId}
-            onChange={(e) => handleCategoryChange(e.target.value)}
-            className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2.5 focus:outline-none focus:border-blue-500 cursor-pointer"
-          >
-            {ADSENSE_CATEGORIES.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => handleCategoryChange(val)}
+          />
         </div>
 
         {/* Pageviews */}

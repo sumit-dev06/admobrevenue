@@ -3,6 +3,7 @@ import { AdMobInputs, CurrencyCode } from "../types";
 import { ADMOB_CATEGORIES } from "../data/adMobData";
 import { COUNTRIES, REGIONAL_PRESETS } from "../data/geoTiers";
 import { TermTooltip } from "./TermTooltip";
+import { SearchableSelect, SearchableOption } from "./SearchableSelect";
 import {
   Smartphone,
   Globe,
@@ -55,15 +56,52 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
     });
   };
 
+  const accountCountryOptions: SearchableOption[] = React.useMemo(
+    () =>
+      COUNTRIES.map((c) => ({
+        value: c.code,
+        label: `${c.flag} ${c.name} (${c.code})`,
+        badge: c.tier.toUpperCase(),
+      })),
+    []
+  );
+
+  const trafficCountryOptions: SearchableOption[] = React.useMemo(
+    () => [
+      {
+        value: "ALL",
+        label: "🌐 Global Traffic Mix (Custom Tier Slider)",
+        badge: "BLENDED",
+      },
+      ...COUNTRIES.map((c) => ({
+        value: c.code,
+        label: `${c.flag} ${c.name}`,
+        subLabel: `${c.cpmMultiplier}x CPM`,
+        badge: c.tier.toUpperCase(),
+      })),
+    ],
+    []
+  );
+
+  const categoryOptions: SearchableOption[] = React.useMemo(
+    () =>
+      ADMOB_CATEGORIES.map((cat) => ({
+        value: cat.id,
+        label: cat.name,
+        badge: `$${cat.baseEcpm.rewarded.tier1} T1`,
+      })),
+    []
+  );
+
   return (
     <div className="space-y-4">
-      {/* Country Origins (Account vs Traffic) */}
-      <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-3">
-        <div className="flex items-center justify-between pb-2 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+      {/* Target Audience & Region */}
+      <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
           <div className="flex items-center gap-2">
-            <Globe className="w-4 h-4 text-emerald-500" />
+            <Globe className="w-4 h-4 text-purple-500" aria-hidden="true" />
             <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-white">
-              Geographic Targeting & Account
+              Target Audience & Region
             </span>
           </div>
           <span className="text-[10px] font-mono text-neutral-400">
@@ -82,19 +120,14 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
               </label>
               <span className="text-[10px] text-neutral-500 font-mono">Tax & Bank</span>
             </div>
-            <select
+            <SearchableSelect
               id="admob-account-country"
-              aria-label="AdMob Account Country for tax and currency settings"
+              ariaLabel="AdMob Account Country for tax and currency settings"
+              searchPlaceholder="Search country name or code..."
+              options={accountCountryOptions}
               value={inputs.accountCountry || "US"}
-              onChange={(e) => onChange({ ...inputs, accountCountry: e.target.value })}
-              className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              {COUNTRIES.map((c) => (
-                <option key={"acc-" + c.code} value={c.code}>
-                  {c.flag} {c.name} ({c.code})
-                </option>
-              ))}
-            </select>
+              onChange={(val) => onChange({ ...inputs, accountCountry: val })}
+            />
           </div>
 
           {/* User Traffic Country */}
@@ -111,36 +144,14 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                   : "Blended"}
               </span>
             </div>
-            <select
+            <SearchableSelect
               id="admob-traffic-country"
-              aria-label="AdMob Audience Location Country"
+              ariaLabel="AdMob Audience Location Country"
+              searchPlaceholder="Search audience country..."
+              options={trafficCountryOptions}
               value={inputs.targetCountry || "ALL"}
-              onChange={(e) => handleTrafficCountryChange(e.target.value)}
-              className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              <option value="ALL">🌐 Global Traffic Mix (Custom Tier Slider)</option>
-              <optgroup label="Tier 1 High-Yield Countries (US, UK, CA, DE, AU...)">
-                {COUNTRIES.filter((c) => c.tier === "tier1").map((c) => (
-                  <option key={"t1-" + c.code} value={c.code}>
-                    {c.flag} {c.name} (Tier 1 · {c.cpmMultiplier}x CPM)
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label="Tier 2 Moderate-Yield Countries (BR, MX, IT, ES, ZA...)">
-                {COUNTRIES.filter((c) => c.tier === "tier2").map((c) => (
-                  <option key={"t2-" + c.code} value={c.code}>
-                    {c.flag} {c.name} (Tier 2 · {c.cpmMultiplier}x CPM)
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label="Tier 3 High-Volume Emerging Countries (IN, PK, NG, PH...)">
-                {COUNTRIES.filter((c) => c.tier === "tier3").map((c) => (
-                  <option key={"t3-" + c.code} value={c.code}>
-                    {c.flag} {c.name} (Tier 3 · {c.cpmMultiplier}x CPM)
-                  </option>
-                ))}
-              </optgroup>
-            </select>
+              onChange={(val) => handleTrafficCountryChange(val)}
+            />
           </div>
         </div>
 
@@ -238,19 +249,14 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
               </TermTooltip>
             </div>
           </div>
-          <select
+          <SearchableSelect
             id="admob-category"
-            aria-label="AdMob App Genre and Industry Category"
+            ariaLabel="AdMob App Genre and Industry Category"
+            searchPlaceholder="Search games, utilities, tools, social..."
+            options={categoryOptions}
             value={inputs.categoryId}
-            onChange={(e) => handleCategoryChange(e.target.value)}
-            className="w-full bg-neutral-50 dark:bg-neutral-800/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white text-xs font-mono font-semibold rounded-xl px-3 py-2.5 focus:outline-none focus:border-emerald-500 cursor-pointer"
-          >
-            {ADMOB_CATEGORIES.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => handleCategoryChange(val)}
+          />
         </div>
 
         {/* DAU Control */}
