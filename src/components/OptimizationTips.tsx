@@ -1,6 +1,6 @@
 import React from "react";
 import { AdSenseInputs, AdMobInputs } from "../types";
-import { Lightbulb, ArrowUpRight, Zap, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Lightbulb, ArrowRight } from "lucide-react";
 
 interface OptimizationTipsProps {
   platform: "adsense" | "admob";
@@ -13,133 +13,95 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
   adSenseInputs,
   adMobInputs,
 }) => {
-  const tips: { title: string; desc: string; impact: string; type: "high" | "medium" | "quick" }[] = [];
+  const tips: { title: string; desc: string; impact: string }[] = [];
 
-  if (platform === "adsense" && adSenseInputs) {
-    if (!adSenseInputs.selectedUnits.anchorAd) {
-      tips.push({
-        title: "Enable Mobile Anchor Ads",
-        desc: "Sticky bottom dock anchors achieve 92%+ viewability on mobile viewports and lift blended Page RPM by +15% to +22% without harming user experience.",
-        impact: "+18% RPM Lift",
-        type: "high",
-      });
-    }
-
-    if (!adSenseInputs.selectedUnits.vignetteAd) {
-      tips.push({
-        title: "Activate Vignette Interstitials",
-        desc: "Google AdSense Vignettes trigger between page navigations and pay 2.5x higher eCPM than standard banners with high user completion rates.",
-        impact: "+25% Revenue Lift",
-        type: "high",
-      });
-    }
-
-    if (adSenseInputs.selectedUnits.sidebar === 0) {
-      tips.push({
-        title: "Implement 300x600 Sticky Sidebar",
-        desc: "A floating sticky half-page unit stays in viewport as desktop users read long-form articles, doubling ad dwell time and programmatic bid value.",
-        impact: "+14% Desktop RPM",
-        type: "medium",
-      });
-    }
-
-    if (adSenseInputs.adBlockerRate > 25) {
-      tips.push({
-        title: "Deploy AdBlock Recovery Messaging",
-        desc: "Enable Google AdSense Funding Choices or subtle ad blocker whitelist prompts to recover 30%-50% of ad impressions blocked by browser extensions.",
-        impact: "Recover ~$100-$500/mo",
-        type: "quick",
-      });
-    }
-
-    tips.push({
-      title: "Target High-Intent Organic Keyword Clusters",
-      desc: "Pages answering specific commercial intent queries (e.g., software comparisons, quotes, buying guides) trigger significantly higher advertiser CPC bids ($2.00-$8.00+).",
-      impact: "+30% CPC Boost",
-      type: "medium",
-    });
-  } else if (platform === "admob" && adMobInputs) {
+  if (platform === "admob" && adMobInputs) {
     if (!adMobInputs.hasMediation) {
       tips.push({
-        title: "Enable Real-Time Bidding Mediation",
-        desc: "Integrate AppLovin MAX, Unity Ads, and Mintegral with AdMob mediation. Real-time competitive programmatic auctions lift blended eCPMs by +20% to +35%.",
-        impact: "+25% eCPM Lift",
-        type: "high",
+        title: "Activate In-App Bidding Mediation",
+        desc: "Enabling AppLovin MAX or Unity bidding creates auction pressure and increases blended eCPM by +20% to +35%.",
+        impact: "+25% Revenue",
       });
     }
-
     if (!adMobInputs.adFormats.rewardedVideo.enabled) {
       tips.push({
-        title: "Incentivize with Rewarded Video Ads",
-        desc: "Rewarded videos command top advertiser CPMs ($25-$45 in Tier 1) while maintaining positive user sentiment since users voluntarily opt-in for in-game or in-app perks.",
-        impact: "+40% ARPDAU Lift",
-        type: "high",
+        title: "Integrate Rewarded Video Placements",
+        desc: "Rewarded video commands the highest eCPMs ($20–$45 in Tier 1) with strong user engagement.",
+        impact: "+40% ARPDAU",
       });
     }
-
     if (!adMobInputs.adFormats.appOpen.enabled) {
       tips.push({
         title: "Add App Open Splash Ads",
-        desc: "App Open ads monetizes the natural 1-2 second cold boot and background resume sequence, creating high-value impressions without interrupting active app tasks.",
-        impact: "+15% Daily Impressions",
-        type: "medium",
+        desc: "Monetize daily app launches without disrupting active gameplay or utility workflows.",
+        impact: "+15% Lift",
       });
     }
-
-    if (adMobInputs.adFormats.banner.enabled && adMobInputs.adFormats.banner.refreshIntervalSeconds > 30) {
+    if (adMobInputs.geoDistribution.tier1 < 40) {
       tips.push({
-        title: "Optimize Banner Auto-Refresh to 30 Seconds",
-        desc: "Setting adaptive banners to refresh every 30 seconds (compliant with Google AdMob policy) doubles total banner impressions during longer active sessions.",
-        impact: "+45% Banner Revenue",
-        type: "quick",
+        title: "Focus ASO & User Acquisition in Tier 1",
+        desc: "US, UK, CA, and AU users produce 4x to 8x higher eCPMs than Tier 3 regions.",
+        impact: "+200% RPM",
       });
     }
+  } else if (platform === "adsense" && adSenseInputs) {
+    if (!adSenseInputs.selectedUnits.anchorAd) {
+      tips.push({
+        title: "Turn On Mobile Sticky Anchor Ads",
+        desc: "Anchors stay pinned to the screen viewport, achieving 90%+ viewability and reliable incremental RPM.",
+        impact: "+18% Revenue",
+      });
+    }
+    if (!adSenseInputs.selectedUnits.vignetteAd) {
+      tips.push({
+        title: "Enable Vignette Interstitials",
+        desc: "Full-screen page transition ads command top programmatic CPMs across both mobile and desktop.",
+        impact: "+22% Revenue",
+      });
+    }
+    if (adSenseInputs.adBlockerRate > 20) {
+      tips.push({
+        title: "Deploy Ad-Block Recovery or Funding Choices",
+        desc: "Google Funding Choices recovers 30% to 50% of ad-blocked page impressions through polite whitelisting prompts.",
+        impact: "+12% Recovered",
+      });
+    }
+  }
 
+  if (tips.length === 0) {
     tips.push({
-      title: "Improve D1 & D7 Day Retention",
-      desc: "Increasing Day 1 retention from 25% to 35% through streamlined onboarding and push notifications compounds your active DAU base and daily impression velocity.",
-      impact: "+30% Lifetime Value",
-      type: "medium",
+      title: "Layout Fully Optimized",
+      desc: "Your current configuration utilizes recommended ad units, viewability standards, and auction mediation.",
+      impact: "Maximized",
     });
   }
 
   return (
-    <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 border border-neutral-200 dark:border-neutral-800 shadow-sm space-y-4">
-      <div className="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-neutral-800">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
-            <Lightbulb className="w-4 h-4" />
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-neutral-900 dark:text-white tracking-tight">
-              Actionable Revenue Optimization Recommendations
-            </h4>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400">
-              Personalized suggestions to lift RPM and eCPM based on your configuration
-            </p>
-          </div>
-        </div>
+    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+        <Lightbulb className="w-4 h-4 text-amber-500" />
+        <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-white">
+          Optimization Audit
+        </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-        {tips.map((tip, idx) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        {tips.map((t, idx) => (
           <div
             key={idx}
-            className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/40 border border-neutral-200/80 dark:border-neutral-700/60 flex flex-col justify-between space-y-2 hover:border-emerald-500/50 transition-all"
+            className="p-3 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1.5 bg-neutral-50/50 dark:bg-neutral-900/40"
           >
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-bold text-neutral-900 dark:text-white">
-                  {tip.title}
-                </span>
-                <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">
-                  {tip.impact}
-                </span>
-              </div>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                {tip.desc}
-              </p>
+            <div className="flex items-start justify-between gap-2">
+              <span className="text-xs font-bold font-mono text-neutral-900 dark:text-white">
+                {t.title}
+              </span>
+              <span className="shrink-0 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-dashed border-emerald-500/50 text-emerald-500 bg-emerald-500/10">
+                {t.impact}
+              </span>
             </div>
+            <p className="text-[11px] text-neutral-500 font-mono leading-relaxed">
+              {t.desc}
+            </p>
           </div>
         ))}
       </div>

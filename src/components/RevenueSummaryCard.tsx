@@ -1,15 +1,7 @@
 import React from "react";
 import { CurrencyCode } from "../types";
-import { formatCurrency, formatNumber } from "../utils/currency";
-import {
-  TrendingUp,
-  Calendar,
-  DollarSign,
-  Zap,
-  ShieldAlert,
-  ArrowUpRight,
-  Sparkles,
-} from "lucide-react";
+import { formatCurrency } from "../utils/currency";
+import { TermTooltip } from "./TermTooltip";
 
 interface RevenueSummaryProps {
   type: "adsense" | "admob";
@@ -37,119 +29,99 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
   rateMetricValue,
   secondaryRateLabel,
   secondaryRateValue,
-  impressions,
   adBlockLossRevenue,
   mediationLiftRevenue,
 }) => {
-  return (
-    <div className="bg-gradient-to-b from-neutral-900 to-neutral-950 text-white rounded-3xl p-6 sm:p-7 border border-neutral-800 shadow-2xl relative overflow-hidden">
-      {/* Subtle Background Glow */}
-      <div className="absolute -top-24 -right-24 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+  const isAdMob = type === "admob";
 
-      {/* Masthead */}
-      <div className="relative z-10 flex items-center justify-between pb-5 border-b border-neutral-800">
-        <div>
-          <span className="text-[11px] font-semibold tracking-wider text-emerald-400 uppercase flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
-            Projected Publisher Earnings
-          </span>
-          <h2 className="text-xl font-bold text-white tracking-tight mt-0.5">
-            Revenue Estimate
-          </h2>
-        </div>
+  return (
+    <div className="bg-neutral-950 text-white rounded-2xl p-5 sm:p-6 border border-dashed border-neutral-700 shadow-xs space-y-5">
+      {/* Top Header */}
+      <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-800">
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            {currency} Net Payout
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
+            Estimated Net Payout
           </span>
         </div>
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-dashed border-neutral-700 text-neutral-300">
+          {currency} Normalized
+        </span>
       </div>
 
-      {/* Main Large Monthly Number */}
-      <div className="relative z-10 py-6 text-center sm:text-left">
-        <div className="text-xs font-medium text-neutral-400 mb-1">
-          Estimated Monthly Revenue
+      {/* Main Monthly Revenue Ticker */}
+      <div className="py-2">
+        <div className="text-[11px] font-mono text-neutral-400 uppercase">
+          Monthly Revenue Run-Rate
         </div>
-        <div className="flex items-baseline justify-center sm:justify-start gap-2">
-          <span className="text-4xl sm:text-5xl font-black tracking-tight text-white font-mono">
+        <div className="flex items-baseline gap-2 mt-1">
+          <span className="text-4xl sm:text-5xl font-black font-mono tracking-tight text-white">
             {formatCurrency(monthlyRevenue, currency)}
           </span>
-          <span className="text-sm font-semibold text-emerald-400">/ mo</span>
+          <span className="text-xs font-mono text-emerald-400 font-bold">/month</span>
         </div>
-        <p className="text-xs text-neutral-400 mt-2">
-          Based on verified programmatic CPM & eCPM algorithm benchmarks
-        </p>
       </div>
 
-      {/* Sub KPI Grid */}
-      <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 pb-4">
+      {/* Structured Metrics Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
         {/* Daily */}
-        <div className="p-3.5 rounded-2xl bg-neutral-800/60 border border-neutral-700/50">
-          <div className="text-[11px] font-medium text-neutral-400 flex items-center gap-1 mb-1">
-            <DollarSign className="w-3 h-3 text-emerald-400" />
-            Daily Revenue
-          </div>
-          <div className="text-lg font-bold text-white font-mono">
+        <div className="p-3 rounded-xl bg-neutral-900/90 border border-dashed border-neutral-800 space-y-1">
+          <div className="text-[10px] font-mono text-neutral-400 uppercase">Daily</div>
+          <div className="text-base font-bold font-mono text-white">
             {formatCurrency(dailyRevenue, currency)}
           </div>
-          <div className="text-[10px] text-neutral-400 mt-0.5">~30.4 days avg</div>
+          <div className="text-[9px] text-neutral-500 font-mono">~30.4 days</div>
         </div>
 
         {/* Annual */}
-        <div className="p-3.5 rounded-2xl bg-neutral-800/60 border border-neutral-700/50">
-          <div className="text-[11px] font-medium text-neutral-400 flex items-center gap-1 mb-1">
-            <Calendar className="w-3 h-3 text-blue-400" />
-            Annual Trajectory
-          </div>
-          <div className="text-lg font-bold text-white font-mono">
+        <div className="p-3 rounded-xl bg-neutral-900/90 border border-dashed border-neutral-800 space-y-1">
+          <div className="text-[10px] font-mono text-neutral-400 uppercase">Annual</div>
+          <div className="text-base font-bold font-mono text-white">
             {formatCurrency(annualRevenue, currency)}
           </div>
-          <div className="text-[10px] text-neutral-400 mt-0.5">12 mo + seasonality</div>
+          <div className="text-[9px] text-neutral-500 font-mono">12 mo + season</div>
         </div>
 
-        {/* Rate Metric (Page RPM / ARPDAU) */}
-        <div className="p-3.5 rounded-2xl bg-neutral-800/60 border border-neutral-700/50 col-span-2 sm:col-span-1">
-          <div className="text-[11px] font-medium text-neutral-400 flex items-center gap-1 mb-1">
-            <TrendingUp className="w-3 h-3 text-amber-400" />
-            {rateMetricLabel}
+        {/* Rate metric */}
+        <div className="p-3 rounded-xl bg-neutral-900/90 border border-dashed border-neutral-800 space-y-1 col-span-2 sm:col-span-1">
+          <div className="text-[10px] font-mono text-neutral-400 uppercase">
+            <TermTooltip id={isAdMob ? "arpdau" : "pagerpm"}>
+              <span>{rateMetricLabel}</span>
+            </TermTooltip>
           </div>
-          <div className="text-lg font-bold text-emerald-300 font-mono">
+          <div className="text-base font-bold font-mono text-emerald-400">
             {rateMetricValue}
           </div>
           {secondaryRateLabel && secondaryRateValue && (
-            <div className="text-[10px] text-neutral-400 mt-0.5">
-              {secondaryRateLabel}: {secondaryRateValue}
+            <div className="text-[9px] text-neutral-500 font-mono">
+              <TermTooltip id={isAdMob ? "ecpm" : "viewability"}>
+                <span>{secondaryRateLabel}: {secondaryRateValue}</span>
+              </TermTooltip>
             </div>
           )}
         </div>
       </div>
 
-      {/* Extra Value Adds: AdBlock Loss / Mediation Lift */}
-      {adBlockLossRevenue !== undefined && adBlockLossRevenue > 0 && (
-        <div className="relative z-10 mt-2 p-3 rounded-xl bg-rose-950/40 border border-rose-800/50 flex items-start gap-2.5">
-          <ShieldAlert className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-          <div className="text-xs">
-            <span className="font-semibold text-rose-300">
-              Ad Blocker Impact:{" "}
-            </span>
-            <span className="text-rose-200">
-              You are losing ~{formatCurrency(adBlockLossRevenue, currency)}/mo to browser ad blockers.
-            </span>
+      {/* Lift / Loss Callout */}
+      {mediationLiftRevenue !== undefined && mediationLiftRevenue > 0 && (
+        <div className="p-2.5 rounded-xl bg-emerald-950/30 border border-dashed border-emerald-800/80 flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center gap-1">
+            <TermTooltip id="mediation">
+              <span className="text-emerald-300 text-[11px]">Mediation & Bidding Lift:</span>
+            </TermTooltip>
           </div>
+          <span className="font-bold text-emerald-400">+{formatCurrency(mediationLiftRevenue, currency)}/mo</span>
         </div>
       )}
 
-      {mediationLiftRevenue !== undefined && mediationLiftRevenue > 0 && (
-        <div className="relative z-10 mt-2 p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/50 flex items-start gap-2.5">
-          <Zap className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-          <div className="text-xs">
-            <span className="font-semibold text-emerald-300">
-              Mediation & Bidding Lift:{" "}
-            </span>
-            <span className="text-emerald-200">
-              Generating an extra +{formatCurrency(mediationLiftRevenue, currency)}/mo via real-time auctions.
-            </span>
+      {adBlockLossRevenue !== undefined && adBlockLossRevenue > 0 && (
+        <div className="p-2.5 rounded-xl bg-rose-950/30 border border-dashed border-rose-800/80 flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center gap-1">
+            <TermTooltip id="adblock">
+              <span className="text-rose-300 text-[11px]">AdBlock Estimated Loss:</span>
+            </TermTooltip>
           </div>
+          <span className="font-bold text-rose-400">-{formatCurrency(adBlockLossRevenue, currency)}/mo</span>
         </div>
       )}
     </div>

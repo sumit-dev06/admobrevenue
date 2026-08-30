@@ -1,8 +1,8 @@
 import React from "react";
 import { PlatformMode } from "../types";
 import {
-  Globe,
   Smartphone,
+  Globe,
   Layers,
   Target,
   GitCompare,
@@ -18,43 +18,43 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
   activeMode,
   onSelectMode,
 }) => {
-  const modes: { id: PlatformMode; label: string; sub: string; icon: any; color: string; badge?: string }[] = [
+  const modes: { id: PlatformMode; label: string; sub: string; icon: any; color: string; badge: string }[] = [
+    {
+      id: "admob",
+      label: "Google AdMob",
+      sub: "Mobile Apps (iOS & Android)",
+      icon: Smartphone,
+      color: "text-emerald-500",
+      badge: "ARPDAU",
+    },
     {
       id: "adsense",
       label: "Google AdSense",
-      sub: "Websites & Blogs",
+      sub: "Websites & Content Blogs",
       icon: Globe,
       color: "text-blue-500",
       badge: "Page RPM",
     },
     {
-      id: "admob",
-      label: "Google AdMob",
-      sub: "iOS & Android Apps",
-      icon: Smartphone,
-      color: "text-emerald-500",
-      badge: "eCPM",
-    },
-    {
       id: "portfolio",
       label: "Combined Media",
-      sub: "Web + Mobile",
+      sub: "Apps + Web Portfolio",
       icon: Layers,
       color: "text-amber-500",
-      badge: "Network",
+      badge: "Multi-Asset",
     },
     {
       id: "goal",
       label: "Target Goal",
-      sub: "Required Traffic",
+      sub: "Traffic Roadmap",
       icon: Target,
       color: "text-purple-500",
-      badge: "Roadmap",
+      badge: "Reverse",
     },
     {
       id: "compare",
-      label: "A/B Optimizer",
-      sub: "Revenue Lift",
+      label: "A/B Comparator",
+      sub: "Optimization Lift",
       icon: GitCompare,
       color: "text-rose-500",
       badge: "Delta",
@@ -62,7 +62,7 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
     {
       id: "benchmarks",
       label: "Benchmarks",
-      sub: "2026 Directory",
+      sub: "2026 eCPM Rates",
       icon: BarChart3,
       color: "text-cyan-500",
       badge: "Directory",
@@ -70,9 +70,8 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
   ];
 
   return (
-    <div className="w-full overflow-hidden">
-      {/* Mobile Swipeable / Desktop Grid */}
-      <div className="flex sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-2 p-1.5 bg-neutral-100 dark:bg-neutral-900/90 rounded-2xl border border-neutral-200 dark:border-neutral-800/80 shadow-inner overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory">
+    <div className="w-full">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
         {modes.map((m) => {
           const Icon = m.icon;
           const isActive = activeMode === m.id;
@@ -81,49 +80,38 @@ export const ModeSelector: React.FC<ModeSelectorProps> = ({
               key={m.id}
               onClick={() => onSelectMode(m.id)}
               className={
-                "shrink-0 w-[145px] sm:w-auto snap-start relative group flex flex-col items-start p-2.5 sm:p-3 rounded-xl text-left transition-all duration-200 " +
+                "group p-3 rounded-xl text-left transition-all border border-dashed " +
                 (isActive
-                  ? "bg-white dark:bg-neutral-800 shadow-md shadow-neutral-900/5 dark:shadow-black/40 border border-neutral-200 dark:border-neutral-700/80 ring-1 ring-emerald-500/30"
-                  : "hover:bg-white/60 dark:hover:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400")
+                  ? "bg-white dark:bg-neutral-900 border-neutral-900 dark:border-neutral-100 shadow-xs"
+                  : "bg-neutral-50/50 dark:bg-neutral-900/30 border-neutral-300 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-700")
               }
             >
-              <div className="flex items-center justify-between w-full mb-1">
-                <div
+              <div className="flex items-center justify-between mb-1.5">
+                <Icon className={"w-4 h-4 " + (isActive ? m.color : "text-neutral-400")} />
+                <span
                   className={
-                    "w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors " +
+                    "text-[9px] font-mono uppercase px-1 py-0.5 rounded border border-dashed " +
                     (isActive
-                      ? "bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white"
-                      : "bg-neutral-200/60 dark:bg-neutral-800/60 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700")
+                      ? "border-neutral-900 dark:border-neutral-100 text-neutral-900 dark:text-neutral-100 font-bold"
+                      : "border-neutral-300 dark:border-neutral-800 text-neutral-400")
                   }
                 >
-                  <Icon className={"w-3.5 h-3.5 sm:w-4 sm:h-4 " + m.color} />
-                </div>
-                {m.badge && (
-                  <span
-                    className={
-                      "text-[9px] sm:text-[10px] font-semibold px-1.5 py-0.5 rounded " +
-                      (isActive
-                        ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50"
-                        : "bg-neutral-200/50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400")
-                    }
-                  >
-                    {m.badge}
-                  </span>
-                )}
+                  {m.badge}
+                </span>
               </div>
-              <span
+              <div
                 className={
-                  "text-xs font-bold tracking-tight line-clamp-1 " +
+                  "text-xs font-bold font-mono tracking-tight line-clamp-1 " +
                   (isActive
-                    ? "text-neutral-900 dark:text-white"
-                    : "text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white")
+                    ? "text-neutral-950 dark:text-white"
+                    : "text-neutral-700 dark:text-neutral-300")
                 }
               >
                 {m.label}
-              </span>
-              <span className="text-[10px] text-neutral-500 dark:text-neutral-400 line-clamp-1 mt-0.5">
+              </div>
+              <div className="text-[10px] text-neutral-500 line-clamp-1 mt-0.5">
                 {m.sub}
-              </span>
+              </div>
             </button>
           );
         })}

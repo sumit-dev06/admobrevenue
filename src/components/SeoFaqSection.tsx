@@ -1,88 +1,71 @@
 import React, { useState } from "react";
-import { FAQS_DATA } from "../data/faqs";
-import { ChevronDown, HelpCircle, Sparkles } from "lucide-react";
+import { FAQS_DATA, FAQItem } from "../data/faqs";
+import { ChevronDown, HelpCircle } from "lucide-react";
 
 export const SeoFaqSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleIndex = (idx: number) => {
+  const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  const schemaData = {
+  const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": FAQS_DATA.map((faq) => ({
+    "mainEntity": FAQS_DATA.map((item: FAQItem) => ({
       "@type": "Question",
-      "name": faq.question,
+      "name": item.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer,
+        "text": item.answer,
       },
     })),
   };
 
   return (
-    <section className="space-y-6 pt-6" id="faq-section">
+    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 sm:p-6 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+      {/* Inject FAQ Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-          Frequently Asked Questions
+      <div className="flex items-center gap-2 pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+        <HelpCircle className="w-4 h-4 text-emerald-500" />
+        <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-white">
+          Frequently Asked Questions & Monetization Audits
         </span>
-        <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 dark:text-white tracking-tight">
-          AdSense & AdMob Revenue Knowledge Base
-        </h2>
-        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
-          Authoritative answers to critical ad monetization, eCPM calculation, and RPM questions
-        </p>
       </div>
 
-      <div className="max-w-3xl mx-auto space-y-3">
-        {FAQS_DATA.map((faq, idx) => {
+      <div className="space-y-2">
+        {FAQS_DATA.map((item: FAQItem, idx: number) => {
           const isOpen = openIndex === idx;
           return (
             <div
               key={idx}
-              className={
-                "bg-white dark:bg-neutral-900 rounded-2xl border transition-all duration-200 overflow-hidden " +
-                (isOpen
-                  ? "border-emerald-500/50 shadow-md shadow-emerald-500/5"
-                  : "border-neutral-200 dark:border-neutral-800")
-              }
+              className="border border-dashed border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden"
             >
               <button
-                onClick={() => toggleIndex(idx)}
-                className="w-full p-4 sm:p-5 flex items-center justify-between text-left gap-3 focus:outline-none"
+                onClick={() => toggle(idx)}
+                className="w-full flex items-center justify-between p-3.5 text-left bg-neutral-50/50 dark:bg-neutral-900/40 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-colors"
               >
-                <div className="flex items-center gap-3">
-                  <span className="w-6 h-6 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 font-mono text-xs flex items-center justify-center font-bold shrink-0">
-                    {idx + 1}
-                  </span>
-                  <span className="text-xs sm:text-sm font-bold text-neutral-900 dark:text-white">
-                    {faq.question}
-                  </span>
-                </div>
+                <span className="text-xs font-mono font-bold text-neutral-900 dark:text-neutral-100 pr-2">
+                  {item.question}
+                </span>
                 <ChevronDown
-                  className={
-                    "w-4 h-4 text-neutral-400 transition-transform duration-200 shrink-0 " +
-                    (isOpen ? "rotate-180 text-emerald-500" : "")
-                  }
+                  className={"w-3.5 h-3.5 text-neutral-400 shrink-0 transition-transform " + (isOpen ? "rotate-180" : "")}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-5 pb-5 pt-1 text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed border-t border-neutral-100 dark:border-neutral-800/80">
-                  {faq.answer}
+                <div className="p-3.5 pt-2 text-xs font-mono text-neutral-600 dark:text-neutral-400 border-t border-dashed border-neutral-200 dark:border-neutral-800 leading-relaxed bg-white dark:bg-neutral-950">
+                  {item.answer}
                 </div>
               )}
             </div>
           );
         })}
       </div>
-    </section>
+    </div>
   );
 };

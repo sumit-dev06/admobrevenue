@@ -20,6 +20,7 @@ export interface CountryTierInfo {
 }
 
 export const COUNTRIES: CountryTierInfo[] = [
+  // Tier 1
   { code: 'US', name: 'United States', tier: 'tier1', flag: '🇺🇸', cpmMultiplier: 1.0 },
   { code: 'GB', name: 'United Kingdom', tier: 'tier1', flag: '🇬🇧', cpmMultiplier: 0.88 },
   { code: 'CA', name: 'Canada', tier: 'tier1', flag: '🇨🇦', cpmMultiplier: 0.85 },
@@ -35,6 +36,12 @@ export const COUNTRIES: CountryTierInfo[] = [
   { code: 'NZ', name: 'New Zealand', tier: 'tier1', flag: '🇳🇿', cpmMultiplier: 0.82 },
   { code: 'AE', name: 'United Arab Emirates', tier: 'tier1', flag: '🇦🇪', cpmMultiplier: 0.80 },
   { code: 'DK', name: 'Denmark', tier: 'tier1', flag: '🇩🇰', cpmMultiplier: 0.88 },
+  { code: 'AT', name: 'Austria', tier: 'tier1', flag: '🇦🇹', cpmMultiplier: 0.80 },
+  { code: 'BE', name: 'Belgium', tier: 'tier1', flag: '🇧🇪', cpmMultiplier: 0.76 },
+  { code: 'IE', name: 'Ireland', tier: 'tier1', flag: '🇮🇪', cpmMultiplier: 0.84 },
+  { code: 'FI', name: 'Finland', tier: 'tier1', flag: '🇫🇮', cpmMultiplier: 0.82 },
+  { code: 'KR', name: 'South Korea', tier: 'tier1', flag: '🇰🇷', cpmMultiplier: 0.68 },
+  { code: 'IL', name: 'Israel', tier: 'tier1', flag: '🇮🇱', cpmMultiplier: 0.75 },
 
   // Tier 2
   { code: 'ES', name: 'Spain', tier: 'tier2', flag: '🇪🇸', cpmMultiplier: 0.45 },
@@ -49,6 +56,12 @@ export const COUNTRIES: CountryTierInfo[] = [
   { code: 'RO', name: 'Romania', tier: 'tier2', flag: '🇷🇴', cpmMultiplier: 0.32 },
   { code: 'TR', name: 'Turkey', tier: 'tier2', flag: '🇹🇷', cpmMultiplier: 0.25 },
   { code: 'PT', name: 'Portugal', tier: 'tier2', flag: '🇵🇹', cpmMultiplier: 0.40 },
+  { code: 'SA', name: 'Saudi Arabia', tier: 'tier2', flag: '🇸🇦', cpmMultiplier: 0.48 },
+  { code: 'GR', name: 'Greece', tier: 'tier2', flag: '🇬🇷', cpmMultiplier: 0.36 },
+  { code: 'CZ', name: 'Czech Republic', tier: 'tier2', flag: '🇨🇿', cpmMultiplier: 0.40 },
+  { code: 'HU', name: 'Hungary', tier: 'tier2', flag: '🇭🇺', cpmMultiplier: 0.32 },
+  { code: 'MY', name: 'Malaysia', tier: 'tier2', flag: '🇲🇾', cpmMultiplier: 0.28 },
+  { code: 'TH', name: 'Thailand', tier: 'tier2', flag: '🇹🇭', cpmMultiplier: 0.24 },
 
   // Tier 3
   { code: 'IN', name: 'India', tier: 'tier3', flag: '🇮🇳', cpmMultiplier: 0.12 },
@@ -59,13 +72,16 @@ export const COUNTRIES: CountryTierInfo[] = [
   { code: 'ID', name: 'Indonesia', tier: 'tier3', flag: '🇮🇩', cpmMultiplier: 0.13 },
   { code: 'VN', name: 'Vietnam', tier: 'tier3', flag: '🇻🇳', cpmMultiplier: 0.12 },
   { code: 'EG', name: 'Egypt', tier: 'tier3', flag: '🇪🇬', cpmMultiplier: 0.10 },
-  { code: 'KE', name: 'Kenya', tier: 'tier3', flag: '🇰🇪', cpmMultiplier: 0.11 },
+  { code: 'KE', name: 'Kenya', tier: 'tier3', flag: '🇰🇪', cpmMultiplier: 0.09 },
+  { code: 'LK', name: 'Sri Lanka', tier: 'tier3', flag: '🇱🇰', cpmMultiplier: 0.08 },
+  { code: 'GH', name: 'Ghana', tier: 'tier3', flag: '🇬🇭', cpmMultiplier: 0.08 },
+  { code: 'NP', name: 'Nepal', tier: 'tier3', flag: '🇳🇵', cpmMultiplier: 0.07 },
 ];
 
 export const REGIONAL_PRESETS = [
-  { id: 'global-balanced', name: 'Global Balanced (40% T1, 35% T2, 25% T3)', t1: 40, t2: 35, t3: 25 },
-  { id: 'us-heavy', name: 'North America / Tier 1 Heavy (80% T1, 15% T2, 5% T3)', t1: 80, t2: 15, t3: 5 },
-  { id: 'latam-emea', name: 'LATAM & Emerging Markets (15% T1, 55% T2, 30% T3)', t1: 15, t2: 55, t3: 30 },
-  { id: 'asia-tier3', name: 'South Asia & Africa Heavy (5% T1, 20% T2, 75% T3)', t1: 5, t2: 20, t3: 75 },
-  { id: 'pure-tier1', name: '100% Tier 1 (US / UK / CA / AU / EU)', t1: 100, t2: 0, t3: 0 },
+  { id: 'global-balanced', name: 'Global Balanced (50% T1, 30% T2, 20% T3)', t1: 50, t2: 30, t3: 20 },
+  { id: 'tier1-dominant', name: 'Tier 1 Focused (80% T1, 15% T2, 5% T3)', t1: 80, t2: 15, t3: 5 },
+  { id: 'tier3-emerging', name: 'Emerging Markets (10% T1, 30% T2, 60% T3)', t1: 10, t2: 30, t3: 60 },
+  { id: 'latam-focus', name: 'LATAM Focused (15% T1, 75% T2, 10% T3)', t1: 15, t2: 75, t3: 10 },
+  { id: 'south-asia', name: 'South Asia Dominant (5% T1, 15% T2, 80% T3)', t1: 5, t2: 15, t3: 80 },
 ];

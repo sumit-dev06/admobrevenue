@@ -70,6 +70,8 @@ export interface AdSenseInputs {
   viewabilityRate: number;
   selectedMonth: number;
   useSeasonality: boolean;
+  accountCountry?: string;
+  targetCountry?: string;
 }
 
 export interface AdSenseResults {
@@ -148,6 +150,8 @@ export interface AdMobInputs {
   fillRate: number;
   selectedMonth: number;
   useSeasonality: boolean;
+  accountCountry?: string;
+  targetCountry?: string;
 }
 
 export interface AdMobResults {

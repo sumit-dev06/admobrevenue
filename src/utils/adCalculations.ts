@@ -6,14 +6,34 @@ import {
 } from "../types";
 import { ADSENSE_CATEGORIES, ADSENSE_AD_UNITS, SEASONALITY_FACTORS } from "../data/adSenseData";
 import { ADMOB_CATEGORIES } from "../data/adMobData";
+import { COUNTRIES } from "../data/geoTiers";
 
 export function calculateAdSenseRevenue(inputs: AdSenseInputs): AdSenseResults {
   const category =
     ADSENSE_CATEGORIES.find((c) => c.id === inputs.categoryId) || ADSENSE_CATEGORIES[0];
 
-  const tier1Weight = (inputs.geoDistribution.tier1 || 0) / 100;
-  const tier2Weight = (inputs.geoDistribution.tier2 || 0) / 100;
-  const tier3Weight = (inputs.geoDistribution.tier3 || 0) / 100;
+  let tier1Weight = (inputs.geoDistribution?.tier1 || 50) / 100;
+  let tier2Weight = (inputs.geoDistribution?.tier2 || 30) / 100;
+  let tier3Weight = (inputs.geoDistribution?.tier3 || 20) / 100;
+
+  if (inputs.targetCountry && inputs.targetCountry !== "ALL") {
+    const country = COUNTRIES.find((c) => c.code === inputs.targetCountry);
+    if (country) {
+      if (country.tier === "tier1") {
+        tier1Weight = country.cpmMultiplier;
+        tier2Weight = 0;
+        tier3Weight = 0;
+      } else if (country.tier === "tier2") {
+        tier1Weight = 0;
+        tier2Weight = country.cpmMultiplier / 0.45;
+        tier3Weight = 0;
+      } else {
+        tier1Weight = 0;
+        tier2Weight = 0;
+        tier3Weight = country.cpmMultiplier / 0.12;
+      }
+    }
+  }
 
   const rawBaseRpm =
     category.baseRpmTier1 * tier1Weight +
@@ -182,10 +202,28 @@ export function calculateAdSenseRevenue(inputs: AdSenseInputs): AdSenseResults {
 
 export function calculateAdMobRevenue(inputs: AdMobInputs): AdMobResults {
   const category = ADMOB_CATEGORIES.find((c) => c.id === inputs.categoryId) || ADMOB_CATEGORIES[0];
+  let tier1Weight = (inputs.geoDistribution?.tier1 || 50) / 100;
+  let tier2Weight = (inputs.geoDistribution?.tier2 || 30) / 100;
+  let tier3Weight = (inputs.geoDistribution?.tier3 || 20) / 100;
 
-  const tier1Weight = (inputs.geoDistribution.tier1 || 0) / 100;
-  const tier2Weight = (inputs.geoDistribution.tier2 || 0) / 100;
-  const tier3Weight = (inputs.geoDistribution.tier3 || 0) / 100;
+  if (inputs.targetCountry && inputs.targetCountry !== "ALL") {
+    const country = COUNTRIES.find((c) => c.code === inputs.targetCountry);
+    if (country) {
+      if (country.tier === "tier1") {
+        tier1Weight = country.cpmMultiplier;
+        tier2Weight = 0;
+        tier3Weight = 0;
+      } else if (country.tier === "tier2") {
+        tier1Weight = 0;
+        tier2Weight = country.cpmMultiplier / 0.45;
+        tier3Weight = 0;
+      } else {
+        tier1Weight = 0;
+        tier2Weight = 0;
+        tier3Weight = country.cpmMultiplier / 0.12;
+      }
+    }
+  }
 
   const iosRatio = (inputs.platformSplit.ios || 0) / 100;
   const androidRatio = (inputs.platformSplit.android || 0) / 100;
