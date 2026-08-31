@@ -309,6 +309,38 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
         
         {(activePlatform === "admob" || activePlatform === "adsense") && (
           <>
+            {/* Mobile-Only Dedicated Platform Switcher with Generous Tap Area */}
+            <div className="sm:hidden w-full bg-white dark:bg-neutral-900 p-1.5 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 shadow-xs">
+              <div className="grid grid-cols-2 gap-1.5 font-mono text-xs">
+                <button
+                  type="button"
+                  onClick={() => handlePlatformChange("admob")}
+                  className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl transition-all cursor-pointer font-bold ${
+                    activePlatform === "admob"
+                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-xs border border-dashed border-neutral-700 dark:border-neutral-300"
+                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white bg-neutral-50 dark:bg-neutral-800/60"
+                  }`}
+                  aria-label="Switch to Google AdMob Calculator"
+                >
+                  <Smartphone className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
+                  <span className="truncate">{t.nav.admobTab}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handlePlatformChange("adsense")}
+                  className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl transition-all cursor-pointer font-bold ${
+                    activePlatform === "adsense"
+                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-xs border border-dashed border-neutral-700 dark:border-neutral-300"
+                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white bg-neutral-50 dark:bg-neutral-800/60"
+                  }`}
+                  aria-label="Switch to Google AdSense Calculator"
+                >
+                  <Globe className="w-4 h-4 text-blue-500 shrink-0" aria-hidden="true" />
+                  <span className="truncate">{t.nav.adsenseTab}</span>
+                </button>
+              </div>
+            </div>
+
             {/* Page Hero Banner */}
             <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
