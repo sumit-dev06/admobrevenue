@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useTranslation } from "../i18n/LanguageContext";
 import { Mail, Shield, FileText, Info, HelpCircle, Send, CheckCircle2 } from "lucide-react";
 
-const pageWrapperClasses = "max-w-4xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 text-neutral-800 dark:text-neutral-300 font-mono text-xs sm:text-sm leading-relaxed space-y-6";
-const cardClasses = "bg-white dark:bg-neutral-900 rounded-2xl p-6 sm:p-8 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-6";
-const h1Classes = "text-xl sm:text-2xl font-black text-neutral-950 dark:text-white flex items-center gap-2 border-b border-dashed border-neutral-300 dark:border-neutral-800 pb-4";
+const pageWrapperClasses = "max-w-4xl mx-auto py-6 sm:py-12 px-3 sm:px-6 lg:px-8 text-neutral-800 dark:text-neutral-300 font-mono text-xs sm:text-sm leading-relaxed space-y-6";
+const cardClasses = "bg-white dark:bg-neutral-900 rounded-2xl p-4 sm:p-8 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-6 shadow-xs";
+const h1Classes = "text-lg sm:text-2xl font-black text-neutral-950 dark:text-white flex items-center gap-2 border-b border-dashed border-neutral-300 dark:border-neutral-800 pb-4";
 const h2Classes = "text-sm sm:text-base font-bold text-neutral-900 dark:text-neutral-100 mt-6 mb-2 uppercase";
-const linkClasses = "text-blue-600 dark:text-blue-400 hover:underline";
-const listClasses = "list-disc pl-6 space-y-2 text-neutral-600 dark:text-neutral-400";
+const listClasses = "list-disc pl-5 sm:pl-6 space-y-2 text-neutral-600 dark:text-neutral-400";
 
 export const AboutPage = React.memo(() => {
   const { t } = useTranslation();
@@ -16,8 +15,8 @@ export const AboutPage = React.memo(() => {
     <div className={pageWrapperClasses}>
       <div className={cardClasses}>
         <h1 className={h1Classes}>
-          <Info className="w-5 h-5 text-blue-500" aria-hidden="true" />
-          {t.trust.aboutTitle}
+          <Info className="w-5 h-5 text-blue-500 shrink-0" aria-hidden="true" />
+          <span>{t.trust.aboutTitle}</span>
         </h1>
         
         <p>{t.trust.aboutP1}</p>
@@ -55,8 +54,8 @@ export const ContactPage = React.memo(() => {
     <div className={pageWrapperClasses}>
       <div className={cardClasses}>
         <h1 className={h1Classes}>
-          <Mail className="w-5 h-5 text-emerald-500" aria-hidden="true" />
-          {t.trust.contactTitle}
+          <Mail className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+          <span>{t.trust.contactTitle}</span>
         </h1>
 
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -149,15 +148,15 @@ export const ContactPage = React.memo(() => {
               />
             </div>
 
-            <div className="flex items-center justify-between pt-2">
-              <div className="text-[11px] text-neutral-500">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+              <div className="text-[11px] text-neutral-500 break-all text-center sm:text-left">
                 Direct: <span className="font-bold text-neutral-700 dark:text-neutral-300">support@admobrevenue.pages.dev</span>
               </div>
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 text-xs font-mono font-bold rounded-xl border border-dashed border-neutral-700 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-sm"
+                className="w-full sm:w-auto px-6 py-2.5 bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 text-xs font-mono font-bold rounded-xl border border-dashed border-neutral-700 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
-                <Send className="w-3.5 h-3.5" aria-hidden="true" />
+                <Send className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 <span>{t.trust.contactSubmit}</span>
               </button>
             </div>
@@ -175,8 +174,8 @@ export const PrivacyPage = React.memo(() => {
     <div className={pageWrapperClasses}>
       <div className={cardClasses}>
         <h1 className={h1Classes}>
-          <Shield className="w-5 h-5 text-purple-500" aria-hidden="true" />
-          {t.trust.privacyTitle}
+          <Shield className="w-5 h-5 text-purple-500 shrink-0" aria-hidden="true" />
+          <span>{t.trust.privacyTitle}</span>
         </h1>
         <p className="text-neutral-500 dark:text-neutral-400">{t.trust.privacyDate}</p>
         <p>{t.trust.privacyIntro}</p>
@@ -192,8 +191,8 @@ export const TermsPage = React.memo(() => {
     <div className={pageWrapperClasses}>
       <div className={cardClasses}>
         <h1 className={h1Classes}>
-          <FileText className="w-5 h-5 text-amber-500" aria-hidden="true" />
-          {t.trust.termsTitle}
+          <FileText className="w-5 h-5 text-amber-500 shrink-0" aria-hidden="true" />
+          <span>{t.trust.termsTitle}</span>
         </h1>
         <p className="text-neutral-500 dark:text-neutral-400">{t.trust.termsDate}</p>
         <p>{t.trust.termsIntro}</p>
@@ -209,8 +208,8 @@ export const DisclaimerPage = React.memo(() => {
     <div className={pageWrapperClasses}>
       <div className={cardClasses}>
         <h1 className={h1Classes}>
-          <HelpCircle className="w-5 h-5 text-rose-500" aria-hidden="true" />
-          {t.trust.disclaimerTitle}
+          <HelpCircle className="w-5 h-5 text-rose-500 shrink-0" aria-hidden="true" />
+          <span>{t.trust.disclaimerTitle}</span>
         </h1>
         <p>{t.trust.disclaimerIntro}</p>
         <h2 className={h2Classes}>{t.trust.trademarkTitle}</h2>
