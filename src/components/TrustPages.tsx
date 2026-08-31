@@ -150,7 +150,13 @@ export const ContactPage = React.memo(() => {
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-dashed border-neutral-200 dark:border-neutral-800">
               <div className="text-[11px] text-neutral-500 break-all text-center sm:text-left">
-                Direct: <span className="font-bold text-neutral-700 dark:text-neutral-300">support@admobrevenue.pages.dev</span>
+                Direct Email:{" "}
+                <a
+                  href="mailto:adrevenue.help@gmail.com"
+                  className="font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                >
+                  adrevenue.help@gmail.com
+                </a>
               </div>
               <button
                 type="submit"

@@ -111,7 +111,10 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
       {/* AdBlock Loss or Mediation Lift Badges */}
       {!isAdMob && adBlockLossRevenue !== undefined && adBlockLossRevenue > 0 && (
         <div className="p-3 rounded-xl border border-dashed border-rose-300 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 text-xs font-mono flex items-center justify-between">
-          <span className="text-rose-700 dark:text-rose-400">{t.summary.adBlockLoss}:</span>
+          <div className="flex items-center gap-1 text-rose-700 dark:text-rose-400">
+            <span>{t.summary.adBlockLoss}:</span>
+            <TermTooltip id="adblock" />
+          </div>
           <span className="font-bold text-rose-600 dark:text-rose-400">
             -{formatCurrency(adBlockLossRevenue, currency)}/mo
           </span>
@@ -120,7 +123,10 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
 
       {isAdMob && mediationLiftRevenue !== undefined && mediationLiftRevenue > 0 && (
         <div className="p-3 rounded-xl border border-dashed border-emerald-300 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/20 text-xs font-mono flex items-center justify-between">
-          <span className="text-emerald-700 dark:text-emerald-400">{t.summary.mediationLift}:</span>
+          <div className="flex items-center gap-1 text-emerald-700 dark:text-emerald-400">
+            <span>{t.summary.mediationLift}:</span>
+            <TermTooltip id="mediation" />
+          </div>
           <span className="font-bold text-emerald-600 dark:text-emerald-400">
             +{formatCurrency(mediationLiftRevenue, currency)}/mo
           </span>

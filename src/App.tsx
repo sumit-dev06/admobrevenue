@@ -89,14 +89,17 @@ interface AppContentProps {
   initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
 }
 
+import { detectUserLocation } from "./utils/geoDetection";
+
 function MainAppContent({ initialPlatform }: AppContentProps) {
   const { t } = useTranslation();
 
-  // Currency (persisted)
+  // Currency (persisted, defaulted to user's location)
   const [currency, setCurrency] = useState<CurrencyCode>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("adrev_currency") as CurrencyCode;
       if (saved) return saved;
+      return detectUserLocation().currencyCode;
     }
     return "USD";
   });
@@ -121,60 +124,74 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // AdMob Inputs (Page 1) (persisted)
+  // AdMob Inputs (Page 1) (persisted, defaulted to user location)
   const [adMobInputs, setAdMobInputs] = useState<AdMobInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode };
+    const defaultInputs: AdMobInputs = {
+      ...DEFAULT_ADMOB_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+
     if (typeof window !== "undefined") {
       try {
         const saved = localStorage.getItem("adrev_admob_inputs");
         if (saved) {
           const parsed = JSON.parse(saved);
           return {
-            ...DEFAULT_ADMOB_INPUTS,
+            ...defaultInputs,
             ...parsed,
             adFormats: {
-              ...DEFAULT_ADMOB_INPUTS.adFormats,
+              ...defaultInputs.adFormats,
               ...(parsed?.adFormats || {}),
-              rewardedVideo: { ...DEFAULT_ADMOB_INPUTS.adFormats.rewardedVideo, ...(parsed?.adFormats?.rewardedVideo || {}) },
-              interstitial: { ...DEFAULT_ADMOB_INPUTS.adFormats.interstitial, ...(parsed?.adFormats?.interstitial || {}) },
-              appOpen: { ...DEFAULT_ADMOB_INPUTS.adFormats.appOpen, ...(parsed?.adFormats?.appOpen || {}) },
-              rewardedInterstitial: { ...DEFAULT_ADMOB_INPUTS.adFormats.rewardedInterstitial, ...(parsed?.adFormats?.rewardedInterstitial || {}) },
-              native: { ...DEFAULT_ADMOB_INPUTS.adFormats.native, ...(parsed?.adFormats?.native || {}) },
-              banner: { ...DEFAULT_ADMOB_INPUTS.adFormats.banner, ...(parsed?.adFormats?.banner || {}) },
+              rewardedVideo: { ...defaultInputs.adFormats.rewardedVideo, ...(parsed?.adFormats?.rewardedVideo || {}) },
+              interstitial: { ...defaultInputs.adFormats.interstitial, ...(parsed?.adFormats?.interstitial || {}) },
+              appOpen: { ...defaultInputs.adFormats.appOpen, ...(parsed?.adFormats?.appOpen || {}) },
+              rewardedInterstitial: { ...defaultInputs.adFormats.rewardedInterstitial, ...(parsed?.adFormats?.rewardedInterstitial || {}) },
+              native: { ...defaultInputs.adFormats.native, ...(parsed?.adFormats?.native || {}) },
+              banner: { ...defaultInputs.adFormats.banner, ...(parsed?.adFormats?.banner || {}) },
             },
-            geoDistribution: { ...DEFAULT_ADMOB_INPUTS.geoDistribution, ...(parsed?.geoDistribution || {}) },
-            platformSplit: { ...DEFAULT_ADMOB_INPUTS.platformSplit, ...(parsed?.platformSplit || {}) },
+            geoDistribution: { ...defaultInputs.geoDistribution, ...(parsed?.geoDistribution || {}) },
+            platformSplit: { ...defaultInputs.platformSplit, ...(parsed?.platformSplit || {}) },
           };
         }
       } catch (e) {
         console.error("Failed to load saved AdMob inputs", e);
       }
     }
-    return DEFAULT_ADMOB_INPUTS;
+    return defaultInputs;
   });
 
-  // AdSense Inputs (Page 2) (persisted)
+  // AdSense Inputs (Page 2) (persisted, defaulted to user location)
   const [adSenseInputs, setAdSenseInputs] = useState<AdSenseInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode };
+    const defaultInputs: AdSenseInputs = {
+      ...DEFAULT_ADSENSE_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+
     if (typeof window !== "undefined") {
       try {
         const saved = localStorage.getItem("adrev_adsense_inputs");
         if (saved) {
           const parsed = JSON.parse(saved);
           return {
-            ...DEFAULT_ADSENSE_INPUTS,
+            ...defaultInputs,
             ...parsed,
             selectedUnits: {
-              ...DEFAULT_ADSENSE_INPUTS.selectedUnits,
+              ...defaultInputs.selectedUnits,
               ...(parsed?.selectedUnits || {}),
             },
-            geoDistribution: { ...DEFAULT_ADSENSE_INPUTS.geoDistribution, ...(parsed?.geoDistribution || {}) },
-            deviceDistribution: { ...DEFAULT_ADSENSE_INPUTS.deviceDistribution, ...(parsed?.deviceDistribution || {}) },
+            geoDistribution: { ...defaultInputs.geoDistribution, ...(parsed?.geoDistribution || {}) },
+            deviceDistribution: { ...defaultInputs.deviceDistribution, ...(parsed?.deviceDistribution || {}) },
           };
         }
       } catch (e) {
         console.error("Failed to load saved AdSense inputs", e);
       }
     }
-    return DEFAULT_ADSENSE_INPUTS;
+    return defaultInputs;
   });
 
   // Persist platform, currency, and inputs to localStorage whenever changed

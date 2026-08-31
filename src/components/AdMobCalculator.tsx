@@ -165,8 +165,9 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
         {inputs.targetCountry === "ALL" && (
           <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 space-y-2">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-neutral-600 dark:text-neutral-400 uppercase text-[11px] font-semibold">
-                {t.admob.tierDistribution}
+              <span className="text-neutral-600 dark:text-neutral-400 uppercase text-[11px] font-semibold flex items-center gap-1">
+                <span>{t.admob.tierDistribution}</span>
+                <TermTooltip id="tier1" />
               </span>
               <div className="flex gap-1">
                 {REGIONAL_PRESETS.map((p) => (
@@ -183,19 +184,28 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="p-2 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-dashed border-neutral-200 dark:border-neutral-800 text-center">
-                <span className="text-[10px] font-mono text-neutral-500 block">Tier 1</span>
+                <div className="flex items-center justify-center gap-1">
+                  <span className="text-[10px] font-mono text-neutral-500">Tier 1</span>
+                  <TermTooltip id="tier1" />
+                </div>
                 <span className="font-mono font-bold text-xs text-neutral-900 dark:text-white">
                   {inputs.geoDistribution.tier1}%
                 </span>
               </div>
               <div className="p-2 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-dashed border-neutral-200 dark:border-neutral-800 text-center">
-                <span className="text-[10px] font-mono text-neutral-500 block">Tier 2</span>
+                <div className="flex items-center justify-center gap-1">
+                  <span className="text-[10px] font-mono text-neutral-500">Tier 2</span>
+                  <TermTooltip id="tier2" />
+                </div>
                 <span className="font-mono font-bold text-xs text-neutral-900 dark:text-white">
                   {inputs.geoDistribution.tier2}%
                 </span>
               </div>
               <div className="p-2 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-dashed border-neutral-200 dark:border-neutral-800 text-center">
-                <span className="text-[10px] font-mono text-neutral-500 block">Tier 3</span>
+                <div className="flex items-center justify-center gap-1">
+                  <span className="text-[10px] font-mono text-neutral-500">Tier 3</span>
+                  <TermTooltip id="tier3" />
+                </div>
                 <span className="font-mono font-bold text-xs text-neutral-900 dark:text-white">
                   {inputs.geoDistribution.tier3}%
                 </span>
@@ -272,6 +282,7 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             <label htmlFor="admob-dau-number" className="text-neutral-600 dark:text-neutral-400 uppercase font-semibold text-[11px] flex items-center gap-1.5 cursor-pointer">
               <Users className="w-3.5 h-3.5 text-neutral-400" aria-hidden="true" />
               <span>{t.admob.dau}</span>
+              <TermTooltip id="dau" />
             </label>
             <input
               id="admob-dau-number"
@@ -313,148 +324,247 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {/* Rewarded Video */}
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.adFormats.rewardedVideo.enabled}
-            onClick={() =>
-              onChange({
-                ...inputs,
-                adFormats: {
-                  ...inputs.adFormats,
-                  rewardedVideo: {
-                    ...inputs.adFormats.rewardedVideo,
-                    enabled: !inputs.adFormats.rewardedVideo.enabled,
-                  },
-                },
-              })
-            }
+          <div
             className={
-              "p-3 rounded-xl border border-dashed cursor-pointer flex items-center justify-between transition-colors " +
+              "p-3 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.adFormats.rewardedVideo.enabled
                 ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <span className="text-xs font-mono">{t.admob.rewardedVideo}</span>
-            <span className="text-[10px] font-mono">
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={inputs.adFormats.rewardedVideo.enabled}
+                onClick={() =>
+                  onChange({
+                    ...inputs,
+                    adFormats: {
+                      ...inputs.adFormats,
+                      rewardedVideo: {
+                        ...inputs.adFormats.rewardedVideo,
+                        enabled: !inputs.adFormats.rewardedVideo.enabled,
+                      },
+                    },
+                  })
+                }
+                className="text-xs font-mono cursor-pointer hover:underline"
+              >
+                {t.admob.rewardedVideo}
+              </button>
+              <TermTooltip id="rewardedVideo" />
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  ...inputs,
+                  adFormats: {
+                    ...inputs.adFormats,
+                    rewardedVideo: {
+                      ...inputs.adFormats.rewardedVideo,
+                      enabled: !inputs.adFormats.rewardedVideo.enabled,
+                    },
+                  },
+                })
+              }
+              className="text-[10px] font-mono cursor-pointer px-2 py-0.5 rounded bg-white/60 dark:bg-neutral-800"
+            >
               {inputs.adFormats.rewardedVideo.enabled ? t.admob.active : t.admob.disabled}
-            </span>
-          </button>
+            </button>
+          </div>
 
           {/* Interstitial */}
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.adFormats.interstitial.enabled}
-            onClick={() =>
-              onChange({
-                ...inputs,
-                adFormats: {
-                  ...inputs.adFormats,
-                  interstitial: {
-                    ...inputs.adFormats.interstitial,
-                    enabled: !inputs.adFormats.interstitial.enabled,
-                  },
-                },
-              })
-            }
+          <div
             className={
-              "p-3 rounded-xl border border-dashed cursor-pointer flex items-center justify-between transition-colors " +
+              "p-3 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.adFormats.interstitial.enabled
                 ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <span className="text-xs font-mono">{t.admob.interstitial}</span>
-            <span className="text-[10px] font-mono">
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={inputs.adFormats.interstitial.enabled}
+                onClick={() =>
+                  onChange({
+                    ...inputs,
+                    adFormats: {
+                      ...inputs.adFormats,
+                      interstitial: {
+                        ...inputs.adFormats.interstitial,
+                        enabled: !inputs.adFormats.interstitial.enabled,
+                      },
+                    },
+                  })
+                }
+                className="text-xs font-mono cursor-pointer hover:underline"
+              >
+                {t.admob.interstitial}
+              </button>
+              <TermTooltip id="interstitial" />
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  ...inputs,
+                  adFormats: {
+                    ...inputs.adFormats,
+                    interstitial: {
+                      ...inputs.adFormats.interstitial,
+                      enabled: !inputs.adFormats.interstitial.enabled,
+                    },
+                  },
+                })
+              }
+              className="text-[10px] font-mono cursor-pointer px-2 py-0.5 rounded bg-white/60 dark:bg-neutral-800"
+            >
               {inputs.adFormats.interstitial.enabled ? t.admob.active : t.admob.disabled}
-            </span>
-          </button>
+            </button>
+          </div>
 
           {/* App Open */}
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.adFormats.appOpen.enabled}
-            onClick={() =>
-              onChange({
-                ...inputs,
-                adFormats: {
-                  ...inputs.adFormats,
-                  appOpen: {
-                    ...inputs.adFormats.appOpen,
-                    enabled: !inputs.adFormats.appOpen.enabled,
-                  },
-                },
-              })
-            }
+          <div
             className={
-              "p-3 rounded-xl border border-dashed cursor-pointer flex items-center justify-between transition-colors " +
+              "p-3 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.adFormats.appOpen.enabled
                 ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <span className="text-xs font-mono">{t.admob.appOpen}</span>
-            <span className="text-[10px] font-mono">
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={inputs.adFormats.appOpen.enabled}
+                onClick={() =>
+                  onChange({
+                    ...inputs,
+                    adFormats: {
+                      ...inputs.adFormats,
+                      appOpen: {
+                        ...inputs.adFormats.appOpen,
+                        enabled: !inputs.adFormats.appOpen.enabled,
+                      },
+                    },
+                  })
+                }
+                className="text-xs font-mono cursor-pointer hover:underline"
+              >
+                {t.admob.appOpen}
+              </button>
+              <TermTooltip id="appOpen" />
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  ...inputs,
+                  adFormats: {
+                    ...inputs.adFormats,
+                    appOpen: {
+                      ...inputs.adFormats.appOpen,
+                      enabled: !inputs.adFormats.appOpen.enabled,
+                    },
+                  },
+                })
+              }
+              className="text-[10px] font-mono cursor-pointer px-2 py-0.5 rounded bg-white/60 dark:bg-neutral-800"
+            >
               {inputs.adFormats.appOpen.enabled ? t.admob.active : t.admob.disabled}
-            </span>
-          </button>
+            </button>
+          </div>
 
           {/* Adaptive Banner */}
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.adFormats.banner.enabled}
-            onClick={() =>
-              onChange({
-                ...inputs,
-                adFormats: {
-                  ...inputs.adFormats,
-                  banner: {
-                    ...inputs.adFormats.banner,
-                    enabled: !inputs.adFormats.banner.enabled,
-                  },
-                },
-              })
-            }
+          <div
             className={
-              "p-3 rounded-xl border border-dashed cursor-pointer flex items-center justify-between transition-colors " +
+              "p-3 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.adFormats.banner.enabled
                 ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <span className="text-xs font-mono">{t.admob.adaptiveBanner}</span>
-            <span className="text-[10px] font-mono">
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={inputs.adFormats.banner.enabled}
+                onClick={() =>
+                  onChange({
+                    ...inputs,
+                    adFormats: {
+                      ...inputs.adFormats,
+                      banner: {
+                        ...inputs.adFormats.banner,
+                        enabled: !inputs.adFormats.banner.enabled,
+                      },
+                    },
+                  })
+                }
+                className="text-xs font-mono cursor-pointer hover:underline"
+              >
+                {t.admob.adaptiveBanner}
+              </button>
+              <TermTooltip id="adaptiveBanner" />
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  ...inputs,
+                  adFormats: {
+                    ...inputs.adFormats,
+                    banner: {
+                      ...inputs.adFormats.banner,
+                      enabled: !inputs.adFormats.banner.enabled,
+                    },
+                  },
+                })
+              }
+              className="text-[10px] font-mono cursor-pointer px-2 py-0.5 rounded bg-white/60 dark:bg-neutral-800"
+            >
               {inputs.adFormats.banner.enabled ? t.admob.active : t.admob.disabled}
-            </span>
-          </button>
+            </button>
+          </div>
         </div>
 
         {/* Real-time Bidding Mediation Toggle */}
         <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800">
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.hasMediation}
-            onClick={() => onChange({ ...inputs, hasMediation: !inputs.hasMediation })}
+          <div
             className={
-              "w-full p-3 rounded-xl border border-dashed flex items-center justify-between transition-colors cursor-pointer " +
+              "w-full p-3 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.hasMediation
                 ? "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300")
             }
           >
             <div className="text-left space-y-0.5">
-              <div className="text-xs font-mono font-bold">{t.admob.biddingMediation}</div>
+              <div className="text-xs font-mono font-bold flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => onChange({ ...inputs, hasMediation: !inputs.hasMediation })}
+                  className="cursor-pointer hover:underline"
+                >
+                  {t.admob.biddingMediation}
+                </button>
+                <TermTooltip id="biddingMediation" />
+              </div>
               <div className="text-[10px] text-neutral-500">{t.admob.mediationDesc}</div>
             </div>
-            <span className="text-xs font-mono font-bold">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={inputs.hasMediation}
+              onClick={() => onChange({ ...inputs, hasMediation: !inputs.hasMediation })}
+              className="text-xs font-mono font-bold cursor-pointer px-3 py-1 rounded bg-white/70 dark:bg-neutral-800 shadow-2xs"
+            >
               {inputs.hasMediation ? t.admob.active : t.admob.disabled}
-            </span>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -223,8 +223,9 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
         {/* Pageviews */}
         <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 space-y-2">
           <div className="flex items-center justify-between text-xs font-mono">
-            <label htmlFor="adsense-pageviews-number" className="text-neutral-600 dark:text-neutral-400 uppercase font-semibold text-[11px] cursor-pointer">
-              {t.adsense.monthlyPageviews}
+            <label htmlFor="adsense-pageviews-number" className="text-neutral-600 dark:text-neutral-400 uppercase font-semibold text-[11px] cursor-pointer flex items-center gap-1.5">
+              <span>{t.adsense.monthlyPageviews}</span>
+              <TermTooltip id="pagerpm" />
             </label>
             <input
               id="adsense-pageviews-number"
@@ -269,9 +270,12 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {/* Header Billboard */}
           <div className="p-2.5 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-            <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
-              {t.adsense.topHeader}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
+                {t.adsense.topHeader}
+              </span>
+              <TermTooltip id="leaderboard" />
+            </div>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white">
               {inputs.selectedUnits.leaderboard}x
             </span>
@@ -279,9 +283,12 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
 
           {/* In Article */}
           <div className="p-2.5 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-            <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
-              {t.adsense.inArticle}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
+                {t.adsense.inArticle}
+              </span>
+              <TermTooltip id="inArticle" />
+            </div>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white">
               {inputs.selectedUnits.inArticle}x
             </span>
@@ -289,63 +296,105 @@ export const AdSenseCalculator: React.FC<AdSenseCalculatorProps> = ({
 
           {/* Sidebar */}
           <div className="p-2.5 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-            <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
-              {t.adsense.sidebar}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
+                {t.adsense.sidebar}
+              </span>
+              <TermTooltip id="sidebar" />
+            </div>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white">
               {inputs.selectedUnits.sidebar}x
             </span>
           </div>
 
           {/* Mobile Anchor */}
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.selectedUnits.anchorAd}
-            onClick={() =>
-              onChange({
-                ...inputs,
-                selectedUnits: { ...inputs.selectedUnits, anchorAd: !inputs.selectedUnits.anchorAd },
-              })
-            }
+          <div
             className={
-              "p-2.5 rounded-xl border border-dashed cursor-pointer flex items-center justify-between transition-colors " +
+              "p-2.5 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.selectedUnits.anchorAd
                 ? "border-blue-500 bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <span className="text-xs font-mono">{t.adsense.anchor}</span>
-            <span className="text-[10px] font-mono">{inputs.selectedUnits.anchorAd ? t.adsense.on : t.adsense.off}</span>
-          </button>
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={inputs.selectedUnits.anchorAd}
+                onClick={() =>
+                  onChange({
+                    ...inputs,
+                    selectedUnits: { ...inputs.selectedUnits, anchorAd: !inputs.selectedUnits.anchorAd },
+                  })
+                }
+                className="text-xs font-mono cursor-pointer hover:underline"
+              >
+                {t.adsense.anchor}
+              </button>
+              <TermTooltip id="anchorAd" />
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  ...inputs,
+                  selectedUnits: { ...inputs.selectedUnits, anchorAd: !inputs.selectedUnits.anchorAd },
+                })
+              }
+              className="text-[10px] font-mono cursor-pointer px-2 py-0.5 rounded bg-white/60 dark:bg-neutral-800"
+            >
+              {inputs.selectedUnits.anchorAd ? t.adsense.on : t.adsense.off}
+            </button>
+          </div>
 
           {/* Vignette */}
-          <button
-            type="button"
-            role="switch"
-            aria-checked={inputs.selectedUnits.vignetteAd}
-            onClick={() =>
-              onChange({
-                ...inputs,
-                selectedUnits: { ...inputs.selectedUnits, vignetteAd: !inputs.selectedUnits.vignetteAd },
-              })
-            }
+          <div
             className={
-              "p-2.5 rounded-xl border border-dashed cursor-pointer flex items-center justify-between transition-colors " +
+              "p-2.5 rounded-xl border border-dashed flex items-center justify-between transition-colors " +
               (inputs.selectedUnits.vignetteAd
                 ? "border-blue-500 bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold"
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <span className="text-xs font-mono">{t.adsense.vignette}</span>
-            <span className="text-[10px] font-mono">{inputs.selectedUnits.vignetteAd ? t.adsense.on : t.adsense.off}</span>
-          </button>
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={inputs.selectedUnits.vignetteAd}
+                onClick={() =>
+                  onChange({
+                    ...inputs,
+                    selectedUnits: { ...inputs.selectedUnits, vignetteAd: !inputs.selectedUnits.vignetteAd },
+                  })
+                }
+                className="text-xs font-mono cursor-pointer hover:underline"
+              >
+                {t.adsense.vignette}
+              </button>
+              <TermTooltip id="vignette" />
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                onChange({
+                  ...inputs,
+                  selectedUnits: { ...inputs.selectedUnits, vignetteAd: !inputs.selectedUnits.vignetteAd },
+                })
+              }
+              className="text-[10px] font-mono cursor-pointer px-2 py-0.5 rounded bg-white/60 dark:bg-neutral-800"
+            >
+              {inputs.selectedUnits.vignetteAd ? t.adsense.on : t.adsense.off}
+            </button>
+          </div>
 
           {/* Multiplex */}
           <div className="p-2.5 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
-            <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
-              {t.adsense.multiplex}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
+                {t.adsense.multiplex}
+              </span>
+              <TermTooltip id="multiplex" />
+            </div>
             <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white">
               {inputs.selectedUnits.multiplexAd}x
             </span>

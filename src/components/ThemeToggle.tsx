@@ -6,7 +6,8 @@ export const ThemeToggle: React.FC = () => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("adrev_theme");
       if (saved) return saved === "dark";
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      // Default to light theme
+      return false;
     }
     return false;
   });
