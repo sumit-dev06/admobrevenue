@@ -53,6 +53,12 @@ export const DEFINITIONS: Record<string, TermDefinition> = {
     definition: "An advanced monetization architecture where multiple ad demand networks (e.g., AppLovin MAX, Unity Ads, Meta Audience Network, Mintegral, and Google AdMob) compete simultaneously in real-time auctions for every single impression.",
     tip: "Eliminates slow waterfall mediation latency and lifts blended eCPMs by +20% to +35%.",
   },
+  osPlatform: {
+    term: "Platform Split",
+    fullName: "Mobile Operating System Distribution (Android vs iOS)",
+    definition: "The proportion of your app's active user base on Android vs Apple iOS. iOS traffic delivers +25% to +40% higher eCPMs in Tier 1 countries due to higher user purchasing power and advertiser spend.",
+    tip: "Android delivers higher global volume; iOS commands top-tier monetization yield.",
+  },
   dau: {
     term: "DAU",
     fullName: "Daily Active Users",

@@ -309,6 +309,64 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
             className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
           />
         </div>
+
+        {/* Platform Split (100% Android on Left -> 100% iOS on Right) */}
+        <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 space-y-2">
+          <div className="flex items-center justify-between text-xs font-mono">
+            <label htmlFor="admob-platform-split" className="text-neutral-600 dark:text-neutral-400 uppercase font-semibold text-[11px] flex items-center gap-1.5 cursor-pointer">
+              <span>{t.admob.platformSplit}</span>
+              <TermTooltip id="osPlatform" />
+            </label>
+            <span className="font-mono font-bold text-xs text-neutral-900 dark:text-white">
+              {inputs.platformSplit?.android ?? 70}% Android / {inputs.platformSplit?.ios ?? 30}% iOS
+            </span>
+          </div>
+          <div className="space-y-1">
+            <input
+              id="admob-platform-split"
+              aria-label="Platform Split: 100% Android on left, 100% iOS on right"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value={inputs.platformSplit?.ios ?? 30}
+              onChange={(e) => {
+                const iosVal = parseInt(e.target.value) || 0;
+                onChange({
+                  ...inputs,
+                  platformSplit: {
+                    ios: iosVal,
+                    android: 100 - iosVal,
+                  },
+                });
+              }}
+              className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+            />
+            <div className="flex justify-between text-[10px] font-mono text-neutral-500">
+              <button
+                type="button"
+                onClick={() => onChange({ ...inputs, platformSplit: { ios: 0, android: 100 } })}
+                className="hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer"
+              >
+                100% Android
+              </button>
+              <button
+                type="button"
+                onClick={() => onChange({ ...inputs, platformSplit: { ios: 50, android: 50 } })}
+                className="hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer"
+              >
+                50 / 50
+              </button>
+              <button
+                type="button"
+                onClick={() => onChange({ ...inputs, platformSplit: { ios: 100, android: 0 } })}
+                className="hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer"
+              >
+                100% iOS
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Ad Formats & Mediation */}
