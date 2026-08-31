@@ -50,9 +50,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-dashed border-neutral-300 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md transition-colors">
-      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-13 sm:h-14 gap-2">
-          {/* Brand Logo */}
+      <div className="max-w-6xl mx-auto px-2.5 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-13 sm:h-14 gap-1.5 sm:gap-4">
+          {/* Left: Brand Logo */}
           <button
             type="button"
             className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer select-none shrink-0 text-left bg-transparent border-0 p-0"
@@ -62,65 +62,68 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-mono font-black text-xs sm:text-sm flex items-center justify-center border border-dashed border-neutral-700 dark:border-neutral-300 shadow-xs">
               $
             </div>
-            <span className="hidden sm:inline font-bold text-sm sm:text-base tracking-tight text-neutral-950 dark:text-white font-mono">
+            <span className="hidden md:inline font-bold text-sm sm:text-base tracking-tight text-neutral-950 dark:text-white font-mono">
               admob<span className="text-emerald-500">revenue</span>
             </span>
           </button>
 
-          {/* 2-Page Mode Switcher */}
-          <nav aria-label="Platform navigation" className="flex items-center gap-1 border border-dashed border-neutral-300 dark:border-neutral-800 p-0.5 sm:p-1 rounded-xl bg-neutral-50 dark:bg-neutral-900/60 text-xs font-mono shrink min-w-0">
+          {/* Center: 2-Page Mode Switcher (Guaranteed No Squishing / Truncation) */}
+          <nav
+            aria-label="Platform navigation"
+            className="flex items-center gap-1 border border-dashed border-neutral-300 dark:border-neutral-800 p-0.5 sm:p-1 rounded-xl bg-neutral-50 dark:bg-neutral-900/80 text-xs font-mono shrink-0 shadow-2xs"
+          >
             <button
               type="button"
               onClick={() => onPlatformChange("admob")}
               className={
-                "flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg transition-all text-[11px] sm:text-xs truncate cursor-pointer " +
+                "flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg transition-all text-xs font-mono whitespace-nowrap cursor-pointer select-none " +
                 (activePlatform === "admob"
                   ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium")
               }
               aria-label="Switch to Google AdMob App Calculator"
               title="AdMob App Calculator"
             >
               <Smartphone className="w-3.5 h-3.5 text-emerald-500 shrink-0" aria-hidden="true" />
-              <span>{t.nav.admobTab}</span>
+              <span className="shrink-0">{t.nav.admobTab}</span>
             </button>
             <button
               type="button"
               onClick={() => onPlatformChange("adsense")}
               className={
-                "flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg transition-all text-[11px] sm:text-xs truncate cursor-pointer " +
+                "flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg transition-all text-xs font-mono whitespace-nowrap cursor-pointer select-none " +
                 (activePlatform === "adsense"
                   ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white")
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium")
               }
               aria-label="Switch to Google AdSense Website Calculator"
               title="AdSense Website Calculator"
             >
               <Globe className="w-3.5 h-3.5 text-blue-500 shrink-0" aria-hidden="true" />
-              <span>{t.nav.adsenseTab}</span>
+              <span className="shrink-0">{t.nav.adsenseTab}</span>
             </button>
           </nav>
 
           {/* Right Controls */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             {/* Language Switcher Dropdown */}
             <div className="relative" ref={langMenuRef}>
               <button
                 type="button"
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] sm:text-xs font-mono font-semibold rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 bg-neutral-50/80 dark:bg-neutral-900/80 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer shadow-xs"
+                className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 text-[11px] sm:text-xs font-mono font-semibold rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 bg-neutral-50/80 dark:bg-neutral-900/80 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer shadow-2xs"
                 aria-label={`Select language. Current language: ${currentLang.nativeName}`}
                 aria-expanded={langMenuOpen}
               >
-                <span className="text-sm leading-none">{currentLang.flag}</span>
-                <span className="hidden sm:inline font-bold">{currentLang.nativeName}</span>
-                <ChevronDown className={`w-3 h-3 text-neutral-500 transition-transform ${langMenuOpen ? "rotate-180" : ""}`} />
+                <span className="text-sm leading-none shrink-0">{currentLang.flag}</span>
+                <span className="hidden lg:inline font-bold">{currentLang.nativeName}</span>
+                <ChevronDown className={`w-3 h-3 text-neutral-500 transition-transform shrink-0 ${langMenuOpen ? "rotate-180" : ""}`} />
               </button>
 
               {langMenuOpen && (
                 <div className="absolute right-0 top-full mt-2 w-48 sm:w-52 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-dashed border-neutral-300 dark:border-neutral-700 py-1.5 z-[100] animate-in fade-in slide-in-from-top-2 duration-150 font-mono text-xs ring-1 ring-black/5 dark:ring-white/10">
                   <div className="px-3 py-1.5 text-[10px] text-neutral-500 dark:text-neutral-400 font-bold uppercase tracking-wider border-b border-dashed border-neutral-200 dark:border-neutral-800 flex items-center gap-1.5">
-                    <Languages className="w-3.5 h-3.5 text-emerald-500" />
+                    <Languages className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                     <span>{t.nav.language}</span>
                   </div>
                   <div className="max-h-72 overflow-y-auto py-1 space-y-0.5">
@@ -158,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label="Select currency"
               value={currentCurrency}
               onChange={(e) => onCurrencyChange(e.target.value as CurrencyCode)}
-              className="bg-neutral-50/80 dark:bg-neutral-900/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 text-[11px] sm:text-xs font-mono font-semibold rounded-lg px-2 py-1.5 focus:outline-none focus:border-emerald-500 cursor-pointer shadow-xs"
+              className="bg-neutral-50/80 dark:bg-neutral-900/80 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 text-[11px] sm:text-xs font-mono font-semibold rounded-lg px-1.5 sm:px-2 py-1.5 focus:outline-none focus:border-emerald-500 cursor-pointer shadow-2xs"
             >
               {Object.values(CURRENCIES).map((c) => (
                 <option key={c.code} value={c.code} className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">
@@ -167,11 +170,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </select>
 
-            {/* Share */}
+            {/* Share (Desktop & Tablet) */}
             <button
               type="button"
               onClick={onShare}
-              className="p-1.5 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors cursor-pointer bg-neutral-50/80 dark:bg-neutral-900/80 shadow-xs"
+              className="hidden sm:flex p-1.5 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors cursor-pointer bg-neutral-50/80 dark:bg-neutral-900/80 shadow-2xs"
               aria-label={t.nav.share}
               title={t.nav.share}
             >
@@ -182,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={onOpenExport}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-white bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-950 border border-dashed border-neutral-700 dark:border-neutral-300 rounded-lg hover:bg-neutral-800 dark:hover:bg-white transition-all cursor-pointer shadow-xs"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-white bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-950 border border-dashed border-neutral-700 dark:border-neutral-300 rounded-lg hover:bg-neutral-800 dark:hover:bg-white transition-all cursor-pointer shadow-2xs"
               aria-label={t.nav.export}
             >
               <Download className="w-3.5 h-3.5" aria-hidden="true" />
