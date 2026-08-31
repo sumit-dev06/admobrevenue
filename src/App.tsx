@@ -4,6 +4,8 @@ import {
   AdSenseInputs,
   AdMobInputs,
 } from "./types";
+import { SupportedLanguage } from "./i18n/types";
+import { LanguageProvider, useTranslation } from "./i18n/LanguageContext";
 import { calculateAdSenseRevenue, calculateAdMobRevenue } from "./utils/adCalculations";
 import { copyShareableLink } from "./utils/export";
 import { Navbar } from "./components/Navbar";
@@ -12,6 +14,7 @@ import { AdSenseCalculator } from "./components/AdSenseCalculator";
 import { RevenueSummaryCard } from "./components/RevenueSummaryCard";
 import { OptimizationTips } from "./components/OptimizationTips";
 import { FormulaDeepDive } from "./components/FormulaDeepDive";
+import { EditorialSeoSection } from "./components/EditorialSeoSection";
 import { SeoFaqSection } from "./components/SeoFaqSection";
 import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
 import { GlossarySection } from "./components/GlossarySection";
@@ -82,9 +85,13 @@ const DEFAULT_ADSENSE_INPUTS: AdSenseInputs = {
   useSeasonality: true,
 };
 
-export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer" } = {}) {
-  // Theme state: defaults to clean light mode
-  
+interface AppContentProps {
+  initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
+}
+
+function MainAppContent({ initialPlatform }: AppContentProps) {
+  const { t } = useTranslation();
+
   // Currency (persisted)
   const [currency, setCurrency] = useState<CurrencyCode>(() => {
     if (typeof window !== "undefined") {
@@ -94,15 +101,17 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
     return "USD";
   });
 
-  // Dedicated 2-Page Mode: "admob" (Apps) or "adsense" (Websites) (persisted)
+  // Dedicated Mode: "admob" (Apps) or "adsense" (Websites) or trust pages
   const [activePlatform, setActivePlatform] = useState<string>(() => {
     if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
       const searchParams = new URLSearchParams(window.location.search);
-      const pageParam = searchParams.get("page") as "admob" | "adsense";
-      if (pageParam === "admob" || pageParam === "adsense") return pageParam;
-      const saved = localStorage.getItem("adrev_platform") as "admob" | "adsense";
-      if (saved === "admob" || saved === "adsense") return saved;
+      const pageParam = searchParams.get("page");
+      if (pageParam && ["admob", "adsense", "about", "contact", "privacy", "terms", "disclaimer"].includes(pageParam)) {
+        return pageParam;
+      }
+      const saved = localStorage.getItem("adrev_platform");
+      if (saved && ["admob", "adsense"].includes(saved)) return saved;
     }
     return "admob";
   });
@@ -168,10 +177,9 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
     return DEFAULT_ADSENSE_INPUTS;
   });
 
-  
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && ["admob", "adsense"].includes(activePlatform)) {
       localStorage.setItem("adrev_platform", activePlatform);
     }
   }, [activePlatform]);
@@ -228,6 +236,7 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       const url = new URL(window.location.href);
       url.searchParams.set("page", p);
       window.history.replaceState({}, "", url.toString());
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -246,7 +255,6 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
   const admobResults = useMemo(() => calculateAdMobRevenue(adMobInputs), [adMobInputs]);
   const adSenseResults = useMemo(() => calculateAdSenseRevenue(adSenseInputs), [adSenseInputs]);
 
-
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-950 font-sans transition-colors duration-150">
       {/* Toast Notification */}
@@ -260,14 +268,14 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
       {/* PWA Install Notification Banner */}
       <PwaInstallBanner />
 
-      {/* Top Header */}
+      {/* Top Header with Language Dropdown */}
       <Navbar
         currentCurrency={currency}
         onCurrencyChange={setCurrency}
         onOpenEmbed={() => setIsEmbedOpen(true)}
         onOpenExport={() => setIsExportOpen(true)}
         onShare={handleShare}
-        activePlatform={activePlatform as "admob" | "adsense"}
+        activePlatform={activePlatform}
         onPlatformChange={handlePlatformChange}
       />
 
@@ -301,211 +309,210 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
         
         {(activePlatform === "admob" || activePlatform === "adsense") && (
           <>
+            {/* Page Hero Banner */}
+            <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    {activePlatform === "admob" ? (
+                      <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
+                        {t.hero.admobBadge}
+                      </span>
+                    ) : (
+                      <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-500/10">
+                        {t.hero.adsenseBadge}
+                      </span>
+                    )}
+                  </div>
 
-        {/* Page Banner */}
-        <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
+                  <h1 className="text-xl sm:text-2xl font-black font-mono tracking-tight text-neutral-950 dark:text-white">
+                    {activePlatform === "admob" ? (
+                      <span className="text-emerald-600 dark:text-emerald-400">{t.hero.admobTitle}</span>
+                    ) : (
+                      <span className="text-blue-600 dark:text-blue-400">{t.hero.adsenseTitle}</span>
+                    )}
+                  </h1>
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono mt-0.5">
+                    {activePlatform === "admob"
+                      ? t.hero.admobSubtitle
+                      : t.hero.adsenseSubtitle}
+                  </p>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-2 font-mono text-xs">
+                  <button
+                    type="button"
+                    aria-label={t.hero.reset}
+                    onClick={() => {
+                      if (activePlatform === "admob") {
+                        setAdMobInputs(DEFAULT_ADMOB_INPUTS);
+                        localStorage.removeItem("adrev_admob_inputs");
+                      } else {
+                        setAdSenseInputs(DEFAULT_ADSENSE_INPUTS);
+                        localStorage.removeItem("adrev_adsense_inputs");
+                      }
+                      showToast("Reset to defaults!");
+                    }}
+                    className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-600 dark:text-neutral-400 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px] cursor-pointer"
+                    title={t.hero.reset}
+                  >
+                    {t.hero.reset}
+                  </button>
+
+                  <button
+                    type="button"
+                    aria-label={activePlatform === "admob" ? t.hero.switchToAdSense : t.hero.switchToAdMob}
+                    onClick={() => handlePlatformChange(activePlatform === "admob" ? "adsense" : "admob")}
+                    className="px-3 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-white text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5 transition-colors bg-white dark:bg-neutral-900 cursor-pointer"
+                  >
+                    {activePlatform === "admob" ? (
+                      <>
+                        <Globe className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
+                        <span>{t.hero.switchToAdSense}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Smartphone className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
+                        <span>{t.hero.switchToAdMob}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            {/* 2-Column Calculator Grid */}
+            <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              {/* Left: Interactive Input Form */}
+              <div className="lg:col-span-7 space-y-4">
                 {activePlatform === "admob" ? (
-                  <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
-                    Mobile App Monetization
-                  </span>
+                  <AdMobCalculator
+                    inputs={adMobInputs}
+                    onChange={setAdMobInputs}
+                    currency={currency}
+                  />
                 ) : (
-                  <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-500/10">
-                    Website & Blog Monetization
-                  </span>
+                  <AdSenseCalculator
+                    inputs={adSenseInputs}
+                    onChange={setAdSenseInputs}
+                    currency={currency}
+                  />
                 )}
+
+                {/* Optimization Recommendations */}
+                <OptimizationTips
+                  platform={activePlatform as "admob" | "adsense"}
+                  adSenseInputs={adSenseInputs}
+                  adMobInputs={adMobInputs}
+                />
               </div>
 
-              <h1 className="text-xl sm:text-2xl font-black font-mono tracking-tight text-neutral-950 dark:text-white">
+              {/* Right: Revenue Dashboard & Visualizers */}
+              <div className="lg:col-span-5 space-y-4 sticky top-18">
                 {activePlatform === "admob" ? (
                   <>
-                    Google AdMob <span className="text-emerald-500">Revenue Calculator</span>
+                    <RevenueSummaryCard
+                      type="admob"
+                      currency={currency}
+                      dailyRevenue={admobResults.dailyRevenue}
+                      monthlyRevenue={admobResults.monthlyRevenue}
+                      annualRevenue={admobResults.annualRevenue}
+                      rateMetricLabel={t.summary.arpdau}
+                      rateMetricValue={`$${admobResults.arpdau}`}
+                      secondaryRateLabel={t.summary.blendedEcpm}
+                      secondaryRateValue={`$${admobResults.blendedEcpm}`}
+                      impressions={admobResults.monthlyImpressions}
+                      mediationLiftRevenue={admobResults.mediationLiftRevenue}
+                      onExportCSV={() => setIsExportOpen(true)}
+                    />
+                    <Suspense
+                      fallback={
+                        <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+                          <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+                            <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
+                              {t.summary.visualBreakdown}
+                            </span>
+                          </div>
+                          <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
+                            Loading charts...
+                          </div>
+                        </div>
+                      }
+                    >
+                      <RevenueCharts
+                        formatBreakdown={admobResults.formatBreakdown}
+                        monthlyForecast={admobResults.monthlyForecast}
+                        currency={currency}
+                      />
+                    </Suspense>
                   </>
                 ) : (
                   <>
-                    Google AdSense <span className="text-blue-500">Revenue Calculator</span>
+                    <RevenueSummaryCard
+                      type="adsense"
+                      currency={currency}
+                      dailyRevenue={adSenseResults.dailyRevenue}
+                      monthlyRevenue={adSenseResults.monthlyRevenue}
+                      annualRevenue={adSenseResults.annualRevenue}
+                      rateMetricLabel={t.summary.pageRpm}
+                      rateMetricValue={`$${adSenseResults.pageRpm}`}
+                      secondaryRateLabel={t.summary.impressionRpm}
+                      secondaryRateValue={`$${adSenseResults.impressionRpm}`}
+                      impressions={adSenseResults.monthlyImpressions}
+                      adBlockLossRevenue={adSenseResults.adBlockLossRevenue}
+                      onExportCSV={() => setIsExportOpen(true)}
+                    />
+                    <Suspense
+                      fallback={
+                        <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
+                          <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
+                            <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
+                              {t.summary.visualBreakdown}
+                            </span>
+                          </div>
+                          <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
+                            Loading charts...
+                          </div>
+                        </div>
+                      }
+                    >
+                      <RevenueCharts
+                        formatBreakdown={adSenseResults.formatBreakdown}
+                        monthlyForecast={adSenseResults.monthlyForecast}
+                        deviceBreakdown={adSenseResults.deviceBreakdown}
+                        currency={currency}
+                      />
+                    </Suspense>
                   </>
                 )}
-              </h1>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono mt-0.5">
-                {activePlatform === "admob"
-                  ? "Forecast app ARPDAU and eCPMs across Rewarded, Interstitial, and App Open ads."
-                  : "Forecast website Page RPM across 26 niches, ad placements, and audience locations."}
-              </p>
-            </div>
+              </div>
+            </section>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2 font-mono text-xs">
-              <button
-                type="button"
-                aria-label="Reset parameters to original defaults"
-                onClick={() => {
-                  if (activePlatform === "admob") {
-                    setAdMobInputs(DEFAULT_ADMOB_INPUTS);
-                    localStorage.removeItem("adrev_admob_inputs");
-                  } else {
-                    setAdSenseInputs(DEFAULT_ADSENSE_INPUTS);
-                    localStorage.removeItem("adrev_adsense_inputs");
-                  }
-                  showToast("Reset to defaults!");
-                }}
-                className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-600 dark:text-neutral-400 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px] cursor-pointer"
-                title="Reset parameters to original defaults"
-              >
-                Reset
-              </button>
+            {/* Keyword-Rich Editorial SEO Section */}
+            <section>
+              <EditorialSeoSection />
+            </section>
 
-              <button
-                type="button"
-                aria-label={activePlatform === "admob" ? "Switch to AdSense" : "Switch to AdMob"}
-                onClick={() => handlePlatformChange(activePlatform === "admob" ? "adsense" : "admob")}
-                className="px-3 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-white text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5 transition-colors bg-white dark:bg-neutral-900 cursor-pointer"
-              >
-                {activePlatform === "admob" ? (
-                  <>
-                    <Globe className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
-                    <span>Switch to AdSense</span>
-                  </>
-                ) : (
-                  <>
-                    <Smartphone className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-                    <span>Switch to AdMob</span>
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-        </section>
+            {/* Mathematical Formulas */}
+            <section>
+              <FormulaDeepDive />
+            </section>
 
-        {/* 2-Column Calculator Grid */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left: Interactive Input Form */}
-          <div className="lg:col-span-7 space-y-4">
-            {activePlatform === "admob" ? (
-              <AdMobCalculator
-                inputs={adMobInputs}
-                onChange={setAdMobInputs}
-                currency={currency}
-              />
-            ) : (
-              <AdSenseCalculator
-                inputs={adSenseInputs}
-                onChange={setAdSenseInputs}
-                currency={currency}
-              />
-            )}
+            {/* Publisher Guide */}
+            <section>
+              <ComprehensiveGuide />
+            </section>
 
-            {/* Optimization Recommendations */}
-            <OptimizationTips
-              platform={activePlatform as "admob" | "adsense"}
-              adSenseInputs={adSenseInputs}
-              adMobInputs={adMobInputs}
-            />
-          </div>
+            {/* Glossary */}
+            <section>
+              <GlossarySection />
+            </section>
 
-          {/* Right: Revenue Dashboard & Visualizers */}
-          <div className="lg:col-span-5 space-y-4 sticky top-18">
-            {activePlatform === "admob" ? (
-              <>
-                <RevenueSummaryCard
-                  type="admob"
-                  currency={currency}
-                  dailyRevenue={admobResults.dailyRevenue}
-                  monthlyRevenue={admobResults.monthlyRevenue}
-                  annualRevenue={admobResults.annualRevenue}
-                  rateMetricLabel="ARPDAU"
-                  rateMetricValue={`$${admobResults.arpdau}`}
-                  secondaryRateLabel="Blended eCPM"
-                  secondaryRateValue={`$${admobResults.blendedEcpm}`}
-                  impressions={admobResults.monthlyImpressions}
-                  mediationLiftRevenue={admobResults.mediationLiftRevenue}
-                  onExportCSV={() => setIsExportOpen(true)}
-                />
-                <Suspense
-                  fallback={
-                    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
-                      <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-                        <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
-                          Visual Breakdown
-                        </span>
-                      </div>
-                      <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
-                        Loading charts...
-                      </div>
-                    </div>
-                  }
-                >
-                  <RevenueCharts
-                    formatBreakdown={admobResults.formatBreakdown}
-                    monthlyForecast={admobResults.monthlyForecast}
-                    currency={currency}
-                  />
-                </Suspense>
-              </>
-            ) : (
-              <>
-                <RevenueSummaryCard
-                  type="adsense"
-                  currency={currency}
-                  dailyRevenue={adSenseResults.dailyRevenue}
-                  monthlyRevenue={adSenseResults.monthlyRevenue}
-                  annualRevenue={adSenseResults.annualRevenue}
-                  rateMetricLabel="Page RPM"
-                  rateMetricValue={`$${adSenseResults.pageRpm}`}
-                  secondaryRateLabel="Impression RPM"
-                  secondaryRateValue={`$${adSenseResults.impressionRpm}`}
-                  impressions={adSenseResults.monthlyImpressions}
-                  adBlockLossRevenue={adSenseResults.adBlockLossRevenue}
-                  onExportCSV={() => setIsExportOpen(true)}
-                />
-                <Suspense
-                  fallback={
-                    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
-                      <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-                        <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
-                          Visual Breakdown
-                        </span>
-                      </div>
-                      <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
-                        Loading charts...
-                      </div>
-                    </div>
-                  }
-                >
-                  <RevenueCharts
-                    formatBreakdown={adSenseResults.formatBreakdown}
-                    monthlyForecast={adSenseResults.monthlyForecast}
-                    deviceBreakdown={adSenseResults.deviceBreakdown}
-                    currency={currency}
-                  />
-                </Suspense>
-              </>
-            )}
-          </div>
-        </section>
-
-        {/* Mathematical Formulas */}
-        <section>
-          <FormulaDeepDive />
-        </section>
-
-        {/* Publisher Guide */}
-        <section>
-          <ComprehensiveGuide />
-        </section>
-
-        {/* Glossary */}
-        <section>
-          <GlossarySection />
-        </section>
-
-        {/* SEO FAQs */}
-        <section>
-          <SeoFaqSection />
-        </section>
-      
+            {/* SEO FAQs */}
+            <section>
+              <SeoFaqSection />
+            </section>
           </>
         )}
       </main>
@@ -533,27 +540,41 @@ export function App({ initialPlatform }: { initialPlatform?: "admob" | "adsense"
 
       {/* Mobile Floating Sticky Bar */}
       {(activePlatform === "admob" || activePlatform === "adsense") && (
-      <MobileStickyBar
-        activeMode={activePlatform as "admob" | "adsense"}
-        currency={currency}
-        monthlyRevenue={
-          activePlatform === "admob" ? admobResults.monthlyRevenue : adSenseResults.monthlyRevenue
-        }
-        rateLabel={activePlatform === "admob" ? "ARPDAU" : "Page RPM"}
-        rateValue={
-          activePlatform === "admob"
-            ? `$${admobResults.arpdau}`
-            : `$${adSenseResults.pageRpm}`
-        }
-        onOpenExport={() => setIsExportOpen(true)}
-        onOpenEmbed={() => setIsEmbedOpen(true)}
-        onShare={handleShare}
-      />
+        <MobileStickyBar
+          activeMode={activePlatform as "admob" | "adsense"}
+          currency={currency}
+          monthlyRevenue={
+            activePlatform === "admob" ? admobResults.monthlyRevenue : adSenseResults.monthlyRevenue
+          }
+          rateLabel={activePlatform === "admob" ? "ARPDAU" : "Page RPM"}
+          rateValue={
+            activePlatform === "admob"
+              ? `$${admobResults.arpdau}`
+              : `$${adSenseResults.pageRpm}`
+          }
+          onOpenExport={() => setIsExportOpen(true)}
+          onOpenEmbed={() => setIsEmbedOpen(true)}
+          onShare={handleShare}
+        />
       )}
 
       {/* Footer */}
       <Footer />
     </div>
+  );
+}
+
+export function App({
+  initialPlatform,
+  initialLanguage,
+}: {
+  initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
+  initialLanguage?: SupportedLanguage;
+} = {}) {
+  return (
+    <LanguageProvider initialLanguage={initialLanguage}>
+      <MainAppContent initialPlatform={initialPlatform} />
+    </LanguageProvider>
   );
 }
 

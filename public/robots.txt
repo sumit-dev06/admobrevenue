@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Multilingual XML Sitemap
 Sitemap: https://admobrevenue.pages.dev/sitemap.xml

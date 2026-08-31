@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CurrencyCode, PlatformMode } from "../types";
 import { formatCurrency } from "../utils/currency";
+import { useTranslation } from "../i18n/LanguageContext";
 import {
   Share2,
   Download,
@@ -29,6 +30,7 @@ export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({
   onOpenEmbed,
   onShare,
 }) => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -65,7 +67,7 @@ export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({
               className="p-2.5 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 flex flex-col items-center gap-1 cursor-pointer"
             >
               <Share2 className="w-4 h-4 text-blue-500" aria-hidden="true" />
-              <span>Share</span>
+              <span>{t.nav.share}</span>
             </button>
             <button
               type="button"
@@ -77,7 +79,7 @@ export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({
               className="p-2.5 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 flex flex-col items-center gap-1 cursor-pointer"
             >
               <Download className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-              <span>Export</span>
+              <span>{t.nav.export}</span>
             </button>
             <button
               type="button"
@@ -100,7 +102,7 @@ export const MobileStickyBar: React.FC<MobileStickyBarProps> = ({
         <div className="flex items-center justify-between bg-white/95 dark:bg-neutral-950/95 border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white px-3.5 py-2 rounded-xl shadow-lg backdrop-blur-md">
           <div className="flex items-center gap-2.5">
             <div>
-              <div className="text-[9px] text-neutral-600 dark:text-neutral-400 font-mono uppercase">Monthly</div>
+              <div className="text-[9px] text-neutral-600 dark:text-neutral-400 font-mono uppercase">{t.summary.monthlyRunRate}</div>
               <div className="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400">
                 {formatCurrency(monthlyRevenue, currency)}
               </div>

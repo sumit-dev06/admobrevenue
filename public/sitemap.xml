@@ -1,51 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage / Default AdMob -->
   <url>
     <loc>https://admobrevenue.pages.dev/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admobrevenue.pages.dev/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://admobrevenue.pages.dev/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admobrevenue.pages.dev/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://admobrevenue.pages.dev/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admobrevenue.pages.dev/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://admobrevenue.pages.dev/?lang=de" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admobrevenue.pages.dev/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admobrevenue.pages.dev/?lang=ko" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/?lang=it" />
   </url>
-  <url>
-    <loc>https://admobrevenue.pages.dev/?page=admob</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
+  <!-- Dedicated AdSense Revenue Calculator (Main Target) -->
   <url>
     <loc>https://admobrevenue.pages.dev/?page=adsense</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admobrevenue.pages.dev/?page=adsense" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://admobrevenue.pages.dev/?page=adsense" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=es" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=de" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=ko" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/?page=adsense&amp;lang=it" />
+  </url>
+
+  <!-- Dedicated AdMob Revenue Calculator -->
+  <url>
+    <loc>https://admobrevenue.pages.dev/?page=admob</loc>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admobrevenue.pages.dev/?page=admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://admobrevenue.pages.dev/?page=admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=es" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=ja" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=de" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=ko" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/?page=admob&amp;lang=it" />
   </url>
+
+  <!-- About Us -->
   <url>
     <loc>https://admobrevenue.pages.dev/?page=about</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Contact Us -->
   <url>
     <loc>https://admobrevenue.pages.dev/?page=contact</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Privacy Policy -->
   <url>
     <loc>https://admobrevenue.pages.dev/?page=privacy</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+
+  <!-- Terms of Service -->
   <url>
     <loc>https://admobrevenue.pages.dev/?page=terms</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
+
+  <!-- Disclaimer & Methodology -->
   <url>
     <loc>https://admobrevenue.pages.dev/?page=disclaimer</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>
