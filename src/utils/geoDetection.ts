@@ -157,6 +157,116 @@ const LOCALE_MAP: Record<string, LocationMapping> = {
   "ko": { country: "KR", currency: "USD", language: "ko" },
 };
 
+export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
+  const code = (countryCode || "").trim().toUpperCase();
+  const country = COUNTRIES.find((c) => c.code === code);
+  
+  // Currency mapping based on country
+  let currency: CurrencyCode = "USD";
+  if (code === "IN") currency = "INR";
+  else if (code === "GB") currency = "GBP";
+  else if (code === "JP") currency = "JPY";
+  else if (code === "CA") currency = "CAD";
+  else if (code === "AU" || code === "NZ") currency = "AUD";
+  else if (code === "BR") currency = "BRL";
+  else if ([
+    "NO", "DE", "FR", "IT", "ES", "NL", "AT", "BE", "IE", "FI",
+    "PT", "GR", "CH", "SE", "DK", "PL", "CZ", "HU", "RO"
+  ].includes(code)) {
+    currency = "EUR";
+  }
+
+  // Language mapping
+  let language: SupportedLanguage = "en";
+  if ([
+    "ES", "MX", "AR", "CL", "CO", "PE", "VE", "EC", "GT", "CU",
+    "BO", "DO", "HN", "PY", "SV", "NI", "CR", "PA", "UY"
+  ].includes(code)) {
+    language = "es";
+  } else if (code === "JP") {
+    language = "ja";
+  } else if (["DE", "AT", "CH"].includes(code)) {
+    language = "de";
+  } else if (["FR", "BE"].includes(code)) {
+    language = "fr";
+  } else if (["PT", "BR"].includes(code)) {
+    language = "pt";
+  } else if (code === "IT") {
+    language = "it";
+  } else if (code === "KR") {
+    language = "ko";
+  }
+
+  return {
+    countryCode: country ? code : (code || "US"),
+    currencyCode: currency,
+    language,
+  };
+}
+
+export async function fetchUserLocationIP(): Promise<GeoLocationDetection | null> {
+  if (typeof window === "undefined") return null;
+
+  // 1. Primary: api.country.is (ultra fast, HTTPS, CORS, zero rate limits)
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const res = await fetch("https://api.country.is/", {
+      signal: controller.signal,
+      cache: "no-cache",
+    });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.country && typeof data.country === "string" && data.country.length === 2) {
+        return mapCountryToDetails(data.country);
+      }
+    }
+  } catch (err) {
+    console.debug("api.country.is lookup skipped or timed out", err);
+  }
+
+  // 2. Secondary fallback: ipwho.is (reliable, HTTPS, CORS)
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const res = await fetch("https://ipwho.is/", {
+      signal: controller.signal,
+      cache: "no-cache",
+    });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.country_code && typeof data.country_code === "string" && data.country_code.length === 2) {
+        return mapCountryToDetails(data.country_code);
+      }
+    }
+  } catch (err) {
+    console.debug("ipwho.is lookup skipped or timed out", err);
+  }
+
+  // 3. Third fallback: ipapi.co
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const res = await fetch("https://ipapi.co/json/", {
+      signal: controller.signal,
+      cache: "no-cache",
+    });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.country_code && typeof data.country_code === "string" && data.country_code.length === 2) {
+        return mapCountryToDetails(data.country_code);
+      }
+    }
+  } catch (err) {
+    console.debug("ipapi.co lookup skipped or timed out", err);
+  }
+
+  return null;
+}
+
 export function detectUserLocation(): GeoLocationDetection {
   if (typeof window === "undefined") {
     return { countryCode: "US", currencyCode: "USD", language: "en" };
@@ -200,20 +310,7 @@ export function detectUserLocation(): GeoLocationDetection {
         const langPrefix = parts[0].toLowerCase() as SupportedLanguage;
         const countryMatch = COUNTRIES.find((c) => c.code === region);
         if (countryMatch) {
-          let cur: CurrencyCode = "USD";
-          if (region === "IN") cur = "INR";
-          else if (region === "GB") cur = "GBP";
-          else if (region === "JP") cur = "JPY";
-          else if (region === "CA") cur = "CAD";
-          else if (region === "AU" || region === "NZ") cur = "AUD";
-          else if (region === "BR") cur = "BRL";
-          else if (["DE", "FR", "IT", "ES", "NL", "AT", "BE", "IE", "FI", "PT", "GR"].includes(region)) cur = "EUR";
-          
-          let l: SupportedLanguage = "en";
-          if (["es", "ja", "fr", "de", "pt", "ko", "it"].includes(langPrefix)) {
-            l = langPrefix;
-          }
-          return { countryCode: region, currencyCode: cur, language: l };
+          return mapCountryToDetails(region);
         }
       }
     }

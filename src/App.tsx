@@ -89,11 +89,11 @@ interface AppContentProps {
   initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
 }
 
-import { detectUserLocation } from "./utils/geoDetection";
+import { detectUserLocation, fetchUserLocationIP } from "./utils/geoDetection";
 import { COUNTRIES } from "./data/geoTiers";
 
 function MainAppContent({ initialPlatform }: AppContentProps) {
-  const { t } = useTranslation();
+  const { t, setLanguage } = useTranslation();
 
   // Currency (persisted, defaulted to user's location)
   const [currency, setCurrency] = useState<CurrencyCode>(() => {
@@ -206,6 +206,51 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     }
     return defaultInputs;
   });
+
+  // Live IP Geolocation Check (detects VPN / proxy / location changes in real-time)
+  useEffect(() => {
+    let isMounted = true;
+    fetchUserLocationIP().then((detected) => {
+      if (!isMounted || !detected) return;
+
+      const lastDetectedCountry = sessionStorage.getItem("adrev_last_ip_country");
+
+      // When visiting or when VPN changes country (e.g. connected to Norway):
+      if (lastDetectedCountry !== detected.countryCode) {
+        sessionStorage.setItem("adrev_last_ip_country", detected.countryCode);
+
+        const country = COUNTRIES.find((c) => c.code === detected.countryCode);
+        const t1 = country?.tier === "tier1" ? 100 : 0;
+        const t2 = country?.tier === "tier2" ? 100 : 0;
+        const t3 = country?.tier === "tier3" ? 100 : (!country ? 100 : 0);
+
+        setAdMobInputs((prev) => ({
+          ...prev,
+          targetCountry: detected.countryCode,
+          accountCountry: detected.countryCode,
+          geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
+        }));
+
+        setAdSenseInputs((prev) => ({
+          ...prev,
+          targetCountry: detected.countryCode,
+          accountCountry: detected.countryCode,
+          geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
+        }));
+
+        setCurrency(detected.currencyCode);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.get("lang") && detected.language) {
+          setLanguage(detected.language);
+        }
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [setLanguage]);
 
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {
