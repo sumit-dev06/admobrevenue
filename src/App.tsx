@@ -90,6 +90,7 @@ interface AppContentProps {
 }
 
 import { detectUserLocation } from "./utils/geoDetection";
+import { COUNTRIES } from "./data/geoTiers";
 
 function MainAppContent({ initialPlatform }: AppContentProps) {
   const { t } = useTranslation();
@@ -126,11 +127,17 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
   // AdMob Inputs (Page 1) (persisted, defaulted to user location)
   const [adMobInputs, setAdMobInputs] = useState<AdMobInputs>(() => {
-    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode };
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const country = COUNTRIES.find((c) => c.code === detected.countryCode);
+    const t1 = country?.tier === "tier1" ? 100 : 0;
+    const t2 = country?.tier === "tier2" ? 100 : 0;
+    const t3 = country?.tier === "tier3" ? 100 : (!country ? 100 : 0);
+
     const defaultInputs: AdMobInputs = {
       ...DEFAULT_ADMOB_INPUTS,
       accountCountry: detected.countryCode,
       targetCountry: detected.countryCode,
+      geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
     };
 
     if (typeof window !== "undefined") {
@@ -164,11 +171,17 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
   // AdSense Inputs (Page 2) (persisted, defaulted to user location)
   const [adSenseInputs, setAdSenseInputs] = useState<AdSenseInputs>(() => {
-    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode };
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const country = COUNTRIES.find((c) => c.code === detected.countryCode);
+    const t1 = country?.tier === "tier1" ? 100 : 0;
+    const t2 = country?.tier === "tier2" ? 100 : 0;
+    const t3 = country?.tier === "tier3" ? 100 : (!country ? 0 : 0);
+
     const defaultInputs: AdSenseInputs = {
       ...DEFAULT_ADSENSE_INPUTS,
       accountCountry: detected.countryCode,
       targetCountry: detected.countryCode,
+      geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
     };
 
     if (typeof window !== "undefined") {

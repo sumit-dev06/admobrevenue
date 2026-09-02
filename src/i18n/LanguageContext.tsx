@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useTransition } from "react";
 import { SupportedLanguage, LanguageInfo, SUPPORTED_LANGUAGES, TranslationDictionary } from "./types";
 import { TRANSLATIONS } from "./translations";
+import { detectUserLocation } from "../utils/geoDetection";
 
 interface LanguageContextType {
   language: SupportedLanguage;
@@ -29,6 +30,11 @@ export const LanguageProvider: React.FC<{
       const savedLang = localStorage.getItem("adrev_language") as SupportedLanguage;
       if (savedLang && SUPPORTED_LANGUAGES.some((l) => l.code === savedLang)) {
         return savedLang;
+      }
+      // Check detected location language based on timezone / geo
+      const detected = detectUserLocation();
+      if (detected.language && SUPPORTED_LANGUAGES.some((l) => l.code === detected.language)) {
+        return detected.language;
       }
       // Check browser language
       const browserLang = navigator.language?.slice(0, 2) as SupportedLanguage;
