@@ -23,17 +23,17 @@ import { Navbar } from "./components/Navbar";
 import { AdMobCalculator } from "./components/AdMobCalculator";
 import { AdSenseCalculator } from "./components/AdSenseCalculator";
 import { RevenueSummaryCard } from "./components/RevenueSummaryCard";
-import { OptimizationTips } from "./components/OptimizationTips";
-import { FormulaDeepDive } from "./components/FormulaDeepDive";
-import { EditorialSeoSection } from "./components/EditorialSeoSection";
-import { SeoFaqSection } from "./components/SeoFaqSection";
-import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
-import { GlossarySection } from "./components/GlossarySection";
 import { MobileStickyBar } from "./components/MobileStickyBar";
 import { PwaInstallBanner } from "./components/PwaInstallBanner";
 import { Footer } from "./components/Footer";
 
 // Lazy load heavy components for maximum Lighthouse & Core Web Vitals speed
+const OptimizationTips = lazy(() => import("./components/OptimizationTips").then(m => ({ default: m.OptimizationTips })));
+const FormulaDeepDive = lazy(() => import("./components/FormulaDeepDive").then(m => ({ default: m.FormulaDeepDive })));
+const EditorialSeoSection = lazy(() => import("./components/EditorialSeoSection").then(m => ({ default: m.EditorialSeoSection })));
+const SeoFaqSection = lazy(() => import("./components/SeoFaqSection").then(m => ({ default: m.SeoFaqSection })));
+const ComprehensiveGuide = lazy(() => import("./components/ComprehensiveGuide").then(m => ({ default: m.ComprehensiveGuide })));
+const GlossarySection = lazy(() => import("./components/GlossarySection").then(m => ({ default: m.GlossarySection })));
 const YouTubeCalculator = lazy(() => import("./components/YouTubeCalculator").then(m => ({ default: m.YouTubeCalculator })));
 const TikTokCalculator = lazy(() => import("./components/TikTokCalculator").then(m => ({ default: m.TikTokCalculator })));
 const TwitchCalculator = lazy(() => import("./components/TwitchCalculator").then(m => ({ default: m.TwitchCalculator })));
@@ -922,11 +922,13 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
                 {/* Optimization Recommendations (AdMob / AdSense) */}
                 {(activePlatform === "admob" || activePlatform === "adsense") && (
-                  <OptimizationTips
-                    platform={activePlatform as "admob" | "adsense"}
-                    adSenseInputs={adSenseInputs}
-                    adMobInputs={adMobInputs}
-                  />
+                  <Suspense fallback={null}>
+                    <OptimizationTips
+                      platform={activePlatform as "admob" | "adsense"}
+                      adSenseInputs={adSenseInputs}
+                      adMobInputs={adMobInputs}
+                    />
+                  </Suspense>
                 )}
               </div>
 
@@ -1086,27 +1088,37 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
             {/* Keyword-Rich Editorial SEO Section */}
             <section>
-              <EditorialSeoSection />
+              <Suspense fallback={null}>
+                <EditorialSeoSection />
+              </Suspense>
             </section>
 
             {/* Mathematical Formulas */}
             <section>
-              <FormulaDeepDive />
+              <Suspense fallback={null}>
+                <FormulaDeepDive />
+              </Suspense>
             </section>
 
             {/* Publisher Guide */}
             <section>
-              <ComprehensiveGuide />
+              <Suspense fallback={null}>
+                <ComprehensiveGuide />
+              </Suspense>
             </section>
 
             {/* Glossary */}
             <section>
-              <GlossarySection />
+              <Suspense fallback={null}>
+                <GlossarySection />
+              </Suspense>
             </section>
 
             {/* SEO FAQs */}
             <section>
-              <SeoFaqSection />
+              <Suspense fallback={null}>
+                <SeoFaqSection />
+              </Suspense>
             </section>
           </>
         )}

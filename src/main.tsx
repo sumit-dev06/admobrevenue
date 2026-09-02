@@ -1,5 +1,5 @@
 import React, { StrictMode, Component, ErrorInfo, ReactNode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 
@@ -66,11 +66,17 @@ class ErrorBoundary extends Component<Props, State> {
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
-  createRoot(rootElement).render(
+  const appElement = (
     <StrictMode>
       <ErrorBoundary>
         <App />
       </ErrorBoundary>
     </StrictMode>
   );
+
+  if (rootElement.hasChildNodes()) {
+    hydrateRoot(rootElement, appElement);
+  } else {
+    createRoot(rootElement).render(appElement);
+  }
 }

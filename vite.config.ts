@@ -11,15 +11,20 @@ export default defineConfig(({ isSsrBuild }) => ({
     modulePreload: {
       polyfill: false,
       resolveDependencies: (_filename, deps) => {
-        // Exclude heavy charting libraries and lazy modals from critical head preloading
+        // Exclude all lazy-loaded sub-pages, modals, and below-the-fold content from critical head preloading
         return deps.filter(
           (dep) =>
             !dep.includes('vendor-charts') &&
             !dep.includes('Modal') &&
-            !dep.includes('KickCalculator') &&
-            !dep.includes('TwitchCalculator') &&
-            !dep.includes('TikTokCalculator') &&
-            !dep.includes('YouTubeCalculator')
+            !dep.includes('Calculator') &&
+            !dep.includes('Editorial') &&
+            !dep.includes('Guide') &&
+            !dep.includes('Formula') &&
+            !dep.includes('Glossary') &&
+            !dep.includes('Faq') &&
+            !dep.includes('Tips') &&
+            !dep.includes('Trust') &&
+            !dep.includes('RevenueCharts')
         );
       },
     },
@@ -29,9 +34,6 @@ export default defineConfig(({ isSsrBuild }) => ({
           output: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
-                if (id.includes('recharts') || id.includes('d3-')) {
-                  return 'vendor-charts';
-                }
                 if (id.includes('react-dom') || id.includes('react/') || id.includes('react-router')) {
                   return 'vendor-react';
                 }

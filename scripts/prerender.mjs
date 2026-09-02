@@ -133,8 +133,7 @@ try {
     let renderedPage = template
       .replace('<html lang="en">', `<html lang="${lang}">`)
       .replace('<div id="root"></div>', `<div id="root">${htmlContent}</div>`)
-      .replace(/<link rel="modulepreload"[^>]*vendor-charts[^>]*>\s*/g, '')
-      .replace(/<link rel="modulepreload"[^>]*Modal[^>]*>\s*/g, '');
+      .replace(/<link rel="modulepreload"[^>]*(?:vendor-charts|Modal|Calculator|Editorial|Guide|Formula|Glossary|Faq|Tips|Trust|RevenueCharts)[^>]*>\s*/g, '');
     
     if (meta?.title) {
       renderedPage = renderedPage
