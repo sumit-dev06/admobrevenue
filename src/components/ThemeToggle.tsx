@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 export const ThemeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("adrev_theme");
-      if (saved) return saved === "dark";
-      // Default to light theme
-      return false;
+      return document.documentElement.classList.contains("dark");
     }
     return false;
   });
 
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("adrev_theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("adrev_theme", "light");
+  const toggleTheme = () => {
+    const nextDark = !isDarkMode;
+    setIsDarkMode(nextDark);
+    if (typeof window !== "undefined") {
+      if (nextDark) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("adrev_theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("adrev_theme", "light");
+      }
     }
-  }, [isDarkMode]);
+  };
 
   return (
     <button
       type="button"
-      onClick={() => setIsDarkMode(!isDarkMode)}
+      onClick={toggleTheme}
       className="p-1.5 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-800 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors cursor-pointer"
       aria-label={isDarkMode ? "Switch to light mode theme" : "Switch to dark mode theme"}
       title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}

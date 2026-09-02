@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Inline blocking script to eliminate theme flash / glitch on refresh -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('adrev_theme');
+          var isDark = saved ? saved === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
     <!-- Primary Meta Tags -->
     <title>Google AdSense, AdMob & Creator Revenue Calculator 2026 | YouTube, TikTok, Twitch, Kick</title>
     <meta name="title" content="Google AdSense, AdMob & Creator Revenue Calculator 2026 | YouTube, TikTok, Twitch, Kick" />

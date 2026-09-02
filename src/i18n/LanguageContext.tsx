@@ -22,6 +22,12 @@ export const LanguageProvider: React.FC<{
   const [language, setLanguageState] = useState<SupportedLanguage>(() => {
     if (initialLanguage) return initialLanguage;
     if (typeof window !== "undefined") {
+      const pathname = window.location.pathname.toLowerCase();
+      const firstSegment = pathname.split("/").filter(Boolean)[0] as SupportedLanguage;
+      if (firstSegment && SUPPORTED_LANGUAGES.some((l) => l.code === firstSegment)) {
+        return firstSegment;
+      }
+
       const searchParams = new URLSearchParams(window.location.search);
       const urlLang = searchParams.get("lang") as SupportedLanguage;
       if (urlLang && SUPPORTED_LANGUAGES.some((l) => l.code === urlLang)) {
