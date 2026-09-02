@@ -5,7 +5,7 @@ import { TermTooltip } from "./TermTooltip";
 import { useTranslation } from "../i18n/LanguageContext";
 
 interface RevenueSummaryProps {
-  type: "adsense" | "admob";
+  type: "adsense" | "admob" | "youtube" | "tiktok" | "twitch" | "kick" | string;
   currency: CurrencyCode;
   dailyRevenue: number;
   monthlyRevenue: number;
@@ -14,9 +14,10 @@ interface RevenueSummaryProps {
   rateMetricValue: string;
   secondaryRateLabel?: string;
   secondaryRateValue?: string;
-  impressions: number;
+  impressions?: number;
   adBlockLossRevenue?: number;
   mediationLiftRevenue?: number;
+  kickVsTwitchDelta?: number;
   onExportCSV?: () => void;
 }
 
@@ -32,9 +33,21 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
   secondaryRateValue,
   adBlockLossRevenue,
   mediationLiftRevenue,
+  kickVsTwitchDelta,
 }) => {
   const { t } = useTranslation();
   const isAdMob = type === "admob";
+  const isKick = type === "kick";
+
+  const getTooltipId = () => {
+    if (type === "admob") return "arpdau";
+    if (type === "adsense") return "pagerpm";
+    if (type === "youtube") return "youtubeRpm";
+    if (type === "tiktok") return "creatorRewards";
+    if (type === "twitch") return "ccv";
+    if (type === "kick") return "kickSplit95";
+    return "pagerpm";
+  };
 
   return (
     <div className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white rounded-2xl p-5 sm:p-6 border border-dashed border-neutral-300 dark:border-neutral-800 shadow-xs space-y-5 transition-colors">
@@ -46,7 +59,7 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
             {t.summary.summaryTitle}
           </span>
         </div>
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300">
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 uppercase">
           {currency} {t.summary.normalized}
         </span>
       </div>
@@ -91,7 +104,7 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
         {/* Rate metric */}
         <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/80 border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1 col-span-2 sm:col-span-1">
           <div className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 uppercase font-semibold">
-            <TermTooltip id={isAdMob ? "arpdau" : "pagerpm"}>
+            <TermTooltip id={getTooltipId()}>
               <span>{rateMetricLabel}</span>
             </TermTooltip>
           </div>
@@ -100,16 +113,14 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
           </div>
           {secondaryRateLabel && secondaryRateValue && (
             <div className="text-[9px] text-neutral-600 dark:text-neutral-400 font-mono">
-              <TermTooltip id={isAdMob ? "ecpm" : "viewability"}>
-                <span>{secondaryRateLabel}: {secondaryRateValue}</span>
-              </TermTooltip>
+              <span>{secondaryRateLabel}: {secondaryRateValue}</span>
             </div>
           )}
         </div>
       </div>
 
-      {/* AdBlock Loss or Mediation Lift Badges */}
-      {!isAdMob && adBlockLossRevenue !== undefined && adBlockLossRevenue > 0 && (
+      {/* Platform-Specific Highlight Banners */}
+      {type === "adsense" && adBlockLossRevenue !== undefined && adBlockLossRevenue > 0 && (
         <div className="p-3 rounded-xl border border-dashed border-rose-300 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 text-xs font-mono flex items-center justify-between">
           <div className="flex items-center gap-1 text-rose-700 dark:text-rose-400">
             <span>{t.summary.adBlockLoss}:</span>
@@ -129,6 +140,18 @@ export const RevenueSummaryCard: React.FC<RevenueSummaryProps> = ({
           </div>
           <span className="font-bold text-emerald-600 dark:text-emerald-400">
             +{formatCurrency(mediationLiftRevenue, currency)}/mo
+          </span>
+        </div>
+      )}
+
+      {isKick && kickVsTwitchDelta !== undefined && kickVsTwitchDelta > 0 && (
+        <div className="p-3 rounded-xl border border-dashed border-emerald-300 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/20 text-xs font-mono flex items-center justify-between">
+          <div className="flex items-center gap-1 text-emerald-700 dark:text-emerald-400">
+            <span>Kick vs Twitch Lift (95% Split):</span>
+            <TermTooltip id="kickSplit95" />
+          </div>
+          <span className="font-bold text-emerald-600 dark:text-emerald-400">
+            +{formatCurrency(kickVsTwitchDelta, currency)}/mo more
           </span>
         </div>
       )}

@@ -3,10 +3,21 @@ import {
   CurrencyCode,
   AdSenseInputs,
   AdMobInputs,
+  YouTubeInputs,
+  TikTokInputs,
+  TwitchInputs,
+  KickInputs,
 } from "./types";
 import { SupportedLanguage } from "./i18n/types";
 import { LanguageProvider, useTranslation } from "./i18n/LanguageContext";
 import { calculateAdSenseRevenue, calculateAdMobRevenue } from "./utils/adCalculations";
+import { formatCurrency } from "./utils/currency";
+import {
+  calculateYouTubeRevenue,
+  calculateTikTokRevenue,
+  calculateTwitchRevenue,
+  calculateKickRevenue,
+} from "./utils/creatorCalculations";
 import { copyShareableLink } from "./utils/export";
 import { Navbar } from "./components/Navbar";
 import { AdMobCalculator } from "./components/AdMobCalculator";
@@ -22,7 +33,11 @@ import { MobileStickyBar } from "./components/MobileStickyBar";
 import { PwaInstallBanner } from "./components/PwaInstallBanner";
 import { Footer } from "./components/Footer";
 
-// Lazy load heavy components to drastically reduce initial bundle size and speed up TBT
+// Lazy load heavy components for maximum Lighthouse & Core Web Vitals speed
+const YouTubeCalculator = lazy(() => import("./components/YouTubeCalculator").then(m => ({ default: m.YouTubeCalculator })));
+const TikTokCalculator = lazy(() => import("./components/TikTokCalculator").then(m => ({ default: m.TikTokCalculator })));
+const TwitchCalculator = lazy(() => import("./components/TwitchCalculator").then(m => ({ default: m.TwitchCalculator })));
+const KickCalculator = lazy(() => import("./components/KickCalculator").then(m => ({ default: m.KickCalculator })));
 const RevenueCharts = lazy(() => import("./components/RevenueCharts").then(m => ({ default: m.RevenueCharts })));
 const EmbedWidgetModal = lazy(() => import("./components/EmbedWidgetModal").then(m => ({ default: m.EmbedWidgetModal })));
 const ExportReportModal = lazy(() => import("./components/ExportReportModal").then(m => ({ default: m.ExportReportModal })));
@@ -34,9 +49,15 @@ const DisclaimerPage = lazy(() => import("./components/TrustPages").then(m => ({
 
 import {
   CheckCircle2,
-  Smartphone,
-  Globe,
 } from "lucide-react";
+import {
+  AdMobIcon,
+  AdSenseIcon,
+  TikTokIcon,
+  YouTubeIcon,
+  TwitchIcon,
+  KickIcon,
+} from "./components/PlatformIcons";
 
 const DEFAULT_ADMOB_INPUTS: AdMobInputs = {
   mode: "quick",
@@ -85,8 +106,62 @@ const DEFAULT_ADSENSE_INPUTS: AdSenseInputs = {
   useSeasonality: true,
 };
 
+const DEFAULT_YOUTUBE_INPUTS: YouTubeInputs = {
+  monthlyLongFormViews: 100000,
+  monthlyShortsViews: 500000,
+  nicheId: "tech-ai-software",
+  enableMidrolls: true,
+  activeMemberships: 50,
+  monthlySuperChats: 100,
+  monthlySponsorships: 1500,
+  accountCountry: "US",
+  targetCountry: "US",
+  selectedMonth: new Date().getMonth(),
+  useSeasonality: true,
+};
+
+const DEFAULT_TIKTOK_INPUTS: TikTokInputs = {
+  monthlyViews: 500000,
+  nicheId: "tech-gadgets",
+  overOneMinutePercent: 60,
+  qualifiedViewRate: 45,
+  monthlyLiveHours: 15,
+  avgLiveCcv: 80,
+  monthlyDiamondsEarned: 25000,
+  monthlyShopAffiliateEarnings: 300,
+  monthlySponsorships: 1000,
+  accountCountry: "US",
+  targetCountry: "US",
+};
+
+const DEFAULT_TWITCH_INPUTS: TwitchInputs = {
+  avgConcurrentViewers: 85,
+  streamHoursPerMonth: 80,
+  tier1Subs: 120,
+  tier2Subs: 10,
+  tier3Subs: 3,
+  partnerSplitRate: 0.50,
+  adMinutesPerHour: 3.0,
+  monthlyBits: 15000,
+  monthlyDirectDonations: 250,
+  monthlySponsorships: 500,
+  accountCountry: "US",
+  targetCountry: "US",
+};
+
+const DEFAULT_KICK_INPUTS: KickInputs = {
+  avgConcurrentViewers: 85,
+  streamHoursPerMonth: 80,
+  activeSubs: 130,
+  kcpEligible: true,
+  monthlyTips: 350,
+  monthlySponsorships: 500,
+  accountCountry: "US",
+  targetCountry: "US",
+};
+
 interface AppContentProps {
-  initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
+  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
 }
 
 import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
@@ -106,17 +181,29 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     return "USD";
   });
 
-  // Dedicated Mode: "admob" (Apps) or "adsense" (Websites) or trust pages
+  // Dedicated Mode: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" or trust pages
   const [activePlatform, setActivePlatform] = useState<string>(() => {
     if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
+      const pathname = window.location.pathname.toLowerCase();
+      if (pathname.includes("youtube")) return "youtube";
+      if (pathname.includes("tiktok")) return "tiktok";
+      if (pathname.includes("twitch")) return "twitch";
+      if (pathname.includes("kick")) return "kick";
+      if (pathname.includes("adsense")) return "adsense";
+      if (pathname.includes("about")) return "about";
+      if (pathname.includes("contact")) return "contact";
+      if (pathname.includes("privacy")) return "privacy";
+      if (pathname.includes("terms")) return "terms";
+      if (pathname.includes("disclaimer")) return "disclaimer";
+
       const searchParams = new URLSearchParams(window.location.search);
       const pageParam = searchParams.get("page");
-      if (pageParam && ["admob", "adsense", "about", "contact", "privacy", "terms", "disclaimer"].includes(pageParam)) {
+      if (pageParam && ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"].includes(pageParam)) {
         return pageParam;
       }
       const saved = localStorage.getItem("adrev_platform");
-      if (saved && ["admob", "adsense"].includes(saved)) return saved;
+      if (saved && ["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(saved)) return saved;
     }
     return "admob";
   });
@@ -125,6 +212,90 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   const [isEmbedOpen, setIsEmbedOpen] = useState<boolean>(false);
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // YouTube Inputs
+  const [youtubeInputs, setYouTubeInputs] = useState<YouTubeInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const defaultInputs: YouTubeInputs = {
+      ...DEFAULT_YOUTUBE_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_youtube_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse YouTube inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
+
+  // TikTok Inputs
+  const [tikTokInputs, setTikTokInputs] = useState<TikTokInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const defaultInputs: TikTokInputs = {
+      ...DEFAULT_TIKTOK_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_tiktok_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse TikTok inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
+
+  // Twitch Inputs
+  const [twitchInputs, setTwitchInputs] = useState<TwitchInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const defaultInputs: TwitchInputs = {
+      ...DEFAULT_TWITCH_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_twitch_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse Twitch inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
+
+  // Kick Inputs
+  const [kickInputs, setKickInputs] = useState<KickInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const defaultInputs: KickInputs = {
+      ...DEFAULT_KICK_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_kick_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse Kick inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
 
   // AdMob Inputs (Page 1) (persisted, defaulted to user location)
   const [adMobInputs, setAdMobInputs] = useState<AdMobInputs>(() => {
@@ -208,23 +379,29 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     return defaultInputs;
   });
 
-  // Live IP Geolocation Check (detects VPN / proxy / location changes in real-time)
+  // Live IP Geolocation Check (detects initial user location on first visit)
   useEffect(() => {
     let isMounted = true;
+
     fetchUserLocationIP().then((detected) => {
       if (!isMounted || !detected) return;
 
-      const lastDetectedCountry = sessionStorage.getItem("adrev_last_ip_country");
+      const hasManualCurrency = typeof window !== "undefined" && localStorage.getItem("adrev_user_selected_currency") === "true";
+      const hasManualCountry = typeof window !== "undefined" && localStorage.getItem("adrev_user_selected_country") === "true";
 
-      // When visiting or when VPN changes country (e.g. connected to Norway):
-      if (lastDetectedCountry !== detected.countryCode) {
-        sessionStorage.setItem("adrev_last_ip_country", detected.countryCode);
+      // ONLY set currency if the user has NOT deliberately chosen a currency
+      if (!hasManualCurrency && detected.currencyCode) {
+        setCurrency(detected.currencyCode);
+      }
 
+      // ONLY set country if the user has NOT deliberately chosen a country
+      if (!hasManualCountry) {
         const country = COUNTRIES.find((c) => c.code === detected.countryCode);
         const t1 = country?.tier === "tier1" ? 100 : 0;
         const t2 = country?.tier === "tier2" ? 100 : 0;
         const t3 = country?.tier === "tier3" ? 100 : (!country ? 100 : 0);
 
+        // Update AdMob
         setAdMobInputs((prev) => ({
           ...prev,
           targetCountry: detected.countryCode,
@@ -232,6 +409,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
         }));
 
+        // Update AdSense
         setAdSenseInputs((prev) => ({
           ...prev,
           targetCountry: detected.countryCode,
@@ -239,12 +417,38 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
         }));
 
-        setCurrency(detected.currencyCode);
+        // Update YouTube
+        setYouTubeInputs((prev) => ({
+          ...prev,
+          targetCountry: detected.countryCode,
+          accountCountry: detected.countryCode,
+        }));
 
-        const urlParams = new URLSearchParams(window.location.search);
-        if (!urlParams.get("lang") && detected.language) {
-          setLanguage(detected.language);
-        }
+        // Update TikTok
+        setTikTokInputs((prev) => ({
+          ...prev,
+          targetCountry: detected.countryCode,
+          accountCountry: detected.countryCode,
+        }));
+
+        // Update Twitch
+        setTwitchInputs((prev) => ({
+          ...prev,
+          targetCountry: detected.countryCode,
+          accountCountry: detected.countryCode,
+        }));
+
+        // Update Kick
+        setKickInputs((prev) => ({
+          ...prev,
+          targetCountry: detected.countryCode,
+          accountCountry: detected.countryCode,
+        }));
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (!urlParams.get("lang") && detected.language) {
+        setLanguage(detected.language);
       }
     });
 
@@ -253,35 +457,132 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     };
   }, [setLanguage]);
 
-  // When language is changed via toggle option, automatically update currency,
-  // user location (account country), and audience location (target country)
+  // When language is changed via toggle option, update currency and location ONLY IF not manually locked
   useEffect(() => {
     if (prevLangRef.current !== language) {
       prevLangRef.current = language;
       const defaults = LANGUAGE_DEFAULTS[language];
       if (defaults) {
-        setCurrency(defaults.currencyCode);
+        const hasManualCurrency = typeof window !== "undefined" && localStorage.getItem("adrev_user_selected_currency") === "true";
+        if (!hasManualCurrency) {
+          setCurrency(defaults.currencyCode);
+        }
 
-        setAdMobInputs((prev) => ({
-          ...prev,
-          accountCountry: defaults.countryCode,
-          targetCountry: defaults.countryCode,
-          geoDistribution: defaults.tierDistribution,
-        }));
+        const hasManualCountry = typeof window !== "undefined" && localStorage.getItem("adrev_user_selected_country") === "true";
+        if (!hasManualCountry) {
+          // AdMob
+          setAdMobInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+            geoDistribution: defaults.tierDistribution,
+          }));
 
-        setAdSenseInputs((prev) => ({
-          ...prev,
-          accountCountry: defaults.countryCode,
-          targetCountry: defaults.countryCode,
-          geoDistribution: defaults.tierDistribution,
-        }));
+          // AdSense
+          setAdSenseInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+            geoDistribution: defaults.tierDistribution,
+          }));
+
+          // YouTube
+          setYouTubeInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+          }));
+
+          // TikTok
+          setTikTokInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+          }));
+
+          // Twitch
+          setTwitchInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+          }));
+
+          // Kick
+          setKickInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+          }));
+        }
       }
     }
   }, [language]);
 
+  const handleCurrencyChange = (newCurrency: CurrencyCode) => {
+    setCurrency(newCurrency);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_currency", newCurrency);
+      localStorage.setItem("adrev_user_selected_currency", "true");
+    }
+  };
+
+  const handleAdMobChange = (newInputs: AdMobInputs) => {
+    if (newInputs.targetCountry !== adMobInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setAdMobInputs(newInputs);
+  };
+
+  const handleAdSenseChange = (newInputs: AdSenseInputs) => {
+    if (newInputs.targetCountry !== adSenseInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setAdSenseInputs(newInputs);
+  };
+
+  const handleYouTubeChange = (newInputs: YouTubeInputs) => {
+    if (newInputs.targetCountry !== youtubeInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setYouTubeInputs(newInputs);
+  };
+
+  const handleTikTokChange = (newInputs: TikTokInputs) => {
+    if (newInputs.targetCountry !== tikTokInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setTikTokInputs(newInputs);
+  };
+
+  const handleTwitchChange = (newInputs: TwitchInputs) => {
+    if (newInputs.targetCountry !== twitchInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setTwitchInputs(newInputs);
+  };
+
+  const handleKickChange = (newInputs: KickInputs) => {
+    if (newInputs.targetCountry !== kickInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setKickInputs(newInputs);
+  };
+
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {
-    if (typeof window !== "undefined" && ["admob", "adsense"].includes(activePlatform)) {
+    if (typeof window !== "undefined" && ["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform)) {
       localStorage.setItem("adrev_platform", activePlatform);
     }
   }, [activePlatform]);
@@ -335,9 +636,11 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   const handlePlatformChange = (p: string) => {
     startTransition(() => setActivePlatform(p));
     if (typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      url.searchParams.set("page", p);
-      window.history.replaceState({}, "", url.toString());
+      const cleanPath = p === "admob" ? "/" : `/${p}`;
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.delete("page");
+      const newQuery = urlParams.toString() ? `?${urlParams.toString()}` : "";
+      window.history.pushState({}, "", `${cleanPath}${newQuery}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -356,9 +659,115 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   // Calculations
   const admobResults = useMemo(() => calculateAdMobRevenue(adMobInputs), [adMobInputs]);
   const adSenseResults = useMemo(() => calculateAdSenseRevenue(adSenseInputs), [adSenseInputs]);
+  const youtubeResults = useMemo(() => calculateYouTubeRevenue(youtubeInputs, currency), [youtubeInputs, currency]);
+  const tikTokResults = useMemo(() => calculateTikTokRevenue(tikTokInputs, currency), [tikTokInputs, currency]);
+  const twitchResults = useMemo(() => calculateTwitchRevenue(twitchInputs, currency), [twitchInputs, currency]);
+  const kickResults = useMemo(() => calculateKickRevenue(kickInputs, currency), [kickInputs, currency]);
+
+  // Persist all platform inputs
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_youtube_inputs", JSON.stringify(youtubeInputs));
+    }
+  }, [youtubeInputs]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_tiktok_inputs", JSON.stringify(tikTokInputs));
+    }
+  }, [tikTokInputs]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_twitch_inputs", JSON.stringify(twitchInputs));
+    }
+  }, [twitchInputs]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_kick_inputs", JSON.stringify(kickInputs));
+    }
+  }, [kickInputs]);
+
+  const getPlatformHeroInfo = () => {
+    switch (activePlatform) {
+      case "youtube":
+        return {
+          badge: t.hero.youtubeBadge,
+          badgeColor: "border-red-500 text-red-600 dark:text-red-400 bg-red-500/10",
+          title: t.hero.youtubeTitle,
+          titleColor: "text-red-600 dark:text-red-400",
+          subtitle: t.hero.youtubeSubtitle,
+        };
+      case "tiktok":
+        return {
+          badge: t.hero.tiktokBadge,
+          badgeColor: "border-cyan-500 text-cyan-600 dark:text-cyan-400 bg-cyan-500/10",
+          title: t.hero.tiktokTitle,
+          titleColor: "text-cyan-600 dark:text-cyan-400",
+          subtitle: t.hero.tiktokSubtitle,
+        };
+      case "twitch":
+        return {
+          badge: t.hero.twitchBadge,
+          badgeColor: "border-purple-500 text-purple-600 dark:text-purple-400 bg-purple-500/10",
+          title: t.hero.twitchTitle,
+          titleColor: "text-purple-600 dark:text-purple-400",
+          subtitle: t.hero.twitchSubtitle,
+        };
+      case "kick":
+        return {
+          badge: t.hero.kickBadge,
+          badgeColor: "border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10",
+          title: t.hero.kickTitle,
+          titleColor: "text-emerald-600 dark:text-emerald-400",
+          subtitle: t.hero.kickSubtitle,
+        };
+      case "adsense":
+        return {
+          badge: t.hero.adsenseBadge,
+          badgeColor: "border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-500/10",
+          title: t.hero.adsenseTitle,
+          titleColor: "text-blue-600 dark:text-blue-400",
+          subtitle: t.hero.adsenseSubtitle,
+        };
+      default:
+        return {
+          badge: t.hero.admobBadge,
+          badgeColor: "border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10",
+          title: t.hero.admobTitle,
+          titleColor: "text-emerald-600 dark:text-emerald-400",
+          subtitle: t.hero.admobSubtitle,
+        };
+    }
+  };
+
+  const heroInfo = getPlatformHeroInfo();
+
+  // Dynamic JSON-LD schema for active calculator
+  const platformSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": `${heroInfo.title} | AdMobRevenue Monetization Engine`,
+    "url": typeof window !== "undefined" ? window.location.href : "https://admobrevenue.pages.dev/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "description": heroInfo.subtitle,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-950 font-sans transition-colors duration-150">
+      {/* Dynamic SEO JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(platformSchema) }}
+      />
+
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 px-4 py-2.5 rounded-xl border border-dashed border-neutral-700 dark:border-neutral-300 text-xs font-mono font-semibold shadow-xl">
@@ -373,7 +782,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       {/* Top Header with Language Dropdown */}
       <Navbar
         currentCurrency={currency}
-        onCurrencyChange={setCurrency}
+        onCurrencyChange={handleCurrencyChange}
         onOpenEmbed={() => setIsEmbedOpen(true)}
         onOpenExport={() => setIsExportOpen(true)}
         onShare={handleShare}
@@ -382,7 +791,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-28 lg:pb-8 overflow-x-hidden">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-28 lg:pb-8 overflow-x-hidden">
         {activePlatform === "about" && (
           <Suspense fallback={<div className="min-h-96" />}>
             <AboutPage />
@@ -409,108 +818,48 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           </Suspense>
         )}
         
-        {(activePlatform === "admob" || activePlatform === "adsense") && (
+        {["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform) && (
           <>
-            {/* Mobile-Only Dedicated Platform Switcher with Generous Tap Area */}
-            <div className="sm:hidden w-full bg-white dark:bg-neutral-900 p-1.5 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 shadow-xs">
-              <div className="grid grid-cols-2 gap-1.5 font-mono text-xs">
-                <button
-                  type="button"
-                  onClick={() => handlePlatformChange("admob")}
-                  className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl transition-all cursor-pointer font-bold ${
-                    activePlatform === "admob"
-                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-xs border border-dashed border-neutral-700 dark:border-neutral-300"
-                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white bg-neutral-50 dark:bg-neutral-800/60"
-                  }`}
-                  aria-label="Switch to Google AdMob Calculator"
-                >
-                  <Smartphone className="w-4 h-4 text-emerald-500 shrink-0" aria-hidden="true" />
-                  <span className="truncate">{t.nav.admobTab}</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handlePlatformChange("adsense")}
-                  className={`flex items-center justify-center gap-2 py-3 px-3 rounded-xl transition-all cursor-pointer font-bold ${
-                    activePlatform === "adsense"
-                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-xs border border-dashed border-neutral-700 dark:border-neutral-300"
-                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white bg-neutral-50 dark:bg-neutral-800/60"
-                  }`}
-                  aria-label="Switch to Google AdSense Calculator"
-                >
-                  <Globe className="w-4 h-4 text-blue-500 shrink-0" aria-hidden="true" />
-                  <span className="truncate">{t.nav.adsenseTab}</span>
-                </button>
-              </div>
-            </div>
-
             {/* Page Hero Banner */}
             <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    {activePlatform === "admob" ? (
-                      <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
-                        {t.hero.admobBadge}
-                      </span>
-                    ) : (
-                      <span className="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-500/10">
-                        {t.hero.adsenseBadge}
-                      </span>
-                    )}
+                    <span className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded border border-dashed ${heroInfo.badgeColor}`}>
+                      {heroInfo.badge}
+                    </span>
                   </div>
 
                   <h1 className="text-xl sm:text-2xl font-black font-mono tracking-tight text-neutral-950 dark:text-white">
-                    {activePlatform === "admob" ? (
-                      <span className="text-emerald-600 dark:text-emerald-400">{t.hero.admobTitle}</span>
-                    ) : (
-                      <span className="text-blue-600 dark:text-blue-400">{t.hero.adsenseTitle}</span>
-                    )}
+                    <span className={heroInfo.titleColor}>{heroInfo.title}</span>
                   </h1>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono mt-0.5">
-                    {activePlatform === "admob"
-                      ? t.hero.admobSubtitle
-                      : t.hero.adsenseSubtitle}
+                    {heroInfo.subtitle}
                   </p>
                 </div>
 
-                {/* Action Buttons */}
+                {/* Reset Defaults Button */}
                 <div className="flex items-center gap-2 font-mono text-xs">
                   <button
                     type="button"
                     aria-label={t.hero.reset}
                     onClick={() => {
-                      if (activePlatform === "admob") {
-                        setAdMobInputs(DEFAULT_ADMOB_INPUTS);
-                        localStorage.removeItem("adrev_admob_inputs");
-                      } else {
-                        setAdSenseInputs(DEFAULT_ADSENSE_INPUTS);
-                        localStorage.removeItem("adrev_adsense_inputs");
+                      if (typeof window !== "undefined") {
+                        localStorage.removeItem("adrev_user_selected_currency");
+                        localStorage.removeItem("adrev_user_selected_country");
                       }
+                      if (activePlatform === "admob") setAdMobInputs(DEFAULT_ADMOB_INPUTS);
+                      else if (activePlatform === "adsense") setAdSenseInputs(DEFAULT_ADSENSE_INPUTS);
+                      else if (activePlatform === "youtube") setYouTubeInputs(DEFAULT_YOUTUBE_INPUTS);
+                      else if (activePlatform === "tiktok") setTikTokInputs(DEFAULT_TIKTOK_INPUTS);
+                      else if (activePlatform === "twitch") setTwitchInputs(DEFAULT_TWITCH_INPUTS);
+                      else if (activePlatform === "kick") setKickInputs(DEFAULT_KICK_INPUTS);
                       showToast("Reset to defaults!");
                     }}
                     className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-600 dark:text-neutral-400 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px] cursor-pointer"
                     title={t.hero.reset}
                   >
                     {t.hero.reset}
-                  </button>
-
-                  <button
-                    type="button"
-                    aria-label={activePlatform === "admob" ? t.hero.switchToAdSense : t.hero.switchToAdMob}
-                    onClick={() => handlePlatformChange(activePlatform === "admob" ? "adsense" : "admob")}
-                    className="px-3 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-white text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5 transition-colors bg-white dark:bg-neutral-900 cursor-pointer"
-                  >
-                    {activePlatform === "admob" ? (
-                      <>
-                        <Globe className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" />
-                        <span>{t.hero.switchToAdSense}</span>
-                      </>
-                    ) : (
-                      <>
-                        <Smartphone className="w-3.5 h-3.5 text-emerald-500" aria-hidden="true" />
-                        <span>{t.hero.switchToAdMob}</span>
-                      </>
-                    )}
                   </button>
                 </div>
               </div>
@@ -520,31 +869,70 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
             <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               {/* Left: Interactive Input Form */}
               <div className="lg:col-span-7 space-y-4">
-                {activePlatform === "admob" ? (
+                {activePlatform === "admob" && (
                   <AdMobCalculator
                     inputs={adMobInputs}
-                    onChange={setAdMobInputs}
-                    currency={currency}
-                  />
-                ) : (
-                  <AdSenseCalculator
-                    inputs={adSenseInputs}
-                    onChange={setAdSenseInputs}
+                    onChange={handleAdMobChange}
                     currency={currency}
                   />
                 )}
+                {activePlatform === "adsense" && (
+                  <AdSenseCalculator
+                    inputs={adSenseInputs}
+                    onChange={handleAdSenseChange}
+                    currency={currency}
+                  />
+                )}
+                {activePlatform === "youtube" && (
+                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading YouTube Calculator...</div>}>
+                    <YouTubeCalculator
+                      inputs={youtubeInputs}
+                      onChange={handleYouTubeChange}
+                      currency={currency}
+                    />
+                  </Suspense>
+                )}
+                {activePlatform === "tiktok" && (
+                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading TikTok Calculator...</div>}>
+                    <TikTokCalculator
+                      inputs={tikTokInputs}
+                      onChange={handleTikTokChange}
+                      currency={currency}
+                    />
+                  </Suspense>
+                )}
+                {activePlatform === "twitch" && (
+                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading Twitch Calculator...</div>}>
+                    <TwitchCalculator
+                      inputs={twitchInputs}
+                      onChange={handleTwitchChange}
+                      currency={currency}
+                    />
+                  </Suspense>
+                )}
+                {activePlatform === "kick" && (
+                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading Kick Calculator...</div>}>
+                    <KickCalculator
+                      inputs={kickInputs}
+                      onChange={handleKickChange}
+                      currency={currency}
+                    />
+                  </Suspense>
+                )}
 
-                {/* Optimization Recommendations */}
-                <OptimizationTips
-                  platform={activePlatform as "admob" | "adsense"}
-                  adSenseInputs={adSenseInputs}
-                  adMobInputs={adMobInputs}
-                />
+                {/* Optimization Recommendations (AdMob / AdSense) */}
+                {(activePlatform === "admob" || activePlatform === "adsense") && (
+                  <OptimizationTips
+                    platform={activePlatform as "admob" | "adsense"}
+                    adSenseInputs={adSenseInputs}
+                    adMobInputs={adMobInputs}
+                  />
+                )}
               </div>
 
               {/* Right: Revenue Dashboard & Visualizers */}
               <div className="lg:col-span-5 space-y-4 sticky top-18">
-                {activePlatform === "admob" ? (
+                {activePlatform === "admob" && (
                   <>
                     <RevenueSummaryCard
                       type="admob"
@@ -553,27 +941,14 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                       monthlyRevenue={admobResults.monthlyRevenue}
                       annualRevenue={admobResults.annualRevenue}
                       rateMetricLabel={t.summary.arpdau}
-                      rateMetricValue={`$${admobResults.arpdau}`}
+                      rateMetricValue={formatCurrency(admobResults.arpdau, currency)}
                       secondaryRateLabel={t.summary.blendedEcpm}
-                      secondaryRateValue={`$${admobResults.blendedEcpm}`}
+                      secondaryRateValue={formatCurrency(admobResults.blendedEcpm, currency)}
                       impressions={admobResults.monthlyImpressions}
                       mediationLiftRevenue={admobResults.mediationLiftRevenue}
                       onExportCSV={() => setIsExportOpen(true)}
                     />
-                    <Suspense
-                      fallback={
-                        <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
-                          <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-                            <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
-                              {t.summary.visualBreakdown}
-                            </span>
-                          </div>
-                          <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
-                            Loading charts...
-                          </div>
-                        </div>
-                      }
-                    >
+                    <Suspense fallback={<div className="h-48" />}>
                       <RevenueCharts
                         formatBreakdown={admobResults.formatBreakdown}
                         monthlyForecast={admobResults.monthlyForecast}
@@ -581,7 +956,9 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                       />
                     </Suspense>
                   </>
-                ) : (
+                )}
+
+                {activePlatform === "adsense" && (
                   <>
                     <RevenueSummaryCard
                       type="adsense"
@@ -590,31 +967,115 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                       monthlyRevenue={adSenseResults.monthlyRevenue}
                       annualRevenue={adSenseResults.annualRevenue}
                       rateMetricLabel={t.summary.pageRpm}
-                      rateMetricValue={`$${adSenseResults.pageRpm}`}
+                      rateMetricValue={formatCurrency(adSenseResults.pageRpm, currency)}
                       secondaryRateLabel={t.summary.impressionRpm}
-                      secondaryRateValue={`$${adSenseResults.impressionRpm}`}
+                      secondaryRateValue={formatCurrency(adSenseResults.impressionRpm, currency)}
                       impressions={adSenseResults.monthlyImpressions}
                       adBlockLossRevenue={adSenseResults.adBlockLossRevenue}
                       onExportCSV={() => setIsExportOpen(true)}
                     />
-                    <Suspense
-                      fallback={
-                        <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-4">
-                          <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-                            <span className="text-xs font-mono font-bold uppercase text-neutral-900 dark:text-neutral-100">
-                              {t.summary.visualBreakdown}
-                            </span>
-                          </div>
-                          <div className="h-56 w-full flex items-center justify-center text-xs font-mono text-neutral-400">
-                            Loading charts...
-                          </div>
-                        </div>
-                      }
-                    >
+                    <Suspense fallback={<div className="h-48" />}>
                       <RevenueCharts
                         formatBreakdown={adSenseResults.formatBreakdown}
                         monthlyForecast={adSenseResults.monthlyForecast}
                         deviceBreakdown={adSenseResults.deviceBreakdown}
+                        currency={currency}
+                      />
+                    </Suspense>
+                  </>
+                )}
+
+                {activePlatform === "youtube" && (
+                  <>
+                    <RevenueSummaryCard
+                      type="youtube"
+                      currency={currency}
+                      dailyRevenue={youtubeResults.dailyRevenue}
+                      monthlyRevenue={youtubeResults.monthlyRevenue}
+                      annualRevenue={youtubeResults.annualRevenue}
+                      rateMetricLabel="Channel Blended RPM"
+                      rateMetricValue={formatCurrency(youtubeResults.blendedRpm, currency)}
+                      secondaryRateLabel="Long-Form Ad Net"
+                      secondaryRateValue={formatCurrency(youtubeResults.longFormAdRevenue, currency)}
+                      onExportCSV={() => setIsExportOpen(true)}
+                    />
+                    <Suspense fallback={<div className="h-48" />}>
+                      <RevenueCharts
+                        formatBreakdown={youtubeResults.formatBreakdown}
+                        monthlyForecast={youtubeResults.monthlyForecast}
+                        currency={currency}
+                      />
+                    </Suspense>
+                  </>
+                )}
+
+                {activePlatform === "tiktok" && (
+                  <>
+                    <RevenueSummaryCard
+                      type="tiktok"
+                      currency={currency}
+                      dailyRevenue={tikTokResults.dailyRevenue}
+                      monthlyRevenue={tikTokResults.monthlyRevenue}
+                      annualRevenue={tikTokResults.annualRevenue}
+                      rateMetricLabel="Effective RPM"
+                      rateMetricValue={formatCurrency(tikTokResults.effectiveRpm, currency)}
+                      secondaryRateLabel="Qualified Views"
+                      secondaryRateValue={`${Math.round(tikTokResults.qualifiedViewsCount).toLocaleString()}`}
+                      onExportCSV={() => setIsExportOpen(true)}
+                    />
+                    <Suspense fallback={<div className="h-48" />}>
+                      <RevenueCharts
+                        formatBreakdown={tikTokResults.formatBreakdown}
+                        monthlyForecast={tikTokResults.monthlyForecast}
+                        currency={currency}
+                      />
+                    </Suspense>
+                  </>
+                )}
+
+                {activePlatform === "twitch" && (
+                  <>
+                    <RevenueSummaryCard
+                      type="twitch"
+                      currency={currency}
+                      dailyRevenue={twitchResults.dailyRevenue}
+                      monthlyRevenue={twitchResults.monthlyRevenue}
+                      annualRevenue={twitchResults.annualRevenue}
+                      rateMetricLabel="Hourly Stream Pay"
+                      rateMetricValue={`${formatCurrency(twitchResults.hourlyEarningsRate, currency)}/hr`}
+                      secondaryRateLabel="Plus Sub Points"
+                      secondaryRateValue={`${twitchResults.totalSubPoints}`}
+                      onExportCSV={() => setIsExportOpen(true)}
+                    />
+                    <Suspense fallback={<div className="h-48" />}>
+                      <RevenueCharts
+                        formatBreakdown={twitchResults.formatBreakdown}
+                        monthlyForecast={twitchResults.monthlyForecast}
+                        currency={currency}
+                      />
+                    </Suspense>
+                  </>
+                )}
+
+                {activePlatform === "kick" && (
+                  <>
+                    <RevenueSummaryCard
+                      type="kick"
+                      currency={currency}
+                      dailyRevenue={kickResults.dailyRevenue}
+                      monthlyRevenue={kickResults.monthlyRevenue}
+                      annualRevenue={kickResults.annualRevenue}
+                      rateMetricLabel="Hourly Stream Pay"
+                      rateMetricValue={`${formatCurrency(kickResults.hourlyEarningsRate, currency)}/hr`}
+                      secondaryRateLabel="Net Sub Pay"
+                      secondaryRateValue={formatCurrency(kickResults.subscriptionRevenue, currency)}
+                      kickVsTwitchDelta={kickResults.kickVsTwitchDelta}
+                      onExportCSV={() => setIsExportOpen(true)}
+                    />
+                    <Suspense fallback={<div className="h-48" />}>
+                      <RevenueCharts
+                        formatBreakdown={kickResults.formatBreakdown}
+                        monthlyForecast={kickResults.monthlyForecast}
                         currency={currency}
                       />
                     </Suspense>
@@ -673,18 +1134,32 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       )}
 
       {/* Mobile Floating Sticky Bar */}
-      {(activePlatform === "admob" || activePlatform === "adsense") && (
+      {["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform) && (
         <MobileStickyBar
-          activeMode={activePlatform as "admob" | "adsense"}
+          activeMode={activePlatform as any}
           currency={currency}
           monthlyRevenue={
-            activePlatform === "admob" ? admobResults.monthlyRevenue : adSenseResults.monthlyRevenue
+            activePlatform === "admob" ? admobResults.monthlyRevenue :
+            activePlatform === "adsense" ? adSenseResults.monthlyRevenue :
+            activePlatform === "youtube" ? youtubeResults.monthlyRevenue :
+            activePlatform === "tiktok" ? tikTokResults.monthlyRevenue :
+            activePlatform === "twitch" ? twitchResults.monthlyRevenue :
+            kickResults.monthlyRevenue
           }
-          rateLabel={activePlatform === "admob" ? "ARPDAU" : "Page RPM"}
+          rateLabel={
+            activePlatform === "admob" ? "ARPDAU" :
+            activePlatform === "adsense" ? "Page RPM" :
+            activePlatform === "youtube" ? "Blended RPM" :
+            activePlatform === "tiktok" ? "Effective RPM" :
+            "Hourly Rate"
+          }
           rateValue={
-            activePlatform === "admob"
-              ? `$${admobResults.arpdau}`
-              : `$${adSenseResults.pageRpm}`
+            activePlatform === "admob" ? `$${admobResults.arpdau}` :
+            activePlatform === "adsense" ? `$${adSenseResults.pageRpm}` :
+            activePlatform === "youtube" ? `$${youtubeResults.blendedRpm.toFixed(2)}` :
+            activePlatform === "tiktok" ? `$${tikTokResults.effectiveRpm.toFixed(2)}` :
+            activePlatform === "twitch" ? `$${twitchResults.hourlyEarningsRate.toFixed(2)}/hr` :
+            `$${kickResults.hourlyEarningsRate.toFixed(2)}/hr`
           }
           onOpenExport={() => setIsExportOpen(true)}
           onOpenEmbed={() => setIsEmbedOpen(true)}
@@ -702,7 +1177,7 @@ export function App({
   initialPlatform,
   initialLanguage,
 }: {
-  initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
+  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
   initialLanguage?: SupportedLanguage;
 } = {}) {
   return (
@@ -713,3 +1188,4 @@ export function App({
 }
 
 export default App;
+

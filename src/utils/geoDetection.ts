@@ -306,7 +306,26 @@ export async function fetchUserLocationIP(): Promise<GeoLocationDetection | null
     console.debug("ipwho.is lookup skipped or timed out", err);
   }
 
-  // 3. Third fallback: ipapi.co
+  // 3. Third fallback: freeipapi.com
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const res = await fetch("https://freeipapi.com/api/json/", {
+      signal: controller.signal,
+      cache: "no-cache",
+    });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.countryCode && typeof data.countryCode === "string" && data.countryCode.length === 2) {
+        return mapCountryToDetails(data.countryCode);
+      }
+    }
+  } catch (err) {
+    console.debug("freeipapi lookup skipped", err);
+  }
+
+  // 4. Fourth fallback: ipapi.co
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3500);

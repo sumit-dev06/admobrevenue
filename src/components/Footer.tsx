@@ -20,16 +20,28 @@ export const Footer = React.memo(() => {
               {t.footer.tagline}
             </p>
             <div className="flex flex-col space-y-1.5 text-neutral-600 dark:text-neutral-400">
-              <a href="/?page=admob" className="hover:text-emerald-500 transition-colors">
+              <a href="/" className="hover:text-emerald-500 transition-colors">
                 Google AdMob Calculator
               </a>
-              <a href="/?page=adsense" className="hover:text-blue-500 transition-colors">
+              <a href="/adsense" className="hover:text-blue-500 transition-colors">
                 Google AdSense Calculator
               </a>
-              <a href="/?page=about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <a href="/youtube" className="hover:text-red-500 transition-colors">
+                YouTube Ad Revenue Calculator
+              </a>
+              <a href="/tiktok" className="hover:text-cyan-500 transition-colors">
+                TikTok Money Calculator
+              </a>
+              <a href="/twitch" className="hover:text-purple-500 transition-colors">
+                Twitch Money Calculators
+              </a>
+              <a href="/kick" className="hover:text-emerald-400 transition-colors">
+                Kick Earnings Calculator
+              </a>
+              <a href="/about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.about}
               </a>
-              <a href="/?page=contact" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <a href="/contact" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.contact}
               </a>
             </div>
@@ -39,13 +51,13 @@ export const Footer = React.memo(() => {
           <div className="space-y-3">
             <div className="font-bold text-neutral-900 dark:text-white">{t.footer.legal}</div>
             <div className="flex flex-col space-y-1.5 text-neutral-600 dark:text-neutral-400">
-              <a href="/?page=privacy" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <a href="/privacy" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.privacy}
               </a>
-              <a href="/?page=terms" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <a href="/terms" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.terms}
               </a>
-              <a href="/?page=disclaimer" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+              <a href="/disclaimer" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.disclaimer} & Methodology
               </a>
             </div>

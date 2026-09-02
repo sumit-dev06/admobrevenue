@@ -202,3 +202,159 @@ export interface BenchmarkItem {
   difficulty: 'Low' | 'Medium' | 'High';
   growthTrend: string;
 }
+
+// ==========================================
+// YOUTUBE CREATOR TYPES
+// ==========================================
+export interface YouTubeInputs {
+  monthlyLongFormViews: number;
+  monthlyShortsViews: number;
+  nicheId: string;
+  enableMidrolls: boolean;
+  activeMemberships: number;
+  membershipPrice?: number;
+  monthlySuperChats: number;
+  monthlySponsorships: number;
+  targetCountry?: string;
+  accountCountry?: string;
+  selectedMonth: number;
+  useSeasonality: boolean;
+}
+
+export interface YouTubeResults {
+  dailyRevenue: number;
+  monthlyRevenue: number;
+  annualRevenue: number;
+  blendedRpm: number;
+  longFormAdRevenue: number;
+  shortsRevenue: number;
+  membershipsRevenue: number;
+  superChatsRevenue: number;
+  sponsorshipRevenue: number;
+  formatBreakdown: {
+    name: string;
+    revenue: number;
+    percentage: number;
+  }[];
+  monthlyForecast: {
+    month: string;
+    revenue: number;
+    multiplier: number;
+  }[];
+}
+
+// ==========================================
+// TIKTOK CREATOR TYPES
+// ==========================================
+export interface TikTokInputs {
+  monthlyViews: number;
+  nicheId: string;
+  overOneMinutePercent: number; // 0 - 100%
+  qualifiedViewRate: number; // 30% - 70%
+  monthlyLiveHours: number;
+  avgLiveCcv: number;
+  monthlyDiamondsEarned: number;
+  monthlyShopAffiliateEarnings: number;
+  monthlySponsorships: number;
+  targetCountry?: string;
+  accountCountry?: string;
+}
+
+export interface TikTokResults {
+  dailyRevenue: number;
+  monthlyRevenue: number;
+  annualRevenue: number;
+  effectiveRpm: number;
+  creatorRewardsRevenue: number;
+  liveGiftsRevenue: number;
+  shopAffiliateRevenue: number;
+  sponsorshipRevenue: number;
+  qualifiedViewsCount: number;
+  formatBreakdown: {
+    name: string;
+    revenue: number;
+    percentage: number;
+  }[];
+  monthlyForecast: {
+    month: string;
+    revenue: number;
+    multiplier: number;
+  }[];
+}
+
+// ==========================================
+// TWITCH STREAMER TYPES
+// ==========================================
+export interface TwitchInputs {
+  avgConcurrentViewers: number;
+  streamHoursPerMonth: number;
+  tier1Subs: number;
+  tier2Subs: number;
+  tier3Subs: number;
+  partnerSplitRate: number; // 0.50, 0.60, 0.70
+  adMinutesPerHour: number; // 0 to 6
+  monthlyBits: number;
+  monthlyDirectDonations: number;
+  monthlySponsorships: number;
+  targetCountry?: string;
+  accountCountry?: string;
+}
+
+export interface TwitchResults {
+  dailyRevenue: number;
+  monthlyRevenue: number;
+  annualRevenue: number;
+  hourlyEarningsRate: number;
+  subscriptionRevenue: number;
+  adBreakRevenue: number;
+  bitsRevenue: number;
+  donationsRevenue: number;
+  sponsorshipRevenue: number;
+  totalSubPoints: number;
+  formatBreakdown: {
+    name: string;
+    revenue: number;
+    percentage: number;
+  }[];
+  monthlyForecast: {
+    month: string;
+    revenue: number;
+    multiplier: number;
+  }[];
+}
+
+// ==========================================
+// KICK STREAMER TYPES
+// ==========================================
+export interface KickInputs {
+  avgConcurrentViewers: number;
+  streamHoursPerMonth: number;
+  activeSubs: number;
+  kcpEligible: boolean;
+  monthlyTips: number;
+  monthlySponsorships: number;
+  targetCountry?: string;
+  accountCountry?: string;
+}
+
+export interface KickResults {
+  dailyRevenue: number;
+  monthlyRevenue: number;
+  annualRevenue: number;
+  hourlyEarningsRate: number;
+  subscriptionRevenue: number;
+  kcpStipendRevenue: number;
+  tipsRevenue: number;
+  sponsorshipRevenue: number;
+  kickVsTwitchDelta: number; // How much extra earned on Kick vs Twitch 50% split
+  formatBreakdown: {
+    name: string;
+    revenue: number;
+    percentage: number;
+  }[];
+  monthlyForecast: {
+    month: string;
+    revenue: number;
+    multiplier: number;
+  }[];
+}

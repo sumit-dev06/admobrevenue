@@ -3,10 +3,69 @@ import { SupportedLanguage } from "../i18n/types";
 export interface FAQItem {
   question: string;
   answer: string;
-  category: 'AdSense' | 'AdMob' | 'Formulas' | 'Strategy';
+  category: 'AdSense' | 'AdMob' | 'YouTube' | 'TikTok' | 'Twitch' | 'Kick' | 'Formulas' | 'Strategy';
 }
 
 export const FAQS_DATA_EN: FAQItem[] = [
+  // YouTube Creator FAQs
+  {
+    category: 'YouTube',
+    question: 'How does this YouTube ad revenue calculator estimate creator earnings in 2026?',
+    answer: 'Our YouTube ad revenue calculator combines 2026 YouTube Partner Program (YPP) baseline metrics across 15+ creator niches, audience geography multipliers, video length mid-roll boosts (+45%), YouTube Shorts revenue sharing pools ($0.03–$0.09 RPM), channel memberships ($4.99/mo with 70% net creator share), and Super Chats to forecast comprehensive channel income.',
+  },
+  {
+    category: 'YouTube',
+    question: 'How much does YouTube pay per 1,000 views (YouTube RPM) in 2026?',
+    answer: 'In 2026, YouTube creator RPM (Revenue Per Mille) ranges from $1.50 to $35.00+ per 1,000 long-form views. High-paying niches like Finance, Crypto, SaaS, and Real Estate command $15.00–$35.00+ RPM in Tier 1 countries (US, UK, CA, AU), while Gaming, Entertainment, and Vlogs typically average $2.00–$6.00 RPM.',
+  },
+  {
+    category: 'YouTube',
+    question: 'How does YouTube Shorts revenue sharing calculate creator payouts?',
+    answer: 'Unlike long-form video ads where creators receive 55% of ads played on their specific videos, YouTube Shorts pools all ad revenue from ads viewed between Shorts in the feed. YouTube allocates 45% of the Creator Pool to monetized creators based on their proportion of total global Shorts views, resulting in an effective RPM of $0.03 to $0.09 per 1,000 Shorts views.',
+  },
+  {
+    category: 'YouTube',
+    question: 'Why do videos longer than 8 minutes earn significantly higher YouTube revenue?',
+    answer: 'YouTube permits multiple mid-roll ad breaks only on videos exceeding 8 minutes in duration. Enabling natural mid-rolls typically boosts total video RPM by +35% to +60% because viewers encounter 2 to 4 ad opportunities per watch session rather than just pre-rolls.',
+  },
+
+  // TikTok Creator FAQs
+  {
+    category: 'TikTok',
+    question: 'How does the TikTok money calculator calculate Creator Rewards Program earnings?',
+    answer: 'The TikTok money calculator computes earnings under the TikTok Creator Rewards Program (which replaced the Creator Fund). It calculates payouts strictly on qualified views (views from the For You Page where viewers watch for at least 5 continuous seconds on original videos longer than 1 minute) multiplied by your niche RPM ($0.40–$1.20+ per 1,000 qualified views).',
+  },
+  {
+    category: 'TikTok',
+    question: 'How much are TikTok LIVE stream gift diamonds worth in real money?',
+    answer: 'During TikTok LIVE streams, viewers send virtual gifts purchased with coins. TikTok converts these gifts into Diamonds for the creator. Each Diamond is worth $0.005 USD. Because TikTok retains a standard 50% platform cut, 100,000 Diamonds equate to exactly $250.00 USD net payout to the creator.',
+  },
+
+  // Twitch Streamer FAQs
+  {
+    category: 'Twitch',
+    question: 'How do Twitch money calculators calculate subscription splits and ad revenue?',
+    answer: 'Twitch money calculators compute gross revenue from Tier 1 ($4.99), Tier 2 ($9.99), and Tier 3 ($24.99) subscriptions applied to your partner revenue split (standard 50/50, or 60/40 / 70/30 under Partner Plus), combined with Ad Incentive Program (AIP) video ad break CPMs ($3.50–$10.00 per viewer-hour) and Bits ($0.01/bit net).',
+  },
+  {
+    category: 'Twitch',
+    question: 'What is the Twitch Partner Plus program and how do you unlock the 70/30 sub split?',
+    answer: 'The Twitch Partner Plus program allows eligible streamers to increase their subscription revenue share from the default 50% to 60% (by maintaining 100 Plus Points for 3 consecutive months) or 70% (by maintaining 350 Plus Points). Tier 1 subs give 1 pt, Tier 2 subs give 2 pts, and Tier 3 subs give 6 pts (recurring paid subs only; Prime and gift subs do not count toward points).',
+  },
+
+  // Kick Streamer FAQs
+  {
+    category: 'Kick',
+    question: 'How does the Kick earnings calculator calculate the 95/5 creator subscription split?',
+    answer: 'Kick offers an industry-leading 95/5 subscription revenue split where streamers keep 95% of every $4.99 subscription ($4.74 net payout per subscriber), while Kick takes only a 5% platform fee. This allows streamers to earn nearly double the sub income of Twitch’s standard 50% payout ($2.49/sub).',
+  },
+  {
+    category: 'Kick',
+    question: 'How much does the KICK Creator Program (KCP) pay streamers per hour?',
+    answer: 'The KICK Creator Program (KCP) pays verified streamers a guaranteed hourly wage ranging from $16.00/hour to $40.00+/hour based on average concurrent viewership (CCV), stream category, and active chat engagement, providing reliable base income independent of viewer donations.',
+  },
+
+  // AdSense & AdMob FAQs
   {
     category: 'AdSense',
     question: 'What is Google AdSense and how does it generate website ad revenue?',
