@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, startTransition, Suspense, lazy } from "react";
+import React, { useState, useEffect, useMemo, useRef, startTransition, Suspense, lazy } from "react";
 import {
   CurrencyCode,
   AdSenseInputs,
@@ -89,11 +89,12 @@ interface AppContentProps {
   initialPlatform?: "admob" | "adsense" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
 }
 
-import { detectUserLocation, fetchUserLocationIP } from "./utils/geoDetection";
+import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
 import { COUNTRIES } from "./data/geoTiers";
 
 function MainAppContent({ initialPlatform }: AppContentProps) {
-  const { t, setLanguage } = useTranslation();
+  const { t, language, setLanguage } = useTranslation();
+  const prevLangRef = useRef<SupportedLanguage>(language);
 
   // Currency (persisted, defaulted to user's location)
   const [currency, setCurrency] = useState<CurrencyCode>(() => {
@@ -251,6 +252,32 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       isMounted = false;
     };
   }, [setLanguage]);
+
+  // When language is changed via toggle option, automatically update currency,
+  // user location (account country), and audience location (target country)
+  useEffect(() => {
+    if (prevLangRef.current !== language) {
+      prevLangRef.current = language;
+      const defaults = LANGUAGE_DEFAULTS[language];
+      if (defaults) {
+        setCurrency(defaults.currencyCode);
+
+        setAdMobInputs((prev) => ({
+          ...prev,
+          accountCountry: defaults.countryCode,
+          targetCountry: defaults.countryCode,
+          geoDistribution: defaults.tierDistribution,
+        }));
+
+        setAdSenseInputs((prev) => ({
+          ...prev,
+          accountCountry: defaults.countryCode,
+          targetCountry: defaults.countryCode,
+          geoDistribution: defaults.tierDistribution,
+        }));
+      }
+    }
+  }, [language]);
 
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {

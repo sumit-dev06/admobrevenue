@@ -8,6 +8,56 @@ export interface GeoLocationDetection {
   language: SupportedLanguage;
 }
 
+export const LANGUAGE_DEFAULTS: Record<
+  SupportedLanguage,
+  {
+    countryCode: string;
+    currencyCode: CurrencyCode;
+    tierDistribution: { tier1: number; tier2: number; tier3: number };
+  }
+> = {
+  en: {
+    countryCode: "US",
+    currencyCode: "USD",
+    tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
+  },
+  es: {
+    countryCode: "ES",
+    currencyCode: "EUR",
+    tierDistribution: { tier1: 0, tier2: 100, tier3: 0 },
+  },
+  ja: {
+    countryCode: "JP",
+    currencyCode: "JPY",
+    tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
+  },
+  fr: {
+    countryCode: "FR",
+    currencyCode: "EUR",
+    tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
+  },
+  de: {
+    countryCode: "DE",
+    currencyCode: "EUR",
+    tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
+  },
+  pt: {
+    countryCode: "BR",
+    currencyCode: "BRL",
+    tierDistribution: { tier1: 0, tier2: 100, tier3: 0 },
+  },
+  ko: {
+    countryCode: "KR",
+    currencyCode: "USD",
+    tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
+  },
+  it: {
+    countryCode: "IT",
+    currencyCode: "EUR",
+    tierDistribution: { tier1: 0, tier2: 100, tier3: 0 },
+  },
+};
+
 interface LocationMapping {
   country: string;
   currency: CurrencyCode;
