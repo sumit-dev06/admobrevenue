@@ -486,7 +486,30 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                 : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")
             }
           >
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={inputs.adFormats.interstitial.enabled}
+                  onClick={() =>
+                    onChange({
+                      ...inputs,
+                      adFormats: {
+                        ...inputs.adFormats,
+                        interstitial: {
+                          ...inputs.adFormats.interstitial,
+                          enabled: !inputs.adFormats.interstitial.enabled,
+                        },
+                      },
+                    })
+                  }
+                  className="text-xs font-mono font-bold cursor-pointer hover:underline"
+                >
+                  {t.admob.interstitial}
+                </button>
+                <TermTooltip id="interstitial" />
+              </div>
               <button
                 type="button"
                 role="switch"
@@ -503,72 +526,51 @@ export const AdMobCalculator: React.FC<AdMobCalculatorProps> = ({
                     },
                   })
                 }
-                className="text-xs font-mono font-bold cursor-pointer hover:underline"
-              >
-                {t.admob.interstitial}
-              </button>
-              <TermTooltip id="interstitial" />
-            </div>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={inputs.adFormats.interstitial.enabled}
-              onClick={() =>
-                onChange({
-                  ...inputs,
-                  adFormats: {
-                    ...inputs.adFormats,
-                    interstitial: {
-                      ...inputs.adFormats.interstitial,
-                      enabled: !inputs.adFormats.interstitial.enabled,
-                    },
-                  },
-                })
-              }
-              className={
-                "text-[10px] font-mono font-bold cursor-pointer px-2.5 py-1 rounded transition-colors " +
-                (inputs.adFormats.interstitial.enabled
-                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-dashed border-emerald-500"
-                  : "bg-neutral-100 dark:bg-neutral-800 text-neutral-500 border border-dashed border-neutral-300 dark:border-neutral-700")
-              }
-            >
-              {inputs.adFormats.interstitial.enabled ? t.admob.active : t.admob.disabled}
-            </button>
-          </div>
-
-          {inputs.adFormats.interstitial.enabled && (
-            <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800/80 space-y-1.5">
-              <div className="flex items-center justify-between text-[11px] font-mono">
-                <span className="text-neutral-600 dark:text-neutral-400 font-medium">
-                  {t.admob.impressionsPerSession}:
-                </span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                  {inputs.adFormats.interstitial.impressionsPerUserPerSession}x
-                </span>
-              </div>
-              <input
-                type="range"
-                min="0.2"
-                max="6.0"
-                step="0.1"
-                aria-label="Interstitial Impressions per user per session"
-                value={inputs.adFormats.interstitial.impressionsPerUserPerSession}
-                onChange={(e) =>
-                  onChange({
-                    ...inputs,
-                    adFormats: {
-                      ...inputs.adFormats,
-                      interstitial: {
-                        ...inputs.adFormats.interstitial,
-                        impressionsPerUserPerSession: parseFloat(e.target.value) || 0.2,
-                      },
-                    },
-                  })
+                className={
+                  "text-[10px] font-mono font-bold cursor-pointer px-2.5 py-1 rounded transition-colors " +
+                  (inputs.adFormats.interstitial.enabled
+                    ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-dashed border-emerald-500"
+                    : "bg-neutral-100 dark:bg-neutral-800 text-neutral-500 border border-dashed border-neutral-300 dark:border-neutral-700")
                 }
-                className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-              />
+              >
+                {inputs.adFormats.interstitial.enabled ? t.admob.active : t.admob.disabled}
+              </button>
             </div>
-          )}
+
+            {inputs.adFormats.interstitial.enabled && (
+              <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800/80 space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-neutral-600 dark:text-neutral-400 font-medium">
+                    {t.admob.impressionsPerSession}:
+                  </span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                    {inputs.adFormats.interstitial.impressionsPerUserPerSession}x
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="0.2"
+                  max="6.0"
+                  step="0.1"
+                  aria-label="Interstitial Impressions per user per session"
+                  value={inputs.adFormats.interstitial.impressionsPerUserPerSession}
+                  onChange={(e) =>
+                    onChange({
+                      ...inputs,
+                      adFormats: {
+                        ...inputs.adFormats,
+                        interstitial: {
+                          ...inputs.adFormats.interstitial,
+                          impressionsPerUserPerSession: parseFloat(e.target.value) || 0.2,
+                        },
+                      },
+                    })
+                  }
+                  className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                />
+              </div>
+            )}
+          </div>
 
           {/* App Open */}
           <div
