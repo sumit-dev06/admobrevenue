@@ -1,6 +1,6 @@
 import { CurrencyCode } from "../types";
 import { SupportedLanguage } from "../i18n/types";
-import { COUNTRIES, CURRENCIES } from "../data/geoTiers";
+import { COUNTRIES, CURRENCIES, getCountryByCode } from "../data/geoTiers";
 
 export interface GeoLocationDetection {
   countryCode: string;
@@ -159,19 +159,29 @@ const LOCALE_MAP: Record<string, LocationMapping> = {
 
 export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
   const code = (countryCode || "").trim().toUpperCase();
-  const country = COUNTRIES.find((c) => c.code === code);
+  const country = getCountryByCode(code);
   
   // Currency mapping based on country
   let currency: CurrencyCode = "USD";
-  if (code === "IN") currency = "INR";
-  else if (code === "GB") currency = "GBP";
-  else if (code === "JP") currency = "JPY";
-  else if (code === "CA") currency = "CAD";
-  else if (code === "AU" || code === "NZ") currency = "AUD";
-  else if (code === "BR") currency = "BRL";
-  else if ([
+  if (code === "IN") {
+    currency = "INR";
+  } else if (code === "GB") {
+    currency = "GBP";
+  } else if (code === "JP") {
+    currency = "JPY";
+  } else if (code === "CA") {
+    currency = "CAD";
+  } else if (code === "AU" || code === "NZ") {
+    currency = "AUD";
+  } else if (code === "BR") {
+    currency = "BRL";
+  } else if ([
+    // Europe (Eurozone and European economic area)
     "NO", "DE", "FR", "IT", "ES", "NL", "AT", "BE", "IE", "FI",
-    "PT", "GR", "CH", "SE", "DK", "PL", "CZ", "HU", "RO"
+    "PT", "GR", "CH", "SE", "DK", "PL", "CZ", "HU", "RO", "BG",
+    "HR", "SK", "SI", "LT", "LV", "EE", "CY", "MT", "LU", "IS",
+    "RS", "BA", "ME", "MK", "AL", "MD", "UA", "AD", "MC", "SM",
+    "VA", "LI"
   ].includes(code)) {
     currency = "EUR";
   }
@@ -179,26 +189,27 @@ export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
   // Language mapping
   let language: SupportedLanguage = "en";
   if ([
+    // Spanish speaking countries & territories
     "ES", "MX", "AR", "CL", "CO", "PE", "VE", "EC", "GT", "CU",
-    "BO", "DO", "HN", "PY", "SV", "NI", "CR", "PA", "UY"
+    "BO", "DO", "HN", "PY", "SV", "NI", "CR", "PA", "UY", "PR", "GQ"
   ].includes(code)) {
     language = "es";
   } else if (code === "JP") {
     language = "ja";
-  } else if (["DE", "AT", "CH"].includes(code)) {
+  } else if (["DE", "AT", "LI"].includes(code)) {
     language = "de";
-  } else if (["FR", "BE"].includes(code)) {
+  } else if (["FR", "BE", "MC", "SN", "CI", "CM", "CD", "CG", "MG", "ML", "GN", "HT"].includes(code)) {
     language = "fr";
-  } else if (["PT", "BR"].includes(code)) {
+  } else if (["PT", "BR", "AO", "MZ", "CV", "GW", "ST"].includes(code)) {
     language = "pt";
-  } else if (code === "IT") {
+  } else if (["IT", "SM", "VA"].includes(code)) {
     language = "it";
-  } else if (code === "KR") {
+  } else if (code === "KR" || code === "KP") {
     language = "ko";
   }
 
   return {
-    countryCode: country ? code : (code || "US"),
+    countryCode: country.code,
     currencyCode: currency,
     language,
   };
