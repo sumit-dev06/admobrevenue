@@ -185,25 +185,21 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   const [activePlatform, setActivePlatform] = useState<string>(() => {
     if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
-      const pathname = window.location.pathname.toLowerCase();
-      if (pathname.includes("youtube")) return "youtube";
-      if (pathname.includes("tiktok")) return "tiktok";
-      if (pathname.includes("twitch")) return "twitch";
-      if (pathname.includes("kick")) return "kick";
-      if (pathname.includes("adsense")) return "adsense";
-      if (pathname.includes("about")) return "about";
-      if (pathname.includes("contact")) return "contact";
-      if (pathname.includes("privacy")) return "privacy";
-      if (pathname.includes("terms")) return "terms";
-      if (pathname.includes("disclaimer")) return "disclaimer";
+      const pathname = window.location.pathname.toLowerCase().replace(/\/$/, "");
+      const segments = pathname.split("/").filter(Boolean);
+      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"];
+      
+      for (let i = segments.length - 1; i >= 0; i--) {
+        if (validPlatforms.includes(segments[i])) {
+          return segments[i];
+        }
+      }
 
       const searchParams = new URLSearchParams(window.location.search);
       const pageParam = searchParams.get("page");
-      if (pageParam && ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"].includes(pageParam)) {
+      if (pageParam && validPlatforms.includes(pageParam)) {
         return pageParam;
       }
-      const saved = localStorage.getItem("adrev_platform");
-      if (saved && ["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(saved)) return saved;
     }
     return "admob";
   });
@@ -582,12 +578,6 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {
-    if (typeof window !== "undefined" && ["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform)) {
-      localStorage.setItem("adrev_platform", activePlatform);
-    }
-  }, [activePlatform]);
-
-  useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("adrev_currency", currency);
     }
@@ -610,31 +600,50 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  // Sync URL parameters & history
+  // Sync URL parameters & browser back/forward history
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const searchParams = new URLSearchParams(window.location.search);
-      const pageParam = searchParams.get("page");
-      if (pageParam) {
-        setActivePlatform(pageParam);
-      }
-      const calcParam = searchParams.get("calc");
-      if (calcParam) {
-        try {
-          const parsed = JSON.parse(atob(calcParam));
-          if (parsed.adSenseInputs) setAdSenseInputs(parsed.adSenseInputs);
-          if (parsed.adMobInputs) setAdMobInputs(parsed.adMobInputs);
-          if (parsed.activePlatform) setActivePlatform(parsed.activePlatform);
-          showToast("Configuration loaded from link!");
-        } catch (e) {
-          console.error("Failed to parse URL config", e);
+    if (typeof window === "undefined") return;
+
+    const handlePopState = () => {
+      const pathname = window.location.pathname.toLowerCase().replace(/\/$/, "");
+      const segments = pathname.split("/").filter(Boolean);
+      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"];
+      
+      let matchedPlatform = "admob";
+      for (let i = segments.length - 1; i >= 0; i--) {
+        if (validPlatforms.includes(segments[i])) {
+          matchedPlatform = segments[i];
+          break;
         }
       }
+      setActivePlatform(matchedPlatform);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const pageParam = searchParams.get("page");
+    if (pageParam) {
+      setActivePlatform(pageParam);
     }
+    const calcParam = searchParams.get("calc");
+    if (calcParam) {
+      try {
+        const parsed = JSON.parse(atob(calcParam));
+        if (parsed.adSenseInputs) setAdSenseInputs(parsed.adSenseInputs);
+        if (parsed.adMobInputs) setAdMobInputs(parsed.adMobInputs);
+        if (parsed.activePlatform) setActivePlatform(parsed.activePlatform);
+        showToast("Configuration loaded from link!");
+      } catch (e) {
+        console.error("Failed to parse URL config", e);
+      }
+    }
+
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const handlePlatformChange = (p: string) => {
-    startTransition(() => setActivePlatform(p));
+    setActivePlatform(p);
     if (typeof window !== "undefined") {
       const cleanPath = p === "admob" ? "/" : `/${p}`;
       const urlParams = new URLSearchParams(window.location.search);
