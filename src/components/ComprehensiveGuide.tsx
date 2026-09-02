@@ -1,5 +1,5 @@
-import React from "react";
-import { BookOpen, TrendingUp, DollarSign, Sparkles } from "lucide-react";
+import React, { useState } from "react";
+import { BookOpen, ChevronDown } from "lucide-react";
 import {
   AdMobIcon,
   AdSenseIcon,
@@ -8,10 +8,10 @@ import {
   TwitchIcon,
   KickIcon,
 } from "./PlatformIcons";
-import { useTranslation } from "../i18n/LanguageContext";
 
 export const ComprehensiveGuide = React.memo(() => {
-  const { t } = useTranslation();
+  // Collapsed (off) by default
+  const [isOpen, setIsOpen] = useState(false);
 
   const platformGuides = [
     {
@@ -77,64 +77,91 @@ export const ComprehensiveGuide = React.memo(() => {
   ];
 
   return (
-    <div id="comprehensive-guide" className="bg-white dark:bg-neutral-900 rounded-2xl p-5 sm:p-7 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-6 text-xs font-mono">
-      {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-        <div className="flex items-center gap-2">
-          <BookOpen className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-          <h2 className="text-sm font-mono font-bold uppercase text-neutral-900 dark:text-white">
-            2026 In-Depth Publisher & Creator Monetization Guide
-          </h2>
+    <div id="comprehensive-guide" className="bg-white dark:bg-neutral-900 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 text-xs font-mono transition-all overflow-hidden shadow-2xs">
+      {/* Clickable Toggle Header */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800/60 transition-colors cursor-pointer select-none"
+      >
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shrink-0">
+            <BookOpen className="w-4 h-4" aria-hidden="true" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
+                2026 In-Depth Publisher & Creator Monetization Guide
+              </span>
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 uppercase font-mono">
+                Guide
+              </span>
+            </div>
+            <p className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">
+              {isOpen ? "Click to collapse guide" : "Optimization blueprints for apps, sites, videos & streams (Click to expand)"}
+            </p>
+          </div>
         </div>
-        <span className="text-[10px] font-mono text-neutral-500 hidden sm:inline">
-          6 Platforms Analyzed
-        </span>
-      </div>
 
-      <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-xs">
-        Whether you monetize mobile applications through <strong>Google AdMob</strong>, websites with <strong>Google AdSense</strong>, videos on <strong>YouTube</strong> and <strong>TikTok</strong>, or live streams on <strong>Twitch</strong> and <strong>Kick</strong>, revenue is dictated by audience tier, engagement depth, and format optimization. Explore our comprehensive platform breakdown below:
-      </p>
+        <div className="flex items-center gap-1.5 shrink-0 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
+          <span className="hidden sm:inline">{isOpen ? "Hide Guide" : "Show Guide"}</span>
+          <ChevronDown
+            className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180 text-emerald-500" : "text-neutral-400"}`}
+            aria-hidden="true"
+          />
+        </div>
+      </button>
 
-      {/* 6 Platform Guides Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {platformGuides.map((guide) => {
-          const IconComponent = guide.icon;
-          return (
-            <div
-              key={guide.id}
-              className="p-4 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 space-y-3 flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <IconComponent className={`w-4 h-4 ${guide.iconColor}`} />
-                    <span className="font-bold text-neutral-900 dark:text-white text-xs">
-                      {guide.title}
+      {/* Collapsible Content */}
+      {isOpen && (
+        <div className="p-5 sm:p-7 pt-0 sm:pt-0 space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
+          <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-xs pt-4">
+            Whether you monetize mobile applications through <strong>Google AdMob</strong>, websites with <strong>Google AdSense</strong>, videos on <strong>YouTube</strong> and <strong>TikTok</strong>, or live streams on <strong>Twitch</strong> and <strong>Kick</strong>, revenue is dictated by audience tier, engagement depth, and format optimization. Explore our comprehensive platform breakdown below:
+          </p>
+
+          {/* 6 Platform Guides Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {platformGuides.map((guide) => {
+              const IconComponent = guide.icon;
+              return (
+                <div
+                  key={guide.id}
+                  className="p-4 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 space-y-3 flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <IconComponent className={`w-4 h-4 ${guide.iconColor}`} />
+                        <span className="font-bold text-neutral-900 dark:text-white text-xs">
+                          {guide.title}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="inline-block text-[9px] font-mono uppercase px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+                      {guide.badge}
                     </span>
+                    <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                      {guide.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 flex flex-wrap gap-1.5">
+                    {guide.keyMetrics.map((metric, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-white dark:bg-neutral-950 border border-dashed border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300"
+                      >
+                        {metric}
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <span className="inline-block text-[9px] font-mono uppercase px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
-                  {guide.badge}
-                </span>
-                <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  {guide.description}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 flex flex-wrap gap-1.5">
-                {guide.keyMetrics.map((metric, idx) => (
-                  <span
-                    key={idx}
-                    className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-white dark:bg-neutral-950 border border-dashed border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300"
-                  >
-                    {metric}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 });

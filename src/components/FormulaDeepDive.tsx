@@ -1,5 +1,5 @@
-import React from "react";
-import { Calculator } from "lucide-react";
+import React, { useState } from "react";
+import { Calculator, ChevronDown } from "lucide-react";
 import {
   AdMobIcon,
   AdSenseIcon,
@@ -8,10 +8,10 @@ import {
   TwitchIcon,
   KickIcon,
 } from "./PlatformIcons";
-import { useTranslation } from "../i18n/LanguageContext";
 
 export const FormulaDeepDive: React.FC = () => {
-  const { t } = useTranslation();
+  // Collapsed (off) by default
+  const [isOpen, setIsOpen] = useState(false);
 
   const formulaCards = [
     {
@@ -71,59 +71,86 @@ export const FormulaDeepDive: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-neutral-900 rounded-2xl p-5 sm:p-7 border border-dashed border-neutral-300 dark:border-neutral-800 space-y-6 text-xs font-mono">
-      {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-dashed border-neutral-200 dark:border-neutral-800">
-        <div className="flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-          <h2 className="text-sm font-mono font-bold uppercase text-neutral-900 dark:text-white">
-            Monetization Mathematical Formulas & Calculations
-          </h2>
-        </div>
-        <span className="text-[10px] font-mono text-neutral-500 hidden sm:inline">
-          Exact 2026 Algorithms
-        </span>
-      </div>
-
-      <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-        Understand the exact mathematical equations used across major advertising networks and streaming platforms to calculate net creator take-home pay, RPM, eCPM, and revenue splits.
-      </p>
-
-      {/* Formula Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {formulaCards.map((card, idx) => {
-          const IconComponent = card.icon;
-          return (
-            <div
-              key={idx}
-              className="p-4 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 space-y-2.5 flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <IconComponent className={`w-4 h-4 ${card.color}`} />
-                  <span className="font-bold text-neutral-900 dark:text-white text-xs">
-                    {card.title}
-                  </span>
-                </div>
-
-                <div className="p-2.5 rounded-lg bg-white dark:bg-neutral-950 font-mono text-[11px] text-neutral-900 dark:text-neutral-100 font-semibold border border-dashed border-neutral-200 dark:border-neutral-800">
-                  {card.formula}
-                </div>
-
-                <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  {card.desc}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800">
-                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
-                  📌 Example: {card.example}
-                </span>
-              </div>
+    <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 text-xs font-mono transition-all overflow-hidden shadow-2xs">
+      {/* Clickable Toggle Header */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800/60 transition-colors cursor-pointer select-none"
+      >
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 shrink-0">
+            <Calculator className="w-4 h-4" aria-hidden="true" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
+                Monetization Mathematical Formulas & Algorithms
+              </span>
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 uppercase font-mono">
+                Math
+              </span>
             </div>
-          );
-        })}
-      </div>
+            <p className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">
+              {isOpen ? "Click to collapse formulas" : "Exact calculation formulas for RPM, ARPDAU, sub splits & AIP (Click to expand)"}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 shrink-0 text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
+          <span className="hidden sm:inline">{isOpen ? "Hide Formulas" : "Show Formulas"}</span>
+          <ChevronDown
+            className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180 text-blue-500" : "text-neutral-400"}`}
+            aria-hidden="true"
+          />
+        </div>
+      </button>
+
+      {/* Collapsible Content */}
+      {isOpen && (
+        <div className="p-5 sm:p-7 pt-0 sm:pt-0 space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
+          <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed pt-4">
+            Understand the exact mathematical equations used across major advertising networks and streaming platforms to calculate net creator take-home pay, RPM, eCPM, and revenue splits.
+          </p>
+
+          {/* Formula Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {formulaCards.map((card, idx) => {
+              const IconComponent = card.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-4 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/40 space-y-2.5 flex flex-col justify-between"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <IconComponent className={`w-4 h-4 ${card.color}`} />
+                      <span className="font-bold text-neutral-900 dark:text-white text-xs">
+                        {card.title}
+                      </span>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-white dark:bg-neutral-950 font-mono text-[11px] text-neutral-900 dark:text-neutral-100 font-semibold border border-dashed border-neutral-200 dark:border-neutral-800">
+                      {card.formula}
+                    </div>
+
+                    <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
+                      📌 Example: {card.example}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
