@@ -10,8 +10,10 @@ import {
 } from "./PlatformIcons";
 
 export const FormulaDeepDive: React.FC = () => {
-  // Collapsed (off) by default
+  // Master container toggle
   const [isOpen, setIsOpen] = useState(false);
+  // Mobile accordion active item index
+  const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
   const formulaCards = [
     {
@@ -70,6 +72,10 @@ export const FormulaDeepDive: React.FC = () => {
     },
   ];
 
+  const toggleMobileItem = (index: number) => {
+    setActiveMobileItem(activeMobileItem === index ? null : index);
+  };
+
   return (
     <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 text-xs font-mono transition-all overflow-hidden shadow-2xs">
       {/* Clickable Toggle Header */}
@@ -109,13 +115,66 @@ export const FormulaDeepDive: React.FC = () => {
 
       {/* Collapsible Content */}
       {isOpen && (
-        <div className="p-5 sm:p-7 pt-0 sm:pt-0 space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
+        <div className="p-4 sm:p-7 pt-0 sm:pt-0 space-y-5 sm:space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed pt-4">
             Understand the exact mathematical equations used across major advertising networks and streaming platforms to calculate net creator take-home pay, RPM, eCPM, and revenue splits.
           </p>
 
-          {/* Formula Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* 1. Mobile-Only Dropdown Accordions (Phone Only) */}
+          <div className="space-y-2 md:hidden">
+            <div className="text-[11px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider pb-1">
+              Select formula to calculate:
+            </div>
+            {formulaCards.map((card, idx) => {
+              const Icon = card.icon;
+              const isExpanded = activeMobileItem === idx;
+
+              return (
+                <div
+                  key={idx}
+                  className="rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 overflow-hidden bg-neutral-50/50 dark:bg-neutral-900/40 transition-colors"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileItem(idx)}
+                    aria-expanded={isExpanded}
+                    className="w-full p-3.5 flex items-center justify-between gap-2.5 text-left cursor-pointer hover:bg-neutral-100/70 dark:hover:bg-neutral-800/60 transition-colors"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Icon className={`w-4 h-4 shrink-0 ${card.color}`} />
+                      <span className="font-bold text-xs text-neutral-900 dark:text-white truncate">
+                        {card.title}
+                      </span>
+                    </div>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 shrink-0 text-neutral-400 transition-transform duration-200 ${
+                        isExpanded ? "rotate-180 text-blue-500" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {isExpanded && (
+                    <div className="p-3.5 pt-0 space-y-2.5 border-t border-dashed border-neutral-100 dark:border-neutral-800/60 animate-in fade-in duration-150">
+                      <div className="mt-2.5 p-2.5 rounded-lg bg-white dark:bg-neutral-950 font-mono text-[11px] text-neutral-900 dark:text-neutral-100 font-semibold border border-dashed border-neutral-200 dark:border-neutral-800">
+                        {card.formula}
+                      </div>
+                      <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                        {card.desc}
+                      </p>
+                      <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
+                          📌 Example: {card.example}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* 2. Desktop Grid View (md: and above) */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {formulaCards.map((card, idx) => {
               const IconComponent = card.icon;
               return (

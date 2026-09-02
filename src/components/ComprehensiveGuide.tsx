@@ -10,8 +10,10 @@ import {
 } from "./PlatformIcons";
 
 export const ComprehensiveGuide = React.memo(() => {
-  // Collapsed (off) by default
+  // Master container toggle
   const [isOpen, setIsOpen] = useState(false);
+  // Mobile accordion active item index
+  const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
   const platformGuides = [
     {
@@ -76,6 +78,10 @@ export const ComprehensiveGuide = React.memo(() => {
     },
   ];
 
+  const toggleMobileItem = (index: number) => {
+    setActiveMobileItem(activeMobileItem === index ? null : index);
+  };
+
   return (
     <div id="comprehensive-guide" className="bg-white dark:bg-neutral-900 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 text-xs font-mono transition-all overflow-hidden shadow-2xs">
       {/* Clickable Toggle Header */}
@@ -115,13 +121,73 @@ export const ComprehensiveGuide = React.memo(() => {
 
       {/* Collapsible Content */}
       {isOpen && (
-        <div className="p-5 sm:p-7 pt-0 sm:pt-0 space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
+        <div className="p-4 sm:p-7 pt-0 sm:pt-0 space-y-5 sm:space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-xs pt-4">
             Whether you monetize mobile applications through <strong>Google AdMob</strong>, websites with <strong>Google AdSense</strong>, videos on <strong>YouTube</strong> and <strong>TikTok</strong>, or live streams on <strong>Twitch</strong> and <strong>Kick</strong>, revenue is dictated by audience tier, engagement depth, and format optimization. Explore our comprehensive platform breakdown below:
           </p>
 
-          {/* 6 Platform Guides Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* 1. Mobile-Only Dropdown Accordions (Phone Only) */}
+          <div className="space-y-2 md:hidden">
+            <div className="text-[11px] font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider pb-1">
+              Select platform guide:
+            </div>
+            {platformGuides.map((guide, idx) => {
+              const Icon = guide.icon;
+              const isExpanded = activeMobileItem === idx;
+
+              return (
+                <div
+                  key={guide.id}
+                  className="rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 overflow-hidden bg-neutral-50/50 dark:bg-neutral-900/40 transition-colors"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileItem(idx)}
+                    aria-expanded={isExpanded}
+                    className="w-full p-3.5 flex items-center justify-between gap-2.5 text-left cursor-pointer hover:bg-neutral-100/70 dark:hover:bg-neutral-800/60 transition-colors"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Icon className={`w-4 h-4 shrink-0 ${guide.iconColor}`} />
+                      <div className="truncate">
+                        <span className="font-bold text-xs text-neutral-900 dark:text-white">
+                          {guide.title}
+                        </span>
+                      </div>
+                    </div>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 shrink-0 text-neutral-400 transition-transform duration-200 ${
+                        isExpanded ? "rotate-180 text-emerald-500" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {isExpanded && (
+                    <div className="p-3.5 pt-0 space-y-2.5 border-t border-dashed border-neutral-100 dark:border-neutral-800/60 animate-in fade-in duration-150">
+                      <span className="mt-2.5 inline-block text-[9px] font-mono uppercase px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+                        {guide.badge}
+                      </span>
+                      <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                        {guide.description}
+                      </p>
+                      <div className="pt-2 border-t border-dashed border-neutral-200 dark:border-neutral-800 flex flex-wrap gap-1.5">
+                        {guide.keyMetrics.map((metric, mIdx) => (
+                          <span
+                            key={mIdx}
+                            className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-white dark:bg-neutral-950 border border-dashed border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300"
+                          >
+                            {metric}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* 2. Desktop Grid View (md: and above) */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {platformGuides.map((guide) => {
               const IconComponent = guide.icon;
               return (
