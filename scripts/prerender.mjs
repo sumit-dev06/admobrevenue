@@ -132,7 +132,9 @@ try {
   const writePrerender = (cleanSlug, htmlContent, meta, lang = 'en', platformKey = '') => {
     let renderedPage = template
       .replace('<html lang="en">', `<html lang="${lang}">`)
-      .replace('<div id="root"></div>', `<div id="root">${htmlContent}</div>`);
+      .replace('<div id="root"></div>', `<div id="root">${htmlContent}</div>`)
+      .replace(/<link rel="modulepreload"[^>]*vendor-charts[^>]*>\s*/g, '')
+      .replace(/<link rel="modulepreload"[^>]*Modal[^>]*>\s*/g, '');
     
     if (meta?.title) {
       renderedPage = renderedPage

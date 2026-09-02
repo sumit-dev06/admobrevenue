@@ -8,6 +8,21 @@ export default defineConfig(({ isSsrBuild }) => ({
   build: {
     target: 'esnext',
     cssCodeSplit: true,
+    modulePreload: {
+      polyfill: false,
+      resolveDependencies: (_filename, deps) => {
+        // Exclude heavy charting libraries and lazy modals from critical head preloading
+        return deps.filter(
+          (dep) =>
+            !dep.includes('vendor-charts') &&
+            !dep.includes('Modal') &&
+            !dep.includes('KickCalculator') &&
+            !dep.includes('TwitchCalculator') &&
+            !dep.includes('TikTokCalculator') &&
+            !dep.includes('YouTubeCalculator')
+        );
+      },
+    },
     rollupOptions: isSsrBuild
       ? {}
       : {
@@ -24,9 +39,8 @@ export default defineConfig(({ isSsrBuild }) => ({
                   return 'vendor-icons';
                 }
               }
-            }
-          }
-        }
-  }
+            },
+          },
+        },
+  },
 }))
-
