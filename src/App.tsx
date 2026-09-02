@@ -164,7 +164,7 @@ interface AppContentProps {
   initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
 }
 
-import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
+import { detectUserLocation, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
 import { COUNTRIES } from "./data/geoTiers";
 
 function MainAppContent({ initialPlatform }: AppContentProps) {
@@ -375,83 +375,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     return defaultInputs;
   });
 
-  // Live IP Geolocation Check (detects initial user location on first visit)
-  useEffect(() => {
-    let isMounted = true;
 
-    fetchUserLocationIP().then((detected) => {
-      if (!isMounted || !detected) return;
-
-      const hasManualCurrency = typeof window !== "undefined" && localStorage.getItem("adrev_user_selected_currency") === "true";
-      const hasManualCountry = typeof window !== "undefined" && localStorage.getItem("adrev_user_selected_country") === "true";
-
-      // ONLY set currency if the user has NOT deliberately chosen a currency
-      if (!hasManualCurrency && detected.currencyCode) {
-        setCurrency(detected.currencyCode);
-      }
-
-      // ONLY set country if the user has NOT deliberately chosen a country
-      if (!hasManualCountry) {
-        const country = COUNTRIES.find((c) => c.code === detected.countryCode);
-        const t1 = country?.tier === "tier1" ? 100 : 0;
-        const t2 = country?.tier === "tier2" ? 100 : 0;
-        const t3 = country?.tier === "tier3" ? 100 : (!country ? 100 : 0);
-
-        // Update AdMob
-        setAdMobInputs((prev) => ({
-          ...prev,
-          targetCountry: detected.countryCode,
-          accountCountry: detected.countryCode,
-          geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
-        }));
-
-        // Update AdSense
-        setAdSenseInputs((prev) => ({
-          ...prev,
-          targetCountry: detected.countryCode,
-          accountCountry: detected.countryCode,
-          geoDistribution: { tier1: t1, tier2: t2, tier3: t3 },
-        }));
-
-        // Update YouTube
-        setYouTubeInputs((prev) => ({
-          ...prev,
-          targetCountry: detected.countryCode,
-          accountCountry: detected.countryCode,
-        }));
-
-        // Update TikTok
-        setTikTokInputs((prev) => ({
-          ...prev,
-          targetCountry: detected.countryCode,
-          accountCountry: detected.countryCode,
-        }));
-
-        // Update Twitch
-        setTwitchInputs((prev) => ({
-          ...prev,
-          targetCountry: detected.countryCode,
-          accountCountry: detected.countryCode,
-        }));
-
-        // Update Kick
-        setKickInputs((prev) => ({
-          ...prev,
-          targetCountry: detected.countryCode,
-          accountCountry: detected.countryCode,
-        }));
-      }
-
-      const urlParams = new URLSearchParams(window.location.search);
-      if (!urlParams.get("lang") && detected.language) {
-        setLanguage(detected.language);
-      }
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [setLanguage]);
 
   // When language is changed via toggle option, update currency and location ONLY IF not manually locked
   useEffect(() => {

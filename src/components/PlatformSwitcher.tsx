@@ -78,6 +78,8 @@ export const PlatformSwitcher: React.FC<PlatformSwitcherProps> = ({
     },
   ];
 
+  const isInitialMount = useRef(true);
+
   // Auto-scroll active platform into view on mobile
   useEffect(() => {
     if (scrollContainerRef.current) {
@@ -85,7 +87,11 @@ export const PlatformSwitcher: React.FC<PlatformSwitcherProps> = ({
       if (activeEl) {
         const container = scrollContainerRef.current;
         const scrollLeft = activeEl.offsetLeft - container.offsetWidth / 2 + activeEl.offsetWidth / 2;
-        container.scrollTo({ left: scrollLeft, behavior: "smooth" });
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: isInitialMount.current ? "auto" : "smooth",
+        });
+        isInitialMount.current = false;
       }
     }
   }, [activePlatform]);
