@@ -10,14 +10,7 @@ import {
   Languages,
   ChevronDown,
 } from "lucide-react";
-import {
-  AdMobIcon,
-  AdSenseIcon,
-  TikTokIcon,
-  YouTubeIcon,
-  TwitchIcon,
-  KickIcon,
-} from "./PlatformIcons";
+import { PlatformSwitcher } from "./PlatformSwitcher";
 
 interface NavbarProps {
   activePlatform: string;
@@ -55,19 +48,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const currentLang = supportedLanguages.find((l) => l.code === language) || supportedLanguages[0];
 
-  const platforms = [
-    { id: "admob", label: t.nav.admobTab || "AdMob", icon: AdMobIcon, iconColor: "text-emerald-500" },
-    { id: "adsense", label: t.nav.adsenseTab || "AdSense", icon: AdSenseIcon, iconColor: "text-blue-500" },
-    { id: "youtube", label: "YouTube", icon: YouTubeIcon, iconColor: "text-red-500" },
-    { id: "tiktok", label: "TikTok", icon: TikTokIcon, iconColor: "text-cyan-500" },
-    { id: "twitch", label: "Twitch", icon: TwitchIcon, iconColor: "text-purple-500" },
-    { id: "kick", label: "Kick", icon: KickIcon, iconColor: "text-emerald-400" },
-  ];
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-dashed border-neutral-300 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-50 w-full border-b border-dashed border-neutral-300 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md transition-colors shadow-2xs">
+      {/* 1. Top Global Navigation Bar */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-13 sm:h-14 gap-2 sm:gap-4">
+        <div className="flex items-center justify-between h-13 sm:h-14 gap-2">
           {/* Left: Brand Logo */}
           <button
             type="button"
@@ -78,43 +63,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-mono font-black text-xs sm:text-sm flex items-center justify-center border border-dashed border-neutral-700 dark:border-neutral-300 shadow-xs">
               $
             </div>
-            <span className="font-bold text-sm sm:text-base tracking-tight text-neutral-950 dark:text-white font-mono hidden sm:inline">
+            <span className="font-bold text-sm sm:text-base tracking-tight text-neutral-950 dark:text-white font-mono">
               admob<span className="text-emerald-500">revenue</span>
             </span>
           </button>
-
-          {/* Center: Platform Navigation Tabs */}
-          <nav
-            aria-label="Platform navigation"
-            className="flex items-center gap-1 border border-dashed border-neutral-300 dark:border-neutral-800 p-0.5 sm:p-1 rounded-xl bg-neutral-50 dark:bg-neutral-900/80 text-xs font-mono overflow-x-auto no-scrollbar max-w-[55vw] sm:max-w-none shadow-2xs"
-          >
-            {platforms.map((p) => {
-              const Icon = p.icon;
-              const isActive = activePlatform === p.id;
-              const href = p.id === "admob" ? "/" : `/${p.id}`;
-              return (
-                <a
-                  key={p.id}
-                  href={href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onPlatformChange(p.id);
-                  }}
-                  className={
-                    "flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg transition-all text-[11px] sm:text-xs font-mono whitespace-nowrap cursor-pointer select-none no-underline " +
-                    (isActive
-                      ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs"
-                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium")
-                  }
-                  aria-label={`Switch to ${p.label} Calculator`}
-                  title={`${p.label} Revenue Calculator`}
-                >
-                  <Icon className={`w-3.5 h-3.5 ${p.iconColor} shrink-0`} aria-hidden="true" />
-                  <span>{p.label}</span>
-                </a>
-              );
-            })}
-          </nav>
 
           {/* Right Controls */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
@@ -128,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-expanded={langMenuOpen}
               >
                 <span className="text-sm leading-none shrink-0">{currentLang.flag}</span>
-                <span className="hidden md:inline font-bold">{currentLang.nativeName}</span>
+                <span className="hidden sm:inline font-bold">{currentLang.nativeName}</span>
                 <ChevronDown className={`w-3 h-3 text-neutral-500 transition-transform shrink-0 ${langMenuOpen ? "rotate-180" : ""}`} />
               </button>
 
@@ -182,22 +134,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </select>
 
-            {/* Share (Desktop & Tablet) */}
+            {/* Share */}
             <button
               type="button"
               onClick={onShare}
-              className="hidden sm:flex p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors cursor-pointer bg-neutral-50/80 dark:bg-neutral-900/80 shadow-2xs"
+              className="flex p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors cursor-pointer bg-neutral-50/80 dark:bg-neutral-900/80 shadow-2xs"
               aria-label={t.nav.share}
               title={t.nav.share}
             >
-              <Share2 className="w-4 h-4" aria-hidden="true" />
+              <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" />
             </button>
 
-            {/* Export (Desktop) */}
+            {/* Export (Desktop & Tablet) */}
             <button
               type="button"
               onClick={onOpenExport}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-white bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-950 border border-dashed border-neutral-700 dark:border-neutral-300 rounded-lg hover:bg-neutral-800 dark:hover:bg-white transition-all cursor-pointer shadow-2xs"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold text-white bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-950 border border-dashed border-neutral-700 dark:border-neutral-300 rounded-lg hover:bg-neutral-800 dark:hover:bg-white transition-all cursor-pointer shadow-2xs"
               aria-label={t.nav.export}
             >
               <Download className="w-3.5 h-3.5" aria-hidden="true" />
@@ -209,6 +161,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
       </div>
+
+      {/* 2. Dedicated Full-Width Sub-Header Platform Switcher (Directly Below Top Header) */}
+      <PlatformSwitcher
+        activePlatform={activePlatform}
+        onPlatformChange={onPlatformChange}
+      />
     </header>
   );
 };
