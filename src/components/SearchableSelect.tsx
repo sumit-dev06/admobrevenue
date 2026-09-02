@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, useId } from "react";
-import { Search, ChevronDown, Check, X } from "lucide-react";
+import React, { useState, useRef, useEffect, useId, useCallback } from "react";
+import { Search, ChevronDown, Check, X, ArrowLeft } from "lucide-react";
 
 export interface SearchableOption {
   value: string;
@@ -38,6 +38,7 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
   const listboxId = `${id}-listbox`;
   const containerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const historyPushedRef = useRef(false);
 
   const selectedOption = options.find((opt) => opt.value === value);
 
@@ -48,22 +49,52 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
       (opt.badge && opt.badge.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  // Auto-focus search input when opened
+  // Close helper with history back integration
+  const closeDropdown = useCallback(() => {
+    if (historyPushedRef.current) {
+      historyPushedRef.current = false;
+      window.history.back();
+    } else {
+      setIsOpen(false);
+    }
+  }, []);
+
+  // Handle hardware & browser Back button (popstate event)
   useEffect(() => {
     if (isOpen) {
+      try {
+        window.history.pushState({ searchableSelectOpen: true, id }, "");
+        historyPushedRef.current = true;
+      } catch {
+        // Fallback for environments without history API
+      }
+
+      const handlePopState = () => {
+        historyPushedRef.current = false;
+        setIsOpen(false);
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      // Auto-focus search input
       setTimeout(() => {
         searchInputRef.current?.focus();
       }, 50);
+
+      return () => {
+        window.removeEventListener("popstate", handlePopState);
+      };
     } else {
       setSearchQuery("");
+      historyPushedRef.current = false;
     }
-  }, [isOpen]);
+  }, [isOpen, id]);
 
   // Click outside to close
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
+        closeDropdown();
       }
     };
     if (isOpen) {
@@ -74,16 +105,16 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("touchstart", handleOutsideClick);
     };
-  }, [isOpen]);
+  }, [isOpen, closeDropdown]);
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
-      setIsOpen(false);
+      closeDropdown();
     } else if (e.key === "Enter" && filteredOptions.length > 0 && isOpen) {
       e.preventDefault();
       onChange(filteredOptions[0].value);
-      setIsOpen(false);
+      closeDropdown();
     }
   };
 
@@ -132,7 +163,7 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
           {/* Mobile Backdrop */}
           <div
             className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] sm:hidden"
-            onClick={() => setIsOpen(false)}
+            onClick={closeDropdown}
             aria-hidden="true"
           />
 
@@ -140,9 +171,21 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
             className="fixed inset-x-3 bottom-3 top-auto max-h-[75vh] z-50 bg-white dark:bg-neutral-900 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col sm:absolute sm:inset-x-0 sm:top-full sm:bottom-auto sm:mt-1 sm:max-h-72 sm:rounded-xl sm:border sm:shadow-xl animate-in fade-in zoom-in-95 duration-150"
             onKeyDown={handleKeyDown}
           >
-            {/* Search Input Bar */}
+            {/* Search Input Bar with Back Arrow on Mobile */}
             <div className="p-2.5 border-b border-dashed border-neutral-200 dark:border-neutral-800 bg-neutral-50/80 dark:bg-neutral-900/90 flex items-center gap-2">
-              <Search className="w-3.5 h-3.5 text-neutral-400 shrink-0" aria-hidden="true" />
+              {/* Mobile Back Button */}
+              <button
+                type="button"
+                onClick={closeDropdown}
+                aria-label="Back / Close country search"
+                className="p-1 -ml-0.5 text-neutral-500 hover:text-neutral-900 dark:hover:text-white rounded-lg hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors cursor-pointer sm:hidden"
+                title="Back"
+              >
+                <ArrowLeft className="w-4 h-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+              </button>
+
+              <Search className="w-3.5 h-3.5 text-neutral-400 shrink-0 hidden sm:block" aria-hidden="true" />
+              
               <input
                 ref={searchInputRef}
                 type="text"
@@ -157,7 +200,7 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
                   type="button"
                   onClick={() => setSearchQuery("")}
                   aria-label="Clear search query"
-                  className="p-1 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                  className="p-1 text-neutral-400 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" aria-hidden="true" />
                 </button>
@@ -186,7 +229,7 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
                       aria-selected={isSelected}
                       onClick={() => {
                         onChange(option.value);
-                        setIsOpen(false);
+                        closeDropdown();
                       }}
                       className={`w-full flex items-center justify-between gap-2 px-3 py-2 text-xs rounded-lg transition-colors text-left cursor-pointer ${
                         isSelected
@@ -222,8 +265,8 @@ export const SearchableSelect: React.FC<SearchableSelectProps> = ({
               <span>{filteredOptions.length} of {options.length} options</span>
               <button
                 type="button"
-                onClick={() => setIsOpen(false)}
-                className="text-emerald-600 dark:text-emerald-400 font-bold px-2 py-0.5"
+                onClick={closeDropdown}
+                className="text-emerald-600 dark:text-emerald-400 font-bold px-2 py-0.5 cursor-pointer"
               >
                 Done
               </button>
