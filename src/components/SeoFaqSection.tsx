@@ -143,7 +143,7 @@ export const SeoFaqSection: React.FC = () => {
                     id={`faq-ans-${idx}`}
                     role="region"
                     aria-labelledby={`faq-btn-${idx}`}
-                    className="p-3.5 pt-2.5 text-xs font-mono text-neutral-700 dark:text-neutral-300 border-t border-dashed border-neutral-200 dark:border-neutral-800 leading-relaxed bg-white dark:bg-neutral-950"
+                    className="p-3.5 pt-2.5 text-[13.2px] leading-[1.65] font-mono text-neutral-700 dark:text-neutral-300 border-t border-dashed border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950"
                   >
                     {item.answer}
                   </div>
