@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- 1. Homepage / Google AdMob App Revenue Calculator -->
+
+  <!-- ========================================== -->
+  <!-- 1. CORE PLATFORMS (ENGLISH / CANONICALS)   -->
+  <!-- ========================================== -->
+
+  <!-- AdMob Mobile App Revenue Calculator -->
   <url>
     <loc>https://admobrevenue.pages.dev/</loc>
     <lastmod>2026-09-03</lastmod>
@@ -18,7 +23,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/it" />
   </url>
 
-  <!-- 2. Google AdSense Revenue Calculator -->
+  <!-- Google AdSense Website Revenue Calculator -->
   <url>
     <loc>https://admobrevenue.pages.dev/adsense</loc>
     <lastmod>2026-09-03</lastmod>
@@ -35,7 +40,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/it/adsense" />
   </url>
 
-  <!-- 3. YouTube Ad Revenue Calculator -->
+  <!-- YouTube Ad Revenue & Shorts Calculator -->
   <url>
     <loc>https://admobrevenue.pages.dev/youtube</loc>
     <lastmod>2026-09-03</lastmod>
@@ -52,7 +57,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/it/youtube" />
   </url>
 
-  <!-- 4. TikTok Money Calculator -->
+  <!-- TikTok Creator Rewards & LIVE Diamonds Calculator -->
   <url>
     <loc>https://admobrevenue.pages.dev/tiktok</loc>
     <lastmod>2026-09-03</lastmod>
@@ -69,7 +74,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/it/tiktok" />
   </url>
 
-  <!-- 5. Twitch Money & Sub Calculator -->
+  <!-- Twitch Subscriptions & AIP Ad Revenue Calculator -->
   <url>
     <loc>https://admobrevenue.pages.dev/twitch</loc>
     <lastmod>2026-09-03</lastmod>
@@ -86,7 +91,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/it/twitch" />
   </url>
 
-  <!-- 6. Kick Earnings Calculator -->
+  <!-- Kick 95/5 Split & KCP Hourly Rate Calculator -->
   <url>
     <loc>https://admobrevenue.pages.dev/kick</loc>
     <lastmod>2026-09-03</lastmod>
@@ -103,7 +108,69 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://admobrevenue.pages.dev/it/kick" />
   </url>
 
-  <!-- Trust & Legal Pages -->
+  <!-- ========================================== -->
+  <!-- 2. LOCALIZED PLATFORM URLS                 -->
+  <!-- ========================================== -->
+
+  <!-- Spanish (es) -->
+  <url><loc>https://admobrevenue.pages.dev/es</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/es/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/es/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/es/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/es/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/es/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Japanese (ja) -->
+  <url><loc>https://admobrevenue.pages.dev/ja</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ja/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ja/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ja/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ja/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ja/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- French (fr) -->
+  <url><loc>https://admobrevenue.pages.dev/fr</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/fr/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/fr/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/fr/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/fr/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/fr/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- German (de) -->
+  <url><loc>https://admobrevenue.pages.dev/de</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/de/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/de/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/de/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/de/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/de/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Portuguese (pt) -->
+  <url><loc>https://admobrevenue.pages.dev/pt</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/pt/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/pt/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/pt/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/pt/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/pt/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Korean (ko) -->
+  <url><loc>https://admobrevenue.pages.dev/ko</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ko/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ko/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ko/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ko/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/ko/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Italian (it) -->
+  <url><loc>https://admobrevenue.pages.dev/it</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/it/adsense</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/it/youtube</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/it/tiktok</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/it/twitch</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://admobrevenue.pages.dev/it/kick</loc><lastmod>2026-09-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- ========================================== -->
+  <!-- 3. TRUST & LEGAL PAGES                     -->
+  <!-- ========================================== -->
   <url>
     <loc>https://admobrevenue.pages.dev/about</loc>
     <lastmod>2026-09-03</lastmod>
