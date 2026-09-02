@@ -53,19 +53,17 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* 1. Top Global Navigation Bar */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-13 sm:h-14 gap-2">
-          {/* Left: Brand Logo */}
+          {/* Left: Brand Logo Icon */}
           <button
             type="button"
-            className="flex items-center gap-2 cursor-pointer select-none shrink-0 text-left bg-transparent border-0 p-0"
+            className="flex items-center cursor-pointer select-none shrink-0 text-left bg-transparent border-0 p-0 hover:opacity-80 transition-opacity"
             onClick={() => onPlatformChange("admob")}
             aria-label="AdMobRevenue Home"
+            title="AdMobRevenue Home"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-mono font-black text-xs sm:text-sm flex items-center justify-center border border-dashed border-neutral-700 dark:border-neutral-300 shadow-xs">
+            <div className="w-8 h-8 rounded-lg bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-mono font-black text-sm flex items-center justify-center border border-dashed border-neutral-700 dark:border-neutral-300 shadow-xs">
               $
             </div>
-            <span className="font-bold text-sm sm:text-base tracking-tight text-neutral-950 dark:text-white font-mono">
-              admob<span className="text-emerald-500">revenue</span>
-            </span>
           </button>
 
           {/* Right Controls */}
