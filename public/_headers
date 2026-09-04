@@ -3,6 +3,9 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.country.is https://ipwho.is https://freeipapi.com https://ipapi.co https://www.googletagmanager.com; font-src 'self' data:;
+  Vary: Accept-Language
   Cache-Control: public, max-age=3600, must-revalidate
 
 /assets/*
@@ -17,3 +20,31 @@
   Content-Type: text/plain; charset=utf-8
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600, must-revalidate
+
+/*.html
+  X-Robots-Tag: noindex
+  Cache-Control: no-store
+
+/404.html
+  Cache-Control: no-store
+
+/es/*
+  Content-Language: es
+
+/ja/*
+  Content-Language: ja
+
+/fr/*
+  Content-Language: fr
+
+/de/*
+  Content-Language: de
+
+/pt/*
+  Content-Language: pt
+
+/ko/*
+  Content-Language: ko
+
+/it/*
+  Content-Language: it

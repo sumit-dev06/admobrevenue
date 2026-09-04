@@ -15,7 +15,7 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
   adMobInputs,
 }) => {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const tips: { title: string; desc: string; impact: string }[] = [];
 
   if (platform === "admob" && adMobInputs) {
@@ -94,9 +94,9 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
+              <h2 className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
                 {t.tips.title}
-              </span>
+              </h2>
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold uppercase font-mono">
                 {tips.length} Recommendations
               </span>
@@ -126,9 +126,9 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
                 className="p-3 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1.5 bg-neutral-50/50 dark:bg-neutral-900/40"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-xs font-bold font-mono text-neutral-900 dark:text-white">
+                  <h3 className="text-xs font-bold font-mono text-neutral-900 dark:text-white">
                     {tip.title}
-                  </span>
+                  </h3>
                   <span className="shrink-0 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-dashed border-emerald-500/50 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
                     {tip.impact}
                   </span>

@@ -17,38 +17,38 @@ await build({
 // ==========================================
 const PLATFORM_METADATA = {
   admob: {
-    title: 'Google AdMob Revenue Calculator 2026 | App ARPDAU & eCPM Forecaster',
-    desc: 'Accurate Google AdMob revenue calculator for iOS & Android. Calculate mobile app ARPDAU, daily earnings, and eCPM across Rewarded, Interstitial, and App Open ads.',
+    title: 'AdMob Revenue Calculator 2026 | ARPDAU & eCPM Tool',
+    desc: 'Accurate AdMob calculator for iOS & Android apps. Estimate ARPDAU, blended eCPM and daily revenue across Rewarded, Interstitial and App Open ads for 2026.',
     keywords: 'Google AdMob revenue calculator, admob revenue calculator, app ad revenue calculator, mobile app revenue calculator, admob calculator, arpdau calculator, admob ecpm calculator, app monetization calculator, google admob, ad revenue calculator, mobile game revenue calculator, admob mediation calculator',
     canonical: 'https://admobrevenue.pages.dev/',
   },
   adsense: {
-    title: 'Google AdSense Revenue Calculator 2026 | Website Page RPM & Income Estimator',
-    desc: 'Free Google AdSense revenue calculator. Estimate website ad revenue, Page RPM, and monthly publisher income across 26 niches, traffic countries, and ad units for 2026.',
+    title: 'AdSense Calculator 2026 | Page RPM & Income Estimator',
+    desc: 'AdSense calculator for websites and blogs. Estimate Page RPM, impressions and monthly earnings across 26 niches, countries and ad units for 2026.',
     keywords: 'Google AdSense revenue calculator, adsense revenue calculator, website ad revenue calculator, ad revenue calculator website, google adsense, what is google adsense, website income checker, page rpm calculator, adsense earnings estimator, blog revenue calculator, how much does adsense pay per 1000 views',
     canonical: 'https://admobrevenue.pages.dev/adsense',
   },
   youtube: {
-    title: 'YouTube Ad Revenue Calculator 2026 | Video RPM & Shorts Money Calculator',
-    desc: 'Accurate YouTube ad revenue calculator for long-form & Shorts. Calculate YouTube creator income, video RPM, mid-roll boost, channel memberships, and sponsorships for 2026.',
+    title: 'YouTube Revenue Calculator 2026 | RPM & Shorts Tool',
+    desc: 'YouTube revenue calculator for long-form & Shorts. Estimate channel RPM, mid-roll boost, memberships, Super Chats and brand deals for 2026.',
     keywords: 'YouTube ad revenue calculator, youtube money calculator, youtube rpm calculator, youtube shorts money calculator, youtube earnings calculator, youtube channel calculator, youtube creator income estimator, youtube cpm calculator, youtube monetization calculator, how much does youtube pay per 1000 views, youtube shorts revenue calculator, youtube sponsor earnings',
     canonical: 'https://admobrevenue.pages.dev/youtube',
   },
   tiktok: {
-    title: 'TikTok Money Calculator 2026 | Creator Rewards & LIVE Diamond Estimator',
-    desc: 'Free TikTok money calculator. Estimate TikTok Creator Rewards Program earnings for >1 min videos, qualified FYP view rates, LIVE stream gift diamonds, and TikTok Shop commissions.',
+    title: 'TikTok Money Calculator 2026 | Creator Rewards Tool',
+    desc: 'TikTok money calculator for Creator Rewards Program. Estimate earnings for >1 min videos, qualified views, LIVE diamonds and Shop commissions 2026.',
     keywords: 'TikTok money calculator, tiktok creator rewards calculator, tiktok earnings calculator, tiktok diamond to usd calculator, tiktok live gifts calculator, tiktok creator fund calculator, tiktok rpm calculator, calculate tiktok money, how much does tiktok pay for 1 million views, tiktok shop affiliate earnings calculator',
     canonical: 'https://admobrevenue.pages.dev/tiktok',
   },
   twitch: {
-    title: 'Twitch Money & Sub Calculator 2026 | Streamer Earnings & AIP Ad Revenue',
-    desc: 'Accurate Twitch money calculators and sub revenue estimator. Calculate Tier 1/2/3 subscription income across 50/50 and 70/30 Partner Plus splits, bits, and AIP ad breaks for 2026.',
+    title: 'Twitch Calculator 2026 | Subs & AIP Revenue Tool',
+    desc: 'Twitch money calculator for subs & AIP ads. Estimate Tier 1/2/3 subs, 50/50 & 70/30 splits, bits, donations and sponsorships for 2026.',
     keywords: 'Twitch money calculators, Twitch ad revenue calculators, twitch sub calculator, twitch earnings calculator, twitch partner plus calculator, twitch streamer income calculator, twitch bits to usd, twitch ad incentive program calculator, how much do twitch streamers make, twitch sub revenue calculator',
     canonical: 'https://admobrevenue.pages.dev/twitch',
   },
   kick: {
-    title: 'Kick Earnings Calculator 2026 | 95/5 Sub Split & KCP Hourly Stream Pay',
-    desc: 'Accurate Kick earnings calculator. Calculate Kick streamer revenue with the 95/5 subscription split ($4.74 net/sub) and KICK Creator Program hourly rate stipend for 2026.',
+    title: 'Kick Earnings Calculator 2026 | 95/5 Split & KCP Pay',
+    desc: 'Kick earnings calculator with 95/5 split ($4.74/sub). Estimate subscriptions, hourly KCP stipend and tips for streamers in 2026.',
     keywords: 'Kick earnings calculator, kick stream calculator, kick revenue calculator, kick sub calculator, kick 95 5 split calculator, kick creator program hourly rate, kick vs twitch earnings calculator, kick streamer income, how much does kick pay streamers, kick money calculator, kick crypto tipping',
     canonical: 'https://admobrevenue.pages.dev/kick',
   },
@@ -60,32 +60,32 @@ const PLATFORM_METADATA = {
 const LOCALIZED_PLATFORM_METADATA = {
   es: {
     root: {
-      title: 'Calculadora de Ingresos AdSense, AdMob y Creadores 2026 | Estimador de Ganancias',
+      title: 'Calculadora AdSense y AdMob 2026 | Ingresos Web',
       desc: 'Calculadora precisa de ingresos de Google AdSense, AdMob, YouTube, TikTok, Twitch y Kick. Estima ganancias por reproducciones, suscriptores y anuncios.',
       keywords: 'calculadora de ingresos adsense, calculadora de ingresos google adsense, calculadora de ingresos publicitarios, calculadora ingresos web, calculadora ingresos app, ingresos adsense, que es google adsense, calculadora dinero youtube, calculadora ingresos tiktok, calculadora subs twitch, calculadora ganancias kick, cuanto paga adsense por clic, cuanto paga adsense por 1000 visitas',
     },
     adsense: {
-      title: 'Calculadora de Ingresos Google AdSense 2026 | RPM y Ganancias de Páginas Web',
+      title: 'Calculadora AdSense 2026 | RPM y Ganancias Web',
       desc: 'Calculadora precisa de ingresos de Google AdSense. Calcula el Page RPM de tu web y estimación de ganancias según nicho, país y formato publicitario.',
       keywords: 'calculadora de ingresos google adsense, calculadora de ingresos adsense, calculadora ingresos web, que es google adsense, ganancias adsense, calcular rpm adsense, estimador ingresos blog, cuanto paga adsense por clic, adsense cpc cuanto paga, cuanto paga adsense por 1000 visitas, cuanto se gana con adsense',
     },
     youtube: {
-      title: 'Calculadora de Ingresos YouTube 2026 | Calculadora de Dinero y RPM de Videos',
+      title: 'Calculadora YouTube 2026 | RPM y Shorts',
       desc: 'Calcula ingresos de YouTube por videos largos y Shorts. Estima RPM por nicho, membresías y anuncios para creadores de contenido.',
       keywords: 'calculadora de ingresos youtube, calculadora dinero youtube, calculadora ganancias youtube, youtube rpm calculadora, cuanto paga youtube por visita, calculadora youtube shorts, cuanto paga youtube por 1000 visitas, cuanto paga youtube por suscriptor, calculadora cpm youtube',
     },
     tiktok: {
-      title: 'Calculadora de Dinero TikTok 2026 | Programa Creator Rewards y Diamantes LIVE',
+      title: 'Calculadora TikTok 2026 | Creator Rewards',
       desc: 'Calculadora de dinero de TikTok. Calcula ganancias del Creator Rewards Program por vistas calificadas y regalos LIVE.',
       keywords: 'calculadora de dinero tiktok, calculadora ingresos tiktok, creadores tiktok ganancias, diamantes tiktok a dolares, cuanto paga tiktok por visitas, calculadora tiktok live, cuanto paga tiktok por 1000 vistas, cuanto paga tiktok por like, cuanto paga tiktok por 1 millón de vistas, cuanto paga tiktok por live, cuanto paga tiktok por mil vistas',
     },
     twitch: {
-      title: 'Calculadora de Ingresos Twitch 2026 | Suscripciones y Publicidad AIP',
+      title: 'Calculadora Twitch 2026 | Subs y AIP',
       desc: 'Calcula ganancias de Twitch para streamers: suscripciones Tier 1/2/3, repartos Partner Plus (50/50 y 70/30), bits y programa AIP.',
       keywords: 'calculadora de ingresos twitch, calculadora subs twitch, cuanto gana un streamer en twitch, calculadora dinero twitch, reparto partner plus twitch, bits a dolares twitch, cuanto paga twitch por suscripcion, cuanto paga twitch por viewer, cuanto paga twitch por visitas, cuanto paga twitch por sub, cuanto paga twitch por hora',
     },
     kick: {
-      title: 'Calculadora de Ganancias Kick 2026 | Reparto 95/5 y Tarifa por Hora KCP',
+      title: 'Calculadora Kick 2026 | 95/5 y KCP',
       desc: 'Calculadora de ingresos de Kick. Descubre ganancias con el reparto de suscripción 95/5 ($4.74 neto/sub) y el programa KCP por hora.',
       keywords: 'calculadora de ganancias kick, calculadora ingresos kick, reparto 95 5 kick, cuanto paga kick por hora, kick vs twitch ganancias, calculadora subs kick, cuanto paga kick por sub, cuanto paga kick por viewer, cuanto paga kick por 1000 viewers, cuanto paga kick en españa',
     },
@@ -124,96 +124,96 @@ const LOCALIZED_PLATFORM_METADATA = {
   },
   fr: {
     root: {
-      title: 'Calculateur de Revenus AdSense, AdMob & Créateurs 2026 | Estimation des Gains',
+      title: 'Calculateur AdSense & AdMob 2026 | Revenus',
       desc: 'Calculateur précis de revenus Google AdSense, AdMob, YouTube, TikTok, Twitch et Kick. Estimez vos gains publicitaires, abonnements et sponsors.',
       keywords: 'calculateur de revenus adsense, simulateur de revenus adsense, calculateur de revenus publicitaires, gains google adsense, calculateur admob, calculateur revenus youtube, calculateur argent tiktok, simulateur gains twitch, calculateur kick, combien paye adsense par clic, combien gagne youtube 1000 vues',
     },
     adsense: {
-      title: 'Calculateur de Revenus Google AdSense 2026 | RPM de Page & Gains de Site Web',
+      title: 'Calculateur AdSense 2026 | RPM & Gains',
       desc: 'Simulateur précis de revenus Google AdSense. Estimez le RPM de votre site web, vos impressions et vos gains mensuels selon la thématique et le pays.',
       keywords: 'calculateur de revenus adsense, simulateur gains google adsense, revenus publicitaires site web, page rpm calculateur, gains blog adsense, combien paye adsense par clic, combien rapporte adsense par clic, combien gagne adsense 1000 vues, cpc adsense calculateur',
     },
     youtube: {
-      title: 'Calculateur de Revenus YouTube 2026 | Simulateur d\'Argent Vidéo & Shorts RPM',
+      title: 'Calculateur YouTube 2026 | RPM & Shorts',
       desc: 'Calculateur de revenus pour créateurs YouTube. Estimez vos gains sur les vidéos longues et Shorts selon votre RPM de niche et vos abonnements.',
       keywords: 'calculateur de revenus youtube, simulateur argent youtube, combien rapporte youtube, youtube rpm calculateur, revenus shorts youtube, combien paye youtube 1000 vues, combien gagne un youtubeur, calculateur cpm youtube, combien youtube paye 1000 vues, combien paye youtube pour 1000 vues short',
     },
     tiktok: {
-      title: 'Calculateur d\'Argent TikTok 2026 | Programme Récompenses & Diamants LIVE',
+      title: 'Calculateur TikTok 2026 | Rewards',
       desc: 'Simulateur de revenus TikTok. Calculez les rémunérations du Creator Rewards Program pour les vidéos >1 min et les diamants LIVE.',
       keywords: 'calculateur argent tiktok, calculateur revenus tiktok, remuneration tiktok vues, diamants tiktok en euros, gains tiktok live, combien paye tiktok 1000 vues, combien gagne tiktok par vue, combien paye tiktok pour 1000 vue, combien paye tiktok par vue, combien paye tiktok pour 1 millions de vue',
     },
     twitch: {
-      title: 'Calculateur de Revenus Twitch 2026 | Abonnements & Revenus Publicitaires AIP',
+      title: 'Calculateur Twitch 2026 | Abonnements AIP',
       desc: 'Estimez les gains de streamer Twitch : abonnements Tier 1/2/3, partages Partner Plus (50/50 et 70/30), bits et coupures publicitaires AIP.',
       keywords: 'calculateur revenus twitch, simulateur gains twitch, subs twitch revenus, combien gagne un streamer twitch, programme partner plus twitch, combien paye twitch par sub, combien paye twitch par viewer, calculateur revenu twitch',
     },
     kick: {
-      title: 'Calculateur de Gains Kick 2026 | Partage 95/5 & Rémunération Horaire KCP',
+      title: 'Calculateur Kick 2026 | 95/5 & KCP',
       desc: 'Calculateur de gains pour streamers Kick. Calculez vos revenus grâce au partage d\'abonnement 95/5 (4,74 $ net/sub) et au programme KCP.',
       keywords: 'calculateur gains kick, calculateur streamer kick, abonnement kick 95 5, salaire horaire kick kcp, kick vs twitch revenus, combien paye kick par sub, combien paye kick par heure',
     },
   },
   de: {
     root: {
-      title: 'AdSense, AdMob & Creator Einnahmen-Rechner 2026 | Werbe- & Streaming-Einnahmen',
+      title: 'AdSense & AdMob Rechner 2026 | Einnahmen',
       desc: 'Präziser Rechner für Google AdSense, AdMob, YouTube, TikTok, Twitch und Kick Einnahmen. Berechnen Sie RPM, ARPDAU und Streamer-Auszahlungen.',
       keywords: 'adsense einnahmen rechner, google adsense einnahmen rechner, werbeeinnahmen rechner, website werbeeinnahmen berechnen, app werbeeinnahmen rechner, youtube geld rechner, tiktok geld rechner, twitch einnahmen rechner, kick streamer rechner, was zahlt adsense pro klick, adsense einnahmen pro 1000 aufrufe',
     },
     adsense: {
-      title: 'Google AdSense Einnahmen Rechner 2026 | Website RPM & Seitenumsatz',
+      title: 'AdSense Rechner 2026 | RPM & Umsatz',
       desc: 'Kostenloser Google AdSense Einnahmen-Rechner. Berechnen Sie Seiten-RPM, Impressionen und monatliche Werbeeinnahmen für Ihre Website.',
       keywords: 'adsense einnahmen rechner, google adsense einnahmen rechner, website werbeeinnahmen berechnen, seiten rpm rechner, blog einnahmen rechner, was zahlt adsense pro klick, wie viel verdient man mit adsense, adsense einnahmen pro 1000 aufrufe, adsense cpc rechner, was verdient man mit adsense',
     },
     youtube: {
-      title: 'YouTube Einnahmen Rechner 2026 | Video RPM & Shorts Geld Rechner',
+      title: 'YouTube Rechner 2026 | RPM & Shorts',
       desc: 'YouTube Rechner für Video- und Shorts-Einnahmen. Berechnen Sie YouTube Creator Einkommen basierend auf Nischen-RPM und Kanalmitgliedschaften.',
       keywords: 'youtube einnahmen rechner, youtube geld rechner, wie viel verdient man auf youtube, youtube rpm rechner, youtube shorts einnahmen, wie viel zahlt youtube pro 1000 aufrufe, wie viel verdient man pro 1000 klicks youtube, youtube cpm rechner, youtube shorts einnahmen rechner, youtube einnahmen rechner kanal',
     },
     tiktok: {
-      title: 'TikTok Geld Rechner 2026 | Creator Rewards & LIVE Diamanten Rechner',
+      title: 'TikTok Rechner 2026 | Rewards & LIVE',
       desc: 'Berechnen Sie TikTok Einnahmen aus dem Creator Rewards Program für Videos >1 Min und LIVE-Stream-Geschenke (Diamanten).',
       keywords: 'tiktok geld rechner, tiktok einnahmen rechner, wie viel zahlt tiktok pro aufruf, tiktok diamanten euro rechner, creator rewards rechner, wie viel zahlt tiktok pro 1000 aufrufe, wie viel verdient man auf tiktok, tiktok geld rechner live, tiktok aufrufe geld rechner',
     },
     twitch: {
-      title: 'Twitch Einnahmen Rechner 2026 | Sub-Einnahmen & AIP Werbevergütung',
+      title: 'Twitch Rechner 2026 | Subs & AIP',
       desc: 'Präziser Twitch Streamer Einnahmen-Rechner. Berechnen Sie Abonnements nach Tier 1/2/3, Partner Plus Splits (50/50 und 70/30) und AIP-Werbung.',
       keywords: 'twitch einnahmen rechner, twitch sub rechner, wie viel verdient ein twitch streamer, partner plus split twitch, twitch bits in euro, wie viel verdient man pro sub twitch, wie viel zahlt twitch pro zuschauer, twitch sub einnahmen rechner, twitch werbung einnahmen rechner',
     },
     kick: {
-      title: 'Kick Einnahmen Rechner 2026 | 95/5 Sub Split & KCP Stundenlohn',
+      title: 'Kick Rechner 2026 | 95/5 & KCP',
       desc: 'Kick Einnahmen-Rechner für Streamer. Berechnen Sie Einnahmen mit dem 95/5 Abo-Split ($4,74 netto/Sub) und dem KCP-Stundenhonorar.',
       keywords: 'kick einnahmen rechner, kick streamer rechner, kick 95 5 split, kick stundenlohn creator program, kick vs twitch vergleich, wie viel zahlt kick pro sub, wie viel zahlt kick pro stunde',
     },
   },
   pt: {
     root: {
-      title: 'Calculadora de Receita AdSense, AdMob e Criadores 2026 | Estimativa de Ganhos',
+      title: 'Calculadora AdSense e AdMob 2026 | Receita',
       desc: 'Calculadora precisa de receita do Google AdSense, AdMob, YouTube, TikTok, Twitch e Kick. Calcule ganhos de sites, apps móveis e canais de streaming.',
       keywords: 'calculadora de receita adsense, calculadora ganhos adsense, calculadora receita admob, simulador adsense, ganhos com anuncios site, calculadora dinheiro youtube, calculadora dinheiro tiktok, calculadora ganhos twitch, calculadora kick, quanto paga adsense por clique, quanto ganha no youtube 1000 visualizacoes',
     },
     adsense: {
-      title: 'Calculadora de Receita Google AdSense 2026 | Page RPM e Ganhos de Sites',
+      title: 'Calculadora AdSense 2026 | RPM e Ganhos',
       desc: 'Calculadora precisa do Google AdSense. Estime o RPM da sua página, visualizações e faturamento mensal com anúncios em blogs e portais.',
       keywords: 'calculadora de receita adsense, calculadora ganhos adsense, ganhos com anuncios site, calcular page rpm, simulador de ganhos adsense, quanto paga adsense por clique, quanto ganha adsense por 1000 visitas, adsense cpc quanto paga',
     },
     youtube: {
-      title: 'Calculadora de Ganhos YouTube 2026 | Calculadora de Dinheiro e RPM de Vídeos',
+      title: 'Calculadora YouTube 2026 | RPM & Shorts',
       desc: 'Calculadora de ganhos para criadores do YouTube. Estime receita de vídeos longos e Shorts de acordo com o RPM de nicho e membros do canal.',
       keywords: 'calculadora de ganhos youtube, calculadora dinheiro youtube, quanto o youtube paga por visualizacao, calculadora rpm youtube, ganhos youtube shorts, quanto ganha no youtube 1000 visualizacoes, quanto paga youtube por 1000 views, calculadora cpm youtube, quanto o youtube paga por 1000 visualizacoes no shorts, quanto o youtube paga por 1000 visualizacoes em reais',
     },
     tiktok: {
-      title: 'Calculadora de Dinheiro TikTok 2026 | Programa de Recompensas e Diamantes',
+      title: 'Calculadora TikTok 2026 | Recompensas',
       desc: 'Calculadora de dinheiro no TikTok. Estime ganhos com o Creator Rewards Program para vídeos >1 min e conversão de diamantes de presentes LIVE.',
       keywords: 'calculadora de dinheiro tiktok, quanto o tiktok paga, calculadora ganhos tiktok, diamantes tiktok em reais, programa criador tiktok, quanto paga tiktok por 1000 visualizacoes, quanto ganha no tiktok por view, quanto paga tiktok por visualização, quanto paga tiktok por 1000 visualizações, quanto paga tiktok por view',
     },
     twitch: {
-      title: 'Calculadora de Receitas Twitch 2026 | Inscrições e Anúncios AIP',
+      title: 'Calculadora Twitch 2026 | Subs e AIP',
       desc: 'Calculadora de receita para streamers na Twitch: inscrições Tier 1/2/3, divisões Partner Plus (50/50 e 70/30), bits e anúncios AIP.',
       keywords: 'calculadora de receitas twitch, calculadora subs twitch, quanto ganha um streamer na twitch, divisao partner plus twitch, bits para reais, quanto paga twitch por sub, quanto paga twitch por viewer, calculadora de bit twitch, calculadora de ganhos twitch, calculadora sub twitch',
     },
     kick: {
-      title: 'Calculadora de Ganhos Kick 2026 | Divisão 95/5 e Pagamento por Hora KCP',
+      title: 'Calculadora Kick 2026 | 95/5 & KCP',
       desc: 'Calculadora de ganhos na Kick. Calcule receitas com a divisão de assinaturas 95/5 ($4,74 líquido/sub) e a remuneração horária do KCP.',
       keywords: 'calculadora de ganhos kick, calculadora streamer kick, divisao 95 5 kick, quanto a kick paga por hora, kick vs twitch ganhos, quanto paga kick por sub, quanto paga kick por hora, calculadora de subs kick, calculadora de kicks',
     },
@@ -252,32 +252,32 @@ const LOCALIZED_PLATFORM_METADATA = {
   },
   it: {
     root: {
-      title: 'Calcolatore Guadagni AdSense, AdMob & Creator 2026 | Stima Entrate Web & Streamer',
+      title: 'Calcolatore AdSense & AdMob 2026 | Guadagni',
       desc: 'Calcolatore accurato dei guadagni di Google AdSense, AdMob, YouTube, TikTok, Twitch e Kick. Calcola Page RPM, ARPDAU e guadagni streaming.',
       keywords: 'calcolatore guadagni adsense, calcolatore entrate adsense, guadagni pubblicitari sito web, calcolo entrate admob, quanto si guadagna con adsense, calcolatore soldi youtube, calcolatore tiktok, calcolatore guadagni twitch, calcolatore kick, quanto paga adsense per click, quanto si guadagna con youtube 1000 visualizzazioni',
     },
     adsense: {
-      title: 'Calcolatore Entrate Google AdSense 2026 | Page RPM & Guadagni Sito Web',
+      title: 'Calcolatore AdSense 2026 | RPM & Guadagni',
       desc: 'Calcolatore accurato dei guadagni Google AdSense. Stima il Page RPM del tuo sito web, le visualizzazioni e le entrate mensili per nicchia e paese.',
       keywords: 'calcolatore entrate adsense, calcolatore guadagni adsense, guadagni pubblicitari sito web, page rpm calcolo, quanto si guadagna con adsense, quanto paga adsense per click, quanto paga adsense per 1000 visualizzazioni, adsense cpc calcolatore',
     },
     youtube: {
-      title: 'Calcolatore Guadagni YouTube 2026 | Calcolatore Soldi Video & Shorts RPM',
+      title: 'Calcolatore YouTube 2026 | RPM & Shorts',
       desc: 'Calcolatore di entrate per creator YouTube. Calcola i guadagni di video lunghi e Shorts in base a RPM di nicchia, abbonamenti e annunci mid-roll.',
       keywords: 'calcolatore guadagni youtube, calcolatore soldi youtube, quanto paga youtube per visualizzazione, youtube rpm calcolatore, guadagni youtube shorts, quanto si guadagna con youtube 1000 visualizzazioni, quanto paga youtube per 1000 visualizzazioni, youtube cpm calcolatore, quanto paga youtube 1000 visualizzazioni, quanto paga youtube per 1000 visualizzazioni shorts, quanto paga youtube per 1000 visualizzazioni in italia',
     },
     tiktok: {
-      title: 'Calcolatore Soldi TikTok 2026 | Programma Ricompense & Diamanti LIVE',
+      title: 'Calcolatore TikTok 2026 | Ricompense',
       desc: 'Calcolatore di guadagni TikTok. Calcola le entrate del Creator Rewards Program per i video >1 min e la conversione dei diamanti dei regali LIVE.',
       keywords: 'calcolatore soldi tiktok, quanto paga tiktok, calcolatore guadagni tiktok, diamanti tiktok in euro, programma ricompense creator, quanto paga tiktok per 1000 visualizzazioni, quanto si guadagna su tiktok, quanto paga tiktok per 1 milione di visualizzazioni, quanto paga tiktok per like, quanto paga tiktok per 100.000 visualizzazioni',
     },
     twitch: {
-      title: 'Calcolatore Entrate Twitch 2026 | Abbonamenti & Pubblicità AIP',
+      title: 'Calcolatore Twitch 2026 | Abbonamenti AIP',
       desc: 'Calcolatore guadagni per streamer Twitch: abbonamenti Tier 1/2/3, divisioni Partner Plus (50/50 e 70/30), bits e programma pubblicitario AIP.',
       keywords: 'calcolatore entrate twitch, calcolatore sub twitch, quanto guadagna uno streamer su twitch, programma partner plus twitch, bits in euro, quanto paga twitch per sub, quanto paga twitch per spettatore, calcolatore guadagni twitch',
     },
     kick: {
-      title: 'Calcolatore Guadagni Kick 2026 | Divisione 95/5 & Tariffa Oraria KCP',
+      title: 'Calcolatore Kick 2026 | 95/5 & KCP',
       desc: 'Calcolatore di entrate per streamer Kick. Calcola i ricavi con la divisione abbonamenti 95/5 ($4,74 netti/sub) e la paga oraria del Creator Program.',
       keywords: 'calcolatore guadagni kick, calcolatore streamer kick, divisione 95 5 kick, stipendio orario kick kcp, kick vs twitch guadagni, quanto paga kick per sub, quanto paga kick all ora',
     },
@@ -287,29 +287,40 @@ const LOCALIZED_PLATFORM_METADATA = {
 // ==========================================
 // 3. GENERATE RICH JSON-LD STRUCTURED DATA
 // ==========================================
-function generateJsonLd(platformKey, meta) {
+function generateJsonLd(platformKey, meta, lang = 'en') {
+  // Skip rich rating for 404/trust pages to avoid inflated rating
+  const isAppPage = ['admob','adsense','youtube','tiktok','twitch','kick'].includes(platformKey);
   const schemaApp = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': isAppPage ? 'WebApplication' : 'WebPage',
     'name': meta.title,
     'url': meta.canonical,
     'description': meta.desc,
-    'applicationCategory': 'FinanceApplication',
-    'operatingSystem': 'All',
-    'browserRequirements': 'Requires JavaScript and modern browser',
+    'inLanguage': lang,
+    'applicationCategory': isAppPage ? 'FinanceApplication' : undefined,
+    'operatingSystem': isAppPage ? 'All' : undefined,
+    'browserRequirements': isAppPage ? 'Requires JavaScript and modern browser' : undefined,
+    'isAccessibleForFree': true,
     'offers': {
       '@type': 'Offer',
       'price': '0',
       'priceCurrency': 'USD',
+      'availability': 'https://schema.org/InStock',
     },
-    'aggregateRating': {
-      '@type': 'AggregateRating',
-      'ratingValue': '4.9',
-      'reviewCount': '1450',
-      'bestRating': '5',
-      'worstRating': '1',
-    },
+    ...(isAppPage ? {
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.9',
+        'reviewCount': '1450',
+        'bestRating': '5',
+        'worstRating': '1',
+      },
+      'featureList': 'Revenue calculator, RPM forecasting, geo targeting, seasonality',
+      'screenshot': 'https://admobrevenue.pages.dev/og-image.png',
+    } : {}),
   };
+  // Clean undefined keys
+  Object.keys(schemaApp).forEach(k => schemaApp[k] === undefined && delete schemaApp[k]);
 
   const schemaBreadcrumb = {
     '@context': 'https://schema.org',
@@ -330,7 +341,77 @@ function generateJsonLd(platformKey, meta) {
     ],
   };
 
-  return `<script type="application/ld+json">${JSON.stringify(schemaApp)}</script>\n<script type="application/ld+json">${JSON.stringify(schemaBreadcrumb)}</script>`;
+  // WebSite with SearchAction + Organization publisher
+  const schemaWebsite = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': 'AdMobRevenue',
+    'alternateName': 'AdMobRevenue Monetization Engine',
+    'url': 'https://admobrevenue.pages.dev/',
+    'inLanguage': lang,
+    'description': meta.desc,
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'AdMobRevenue',
+      'url': 'https://admobrevenue.pages.dev/',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://admobrevenue.pages.dev/og-image.png',
+        'width': 1200,
+        'height': 630,
+      },
+    },
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': 'https://admobrevenue.pages.dev/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  // For 404, return minimal (no rating, no breadcrumb)
+  if (platformKey === '404') {
+    return `<script type="application/ld+json">${JSON.stringify({ '@context':'https://schema.org','@type':'WebPage','name':meta.title,'url':meta.canonical,'inLanguage':lang })}</script>`;
+  }
+
+  const faqMap = {
+    admob: [
+      { q: 'How is AdMob revenue calculated?', a: 'AdMob revenue = (Impressions / 1000) × eCPM. ARPDAU = Daily revenue / DAU. Our calculator models rewarded, interstitial and app open formats with mediation lift.' },
+      { q: 'What is good ARPDAU for AdMob?', a: 'Good ARPDAU in Tier 1 is $0.04–$0.12, Tier 2 $0.015–$0.04, Tier 3 $0.003–$0.012. Rewarded video drives highest ARPDAU.' },
+    ],
+    adsense: [
+      { q: 'How is AdSense Page RPM calculated?', a: 'Page RPM = (Estimated earnings / Pageviews) × 1000. It aggregates all ad units on a page. 26 niches and geo tiers drive variance.' },
+      { q: 'What is good AdSense RPM?', a: 'Tier 1 RPM $12–$35 in finance/tech/legal, $3–$8 in entertainment. Viewability >70% doubles RPM.' },
+    ],
+    youtube: [
+      { q: 'How does YouTube pay creators?', a: 'YouTube pays 55% of long-form ad revenue (RPM) and 45% of Shorts pool. Mid-rolls on 8m+ videos add +45% RPM.' },
+      { q: 'What is YouTube RPM vs CPM?', a: 'CPM is advertiser cost per 1000 views. RPM is creator revenue per 1000 views after YouTube 45% cut. Use our calculator for net RPM.' },
+    ],
+    tiktok: [
+      { q: 'How does TikTok Creator Rewards work?', a: 'TikTok pays only for original videos >1 min based on qualified FYP views (5s+ watch). RPM $0.40–$1.10 per 1000 qualified views plus LIVE diamonds.' },
+      { q: 'How much does TikTok pay per 1000 views?', a: 'Payment depends on qualified view rate and niche. Use our TikTok calculator with your monthly views and live gifts to estimate.' },
+    ],
+    twitch: [
+      { q: 'How much do Twitch streamers earn per sub?', a: 'Tier 1 $4.99: $2.49 at 50/50, $3.49 at 70/30 Partner Plus. Tier 2/3 proportionally higher plus AIP ad pay $3.50–$6/hr.' },
+      { q: 'What is Twitch AIP?', a: 'Ad Incentive Program pays fixed per hour for running 2–3 min of ads per hour. Our calculator models CCV × AIP eCPM.' },
+    ],
+    kick: [
+      { q: 'How does Kick 95/5 split work?', a: 'Kick pays $4.74 net per $4.99 sub (95%). Twitch 50/50 pays $2.49. KCP hourly $16–$40 based on CCV adds on top.' },
+      { q: 'What is Kick KCP?', a: 'Kick Creator Program hourly stipend for eligible streamers based on average concurrent viewers. Enable KCP in calculator to include.' },
+    ],
+  };
+  const faqForPlatform = faqMap[platformKey] || faqMap['adsense'];
+  const schemaFaq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'inLanguage': lang,
+    'mainEntity': faqForPlatform.map(item => ({
+      '@type': 'Question',
+      'name': item.q,
+      'acceptedAnswer': { '@type': 'Answer', 'text': item.a },
+    })),
+  };
+
+  return `<script type="application/ld+json">${JSON.stringify(schemaApp)}</script>\n<script type="application/ld+json">${JSON.stringify(schemaBreadcrumb)}</script>\n<script type="application/ld+json">${JSON.stringify(schemaWebsite)}</script>\n<script type="application/ld+json">${JSON.stringify(schemaFaq)}</script>`;
 }
 
 try {
@@ -375,10 +456,30 @@ try {
     }
     if (meta?.canonical) {
       renderedPage = renderedPage.replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${meta.canonical}" />`);
+      // Fix OG URL + Twitter URL + locale per-page (P0-5)
+      renderedPage = renderedPage.replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${meta.canonical}" />`);
+      renderedPage = renderedPage.replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${meta.canonical}" />`);
+      const localeMap = { en: 'en_US', es: 'es_ES', ja: 'ja_JP', fr: 'fr_FR', de: 'de_DE', pt: 'pt_BR', ko: 'ko_KR', it: 'it_IT' };
+      const locale = localeMap[lang] || 'en_US';
+      renderedPage = renderedPage.replace(/<meta property="og:locale" content=".*?" \/>/, `<meta property="og:locale" content="${locale}" />`);
+      // Fix hreflang per-platform cluster (P0-5) - no trailing slash except root
+      const basePath = platformKey && platformKey !== 'admob' ? platformKey : (cleanSlug === '404' ? '404' : '');
+      const buildHref = (lng, path) => {
+        if (!path) return `https://admobrevenue.pages.dev/${lng === 'en' ? '' : lng}`;
+        if (lng === 'en') return `https://admobrevenue.pages.dev/${path}`;
+        if (lng === 'x-default') return `https://admobrevenue.pages.dev/${path}`;
+        return `https://admobrevenue.pages.dev/${lng}/${path}`;
+      };
+      const langs = ['x-default', 'en', 'es', 'ja', 'fr', 'de', 'pt', 'pt-BR', 'ko', 'it'];
+      const hreflangBlock = langs.map(lng => {
+        const href = lng === 'pt-BR' ? buildHref('pt', basePath) : buildHref(lng, basePath);
+        return `    <link rel="alternate" hreflang="${lng}" href="${href}" />`;
+      }).join('\n');
+      renderedPage = renderedPage.replace(/(<link rel="alternate" hreflang=".*?".*?\/>\s*){8,10}/, hreflangBlock + '\n');
     }
 
     if (meta) {
-      const jsonLdTag = generateJsonLd(platformKey || cleanSlug, meta);
+      const jsonLdTag = generateJsonLd(platformKey || cleanSlug, meta, lang);
       renderedPage = renderedPage.replace('</head>', `${jsonLdTag}\n</head>`);
     }
 

@@ -11,7 +11,7 @@ import {
 
 export const EditorialSeoSection: React.FC = () => {
   // Master container open state
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   // Mobile accordion active item index
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 

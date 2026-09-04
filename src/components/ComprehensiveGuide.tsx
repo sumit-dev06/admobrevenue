@@ -11,7 +11,7 @@ import {
 
 export const ComprehensiveGuide = React.memo(() => {
   // Master container toggle
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   // Mobile accordion active item index
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
@@ -97,9 +97,9 @@ export const ComprehensiveGuide = React.memo(() => {
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
+              <h2 className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
                 2026 In-Depth Publisher & Creator Monetization Guide
-              </span>
+              </h2>
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 uppercase font-mono">
                 Guide
               </span>
@@ -149,9 +149,9 @@ export const ComprehensiveGuide = React.memo(() => {
                     <div className="flex items-center gap-2 min-w-0">
                       <Icon className={`w-4 h-4 shrink-0 ${guide.iconColor}`} />
                       <div className="truncate">
-                        <span className="font-bold text-xs text-neutral-900 dark:text-white">
+                        <h3 className="font-bold text-xs text-neutral-900 dark:text-white">
                           {guide.title}
-                        </span>
+                        </h3>
                       </div>
                     </div>
                     <ChevronDown
@@ -199,9 +199,9 @@ export const ComprehensiveGuide = React.memo(() => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <IconComponent className={`w-4 h-4 ${guide.iconColor}`} />
-                        <span className="font-bold text-neutral-900 dark:text-white text-xs">
+                        <h3 className="font-bold text-neutral-900 dark:text-white text-xs">
                           {guide.title}
-                        </span>
+                        </h3>
                       </div>
                     </div>
                     <span className="inline-block text-[9px] font-mono uppercase px-2 py-0.5 rounded border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">

@@ -27,13 +27,14 @@ import { MobileStickyBar } from "./components/MobileStickyBar";
 import { PwaInstallBanner } from "./components/PwaInstallBanner";
 import { Footer } from "./components/Footer";
 
-// Lazy load heavy components for maximum Lighthouse & Core Web Vitals speed
-const OptimizationTips = lazy(() => import("./components/OptimizationTips").then(m => ({ default: m.OptimizationTips })));
-const FormulaDeepDive = lazy(() => import("./components/FormulaDeepDive").then(m => ({ default: m.FormulaDeepDive })));
-const EditorialSeoSection = lazy(() => import("./components/EditorialSeoSection").then(m => ({ default: m.EditorialSeoSection })));
-const SeoFaqSection = lazy(() => import("./components/SeoFaqSection").then(m => ({ default: m.SeoFaqSection })));
-const ComprehensiveGuide = lazy(() => import("./components/ComprehensiveGuide").then(m => ({ default: m.ComprehensiveGuide })));
-const GlossarySection = lazy(() => import("./components/GlossarySection").then(m => ({ default: m.GlossarySection })));
+// SEO-critical sections: eager for SSR crawlability (H2s must be in HTML)
+import { OptimizationTips } from "./components/OptimizationTips";
+import { FormulaDeepDive } from "./components/FormulaDeepDive";
+import { EditorialSeoSection } from "./components/EditorialSeoSection";
+import { SeoFaqSection } from "./components/SeoFaqSection";
+import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
+import { GlossarySection } from "./components/GlossarySection";
+// Lazy remaining heavy below-the-fold / modals for performance
 const YouTubeCalculator = lazy(() => import("./components/YouTubeCalculator").then(m => ({ default: m.YouTubeCalculator })));
 const TikTokCalculator = lazy(() => import("./components/TikTokCalculator").then(m => ({ default: m.TikTokCalculator })));
 const TwitchCalculator = lazy(() => import("./components/TwitchCalculator").then(m => ({ default: m.TwitchCalculator })));
@@ -737,29 +738,8 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
   const heroInfo = getPlatformHeroInfo();
 
-  // Dynamic JSON-LD schema for active calculator
-  const platformSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": `${heroInfo.title} | AdMobRevenue Monetization Engine`,
-    "url": typeof window !== "undefined" ? window.location.href : "https://admobrevenue.pages.dev/",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "description": heroInfo.subtitle,
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-950 font-sans transition-colors duration-150">
-      {/* Dynamic SEO JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(platformSchema) }}
-      />
 
       {/* Toast Notification */}
       {toastMessage && (

@@ -15,7 +15,7 @@ export const GLOSSARY_TERMS = [
 
 export const GlossarySection: React.FC = () => {
   // Collapsed (off) by default
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [search, setSearch] = useState("");
 
   const filtered = GLOSSARY_TERMS.filter(
@@ -39,9 +39,9 @@ export const GlossarySection: React.FC = () => {
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
+              <h2 className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
                 Monetization Glossary & Terminology
-              </span>
+              </h2>
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 uppercase font-mono">
                 Dictionary
               </span>
@@ -87,9 +87,9 @@ export const GlossarySection: React.FC = () => {
                 key={item.term}
                 className="p-3 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 space-y-1 bg-neutral-50/30 dark:bg-neutral-900/40"
               >
-                <div className="text-xs font-mono font-bold text-neutral-950 dark:text-white">
+                <h3 className="text-xs font-mono font-bold text-neutral-950 dark:text-white">
                   {item.term}
-                </div>
+                </h3>
                 <div className="text-[11px] font-mono text-neutral-500 leading-relaxed">
                   {item.def}
                 </div>

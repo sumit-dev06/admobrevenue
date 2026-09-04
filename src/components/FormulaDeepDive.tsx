@@ -11,7 +11,7 @@ import {
 
 export const FormulaDeepDive: React.FC = () => {
   // Master container toggle
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   // Mobile accordion active item index
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
@@ -91,9 +91,9 @@ export const FormulaDeepDive: React.FC = () => {
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
+              <h2 className="text-xs sm:text-sm font-bold uppercase text-neutral-900 dark:text-white truncate">
                 Monetization Mathematical Formulas & Algorithms
-              </span>
+              </h2>
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 uppercase font-mono">
                 Math
               </span>
@@ -142,9 +142,9 @@ export const FormulaDeepDive: React.FC = () => {
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <Icon className={`w-4 h-4 shrink-0 ${card.color}`} />
-                      <span className="font-bold text-xs text-neutral-900 dark:text-white truncate">
+                      <h3 className="font-bold text-xs text-neutral-900 dark:text-white truncate">
                         {card.title}
-                      </span>
+                      </h3>
                     </div>
                     <ChevronDown
                       className={`w-3.5 h-3.5 shrink-0 text-neutral-400 transition-transform duration-200 ${
@@ -185,9 +185,9 @@ export const FormulaDeepDive: React.FC = () => {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <IconComponent className={`w-4 h-4 ${card.color}`} />
-                      <span className="font-bold text-neutral-900 dark:text-white text-xs">
+                      <h3 className="font-bold text-neutral-900 dark:text-white text-xs">
                         {card.title}
-                      </span>
+                      </h3>
                     </div>
 
                     <div className="p-2.5 rounded-lg bg-white dark:bg-neutral-950 font-mono text-[11px] text-neutral-900 dark:text-neutral-100 font-semibold border border-dashed border-neutral-200 dark:border-neutral-800">

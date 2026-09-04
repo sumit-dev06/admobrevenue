@@ -28,11 +28,6 @@ export const LanguageProvider: React.FC<{
         return firstSegment;
       }
 
-      const searchParams = new URLSearchParams(window.location.search);
-      const urlLang = searchParams.get("lang") as SupportedLanguage;
-      if (urlLang && SUPPORTED_LANGUAGES.some((l) => l.code === urlLang)) {
-        return urlLang;
-      }
       const savedLang = localStorage.getItem("adrev_language") as SupportedLanguage;
       if (savedLang && SUPPORTED_LANGUAGES.some((l) => l.code === savedLang)) {
         return savedLang;
@@ -57,13 +52,27 @@ export const LanguageProvider: React.FC<{
     });
     if (typeof window !== "undefined") {
       localStorage.setItem("adrev_language", newLang);
-      const url = new URL(window.location.href);
-      if (newLang === "en") {
-        url.searchParams.delete("lang");
+      // No ?lang= URL param - use subdirectory /{lang} canonical via navigation
+      // Preserve current platform path when switching language
+      const currentPath = window.location.pathname;
+      const segments = currentPath.split("/").filter(Boolean);
+      const validPlatforms = ["adsense", "youtube", "tiktok", "twitch", "kick"];
+      const currentPlat = segments.find((s) => validPlatforms.includes(s.toLowerCase()));
+      let newPath = "/";
+      if (newLang !== "en") {
+        newPath = currentPlat ? `/${newLang}/${currentPlat}` : `/${newLang}`;
       } else {
-        url.searchParams.set("lang", newLang);
+        newPath = currentPlat ? `/${currentPlat}` : "/";
       }
-      window.history.replaceState({}, "", url.toString());
+      // Only push if path actually changes and not already correct lang prefix
+      const firstSeg = segments[0];
+      const isAlreadyLangPrefix = SUPPORTED_LANGUAGES.some((l) => l.code === firstSeg);
+      const expectedFirst = newLang === "en" ? (currentPlat || null) : newLang;
+      const currentFirst = firstSeg || null;
+      if (expectedFirst !== currentFirst) {
+        // Use replaceState to avoid duplicate history, keep SEO clean (no ?lang=)
+        window.history.pushState({}, "", newPath + window.location.search.replace(/[?&]lang=[^&]*/g, "").replace(/^\?$/, ""));
+      }
       document.documentElement.lang = newLang;
     }
   };
@@ -71,6 +80,15 @@ export const LanguageProvider: React.FC<{
   const currentLanguageInfo =
     SUPPORTED_LANGUAGES.find((l) => l.code === language) || SUPPORTED_LANGUAGES[0];
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+
+  // Clean legacy ?lang= param from URL (SEO duplicate) if present
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.search.includes("lang=")) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("lang");
+      window.history.replaceState({}, "", url.pathname + (url.search ? "?" + url.searchParams.toString() : "") + url.hash);
+    }
+  }, []);
 
   // Refine language via IP geolocation if it differs from timezone guess and user hasn't manually chosen
   useEffect(() => {
