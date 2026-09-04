@@ -4,7 +4,7 @@ import { SupportedLanguage } from "../i18n/types";
 
 export const Footer = React.memo(() => {
   const { t, language, setLanguage, supportedLanguages } = useTranslation();
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://admobrevenue.pages.dev/';
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://realtools.store/';
   
   return (
     <footer className="border-t border-dashed border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 py-12 transition-colors text-xs font-mono mt-12">

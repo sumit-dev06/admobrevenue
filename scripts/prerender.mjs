@@ -20,37 +20,37 @@ const PLATFORM_METADATA = {
     title: 'AdMob Revenue Calculator 2026 | ARPDAU & eCPM Tool',
     desc: 'Accurate AdMob calculator for iOS & Android apps. Estimate ARPDAU, blended eCPM and daily revenue across Rewarded, Interstitial and App Open ads for 2026.',
     keywords: 'Google AdMob revenue calculator, admob revenue calculator, app ad revenue calculator, mobile app revenue calculator, admob calculator, arpdau calculator, admob ecpm calculator, app monetization calculator, google admob, ad revenue calculator, mobile game revenue calculator, admob mediation calculator',
-    canonical: 'https://admobrevenue.pages.dev/',
+    canonical: 'https://realtools.store/',
   },
   adsense: {
     title: 'AdSense Calculator 2026 | Page RPM & Income Estimator',
     desc: 'AdSense calculator for websites and blogs. Estimate Page RPM, impressions and monthly earnings across 26 niches, countries and ad units for 2026.',
     keywords: 'Google AdSense revenue calculator, adsense revenue calculator, website ad revenue calculator, ad revenue calculator website, google adsense, what is google adsense, website income checker, page rpm calculator, adsense earnings estimator, blog revenue calculator, how much does adsense pay per 1000 views',
-    canonical: 'https://admobrevenue.pages.dev/adsense',
+    canonical: 'https://realtools.store/adsense',
   },
   youtube: {
     title: 'YouTube Revenue Calculator 2026 | RPM & Shorts Tool',
     desc: 'YouTube revenue calculator for long-form & Shorts. Estimate channel RPM, mid-roll boost, memberships, Super Chats and brand deals for 2026.',
     keywords: 'YouTube ad revenue calculator, youtube money calculator, youtube rpm calculator, youtube shorts money calculator, youtube earnings calculator, youtube channel calculator, youtube creator income estimator, youtube cpm calculator, youtube monetization calculator, how much does youtube pay per 1000 views, youtube shorts revenue calculator, youtube sponsor earnings',
-    canonical: 'https://admobrevenue.pages.dev/youtube',
+    canonical: 'https://realtools.store/youtube',
   },
   tiktok: {
     title: 'TikTok Money Calculator 2026 | Creator Rewards Tool',
     desc: 'TikTok money calculator for Creator Rewards Program. Estimate earnings for >1 min videos, qualified views, LIVE diamonds and Shop commissions 2026.',
     keywords: 'TikTok money calculator, tiktok creator rewards calculator, tiktok earnings calculator, tiktok diamond to usd calculator, tiktok live gifts calculator, tiktok creator fund calculator, tiktok rpm calculator, calculate tiktok money, how much does tiktok pay for 1 million views, tiktok shop affiliate earnings calculator',
-    canonical: 'https://admobrevenue.pages.dev/tiktok',
+    canonical: 'https://realtools.store/tiktok',
   },
   twitch: {
     title: 'Twitch Calculator 2026 | Subs & AIP Revenue Tool',
     desc: 'Twitch money calculator for subs & AIP ads. Estimate Tier 1/2/3 subs, 50/50 & 70/30 splits, bits, donations and sponsorships for 2026.',
     keywords: 'Twitch money calculators, Twitch ad revenue calculators, twitch sub calculator, twitch earnings calculator, twitch partner plus calculator, twitch streamer income calculator, twitch bits to usd, twitch ad incentive program calculator, how much do twitch streamers make, twitch sub revenue calculator',
-    canonical: 'https://admobrevenue.pages.dev/twitch',
+    canonical: 'https://realtools.store/twitch',
   },
   kick: {
     title: 'Kick Earnings Calculator 2026 | 95/5 Split & KCP Pay',
     desc: 'Kick earnings calculator with 95/5 split ($4.74/sub). Estimate subscriptions, hourly KCP stipend and tips for streamers in 2026.',
     keywords: 'Kick earnings calculator, kick stream calculator, kick revenue calculator, kick sub calculator, kick 95 5 split calculator, kick creator program hourly rate, kick vs twitch earnings calculator, kick streamer income, how much does kick pay streamers, kick money calculator, kick crypto tipping',
-    canonical: 'https://admobrevenue.pages.dev/kick',
+    canonical: 'https://realtools.store/kick',
   },
 };
 
@@ -316,7 +316,7 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
         'worstRating': '1',
       },
       'featureList': 'Revenue calculator, RPM forecasting, geo targeting, seasonality',
-      'screenshot': 'https://admobrevenue.pages.dev/og-image.png',
+      'screenshot': 'https://realtools.store/og-image.png',
     } : {}),
   };
   // Clean undefined keys
@@ -330,7 +330,7 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
         '@type': 'ListItem',
         'position': 1,
         'name': 'Home',
-        'item': 'https://admobrevenue.pages.dev/',
+        'item': 'https://realtools.store/',
       },
       {
         '@type': 'ListItem',
@@ -347,23 +347,23 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
     '@type': 'WebSite',
     'name': 'AdMobRevenue',
     'alternateName': 'AdMobRevenue Monetization Engine',
-    'url': 'https://admobrevenue.pages.dev/',
+    'url': 'https://realtools.store/',
     'inLanguage': lang,
     'description': meta.desc,
     'publisher': {
       '@type': 'Organization',
       'name': 'AdMobRevenue',
-      'url': 'https://admobrevenue.pages.dev/',
+      'url': 'https://realtools.store/',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://admobrevenue.pages.dev/og-image.png',
+        'url': 'https://realtools.store/og-image.png',
         'width': 1200,
         'height': 630,
       },
     },
     'potentialAction': {
       '@type': 'SearchAction',
-      'target': 'https://admobrevenue.pages.dev/?q={search_term_string}',
+      'target': 'https://realtools.store/?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };
@@ -465,10 +465,10 @@ try {
       // Fix hreflang per-platform cluster (P0-5) - no trailing slash except root
       const basePath = platformKey && platformKey !== 'admob' ? platformKey : (cleanSlug === '404' ? '404' : '');
       const buildHref = (lng, path) => {
-        if (!path) return `https://admobrevenue.pages.dev/${lng === 'en' ? '' : lng}`;
-        if (lng === 'en') return `https://admobrevenue.pages.dev/${path}`;
-        if (lng === 'x-default') return `https://admobrevenue.pages.dev/${path}`;
-        return `https://admobrevenue.pages.dev/${lng}/${path}`;
+        if (!path) return `https://realtools.store/${lng === 'en' || lng === 'x-default' ? '' : lng}`;
+        if (lng === 'en') return `https://realtools.store/${path}`;
+        if (lng === 'x-default') return `https://realtools.store/${path}`;
+        return `https://realtools.store/${lng}/${path}`;
       };
       const langs = ['x-default', 'en', 'es', 'ja', 'fr', 'de', 'pt', 'pt-BR', 'ko', 'it'];
       const hreflangBlock = langs.map(lng => {
@@ -526,19 +526,19 @@ try {
 
   // 7. Pre-render Clean Trust & Legal pages
   const aboutHtml = render('about', 'en');
-  writePrerender('about', aboutHtml, { title: 'About Us | AdMobRevenue 2026 Monetization Engine', desc: 'About AdMobRevenue publisher tools and creator revenue forecasting.', canonical: 'https://admobrevenue.pages.dev/about', keywords: 'about admobrevenue, monetization engine, revenue calculator team' }, 'en');
+  writePrerender('about', aboutHtml, { title: 'About Us | AdMobRevenue 2026 Monetization Engine', desc: 'About AdMobRevenue publisher tools and creator revenue forecasting.', canonical: 'https://realtools.store/about', keywords: 'about admobrevenue, monetization engine, revenue calculator team' }, 'en');
 
   const contactHtml = render('contact', 'en');
-  writePrerender('contact', contactHtml, { title: 'Contact Us & Publisher Support | AdMobRevenue', desc: 'Contact publisher support and monetization engineers for calculator feedback.', canonical: 'https://admobrevenue.pages.dev/contact', keywords: 'contact admobrevenue, publisher support, revenue calculator contact' }, 'en');
+  writePrerender('contact', contactHtml, { title: 'Contact Us & Publisher Support | AdMobRevenue', desc: 'Contact publisher support and monetization engineers for calculator feedback.', canonical: 'https://realtools.store/contact', keywords: 'contact admobrevenue, publisher support, revenue calculator contact' }, 'en');
 
   const privacyHtml = render('privacy', 'en');
-  writePrerender('privacy', privacyHtml, { title: 'Privacy Policy | AdMobRevenue', desc: 'Privacy Policy and data protection standards for AdMobRevenue.', canonical: 'https://admobrevenue.pages.dev/privacy', keywords: 'privacy policy admobrevenue, data protection' }, 'en');
+  writePrerender('privacy', privacyHtml, { title: 'Privacy Policy | AdMobRevenue', desc: 'Privacy Policy and data protection standards for AdMobRevenue.', canonical: 'https://realtools.store/privacy', keywords: 'privacy policy admobrevenue, data protection' }, 'en');
 
   const termsHtml = render('terms', 'en');
-  writePrerender('terms', termsHtml, { title: 'Terms of Service | AdMobRevenue', desc: 'Terms of Service and acceptable use policy for monetization calculations.', canonical: 'https://admobrevenue.pages.dev/terms', keywords: 'terms of service admobrevenue' }, 'en');
+  writePrerender('terms', termsHtml, { title: 'Terms of Service | AdMobRevenue', desc: 'Terms of Service and acceptable use policy for monetization calculations.', canonical: 'https://realtools.store/terms', keywords: 'terms of service admobrevenue' }, 'en');
 
   const disclaimerHtml = render('disclaimer', 'en');
-  writePrerender('disclaimer', disclaimerHtml, { title: 'Earnings Disclaimer & Methodology | AdMobRevenue', desc: 'Earnings disclaimer, statistical accuracy, and calculation methodology for digital advertising networks.', canonical: 'https://admobrevenue.pages.dev/disclaimer', keywords: 'earnings disclaimer, revenue calculation methodology' }, 'en');
+  writePrerender('disclaimer', disclaimerHtml, { title: 'Earnings Disclaimer & Methodology | AdMobRevenue', desc: 'Earnings disclaimer, statistical accuracy, and calculation methodology for digital advertising networks.', canonical: 'https://realtools.store/disclaimer', keywords: 'earnings disclaimer, revenue calculation methodology' }, 'en');
 
   // 8. Pre-render 7 Localized clean versions for ALL platforms with precise localized metadata
   const languages = ['es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'];
@@ -546,32 +546,32 @@ try {
     const langDict = LOCALIZED_PLATFORM_METADATA[lang];
 
     // Localized Root
-    const langRootMeta = { ...langDict.root, canonical: `https://admobrevenue.pages.dev/${lang}` };
+    const langRootMeta = { ...langDict.root, canonical: `https://realtools.store/${lang}` };
     const langRootHtml = render('admob', lang);
     writePrerender(`${lang}`, langRootHtml, langRootMeta, lang, 'admob');
 
     // Localized AdSense
-    const langAdsenseMeta = { ...langDict.adsense, canonical: `https://admobrevenue.pages.dev/${lang}/adsense` };
+    const langAdsenseMeta = { ...langDict.adsense, canonical: `https://realtools.store/${lang}/adsense` };
     const langAdsenseHtml = render('adsense', lang);
     writePrerender(`${lang}/adsense`, langAdsenseHtml, langAdsenseMeta, lang, 'adsense');
 
     // Localized YouTube
-    const langYtMeta = { ...langDict.youtube, canonical: `https://admobrevenue.pages.dev/${lang}/youtube` };
+    const langYtMeta = { ...langDict.youtube, canonical: `https://realtools.store/${lang}/youtube` };
     const langYtHtml = render('youtube', lang);
     writePrerender(`${lang}/youtube`, langYtHtml, langYtMeta, lang, 'youtube');
 
     // Localized TikTok
-    const langTtMeta = { ...langDict.tiktok, canonical: `https://admobrevenue.pages.dev/${lang}/tiktok` };
+    const langTtMeta = { ...langDict.tiktok, canonical: `https://realtools.store/${lang}/tiktok` };
     const langTtHtml = render('tiktok', lang);
     writePrerender(`${lang}/tiktok`, langTtHtml, langTtMeta, lang, 'tiktok');
 
     // Localized Twitch
-    const langTwitchMeta = { ...langDict.twitch, canonical: `https://admobrevenue.pages.dev/${lang}/twitch` };
+    const langTwitchMeta = { ...langDict.twitch, canonical: `https://realtools.store/${lang}/twitch` };
     const langTwitchHtml = render('twitch', lang);
     writePrerender(`${lang}/twitch`, langTwitchHtml, langTwitchMeta, lang, 'twitch');
 
     // Localized Kick
-    const langKickMeta = { ...langDict.kick, canonical: `https://admobrevenue.pages.dev/${lang}/kick` };
+    const langKickMeta = { ...langDict.kick, canonical: `https://realtools.store/${lang}/kick` };
     const langKickHtml = render('kick', lang);
     writePrerender(`${lang}/kick`, langKickHtml, langKickMeta, lang, 'kick');
   }
@@ -581,7 +581,7 @@ try {
     title: '404 - Page Not Found | AdMobRevenue',
     desc: 'The page you are looking for does not exist. Explore our AdSense, YouTube, TikTok, Twitch and Kick revenue calculators.',
     keywords: '404, page not found, admobrevenue',
-    canonical: 'https://admobrevenue.pages.dev/404',
+    canonical: 'https://realtools.store/404',
   };
   const notFoundHtml = render('404', 'en');
   // Write 404.html at root (Cloudflare Pages serves this automatically with 404)

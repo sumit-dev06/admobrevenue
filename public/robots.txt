@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Multilingual XML Sitemap
-Sitemap: https://admobrevenue.pages.dev/sitemap.xml
+Sitemap: https://realtools.store/sitemap.xml
