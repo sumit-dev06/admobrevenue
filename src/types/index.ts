@@ -2,7 +2,7 @@ export type PlatformMode = 'adsense' | 'admob' | 'portfolio' | 'goal' | 'compare
 
 export type CalculationMode = 'quick' | 'advanced';
 
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'INR' | 'CAD' | 'AUD' | 'JPY' | 'BRL';
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'INR' | 'CAD' | 'AUD' | 'JPY' | 'BRL' | 'KRW';
 
 export interface CurrencyInfo {
   code: CurrencyCode;

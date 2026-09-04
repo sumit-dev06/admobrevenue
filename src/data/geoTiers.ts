@@ -9,6 +9,7 @@ export const CURRENCIES: Record<string, CurrencyInfo> = {
   AUD: { code: 'AUD', symbol: 'AU$', name: 'Australian Dollar', rate: 1.54 },
   JPY: { code: 'JPY', symbol: '¥', name: 'Japanese Yen', rate: 154.0 },
   BRL: { code: 'BRL', symbol: 'R$', name: 'Brazilian Real', rate: 5.65 },
+  KRW: { code: 'KRW', symbol: '₩', name: 'South Korean Won', rate: 1375.0 },
 };
 
 export interface CountryTierInfo {

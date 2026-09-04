@@ -48,7 +48,7 @@ export const LANGUAGE_DEFAULTS: Record<
   },
   ko: {
     countryCode: "KR",
-    currencyCode: "USD",
+    currencyCode: "KRW",
     tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
   },
   it: {
@@ -219,6 +219,8 @@ export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
     currency = "GBP";
   } else if (code === "JP") {
     currency = "JPY";
+  } else if (code === "KR") {
+    currency = "KRW";
   } else if (code === "CA") {
     currency = "CAD";
   } else if (code === "AU" || code === "NZ") {

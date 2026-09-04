@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useTransition } from "react";
 import { SupportedLanguage, LanguageInfo, SUPPORTED_LANGUAGES, TranslationDictionary } from "./types";
 import { TRANSLATIONS } from "./translations";
-import { detectUserLocation } from "../utils/geoDetection";
+import { detectUserLocation, fetchUserLocationIP } from "../utils/geoDetection";
 
 interface LanguageContextType {
   language: SupportedLanguage;
@@ -71,6 +71,21 @@ export const LanguageProvider: React.FC<{
   const currentLanguageInfo =
     SUPPORTED_LANGUAGES.find((l) => l.code === language) || SUPPORTED_LANGUAGES[0];
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+
+  // Refine language via IP geolocation if it differs from timezone guess and user hasn't manually chosen
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hasManualLang = !!localStorage.getItem("adrev_language");
+    if (hasManualLang) return;
+    const syncLang = detectUserLocation().language;
+    fetchUserLocationIP().then((ip) => {
+      if (ip && ip.language !== syncLang && SUPPORTED_LANGUAGES.some((l) => l.code === ip.language)) {
+        startTransition(() => setLanguageState(ip.language));
+        localStorage.setItem("adrev_language", ip.language);
+        document.documentElement.lang = ip.language;
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

@@ -161,11 +161,48 @@ const DEFAULT_KICK_INPUTS: KickInputs = {
 };
 
 interface AppContentProps {
-  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
+  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
 }
 
-import { detectUserLocation, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
+import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
 import { COUNTRIES } from "./data/geoTiers";
+import { NotFoundPage } from "./components/NotFoundPage";
+
+// Strict route validation — only whitelisted paths return 200, everything else is 404
+const SUPPORTED_LANGUAGES = ["es", "ja", "fr", "de", "pt", "ko", "it"] as const;
+const VALID_PLATFORMS = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"] as const;
+const LOCALIZED_CALC_PLATFORMS = ["adsense", "youtube", "tiktok", "twitch", "kick"] as const;
+
+function parseRoute(pathname: string): { platform: string; isNotFound: boolean } {
+  const cleaned = pathname.toLowerCase().replace(/\/$/, "");
+  const segments = cleaned.split("/").filter(Boolean);
+
+  // /  → admob (homepage)
+  if (segments.length === 0) return { platform: "admob", isNotFound: false };
+
+  // Single segment: /adsense, /youtube, /es, /about etc.
+  if (segments.length === 1) {
+    const s = segments[0];
+    if ((VALID_PLATFORMS as readonly string[]).includes(s)) return { platform: s, isNotFound: false };
+    if ((SUPPORTED_LANGUAGES as readonly string[]).includes(s)) return { platform: "admob", isNotFound: false };
+    return { platform: "404", isNotFound: true };
+  }
+
+  // Two segments: /es/adsense etc. — only lang + calc platform is valid
+  if (segments.length === 2) {
+    const [lang, plat] = segments;
+    if (
+      (SUPPORTED_LANGUAGES as readonly string[]).includes(lang) &&
+      (LOCALIZED_CALC_PLATFORMS as readonly string[]).includes(plat)
+    ) {
+      return { platform: plat, isNotFound: false };
+    }
+    return { platform: "404", isNotFound: true };
+  }
+
+  // >2 segments always 404 (e.g. /youtube/foobar, /a/b/c)
+  return { platform: "404", isNotFound: true };
+}
 
 function MainAppContent({ initialPlatform }: AppContentProps) {
   const { t, language, setLanguage } = useTranslation();
@@ -181,25 +218,17 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     return "USD";
   });
 
-  // Dedicated Mode: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" or trust pages
+  // Dedicated Mode: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" or trust pages + 404
   const [activePlatform, setActivePlatform] = useState<string>(() => {
     if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
-      const pathname = window.location.pathname.toLowerCase().replace(/\/$/, "");
-      const segments = pathname.split("/").filter(Boolean);
-      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"];
-      
-      for (let i = segments.length - 1; i >= 0; i--) {
-        if (validPlatforms.includes(segments[i])) {
-          return segments[i];
-        }
-      }
-
       const searchParams = new URLSearchParams(window.location.search);
       const pageParam = searchParams.get("page");
-      if (pageParam && validPlatforms.includes(pageParam)) {
-        return pageParam;
+      if (pageParam && (VALID_PLATFORMS as readonly string[]).includes(pageParam.toLowerCase())) {
+        return pageParam.toLowerCase();
       }
+      const { platform } = parseRoute(window.location.pathname);
+      return platform;
     }
     return "admob";
   });
@@ -377,6 +406,38 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
 
 
+  // Async IP geolocation refinement: overwrite timezone/locale guess if IP says different country and user hasn't manually locked
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hasManualCurrency = localStorage.getItem("adrev_user_selected_currency") === "true";
+    const hasManualCountry = localStorage.getItem("adrev_user_selected_country") === "true";
+    if (hasManualCurrency && hasManualCountry) return;
+    let cancelled = false;
+    fetchUserLocationIP().then((ip) => {
+      if (!ip || cancelled) return;
+      const syncDetected = detectUserLocation();
+      // Only update if IP differs from sync timezone guess (means user traveling / VPN / locale mismatch)
+      if (!hasManualCurrency && ip.currencyCode !== syncDetected.currencyCode) {
+        setCurrency((prev) => (prev === syncDetected.currencyCode ? ip.currencyCode : prev));
+      }
+      if (!hasManualCountry && ip.countryCode !== syncDetected.countryCode) {
+        const tier = COUNTRIES.find((c) => c.code === ip.countryCode)?.tier;
+        const tierDist =
+          tier === "tier1" ? { tier1: 100, tier2: 0, tier3: 0 } :
+          tier === "tier2" ? { tier1: 0, tier2: 100, tier3: 0 } :
+          tier === "tier3" ? { tier1: 0, tier2: 0, tier3: 100 } :
+          { tier1: 0, tier2: 100, tier3: 0 };
+        setAdMobInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode, geoDistribution: tierDist } : prev);
+        setAdSenseInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode, geoDistribution: tierDist } : prev);
+        setYouTubeInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
+        setTikTokInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
+        setTwitchInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
+        setKickInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
+      }
+    });
+    return () => { cancelled = true; };
+  }, []);
+
   // When language is changed via toggle option, update currency and location ONLY IF not manually locked
   useEffect(() => {
     if (prevLangRef.current !== language) {
@@ -524,31 +585,30 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  // Sync URL parameters & browser back/forward history
+  // Sync URL parameters & browser back/forward history — strict 404 handling
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const handlePopState = () => {
-      const pathname = window.location.pathname.toLowerCase().replace(/\/$/, "");
-      const segments = pathname.split("/").filter(Boolean);
-      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"];
-      
-      let matchedPlatform = "admob";
-      for (let i = segments.length - 1; i >= 0; i--) {
-        if (validPlatforms.includes(segments[i])) {
-          matchedPlatform = segments[i];
-          break;
-        }
+      const searchParams = new URLSearchParams(window.location.search);
+      const pageParam = searchParams.get("page");
+      if (pageParam && (VALID_PLATFORMS as readonly string[]).includes(pageParam.toLowerCase())) {
+        setActivePlatform(pageParam.toLowerCase());
+        return;
       }
-      setActivePlatform(matchedPlatform);
+      const { platform } = parseRoute(window.location.pathname);
+      setActivePlatform(platform);
     };
 
     window.addEventListener("popstate", handlePopState);
 
     const searchParams = new URLSearchParams(window.location.search);
     const pageParam = searchParams.get("page");
-    if (pageParam) {
-      setActivePlatform(pageParam);
+    if (pageParam && (VALID_PLATFORMS as readonly string[]).includes(pageParam.toLowerCase())) {
+      setActivePlatform(pageParam.toLowerCase());
+    } else if (pageParam) {
+      // Invalid ?page= value → 404
+      setActivePlatform("404");
     }
     const calcParam = searchParams.get("calc");
     if (calcParam) {
@@ -725,6 +785,12 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-28 lg:pb-8 overflow-x-hidden">
+        {activePlatform === "404" && (
+          <NotFoundPage
+            requestedPath={typeof window !== "undefined" ? window.location.pathname : "/unknown"}
+            onNavigateHome={() => handlePlatformChange("admob")}
+          />
+        )}
         {activePlatform === "about" && (
           <Suspense fallback={<div className="min-h-96" />}>
             <AboutPage />
@@ -1122,7 +1188,7 @@ export function App({
   initialPlatform,
   initialLanguage,
 }: {
-  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer";
+  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
   initialLanguage?: SupportedLanguage;
 } = {}) {
   return (
