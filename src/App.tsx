@@ -31,7 +31,7 @@ import { Footer } from "./components/Footer";
 // SEO-critical sections: eager for SSR crawlability (H2s must be in HTML)
 import { OptimizationTips } from "./components/OptimizationTips";
 import { HomeHub } from "./components/HomeHub";
-import { RunwayCalculator, RunwaySummary, RunwayBreakdown, RunwaySeoSection } from "./components/RunwayCalculator";
+import { RunwaySummary, RunwayBreakdown, RunwaySeoSection } from "./components/RunwayCalculator";
 import { FormulaDeepDive } from "./components/FormulaDeepDive";
 import { EditorialSeoSection } from "./components/EditorialSeoSection";
 import { SeoFaqSection } from "./components/SeoFaqSection";
@@ -42,6 +42,7 @@ const YouTubeCalculator = lazy(() => import("./components/YouTubeCalculator").th
 const TikTokCalculator = lazy(() => import("./components/TikTokCalculator").then(m => ({ default: m.TikTokCalculator })));
 const TwitchCalculator = lazy(() => import("./components/TwitchCalculator").then(m => ({ default: m.TwitchCalculator })));
 const KickCalculator = lazy(() => import("./components/KickCalculator").then(m => ({ default: m.KickCalculator })));
+const RunwayCalculator = lazy(() => import("./components/RunwayForm").then(m => ({ default: m.RunwayCalculator })));
 const RevenueCharts = lazy(() => import("./components/RevenueCharts").then(m => ({ default: m.RevenueCharts })));
 const EmbedWidgetModal = lazy(() => import("./components/EmbedWidgetModal").then(m => ({ default: m.EmbedWidgetModal })));
 const ExportReportModal = lazy(() => import("./components/ExportReportModal").then(m => ({ default: m.ExportReportModal })));
@@ -970,12 +971,14 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                 )}
                 {activePlatform === "runway" && (
                   <>
-                    <RunwayCalculator
-                      inputs={runwayInputs}
-                      onChange={handleRunwayChange}
-                      currency={currency}
-                      onCurrencyChange={handleCurrencyChange}
-                    />
+                    <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading Runway Calculator...</div>}>
+                      <RunwayCalculator
+                        inputs={runwayInputs}
+                        onChange={handleRunwayChange}
+                        currency={currency}
+                        onCurrencyChange={handleCurrencyChange}
+                      />
+                    </Suspense>
                     <RunwayBreakdown inputs={runwayInputs} currency={currency} />
                   </>
                 )}
@@ -1153,35 +1156,35 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 {activePlatform !== "runway" && (
             <>
             {/* Keyword-Rich Editorial SEO Section */}
-            <section>
+            <section className="cv-auto">
               <Suspense fallback={null}>
                 <EditorialSeoSection />
               </Suspense>
             </section>
 
             {/* Mathematical Formulas */}
-            <section>
+            <section className="cv-auto">
               <Suspense fallback={null}>
                 <FormulaDeepDive />
               </Suspense>
             </section>
 
             {/* Publisher Guide */}
-            <section>
+            <section className="cv-auto">
               <Suspense fallback={null}>
                 <ComprehensiveGuide />
               </Suspense>
             </section>
 
             {/* Glossary */}
-            <section>
+            <section className="cv-auto">
               <Suspense fallback={null}>
                 <GlossarySection />
               </Suspense>
             </section>
 
             {/* SEO FAQs */}
-            <section>
+            <section className="cv-auto">
               <Suspense fallback={null}>
                 <SeoFaqSection />
               </Suspense>
@@ -1189,7 +1192,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
             </>
             )}
             {activePlatform === "runway" && (
-              <section>
+              <section className="cv-auto">
                 <RunwaySeoSection />
               </section>
             )}
