@@ -5,7 +5,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "Ad Revenue & Runway Calculator 2026 | RealTools",
       description: "Accurate Google AdSense and AdMob revenue calculator. Forecast website page RPM and mobile app ARPDAU across 26 niches, countries, and ad formats for 2026.",
-      keywords: "adsense revenue calculator, google adsense revenue calculator, ad revenue calculator, website ad revenue calculator, app ad revenue calculator, ad revenue calculator website, admob revenue calculator, google admob, google adsense, what is google adsense, website income checker, ad revenue",
+      keywords: "adsense revenue calculator, google adsense revenue calculator, ad revenue calculator, website ad revenue calculator, app ad revenue calculator, ad revenue calculator website, admob revenue calculator, google admob, google adsense, what is google adsense, website income checker, ad revenue, realtools",
     },
     nav: {
       admobTab: "AdMob",
@@ -333,7 +333,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "Calculadora de Ingresos AdSense y AdMob 2026 | Estimador de Ganancias Web y Apps",
       description: "Calculadora precisa de ingresos de Google AdSense y AdMob. Calcula el RPM de tu web y el ARPDAU de tu app móvil según nicho, país y formato publicitario.",
-      keywords: "calculadora de ingresos adsense, calculadora de ingresos google adsense, calculadora de ingresos publicitarios, calculadora ingresos web, calculadora ingresos app, ingresos adsense, que es google adsense, ingresos admob, estimador de ingresos web, calculadora rpm adsense",
+      keywords: "calculadora de ingresos adsense, calculadora de ingresos google adsense, calculadora de ingresos publicitarios, calculadora ingresos web, calculadora ingresos app, ingresos adsense, que es google adsense, ingresos admob, estimador de ingresos web, calculadora rpm adsense, realtools",
     },
     nav: {
       admobTab: "AdMob",
@@ -661,7 +661,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "AdSense & AdMob 収益計算ツール 2026 | Webサイト＆アプリ広告収入予測",
       description: "Google AdSenseおよびAdMobの正確な広告収益計算ツール。26のジャンル、国別、広告フォーマットごとのページRPMやアプリARPDAUを高精度に試算します。",
-      keywords: "adsense 収益計算, アドセンス 収益 計算機, admob 収益計算, 広告収入 計算, ウェブサイト 広告収入, アプリ 広告収入, google adsense とは, アドセンス 収益 目安, admob 収益 目安, 広告収入 シミュレーター",
+      keywords: "adsense 収益計算, アドセンス 収益 計算機, admob 収益計算, 広告収入 計算, ウェブサイト 広告収入, アプリ 広告収入, google adsense とは, アドセンス 収益 目安, admob 収益 目安, 広告収入 シミュレーター, realtools",
     },
     nav: {
       admobTab: "AdMob (アプリ)",
@@ -989,7 +989,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "Calculateur de Revenus AdSense et AdMob 2026 | Estimation des Gains Web et Apps",
       description: "Calculateur précis de revenus Google AdSense et AdMob. Estimez le RPM de votre site et l'ARPDAU de votre application mobile selon la thématique et le pays.",
-      keywords: "calculateur de revenus adsense, simulateur de revenus adsense, calculateur de revenus publicitaires, gains google adsense, calculateur admob, revenus publicitaires site web, quest ce que google adsense, simulateur rpm adsense",
+      keywords: "calculateur de revenus adsense, simulateur de revenus adsense, calculateur de revenus publicitaires, gains google adsense, calculateur admob, revenus publicitaires site web, quest ce que google adsense, simulateur rpm adsense, realtools",
     },
     nav: {
       admobTab: "AdMob",
@@ -1317,7 +1317,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "AdSense & AdMob Einnahmen-Rechner 2026 | Werbeeinnahmen für Webseiten & Apps berechnen",
       description: "Präziser Rechner für Google AdSense und AdMob Einnahmen. Berechnen Sie Seiten-RPM und App-ARPDAU nach Nische, Ländern und Werbeformaten.",
-      keywords: "adsense einnahmen rechner, google adsense rechner, werbeeinnahmen rechner, website werbeeinnahmen berechnen, app werbeeinnahmen rechner, admob rechner, was ist google adsense, adsense rpm rechner, werbeertrag berechnen",
+      keywords: "adsense einnahmen rechner, google adsense rechner, werbeeinnahmen rechner, website werbeeinnahmen berechnen, app werbeeinnahmen rechner, admob rechner, was ist google adsense, adsense rpm rechner, werbeertrag berechnen, realtools",
     },
     nav: {
       admobTab: "AdMob",
@@ -1645,7 +1645,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "Calculadora de Receita AdSense e AdMob 2026 | Estimativa de Ganhos Web e Apps",
       description: "Calculadora precisa de receita do Google AdSense e AdMob. Calcule o RPM de páginas do seu site e o ARPDAU de apps móveis por nicho, país e formatos.",
-      keywords: "calculadora de receita adsense, calculadora ganhos adsense, calculadora receita admob, simulador adsense, ganhos com anuncios site, o que e google adsense, estimativa de receita adsense, ganhos admob app",
+      keywords: "calculadora de receita adsense, calculadora ganhos adsense, calculadora receita admob, simulador adsense, ganhos com anuncios site, o que e google adsense, estimativa de receita adsense, ganhos admob app, realtools",
     },
     nav: {
       admobTab: "AdMob",
@@ -1973,7 +1973,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "구글 애드센스 및 애드몹 수익 계산기 2026 | 웹사이트 & 앱 광고수익 예측",
       description: "정확한 구글 애드센스 및 애드몹 광고수익 계산기. 26개 카테고리, 국가별 트래픽, 모바일 앱 ARPDAU 및 웹사이트 페이지 RPM 수익을 예측합니다.",
-      keywords: "애드센스 수익 계산기, 구글 애드센스 수익 계산, 애드몹 수익 계산기, 웹사이트 광고수익 계산, 앱 광고수익 계산, 구글 애드센스란, 애드센스 예상수익, admob 수익 예측",
+      keywords: "애드센스 수익 계산기, 구글 애드센스 수익 계산, 애드몹 수익 계산기, 웹사이트 광고수익 계산, 앱 광고수익 계산, 구글 애드센스란, 애드센스 예상수익, admob 수익 예측, realtools",
     },
     nav: {
       admobTab: "애드몹 (앱)",
@@ -2301,7 +2301,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     meta: {
       title: "Calcolatore Guadagni AdSense e AdMob 2026 | Stima Entrate Pubblicitarie Web e App",
       description: "Calcolatore accurato dei guadagni di Google AdSense e AdMob. Calcola il Page RPM del tuo sito web e l'ARPDAU della tua app per nicchia, paese e formati.",
-      keywords: "calcolatore guadagni adsense, calcolatore entrate adsense, guadagni pubblicitari sito web, calcolo entrate admob, quanto si guadagna con adsense, cos e google adsense, stima entrate adsense, calcolatore rpm adsense",
+      keywords: "calcolatore guadagni adsense, calcolatore entrate adsense, guadagni pubblicitari sito web, calcolo entrate admob, quanto si guadagna con adsense, cos e google adsense, stima entrate adsense, calcolatore rpm adsense, realtools",
     },
     nav: {
       admobTab: "AdMob",
