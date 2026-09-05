@@ -2,13 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- ========================================== -->
-  <!-- 1. CORE PLATFORMS (ENGLISH / CANONICALS)   -->
-  <!-- ========================================== -->
+  <!-- 1. CORE PLATFORMS (ENGLISH / CANONICALS) -->
 
   <url>
     <loc>https://realtools.store/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -24,8 +22,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -42,7 +57,7 @@
 
   <url>
     <loc>https://realtools.store/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -59,7 +74,7 @@
 
   <url>
     <loc>https://realtools.store/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -76,7 +91,7 @@
 
   <url>
     <loc>https://realtools.store/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -93,7 +108,7 @@
 
   <url>
     <loc>https://realtools.store/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -108,13 +123,28 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/kick" />
   </url>
 
-  <!-- ========================================== -->
-  <!-- 2. LOCALIZED PLATFORM URLS (with full hreflang cluster) -->
-  <!-- ========================================== -->
+  <url>
+    <loc>https://realtools.store/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <!-- 2. LOCALIZED PLATFORM URLS -->
 
   <url>
     <loc>https://realtools.store/es</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -130,8 +160,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/es/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/es/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -148,7 +195,7 @@
 
   <url>
     <loc>https://realtools.store/es/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -165,7 +212,7 @@
 
   <url>
     <loc>https://realtools.store/es/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -182,7 +229,7 @@
 
   <url>
     <loc>https://realtools.store/es/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -199,7 +246,7 @@
 
   <url>
     <loc>https://realtools.store/es/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -215,8 +262,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/es/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/ja</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -232,8 +296,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/ja/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/ja/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -250,7 +331,7 @@
 
   <url>
     <loc>https://realtools.store/ja/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -267,7 +348,7 @@
 
   <url>
     <loc>https://realtools.store/ja/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -284,7 +365,7 @@
 
   <url>
     <loc>https://realtools.store/ja/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -301,7 +382,7 @@
 
   <url>
     <loc>https://realtools.store/ja/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -317,8 +398,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/ja/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/fr</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -334,8 +432,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/fr/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/fr/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -352,7 +467,7 @@
 
   <url>
     <loc>https://realtools.store/fr/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -369,7 +484,7 @@
 
   <url>
     <loc>https://realtools.store/fr/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -386,7 +501,7 @@
 
   <url>
     <loc>https://realtools.store/fr/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -403,7 +518,7 @@
 
   <url>
     <loc>https://realtools.store/fr/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -419,8 +534,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/fr/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/de</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -436,8 +568,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/de/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/de/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -454,7 +603,7 @@
 
   <url>
     <loc>https://realtools.store/de/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -471,7 +620,7 @@
 
   <url>
     <loc>https://realtools.store/de/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -488,7 +637,7 @@
 
   <url>
     <loc>https://realtools.store/de/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -505,7 +654,7 @@
 
   <url>
     <loc>https://realtools.store/de/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -521,8 +670,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/de/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/pt</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -538,8 +704,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/pt/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/pt/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -556,7 +739,7 @@
 
   <url>
     <loc>https://realtools.store/pt/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -573,7 +756,7 @@
 
   <url>
     <loc>https://realtools.store/pt/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -590,7 +773,7 @@
 
   <url>
     <loc>https://realtools.store/pt/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -607,7 +790,7 @@
 
   <url>
     <loc>https://realtools.store/pt/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -623,8 +806,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/pt/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/ko</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -640,8 +840,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/ko/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/ko/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -658,7 +875,7 @@
 
   <url>
     <loc>https://realtools.store/ko/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -675,7 +892,7 @@
 
   <url>
     <loc>https://realtools.store/ko/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -692,7 +909,7 @@
 
   <url>
     <loc>https://realtools.store/ko/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -709,7 +926,7 @@
 
   <url>
     <loc>https://realtools.store/ko/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -725,8 +942,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/ko/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/it</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/" />
@@ -742,8 +976,25 @@
   </url>
 
   <url>
+    <loc>https://realtools.store/it/admob</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/admob" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/admob" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/admob" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/admob" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/admob" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/admob" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/admob" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/admob" />
+  </url>
+
+  <url>
     <loc>https://realtools.store/it/adsense</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/adsense" />
@@ -760,7 +1011,7 @@
 
   <url>
     <loc>https://realtools.store/it/youtube</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/youtube" />
@@ -777,7 +1028,7 @@
 
   <url>
     <loc>https://realtools.store/it/tiktok</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/tiktok" />
@@ -794,7 +1045,7 @@
 
   <url>
     <loc>https://realtools.store/it/twitch</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/twitch" />
@@ -811,7 +1062,7 @@
 
   <url>
     <loc>https://realtools.store/it/kick</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/kick" />
@@ -826,36 +1077,51 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/kick" />
   </url>
 
-  <!-- ========================================== -->
-  <!-- 3. TRUST & LEGAL PAGES                     -->
-  <!-- ========================================== -->
+  <url>
+    <loc>https://realtools.store/it/runway</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://realtools.store/runway" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://realtools.store/es/runway" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://realtools.store/ja/runway" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://realtools.store/fr/runway" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://realtools.store/de/runway" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://realtools.store/pt/runway" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://realtools.store/ko/runway" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://realtools.store/it/runway" />
+  </url>
+
+  <!-- 3. TRUST & LEGAL PAGES -->
   <url>
     <loc>https://realtools.store/about</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://realtools.store/contact</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://realtools.store/privacy</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://realtools.store/terms</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://realtools.store/disclaimer</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

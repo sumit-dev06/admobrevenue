@@ -324,6 +324,48 @@ export interface TwitchResults {
 }
 
 // ==========================================
+// MONEY RUNWAY (WITHDRAWAL) TYPES
+// ==========================================
+export interface RunwayInputs {
+  principal: number;
+  annualReturn: number;
+  monthlyWithdrawal: number;
+  yearlyIncrease: number; // % or fixed amount per year (inflation step-up)
+  increaseMode: "percent" | "amount";
+  targetCountry?: string;
+  accountCountry?: string;
+}
+
+export interface RunwayMonthRow {
+  month: number;
+  startBalance: number;
+  interest: number;
+  withdrawal: number;
+  endBalance: number;
+}
+
+export interface RunwayYearRow {
+  year: number;
+  startBalance: number;
+  withdrawn: number;
+  interest: number;
+  endBalance: number;
+}
+
+export interface RunwayResults {
+  months: number | null;
+  neverDepletes: boolean;
+  invalid: boolean;
+  tooSmall: boolean;
+  overdraw: boolean;
+  breakeven: number;
+  totalWithdrawn: number;
+  totalInterest: number;
+  rows: RunwayMonthRow[];
+  yearly: RunwayYearRow[];
+}
+
+// ==========================================
 // KICK STREAMER TYPES
 // ==========================================
 export interface KickInputs {

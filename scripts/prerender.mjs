@@ -16,11 +16,17 @@ await build({
 // 1. ENGLISH & GLOBAL PLATFORM METADATA
 // ==========================================
 const PLATFORM_METADATA = {
+  home: {
+    title: 'Ad Revenue Calculator 2026 | RealTools',
+    desc: 'Free calculators for AdSense, AdMob, YouTube, TikTok, Twitch, Kick and savings runway. Estimate ad revenue, payouts and how long money lasts.',
+    keywords: 'ad revenue calculator, adsense calculator, admob calculator, youtube money calculator, tiktok money calculator, twitch calculator, kick calculator, money runway calculator, realtools',
+    canonical: 'https://realtools.store/',
+  },
   admob: {
     title: 'AdMob Revenue Calculator 2026 | ARPDAU & eCPM Tool',
     desc: 'Accurate AdMob calculator for iOS & Android apps. Estimate ARPDAU, blended eCPM and daily revenue across Rewarded, Interstitial and App Open ads for 2026.',
     keywords: 'Google AdMob revenue calculator, admob revenue calculator, app ad revenue calculator, mobile app revenue calculator, admob calculator, arpdau calculator, admob ecpm calculator, app monetization calculator, google admob, ad revenue calculator, mobile game revenue calculator, admob mediation calculator',
-    canonical: 'https://realtools.store/',
+    canonical: 'https://realtools.store/admob',
   },
   adsense: {
     title: 'AdSense Calculator 2026 | Page RPM & Income Estimator',
@@ -46,6 +52,12 @@ const PLATFORM_METADATA = {
     keywords: 'Twitch money calculators, Twitch ad revenue calculators, twitch sub calculator, twitch earnings calculator, twitch partner plus calculator, twitch streamer income calculator, twitch bits to usd, twitch ad incentive program calculator, how much do twitch streamers make, twitch sub revenue calculator',
     canonical: 'https://realtools.store/twitch',
   },
+  runway: {
+    title: 'Money Runway Calculator 2026 | Savings & SWP Tool',
+    desc: 'Free money runway calculator. See how long savings last with monthly withdrawals, returns and inflation step-ups. SWP breakeven analysis for 2026.',
+    keywords: 'money runway calculator, how long will my money last, how long will 1 crore last, swp calculator, retirement withdrawal calculator, savings runway calculator, how long will $1 million last, systematic withdrawal plan calculator, breakeven withdrawal calculator',
+    canonical: 'https://realtools.store/runway',
+  },
   kick: {
     title: 'Kick Earnings Calculator 2026 | 95/5 Split & KCP Pay',
     desc: 'Kick earnings calculator with 95/5 split ($4.74/sub). Estimate subscriptions, hourly KCP stipend and tips for streamers in 2026.',
@@ -63,6 +75,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       title: 'Calculadora AdSense y AdMob 2026 | Ingresos Web',
       desc: 'Calculadora precisa de ingresos de Google AdSense, AdMob, YouTube, TikTok, Twitch y Kick. Estima ganancias por reproducciones, suscriptores y anuncios.',
       keywords: 'calculadora de ingresos adsense, calculadora de ingresos google adsense, calculadora de ingresos publicitarios, calculadora ingresos web, calculadora ingresos app, ingresos adsense, que es google adsense, calculadora dinero youtube, calculadora ingresos tiktok, calculadora subs twitch, calculadora ganancias kick, cuanto paga adsense por clic, cuanto paga adsense por 1000 visitas',
+    },
+    admob: {
+      title: 'Calculadora AdMob 2026 | ARPDAU y eCPM',
+      desc: 'Calculadora AdMob para apps iOS y Android. Estima ARPDAU, eCPM y ganancias diarias con rewarded, intersticiales y mediación.',
+      keywords: 'calculadora admob, calculadora ingresos admob, arpdau calculadora, admob ecpm calculadora, calculadora ingresos app',
     },
     adsense: {
       title: 'Calculadora AdSense 2026 | RPM y Ganancias Web',
@@ -89,12 +106,22 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Calculadora de ingresos de Kick. Descubre ganancias con el reparto de suscripción 95/5 ($4.74 neto/sub) y el programa KCP por hora.',
       keywords: 'calculadora de ganancias kick, calculadora ingresos kick, reparto 95 5 kick, cuanto paga kick por hora, kick vs twitch ganancias, calculadora subs kick, cuanto paga kick por sub, cuanto paga kick por viewer, cuanto paga kick por 1000 viewers, cuanto paga kick en españa',
     },
+    runway: {
+      title: 'Calculadora Runway 2026 | Cuánto Durará Mi Dinero',
+      desc: 'Calculadora de runway: descubre cuántos años duran tus ahorros con retiros mensuales, rentabilidad e inflación. Análisis breakeven SWP.',
+      keywords: 'calculadora runway, cuanto durará mi dinero, cuanto dura 1 millón, calculadora swp, calculadora retiro jubilación, calculadora ahorros',
+    },
   },
   ja: {
     root: {
       title: 'AdSense, AdMob & クリエイター収益計算ツール 2026 | 広告収入＆配信収益予測',
       desc: 'Google AdSense、AdMob、YouTube、TikTok、Twitch、Kickの正確な広告＆クリエイター収益計算機。再生数やサブスクから収益をシミュレーション。',
       keywords: 'adsense 収益計算, アドセンス 収益 計算機, admob 収益計算, 広告収入 計算, ウェブサイト 広告収入, アプリ 広告収入, youtube 収益計算, tiktok 収益計算, twitch サブスク 収益, kick 収益計算機, アドセンス クリック単価, アドセンス 1クリック いくら',
+    },
+    admob: {
+      title: 'AdMob 収益計算ツール 2026 | ARPDAU＆eCPM予測',
+      desc: 'iOS・Androidアプリ向けAdMob収益計算。ARPDAU・eCPM・メディエーション効果を予測。',
+      keywords: 'admob 収益計算, アドモブ 収益 計算機, arpdau 計算, アプリ 広告収入 計算',
     },
     adsense: {
       title: 'Google AdSense 収益計算ツール 2026 | ウェブサイト広告収入＆ページRPM予測',
@@ -121,12 +148,22 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Kick配信者のための収益シミュレーター。業界最高の95/5サブスク還元率（1件あたり$4.74）およびKCP時給プログラム収益を計算。',
       keywords: 'Kick 収益 計算, kick 配信 収入, kick サブスク 95 5, kick クリエイター プログラム 時給, kick twitch 比較, kick サブスク いくら, kick 時給 収益, kick 収益 計算 サイト',
     },
+    runway: {
+      title: '資産寿命計算ツール 2026 | 老後資金は何年もつ？',
+      desc: '毎月の取り崩し・運用利回り・インフレから資産の寿命を計算。SWP損益分岐点つき。',
+      keywords: '資産寿命 計算, 老後資金 何年, 取り崩し シミュレーション, swp 計算, 1億円 何年',
+    },
   },
   fr: {
     root: {
       title: 'Calculateur AdSense & AdMob 2026 | Revenus',
       desc: 'Calculateur précis de revenus Google AdSense, AdMob, YouTube, TikTok, Twitch et Kick. Estimez vos gains publicitaires, abonnements et sponsors.',
       keywords: 'calculateur de revenus adsense, simulateur de revenus adsense, calculateur de revenus publicitaires, gains google adsense, calculateur admob, calculateur revenus youtube, calculateur argent tiktok, simulateur gains twitch, calculateur kick, combien paye adsense par clic, combien gagne youtube 1000 vues',
+    },
+    admob: {
+      title: 'Calculateur AdMob 2026 | ARPDAU & eCPM',
+      desc: 'Calculateur AdMob pour apps iOS et Android. Estimez ARPDAU, eCPM et revenus avec rewarded et médiation.',
+      keywords: 'calculateur admob, calculateur revenus admob, arpdau calculateur, admob ecpm',
     },
     adsense: {
       title: 'Calculateur AdSense 2026 | RPM & Gains',
@@ -153,12 +190,22 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Calculateur de gains pour streamers Kick. Calculez vos revenus grâce au partage d\'abonnement 95/5 (4,74 $ net/sub) et au programme KCP.',
       keywords: 'calculateur gains kick, calculateur streamer kick, abonnement kick 95 5, salaire horaire kick kcp, kick vs twitch revenus, combien paye kick par sub, combien paye kick par heure',
     },
+    runway: {
+      title: 'Calculateur Runway 2026 | Combien de Temps ?',
+      desc: 'Calculez combien d\'années dureront vos économies avec retraits mensuels, rendement et inflation. Analyse SWP.',
+      keywords: 'calculateur runway, combien de temps dureront mes économies, calculateur swp, calculateur retraite retraits',
+    },
   },
   de: {
     root: {
       title: 'AdSense & AdMob Rechner 2026 | Einnahmen',
       desc: 'Präziser Rechner für Google AdSense, AdMob, YouTube, TikTok, Twitch und Kick Einnahmen. Berechnen Sie RPM, ARPDAU und Streamer-Auszahlungen.',
       keywords: 'adsense einnahmen rechner, google adsense einnahmen rechner, werbeeinnahmen rechner, website werbeeinnahmen berechnen, app werbeeinnahmen rechner, youtube geld rechner, tiktok geld rechner, twitch einnahmen rechner, kick streamer rechner, was zahlt adsense pro klick, adsense einnahmen pro 1000 aufrufe',
+    },
+    admob: {
+      title: 'AdMob Rechner 2026 | ARPDAU & eCPM',
+      desc: 'AdMob Rechner für iOS- & Android-Apps. ARPDAU, eCPM und Tagesumsatz mit Rewarded und Mediation berechnen.',
+      keywords: 'admob rechner, admob einnahmen rechner, arpdau rechner, app werbeeinnahmen rechner',
     },
     adsense: {
       title: 'AdSense Rechner 2026 | RPM & Umsatz',
@@ -185,12 +232,22 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Kick Einnahmen-Rechner für Streamer. Berechnen Sie Einnahmen mit dem 95/5 Abo-Split ($4,74 netto/Sub) und dem KCP-Stundenhonorar.',
       keywords: 'kick einnahmen rechner, kick streamer rechner, kick 95 5 split, kick stundenlohn creator program, kick vs twitch vergleich, wie viel zahlt kick pro sub, wie viel zahlt kick pro stunde',
     },
+    runway: {
+      title: 'Runway Rechner 2026 | Wie Lange Reicht Geld?',
+      desc: 'Runway-Rechner: Wie viele Jahre reichen Ersparnisse bei monatlicher Entnahme, Rendite und Inflation? SWP-Analyse.',
+      keywords: 'runway rechner, wie lange reicht geld, wie lange reicht 1 million, swp rechner, entnahme rechner rente',
+    },
   },
   pt: {
     root: {
       title: 'Calculadora AdSense e AdMob 2026 | Receita',
       desc: 'Calculadora precisa de receita do Google AdSense, AdMob, YouTube, TikTok, Twitch e Kick. Calcule ganhos de sites, apps móveis e canais de streaming.',
       keywords: 'calculadora de receita adsense, calculadora ganhos adsense, calculadora receita admob, simulador adsense, ganhos com anuncios site, calculadora dinheiro youtube, calculadora dinheiro tiktok, calculadora ganhos twitch, calculadora kick, quanto paga adsense por clique, quanto ganha no youtube 1000 visualizacoes',
+    },
+    admob: {
+      title: 'Calculadora AdMob 2026 | ARPDAU e eCPM',
+      desc: 'Calculadora AdMob para apps iOS e Android. Estime ARPDAU, eCPM e receita diária com rewarded e mediação.',
+      keywords: 'calculadora admob, calculadora receita admob, arpdau calculadora, admob ecpm',
     },
     adsense: {
       title: 'Calculadora AdSense 2026 | RPM e Ganhos',
@@ -217,12 +274,22 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Calculadora de ganhos na Kick. Calcule receitas com a divisão de assinaturas 95/5 ($4,74 líquido/sub) e a remuneração horária do KCP.',
       keywords: 'calculadora de ganhos kick, calculadora streamer kick, divisao 95 5 kick, quanto a kick paga por hora, kick vs twitch ganhos, quanto paga kick por sub, quanto paga kick por hora, calculadora de subs kick, calculadora de kicks',
     },
+    runway: {
+      title: 'Calculadora Runway 2026 | Quanto Tempo Dura?',
+      desc: 'Descubra quantos anos suas economias duram com retiradas mensais, rendimento e inflação. Análise SWP.',
+      keywords: 'calculadora runway, quanto tempo dura meu dinheiro, quanto dura 1 milhão, calculadora swp, calculadora aposentadoria',
+    },
   },
   ko: {
     root: {
       title: '애드센스, 애드몹 & 크리에이터 수익 계산기 2026 | 유튜브·틱톡·트위치·킥',
       desc: '정확한 구글 애드센스, 애드몹, 유튜브, 틱톡, 트위치, 킥 수익 계산기. 조회수와 구독자 기반의 정밀한 월간 및 연간 수익을 예측합니다.',
       keywords: '애드센스 수익 계산기, 구글 애드센스 수익 계산, 애드몹 수익 계산기, 웹사이트 광고수익 계산, 앱 광고수익 계산, 유튜브 수익 계산기, 틱톡 수익 계산기, 트위치 수익 계산기, 킥 수익 계산기, 애드센스 클릭당 수익, 애드센스 1000회당 수익',
+    },
+    admob: {
+      title: '애드몹 수익 계산기 2026 | ARPDAU & eCPM',
+      desc: 'iOS·안드로이드 앱을 위한 애드몹 수익 계산기. ARPDAU, eCPM, 미디에이션 효과를 예측합니다.',
+      keywords: '애드몹 수익 계산기, admob 수익 계산, arpdau 계산기, 앱 광고수익 계산',
     },
     adsense: {
       title: '구글 애드센스 수익 계산기 2026 | 웹사이트 페이지 RPM & 수익 예측',
@@ -249,12 +316,22 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: '킥 스트리머 수익 계산기. 파격적인 95/5 구독 수익 배분(구독당 순수익 $4.74)과 KCP 크리에이터 프로그램 시급을 계산합니다.',
       keywords: '킥 수익 계산기, 킥 스트리머 수익, 킥 95 5 구독 배분, 킥 크리에이터 프로그램 시급, 킥 트위치 수익 비교, 킥 구독 1개당 수익, 킥 시청자 100명 수익',
     },
+    runway: {
+      title: '자산수명 계산기 2026 | 은퇴자금 몇 년?',
+      desc: '월 인출·수익률·인플레이션으로 저축이 몇 년 버틸지 계산. SWP 손익분기점 포함.',
+      keywords: '자산수명 계산기, 은퇴자금 몇 년, 인출 시뮬레이션, swp 계산기, 10억 몇 년',
+    },
   },
   it: {
     root: {
       title: 'Calcolatore AdSense & AdMob 2026 | Guadagni',
       desc: 'Calcolatore accurato dei guadagni di Google AdSense, AdMob, YouTube, TikTok, Twitch e Kick. Calcola Page RPM, ARPDAU e guadagni streaming.',
       keywords: 'calcolatore guadagni adsense, calcolatore entrate adsense, guadagni pubblicitari sito web, calcolo entrate admob, quanto si guadagna con adsense, calcolatore soldi youtube, calcolatore tiktok, calcolatore guadagni twitch, calcolatore kick, quanto paga adsense per click, quanto si guadagna con youtube 1000 visualizzazioni',
+    },
+    admob: {
+      title: 'Calcolatore AdMob 2026 | ARPDAU ed eCPM',
+      desc: 'Calcolatore AdMob per app iOS e Android. Stima ARPDAU, eCPM e ricavi con rewarded e mediation.',
+      keywords: 'calcolatore admob, calcolatore guadagni admob, arpdau calcolo, admob ecpm',
     },
     adsense: {
       title: 'Calcolatore AdSense 2026 | RPM & Guadagni',
@@ -281,6 +358,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Calcolatore di entrate per streamer Kick. Calcola i ricavi con la divisione abbonamenti 95/5 ($4,74 netti/sub) e la paga oraria del Creator Program.',
       keywords: 'calcolatore guadagni kick, calcolatore streamer kick, divisione 95 5 kick, stipendio orario kick kcp, kick vs twitch guadagni, quanto paga kick per sub, quanto paga kick all ora',
     },
+    runway: {
+      title: 'Calcolatore Runway 2026 | Quanto Dura?',
+      desc: 'Scopri quanti anni dureranno i risparmi con prelievi mensili, rendimento e inflazione. Analisi SWP.',
+      keywords: 'calcolatore runway, quanto durano i miei risparmi, quanto dura 1 milione, calcolatore swp, calcolatore pensione',
+    },
   },
 };
 
@@ -289,7 +371,7 @@ const LOCALIZED_PLATFORM_METADATA = {
 // ==========================================
 function generateJsonLd(platformKey, meta, lang = 'en') {
   // Skip rich rating for 404/trust pages to avoid inflated rating
-  const isAppPage = ['admob','adsense','youtube','tiktok','twitch','kick'].includes(platformKey);
+  const isAppPage = ['admob','adsense','youtube','tiktok','twitch','kick','runway'].includes(platformKey);
   const schemaApp = {
     '@context': 'https://schema.org',
     '@type': isAppPage ? 'WebApplication' : 'WebPage',
@@ -374,6 +456,14 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
   }
 
   const faqMap = {
+    home: [
+      { q: 'What calculators does RealTools offer?', a: 'AdSense, AdMob, YouTube, TikTok, Twitch, Kick revenue calculators plus a money runway (SWP withdrawal) calculator. All free, all run in your browser.' },
+      { q: 'Do I need an account?', a: 'No. Every tool works instantly with no sign-up and no data collection. Your inputs never leave your device.' },
+    ],
+    runway: [
+      { q: 'How long will my savings last?', a: 'Divide withdrawals into balance and returns: at 8% annual return, a balance supports about 0.67% monthly withdrawal forever. Enter your numbers above for an exact year-by-year projection.' },
+      { q: 'Is this an SWP calculator?', a: 'Yes. A Systematic Withdrawal Plan takes a fixed amount monthly while the rest stays invested — exactly the math modelled here, minus tax and NAV fluctuation.' },
+    ],
     admob: [
       { q: 'How is AdMob revenue calculated?', a: 'AdMob revenue = (Impressions / 1000) × eCPM. ARPDAU = Daily revenue / DAU. Our calculator models rewarded, interstitial and app open formats with mediation lift.' },
       { q: 'What is good ARPDAU for AdMob?', a: 'Good ARPDAU in Tier 1 is $0.04–$0.12, Tier 2 $0.015–$0.04, Tier 3 $0.003–$0.012. Rewarded video drives highest ARPDAU.' },
@@ -463,7 +553,7 @@ try {
       const locale = localeMap[lang] || 'en_US';
       renderedPage = renderedPage.replace(/<meta property="og:locale" content=".*?" \/>/, `<meta property="og:locale" content="${locale}" />`);
       // Fix hreflang per-platform cluster (P0-5) - no trailing slash except root
-      const basePath = platformKey && platformKey !== 'admob' ? platformKey : (cleanSlug === '404' ? '404' : '');
+      const basePath = platformKey && platformKey !== 'home' ? platformKey : (cleanSlug === '404' ? '404' : '');
       const buildHref = (lng, path) => {
         if (!path) return `https://realtools.store/${lng === 'en' || lng === 'x-default' ? '' : lng}`;
         if (lng === 'en') return `https://realtools.store/${path}`;
@@ -500,9 +590,13 @@ try {
     }
   };
 
-  // 1. Pre-render Root / AdMob page (/)
+  // 1. Pre-render Root / Home hub (/)
+  const homeHtml = render('home', 'en');
+  writePrerender('', homeHtml, PLATFORM_METADATA.home, 'en', 'home');
+
+  // 1b. Pre-render Clean AdMob page (/admob)
   const admobHtml = render('admob', 'en');
-  writePrerender('', admobHtml, PLATFORM_METADATA.admob, 'en', 'admob');
+  writePrerender('admob', admobHtml, PLATFORM_METADATA.admob, 'en', 'admob');
 
   // 2. Pre-render Clean AdSense page (/adsense)
   const adsenseHtml = render('adsense', 'en');
@@ -523,6 +617,10 @@ try {
   // 6. Pre-render Clean Kick page (/kick)
   const kickHtml = render('kick', 'en');
   writePrerender('kick', kickHtml, PLATFORM_METADATA.kick, 'en', 'kick');
+
+  // 6b. Pre-render Clean Runway page (/runway)
+  const runwayHtml = render('runway', 'en');
+  writePrerender('runway', runwayHtml, PLATFORM_METADATA.runway, 'en', 'runway');
 
   // 7. Pre-render Clean Trust & Legal pages
   const aboutHtml = render('about', 'en');
@@ -545,10 +643,15 @@ try {
   for (const lang of languages) {
     const langDict = LOCALIZED_PLATFORM_METADATA[lang];
 
-    // Localized Root
+    // Localized Root (home hub)
     const langRootMeta = { ...langDict.root, canonical: `https://realtools.store/${lang}` };
-    const langRootHtml = render('admob', lang);
-    writePrerender(`${lang}`, langRootHtml, langRootMeta, lang, 'admob');
+    const langRootHtml = render('home', lang);
+    writePrerender(`${lang}`, langRootHtml, langRootMeta, lang, 'home');
+
+    // Localized AdMob
+    const langAdmobMeta = { ...langDict.admob, canonical: `https://realtools.store/${lang}/admob` };
+    const langAdmobHtml = render('admob', lang);
+    writePrerender(`${lang}/admob`, langAdmobHtml, langAdmobMeta, lang, 'admob');
 
     // Localized AdSense
     const langAdsenseMeta = { ...langDict.adsense, canonical: `https://realtools.store/${lang}/adsense` };
@@ -574,6 +677,11 @@ try {
     const langKickMeta = { ...langDict.kick, canonical: `https://realtools.store/${lang}/kick` };
     const langKickHtml = render('kick', lang);
     writePrerender(`${lang}/kick`, langKickHtml, langKickMeta, lang, 'kick');
+
+    // Localized Runway
+    const langRunwayMeta = { ...langDict.runway, canonical: `https://realtools.store/${lang}/runway` };
+    const langRunwayHtml = render('runway', lang);
+    writePrerender(`${lang}/runway`, langRunwayHtml, langRunwayMeta, lang, 'runway');
   }
 
   // 9. Pre-render 404 Not Found page — Cloudflare serves this with 404 status for unknown paths

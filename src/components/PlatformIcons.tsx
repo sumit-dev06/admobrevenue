@@ -67,3 +67,25 @@ export const KickIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-
     <path d="M1.333 0h7.334v6.667h2.666V4h2.667V1.333h6.667v6.667h-2.667v2.667H15.33v2.666h2.667V16h2.667v6.667H14v-2.667h-2.667V17.33H8.667V24H1.333V0z" />
   </svg>
 );
+
+export const RunwayIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2h-2v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1h2zm1 3h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zm-3 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+  </svg>
+);
+
+export const HomeIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3l9-8z" />
+  </svg>
+);

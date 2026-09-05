@@ -15,7 +15,7 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
   adMobInputs,
 }) => {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const tips: { title: string; desc: string; impact: string }[] = [];
 
   if (platform === "admob" && adMobInputs) {
@@ -116,8 +116,8 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
         </div>
       </button>
 
-      {/* Collapsible Content */}
-      {isOpen && (
+      {/* Collapsible Content - always in DOM for SEO crawlers, CSS-hidden when collapsed for fast LCP */}
+      <div className={isOpen ? "contents" : "hidden"}>
         <div className="p-5 pt-0 space-y-3 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3">
             {tips.map((tip, idx) => (
@@ -140,7 +140,7 @@ export const OptimizationTips: React.FC<OptimizationTipsProps> = ({
             ))}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

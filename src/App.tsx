@@ -7,6 +7,7 @@ import {
   TikTokInputs,
   TwitchInputs,
   KickInputs,
+  RunwayInputs,
 } from "./types";
 import { SupportedLanguage } from "./i18n/types";
 import { LanguageProvider, useTranslation } from "./i18n/LanguageContext";
@@ -29,6 +30,8 @@ import { Footer } from "./components/Footer";
 
 // SEO-critical sections: eager for SSR crawlability (H2s must be in HTML)
 import { OptimizationTips } from "./components/OptimizationTips";
+import { HomeHub } from "./components/HomeHub";
+import { RunwayCalculator, RunwaySummary, RunwayBreakdown, RunwaySeoSection } from "./components/RunwayCalculator";
 import { FormulaDeepDive } from "./components/FormulaDeepDive";
 import { EditorialSeoSection } from "./components/EditorialSeoSection";
 import { SeoFaqSection } from "./components/SeoFaqSection";
@@ -161,8 +164,18 @@ const DEFAULT_KICK_INPUTS: KickInputs = {
   targetCountry: "US",
 };
 
+const DEFAULT_RUNWAY_INPUTS: RunwayInputs = {
+  principal: 1000000,
+  annualReturn: 8,
+  monthlyWithdrawal: 8000,
+  yearlyIncrease: 0,
+  increaseMode: "percent",
+  accountCountry: "US",
+  targetCountry: "US",
+};
+
 interface AppContentProps {
-  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
+  initialPlatform?: "home" | "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "runway" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
 }
 
 import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
@@ -171,21 +184,21 @@ import { NotFoundPage } from "./components/NotFoundPage";
 
 // Strict route validation — only whitelisted paths return 200, everything else is 404
 const SUPPORTED_LANGUAGES = ["es", "ja", "fr", "de", "pt", "ko", "it"] as const;
-const VALID_PLATFORMS = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "about", "contact", "privacy", "terms", "disclaimer"] as const;
-const LOCALIZED_CALC_PLATFORMS = ["adsense", "youtube", "tiktok", "twitch", "kick"] as const;
+const VALID_PLATFORMS = ["home", "admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "about", "contact", "privacy", "terms", "disclaimer"] as const;
+const LOCALIZED_CALC_PLATFORMS = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway"] as const;
 
 function parseRoute(pathname: string): { platform: string; isNotFound: boolean } {
   const cleaned = pathname.toLowerCase().replace(/\/$/, "");
   const segments = cleaned.split("/").filter(Boolean);
 
-  // /  → admob (homepage)
-  if (segments.length === 0) return { platform: "admob", isNotFound: false };
+  // /  → home hub (landing with all tools)
+  if (segments.length === 0) return { platform: "home", isNotFound: false };
 
   // Single segment: /adsense, /youtube, /es, /about etc.
   if (segments.length === 1) {
     const s = segments[0];
     if ((VALID_PLATFORMS as readonly string[]).includes(s)) return { platform: s, isNotFound: false };
-    if ((SUPPORTED_LANGUAGES as readonly string[]).includes(s)) return { platform: "admob", isNotFound: false };
+    if ((SUPPORTED_LANGUAGES as readonly string[]).includes(s)) return { platform: "home", isNotFound: false };
     return { platform: "404", isNotFound: true };
   }
 
@@ -219,7 +232,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     return "USD";
   });
 
-  // Dedicated Mode: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" or trust pages + 404
+  // Dedicated Mode: hub "home" + calculators or trust pages + 404
   const [activePlatform, setActivePlatform] = useState<string>(() => {
     if (initialPlatform) return initialPlatform;
     if (typeof window !== "undefined") {
@@ -231,7 +244,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       const { platform } = parseRoute(window.location.pathname);
       return platform;
     }
-    return "admob";
+    return "home";
   });
 
   // Modals
@@ -296,6 +309,27 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           return { ...defaultInputs, ...JSON.parse(saved) };
         } catch (e) {
           console.error("Failed to parse Twitch inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
+
+  // Runway Inputs
+  const [runwayInputs, setRunwayInputs] = useState<RunwayInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const defaultInputs: RunwayInputs = {
+      ...DEFAULT_RUNWAY_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_runway_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse Runway inputs", e);
         }
       }
     }
@@ -434,6 +468,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
         setTikTokInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
         setTwitchInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
         setKickInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
+        setRunwayInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
       }
     });
     return () => { cancelled = true; };
@@ -491,6 +526,13 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
 
           // Kick
           setKickInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+          }));
+
+          // Runway
+          setRunwayInputs((prev) => ({
             ...prev,
             accountCountry: defaults.countryCode,
             targetCountry: defaults.countryCode,
@@ -562,6 +604,15 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     setKickInputs(newInputs);
   };
 
+  const handleRunwayChange = (newInputs: RunwayInputs) => {
+    if (newInputs.targetCountry !== runwayInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setRunwayInputs(newInputs);
+  };
+
   // Persist platform, currency, and inputs to localStorage whenever changed
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -630,7 +681,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   const handlePlatformChange = (p: string) => {
     setActivePlatform(p);
     if (typeof window !== "undefined") {
-      const cleanPath = p === "admob" ? "/" : `/${p}`;
+      const cleanPath = p === "home" ? "/" : `/${p}`;
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.delete("page");
       const newQuery = urlParams.toString() ? `?${urlParams.toString()}` : "";
@@ -683,6 +734,12 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     }
   }, [kickInputs]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_runway_inputs", JSON.stringify(runwayInputs));
+    }
+  }, [runwayInputs]);
+
   const getPlatformHeroInfo = () => {
     switch (activePlatform) {
       case "youtube":
@@ -716,6 +773,14 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.kickTitle,
           titleColor: "text-emerald-600 dark:text-emerald-400",
           subtitle: t.hero.kickSubtitle,
+        };
+      case "runway":
+        return {
+          badge: "Retirement & SWP Math",
+          badgeColor: "border-amber-500 text-amber-600 dark:text-amber-400 bg-amber-500/10",
+          title: "Money Runway Calculator",
+          titleColor: "text-amber-600 dark:text-amber-400",
+          subtitle: "How long will your savings last? Model withdrawals, returns and inflation.",
         };
       case "adsense":
         return {
@@ -797,7 +862,11 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           </Suspense>
         )}
         
-        {["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform) && (
+        {activePlatform === "home" && (
+          <HomeHub onSelect={handlePlatformChange} />
+        )}
+
+        {["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway"].includes(activePlatform) && (
           <>
             {/* Page Hero Banner */}
             <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
@@ -833,6 +902,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                       else if (activePlatform === "tiktok") setTikTokInputs(DEFAULT_TIKTOK_INPUTS);
                       else if (activePlatform === "twitch") setTwitchInputs(DEFAULT_TWITCH_INPUTS);
                       else if (activePlatform === "kick") setKickInputs(DEFAULT_KICK_INPUTS);
+                      else if (activePlatform === "runway") setRunwayInputs(DEFAULT_RUNWAY_INPUTS);
                       showToast("Reset to defaults!");
                     }}
                     className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-600 dark:text-neutral-400 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px] cursor-pointer"
@@ -897,6 +967,17 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                       currency={currency}
                     />
                   </Suspense>
+                )}
+                {activePlatform === "runway" && (
+                  <>
+                    <RunwayCalculator
+                      inputs={runwayInputs}
+                      onChange={handleRunwayChange}
+                      currency={currency}
+                      onCurrencyChange={handleCurrencyChange}
+                    />
+                    <RunwayBreakdown inputs={runwayInputs} currency={currency} />
+                  </>
                 )}
 
                 {/* Optimization Recommendations (AdMob / AdSense) */}
@@ -1062,9 +1143,15 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                     </Suspense>
                   </>
                 )}
+
+                {activePlatform === "runway" && (
+                  <RunwaySummary inputs={runwayInputs} currency={currency} />
+                )}
               </div>
             </section>
 
+{activePlatform !== "runway" && (
+            <>
             {/* Keyword-Rich Editorial SEO Section */}
             <section>
               <Suspense fallback={null}>
@@ -1099,6 +1186,13 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                 <SeoFaqSection />
               </Suspense>
             </section>
+            </>
+            )}
+            {activePlatform === "runway" && (
+              <section>
+                <RunwaySeoSection />
+              </section>
+            )}
           </>
         )}
       </main>
@@ -1168,7 +1262,7 @@ export function App({
   initialPlatform,
   initialLanguage,
 }: {
-  initialPlatform?: "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
+  initialPlatform?: "home" | "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "runway" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
   initialLanguage?: SupportedLanguage;
 } = {}) {
   return (

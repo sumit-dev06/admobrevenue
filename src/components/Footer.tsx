@@ -20,7 +20,10 @@ export const Footer = React.memo(() => {
               {t.footer.tagline}
             </p>
             <div className="flex flex-col space-y-1.5 text-neutral-600 dark:text-neutral-400">
-              <a href="/" className="hover:text-emerald-500 transition-colors">
+              <a href="/" className="hover:text-neutral-900 dark:hover:text-white font-bold transition-colors">
+                All Calculators (Home)
+              </a>
+              <a href="/admob" className="hover:text-emerald-500 transition-colors">
                 Google AdMob Calculator
               </a>
               <a href="/adsense" className="hover:text-blue-500 transition-colors">
@@ -37,6 +40,9 @@ export const Footer = React.memo(() => {
               </a>
               <a href="/kick" className="hover:text-emerald-400 transition-colors">
                 Kick Earnings Calculator
+              </a>
+              <a href="/runway" className="hover:text-amber-500 transition-colors">
+                Money Runway Calculator
               </a>
               <a href="/about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.about}

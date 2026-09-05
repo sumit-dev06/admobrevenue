@@ -11,7 +11,7 @@ import {
 
 export const ComprehensiveGuide = React.memo(() => {
   // Master container toggle
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   // Mobile accordion active item index
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
@@ -119,8 +119,8 @@ export const ComprehensiveGuide = React.memo(() => {
         </div>
       </button>
 
-      {/* Collapsible Content */}
-      {isOpen && (
+      {/* Collapsible Content - always in DOM for SEO crawlers, CSS-hidden when collapsed for fast LCP */}
+      <div className={isOpen ? "contents" : "hidden"}>
         <div className="p-4 sm:p-7 pt-0 sm:pt-0 space-y-5 sm:space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-xs pt-4">
             Whether you monetize mobile applications through <strong>Google AdMob</strong>, websites with <strong>Google AdSense</strong>, videos on <strong>YouTube</strong> and <strong>TikTok</strong>, or live streams on <strong>Twitch</strong> and <strong>Kick</strong>, revenue is dictated by audience tier, engagement depth, and format optimization. Explore our comprehensive platform breakdown below:
@@ -227,7 +227,7 @@ export const ComprehensiveGuide = React.memo(() => {
             })}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 });

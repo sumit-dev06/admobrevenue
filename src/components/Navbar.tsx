@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             className="flex items-center cursor-pointer select-none shrink-0 text-left bg-transparent border-0 p-0 hover:opacity-80 transition-opacity"
-            onClick={() => onPlatformChange("admob")}
+            onClick={() => onPlatformChange("home")}
             aria-label="RealTools Home"
             title="RealTools Home"
           >

@@ -3,7 +3,7 @@ import { SupportedLanguage, TranslationDictionary } from "./types";
 export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
   en: {
     meta: {
-      title: "Ad Revenue Calculator 2026 | RealTools - AdSense, AdMob & Creator Income",
+      title: "Ad Revenue Calculator 2026 | RealTools",
       description: "Accurate Google AdSense and AdMob revenue calculator. Forecast website page RPM and mobile app ARPDAU across 26 niches, countries, and ad formats for 2026.",
       keywords: "adsense revenue calculator, google adsense revenue calculator, ad revenue calculator, website ad revenue calculator, app ad revenue calculator, ad revenue calculator website, admob revenue calculator, google admob, google adsense, what is google adsense, website income checker, ad revenue",
     },

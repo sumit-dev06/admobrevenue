@@ -6,6 +6,8 @@ import {
   TikTokIcon,
   TwitchIcon,
   KickIcon,
+  RunwayIcon,
+  HomeIcon,
 } from "./PlatformIcons";
 import { useTranslation } from "../i18n/LanguageContext";
 
@@ -22,6 +24,15 @@ export const PlatformSwitcher: React.FC<PlatformSwitcherProps> = ({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const platforms = [
+    {
+      id: "home",
+      label: "Home",
+      icon: HomeIcon,
+      activeColor: "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-neutral-500/20",
+      iconColor: "text-neutral-500",
+      activeIconColor: "text-white dark:text-neutral-950",
+      tag: "All",
+    },
     {
       id: "admob",
       label: t.nav.admobTab || "AdMob",
@@ -76,6 +87,15 @@ export const PlatformSwitcher: React.FC<PlatformSwitcherProps> = ({
       activeIconColor: "text-neutral-950",
       tag: "95/5",
     },
+    {
+      id: "runway",
+      label: "Runway",
+      icon: RunwayIcon,
+      activeColor: "bg-amber-500 text-white shadow-amber-500/20",
+      iconColor: "text-amber-500",
+      activeIconColor: "text-white",
+      tag: "SWP",
+    },
   ];
 
   const isInitialMount = useRef(true);
@@ -109,7 +129,7 @@ export const PlatformSwitcher: React.FC<PlatformSwitcherProps> = ({
           {platforms.map((p) => {
             const Icon = p.icon;
             const isActive = activePlatform === p.id;
-            const href = p.id === "admob" ? "/" : `/${p.id}`;
+            const href = p.id === "home" ? "/" : `/${p.id}`;
 
             return (
               <a

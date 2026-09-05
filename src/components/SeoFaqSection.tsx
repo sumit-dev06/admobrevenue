@@ -6,7 +6,7 @@ import { ChevronDown, HelpCircle, Search, Filter } from "lucide-react";
 export const SeoFaqSection: React.FC = () => {
   const { t, language } = useTranslation();
   // Collapsed (off) by default
-  const [isSectionOpen, setIsSectionOpen] = useState(true);
+  const [isSectionOpen, setIsSectionOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -74,8 +74,8 @@ export const SeoFaqSection: React.FC = () => {
         </div>
       </button>
 
-      {/* Collapsible Content */}
-      {isSectionOpen && (
+      {/* Collapsible Content - always in DOM for SEO crawlers, CSS-hidden when collapsed for fast LCP */}
+      <div className={isSectionOpen ? "contents" : "hidden"}>
         <div className="p-5 sm:p-6 pt-0 sm:pt-0 space-y-4 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           {/* Search & Category Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 pb-1">
@@ -156,7 +156,7 @@ export const SeoFaqSection: React.FC = () => {
             )}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

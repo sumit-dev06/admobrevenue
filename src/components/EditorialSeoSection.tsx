@@ -11,7 +11,7 @@ import {
 
 export const EditorialSeoSection: React.FC = () => {
   // Master container open state
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   // Mobile accordion active item index
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
@@ -107,8 +107,8 @@ export const EditorialSeoSection: React.FC = () => {
         </div>
       </button>
 
-      {/* Collapsible Content */}
-      {isOpen && (
+      {/* Collapsible Content - always in DOM for SEO crawlers, CSS-hidden when collapsed for fast LCP */}
+      <div className={isOpen ? "contents" : "hidden"}>
         <div className="p-4 sm:p-8 pt-0 sm:pt-0 space-y-6 sm:space-y-8 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           {/* Main Introduction */}
           <div className="pt-4 sm:pt-5">
@@ -234,7 +234,7 @@ export const EditorialSeoSection: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
+      </div>
     </article>
   );
 };

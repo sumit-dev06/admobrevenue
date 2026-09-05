@@ -11,7 +11,7 @@ import {
 
 export const FormulaDeepDive: React.FC = () => {
   // Master container toggle
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   // Mobile accordion active item index
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
@@ -113,8 +113,8 @@ export const FormulaDeepDive: React.FC = () => {
         </div>
       </button>
 
-      {/* Collapsible Content */}
-      {isOpen && (
+      {/* Collapsible Content - always in DOM for SEO crawlers, CSS-hidden when collapsed for fast LCP */}
+      <div className={isOpen ? "contents" : "hidden"}>
         <div className="p-4 sm:p-7 pt-0 sm:pt-0 space-y-5 sm:space-y-6 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed pt-4">
             Understand the exact mathematical equations used across major advertising networks and streaming platforms to calculate net creator take-home pay, RPM, eCPM, and revenue splits.
@@ -209,7 +209,7 @@ export const FormulaDeepDive: React.FC = () => {
             })}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

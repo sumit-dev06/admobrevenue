@@ -15,7 +15,7 @@ export const GLOSSARY_TERMS = [
 
 export const GlossarySection: React.FC = () => {
   // Collapsed (off) by default
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
 
   const filtered = GLOSSARY_TERMS.filter(
@@ -61,8 +61,8 @@ export const GlossarySection: React.FC = () => {
         </div>
       </button>
 
-      {/* Collapsible Content */}
-      {isOpen && (
+      {/* Collapsible Content - always in DOM for SEO crawlers, CSS-hidden when collapsed for fast LCP */}
+      <div className={isOpen ? "contents" : "hidden"}>
         <div className="p-5 pt-0 space-y-4 border-t border-dashed border-neutral-200 dark:border-neutral-800 animate-in fade-in duration-200">
           <div className="flex items-center justify-between pt-3">
             <span className="text-[11px] text-neutral-500">Search industry terms:</span>
@@ -97,7 +97,7 @@ export const GlossarySection: React.FC = () => {
             ))}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
