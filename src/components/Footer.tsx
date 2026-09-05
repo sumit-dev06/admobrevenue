@@ -14,7 +14,7 @@ export const Footer = React.memo(() => {
           {/* Column 1: Brand & Calculators */}
           <div className="space-y-3">
             <div className="font-black text-sm text-neutral-900 dark:text-white">
-              admob<span className="text-emerald-500">revenue</span>
+              real<span className="text-emerald-500">tools</span>
             </div>
             <p className="text-neutral-500 text-[11px] leading-relaxed">
               {t.footer.tagline}

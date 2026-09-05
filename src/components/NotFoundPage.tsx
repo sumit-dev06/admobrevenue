@@ -11,7 +11,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ requestedPath, onNav
   useEffect(() => {
     // Set noindex for 404 and update title
     if (typeof document !== "undefined") {
-      document.title = "404 - Page Not Found | AdMobRevenue";
+      document.title = "404 - Page Not Found | RealTools";
 
       // Add noindex meta for this 404 page (prevent Google indexing garbage URLs)
       let metaRobots = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;

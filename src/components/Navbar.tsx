@@ -58,8 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             type="button"
             className="flex items-center cursor-pointer select-none shrink-0 text-left bg-transparent border-0 p-0 hover:opacity-80 transition-opacity"
             onClick={() => onPlatformChange("admob")}
-            aria-label="AdMobRevenue Home"
-            title="AdMobRevenue Home"
+            aria-label="RealTools Home"
+            title="RealTools Home"
           >
             <div className="w-8 h-8 rounded-lg bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-mono font-black text-sm flex items-center justify-center border border-dashed border-neutral-700 dark:border-neutral-300 shadow-xs">
               $

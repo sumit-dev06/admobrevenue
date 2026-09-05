@@ -345,14 +345,14 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
   const schemaWebsite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    'name': 'AdMobRevenue',
-    'alternateName': 'AdMobRevenue Monetization Engine',
+    'name': 'RealTools',
+    'alternateName': 'RealTools - Free Online Calculators',
     'url': 'https://realtools.store/',
     'inLanguage': lang,
     'description': meta.desc,
     'publisher': {
       '@type': 'Organization',
-      'name': 'AdMobRevenue',
+      'name': 'RealTools',
       'url': 'https://realtools.store/',
       'logo': {
         '@type': 'ImageObject',
@@ -526,19 +526,19 @@ try {
 
   // 7. Pre-render Clean Trust & Legal pages
   const aboutHtml = render('about', 'en');
-  writePrerender('about', aboutHtml, { title: 'About Us | AdMobRevenue 2026 Monetization Engine', desc: 'About AdMobRevenue publisher tools and creator revenue forecasting.', canonical: 'https://realtools.store/about', keywords: 'about admobrevenue, monetization engine, revenue calculator team' }, 'en');
+  writePrerender('about', aboutHtml, { title: 'About Us | RealTools 2026 Free Calculators', desc: 'About RealTools publisher tools and creator revenue forecasting.', canonical: 'https://realtools.store/about', keywords: 'about realtools, monetization engine, revenue calculator team' }, 'en');
 
   const contactHtml = render('contact', 'en');
-  writePrerender('contact', contactHtml, { title: 'Contact Us & Publisher Support | AdMobRevenue', desc: 'Contact publisher support and monetization engineers for calculator feedback.', canonical: 'https://realtools.store/contact', keywords: 'contact admobrevenue, publisher support, revenue calculator contact' }, 'en');
+  writePrerender('contact', contactHtml, { title: 'Contact Us & Publisher Support | RealTools', desc: 'Contact publisher support and monetization engineers for calculator feedback.', canonical: 'https://realtools.store/contact', keywords: 'contact realtools, publisher support, revenue calculator contact' }, 'en');
 
   const privacyHtml = render('privacy', 'en');
-  writePrerender('privacy', privacyHtml, { title: 'Privacy Policy | AdMobRevenue', desc: 'Privacy Policy and data protection standards for AdMobRevenue.', canonical: 'https://realtools.store/privacy', keywords: 'privacy policy admobrevenue, data protection' }, 'en');
+  writePrerender('privacy', privacyHtml, { title: 'Privacy Policy | RealTools', desc: 'Privacy Policy and data protection standards for RealTools.', canonical: 'https://realtools.store/privacy', keywords: 'privacy policy realtools, data protection' }, 'en');
 
   const termsHtml = render('terms', 'en');
-  writePrerender('terms', termsHtml, { title: 'Terms of Service | AdMobRevenue', desc: 'Terms of Service and acceptable use policy for monetization calculations.', canonical: 'https://realtools.store/terms', keywords: 'terms of service admobrevenue' }, 'en');
+  writePrerender('terms', termsHtml, { title: 'Terms of Service | RealTools', desc: 'Terms of Service and acceptable use policy for monetization calculations.', canonical: 'https://realtools.store/terms', keywords: 'terms of service realtools' }, 'en');
 
   const disclaimerHtml = render('disclaimer', 'en');
-  writePrerender('disclaimer', disclaimerHtml, { title: 'Earnings Disclaimer & Methodology | AdMobRevenue', desc: 'Earnings disclaimer, statistical accuracy, and calculation methodology for digital advertising networks.', canonical: 'https://realtools.store/disclaimer', keywords: 'earnings disclaimer, revenue calculation methodology' }, 'en');
+  writePrerender('disclaimer', disclaimerHtml, { title: 'Earnings Disclaimer & Methodology | RealTools', desc: 'Earnings disclaimer, statistical accuracy, and calculation methodology for digital advertising networks.', canonical: 'https://realtools.store/disclaimer', keywords: 'earnings disclaimer, revenue calculation methodology' }, 'en');
 
   // 8. Pre-render 7 Localized clean versions for ALL platforms with precise localized metadata
   const languages = ['es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'];
@@ -578,9 +578,9 @@ try {
 
   // 9. Pre-render 404 Not Found page — Cloudflare serves this with 404 status for unknown paths
   const notFoundMeta = {
-    title: '404 - Page Not Found | AdMobRevenue',
+    title: '404 - Page Not Found | RealTools',
     desc: 'The page you are looking for does not exist. Explore our AdSense, YouTube, TikTok, Twitch and Kick revenue calculators.',
-    keywords: '404, page not found, admobrevenue',
+    keywords: '404, page not found, realtools',
     canonical: 'https://realtools.store/404',
   };
   const notFoundHtml = render('404', 'en');

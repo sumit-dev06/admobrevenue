@@ -1,6 +1,6 @@
 # AdMob & AdSense Revenue Calculator
 
-> AdMobRevenue is a free, highly accurate forecasting engine for digital publishers and mobile app developers. The site provides a deterministic calculator to forecast Google AdMob (mobile app) ARPDAU and Google AdSense (website) Page RPM. It utilizes verified industry benchmarks, geographic tier multipliers, and ad format statistics to help developers accurately project their ad monetization income.
+> RealTools is a free, highly accurate forecasting engine for digital publishers and mobile app developers. The site provides a deterministic calculator to forecast Google AdMob (mobile app) ARPDAU and Google AdSense (website) Page RPM. It utilizes verified industry benchmarks, geographic tier multipliers, and ad format statistics to help developers accurately project their ad monetization income.
 
 - Company type: Indie Developer / Free Utility
 - Products: Google AdMob Revenue Calculator (Estimates app earnings using ARPDAU, Impressions, Ad Formats, and Real-Time Bidding metrics); Google AdSense Revenue Calculator (Estimates web earnings using Pageviews, Viewability, Geo-distribution, and AdBlocker rates).
