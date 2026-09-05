@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Inline blocking script to eliminate theme flash / glitch on refresh -->
+    <!-- Inline blocking script: default to light mode unless user explicitly chose dark -->
     <script>
       (function() {
         try {
           var saved = localStorage.getItem('adrev_theme');
-          var isDark = saved ? saved === 'dark' : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          if (isDark) {
+          if (saved === 'dark') {
             document.documentElement.classList.add('dark');
           } else {
             document.documentElement.classList.remove('dark');
