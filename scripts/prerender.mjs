@@ -17,9 +17,9 @@ await build({
 // ==========================================
 const PLATFORM_METADATA = {
   home: {
-    title: 'Ad Revenue Calculator 2026 | RealTools',
-    desc: 'Free calculators for AdSense, AdMob, YouTube, TikTok, Twitch, Kick and savings runway. Estimate ad revenue, payouts and how long money lasts.',
-    keywords: 'ad revenue calculator, adsense calculator, admob calculator, youtube money calculator, tiktok money calculator, twitch calculator, kick calculator, money runway calculator, realtools',
+    title: 'Ad Revenue & Runway Calculator 2026 | RealTools',
+    desc: 'Free calculators for AdSense, AdMob, YouTube, TikTok, Twitch, Kick, savings and startup runway. Estimate revenue, payouts and runway.',
+    keywords: 'ad revenue calculator, adsense calculator, admob calculator, youtube money calculator, tiktok money calculator, twitch calculator, kick calculator, runway calculator, startup runway calculator, financial runway calculator, free runway calculator, money runway calculator, how long will my money last, realtools',
     canonical: 'https://realtools.store/',
   },
   admob: {
@@ -53,9 +53,9 @@ const PLATFORM_METADATA = {
     canonical: 'https://realtools.store/twitch',
   },
   runway: {
-    title: 'Money Runway Calculator 2026 | Savings & SWP Tool',
-    desc: 'Free money runway calculator. See how long savings last with monthly withdrawals, returns and inflation step-ups. SWP breakeven analysis for 2026.',
-    keywords: 'money runway calculator, how long will my money last, how long will 1 crore last, swp calculator, retirement withdrawal calculator, savings runway calculator, how long will $1 million last, systematic withdrawal plan calculator, breakeven withdrawal calculator',
+    title: 'Startup Runway Calculator 2026 | Financial Runway Tool',
+    desc: 'Free runway calculator. See how long savings or startup cash lasts with monthly withdrawals, returns and inflation step-ups. SWP breakeven analysis for 2026.',
+    keywords: 'runway calculator, startup runway calculator, financial runway calculator, free runway calculator, money runway calculator, how long will my money last, how long will 1 crore last, swp calculator, retirement withdrawal calculator, savings runway calculator, how long will $1 million last, systematic withdrawal plan calculator, breakeven withdrawal calculator',
     canonical: 'https://realtools.store/runway',
   },
   kick: {
@@ -72,9 +72,9 @@ const PLATFORM_METADATA = {
 const LOCALIZED_PLATFORM_METADATA = {
   es: {
     root: {
-      title: 'Calculadora AdSense y AdMob 2026 | Ingresos Web',
+      title: 'Calculadora AdSense, AdMob y Runway 2026 | Ingresos',
       desc: 'Calculadora precisa de ingresos de Google AdSense, AdMob, YouTube, TikTok, Twitch y Kick. Estima ganancias por reproducciones, suscriptores y anuncios.',
-      keywords: 'calculadora de ingresos adsense, calculadora de ingresos google adsense, calculadora de ingresos publicitarios, calculadora ingresos web, calculadora ingresos app, ingresos adsense, que es google adsense, calculadora dinero youtube, calculadora ingresos tiktok, calculadora subs twitch, calculadora ganancias kick, cuanto paga adsense por clic, cuanto paga adsense por 1000 visitas',
+      keywords: 'calculadora de ingresos adsense, calculadora de ingresos google adsense, calculadora de ingresos publicitarios, calculadora ingresos web, calculadora ingresos app, ingresos adsense, que es google adsense, calculadora dinero youtube, calculadora ingresos tiktok, calculadora subs twitch, calculadora ganancias kick, cuanto paga adsense por clic, cuanto paga adsense por 1000 visitas, runway calculator, calculadora runway gratis',
     },
     admob: {
       title: 'Calculadora AdMob 2026 | ARPDAU y eCPM',
@@ -109,14 +109,14 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: 'Calculadora Runway 2026 | Cuánto Durará Mi Dinero',
       desc: 'Calculadora de runway: descubre cuántos años duran tus ahorros con retiros mensuales, rentabilidad e inflación. Análisis breakeven SWP.',
-      keywords: 'calculadora runway, cuanto durará mi dinero, cuanto dura 1 millón, calculadora swp, calculadora retiro jubilación, calculadora ahorros',
+      keywords: 'calculadora runway, cuanto durará mi dinero, cuanto dura 1 millón, calculadora swp, calculadora retiro jubilación, calculadora ahorros, startup runway calculator, financial runway calculator, free runway calculator, calculadora runway gratis, calculadora financiera startup',
     },
   },
   ja: {
     root: {
       title: 'AdSense, AdMob & クリエイター収益計算ツール 2026 | 広告収入＆配信収益予測',
-      desc: 'Google AdSense、AdMob、YouTube、TikTok、Twitch、Kickの正確な広告＆クリエイター収益計算機。再生数やサブスクから収益をシミュレーション。',
-      keywords: 'adsense 収益計算, アドセンス 収益 計算機, admob 収益計算, 広告収入 計算, ウェブサイト 広告収入, アプリ 広告収入, youtube 収益計算, tiktok 収益計算, twitch サブスク 収益, kick 収益計算機, アドセンス クリック単価, アドセンス 1クリック いくら',
+      desc: 'Google AdSense、AdMob、YouTube、TikTok、Twitch、Kickの正確な広告＆クリエイター収益計算機。再生数やサブスクから収益をシミュレーション。資産runway計算にも対応。',
+      keywords: 'adsense 収益計算, アドセンス 収益 計算機, admob 収益計算, 広告収入 計算, ウェブサイト 広告収入, アプリ 広告収入, youtube 収益計算, tiktok 収益計算, twitch サブスク 収益, kick 収益計算機, アドセンス クリック単価, アドセンス 1クリック いくら, runway calculator, runway 計算',
     },
     admob: {
       title: 'AdMob 収益計算ツール 2026 | ARPDAU＆eCPM予測',
@@ -151,14 +151,14 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: '資産寿命計算ツール 2026 | 老後資金は何年もつ？',
       desc: '毎月の取り崩し・運用利回り・インフレから資産の寿命を計算。SWP損益分岐点つき。',
-      keywords: '資産寿命 計算, 老後資金 何年, 取り崩し シミュレーション, swp 計算, 1億円 何年',
+      keywords: '資産寿命 計算, 老後資金 何年, 取り崩し シミュレーション, swp 計算, 1億円 何年, startup runway calculator, financial runway calculator, free runway calculator, 無料 runway 計算, スタートアップ runway 計算',
     },
   },
   fr: {
     root: {
-      title: 'Calculateur AdSense & AdMob 2026 | Revenus',
+      title: 'Calculateur AdSense, AdMob & Runway 2026 | Revenus',
       desc: 'Calculateur précis de revenus Google AdSense, AdMob, YouTube, TikTok, Twitch et Kick. Estimez vos gains publicitaires, abonnements et sponsors.',
-      keywords: 'calculateur de revenus adsense, simulateur de revenus adsense, calculateur de revenus publicitaires, gains google adsense, calculateur admob, calculateur revenus youtube, calculateur argent tiktok, simulateur gains twitch, calculateur kick, combien paye adsense par clic, combien gagne youtube 1000 vues',
+      keywords: 'calculateur de revenus adsense, simulateur de revenus adsense, calculateur de revenus publicitaires, gains google adsense, calculateur admob, calculateur revenus youtube, calculateur argent tiktok, simulateur gains twitch, calculateur kick, combien paye adsense par clic, combien gagne youtube 1000 vues, runway calculator, calculateur runway gratuit',
     },
     admob: {
       title: 'Calculateur AdMob 2026 | ARPDAU & eCPM',
@@ -193,14 +193,14 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: 'Calculateur Runway 2026 | Combien de Temps ?',
       desc: 'Calculez combien d\'années dureront vos économies avec retraits mensuels, rendement et inflation. Analyse SWP.',
-      keywords: 'calculateur runway, combien de temps dureront mes économies, calculateur swp, calculateur retraite retraits',
+      keywords: 'calculateur runway, combien de temps dureront mes économies, calculateur swp, calculateur retraite retraits, startup runway calculator, financial runway calculator, free runway calculator, calculateur runway gratuit, calculateur runway startup',
     },
   },
   de: {
     root: {
-      title: 'AdSense & AdMob Rechner 2026 | Einnahmen',
+      title: 'AdSense, AdMob & Runway Rechner 2026 | Einnahmen',
       desc: 'Präziser Rechner für Google AdSense, AdMob, YouTube, TikTok, Twitch und Kick Einnahmen. Berechnen Sie RPM, ARPDAU und Streamer-Auszahlungen.',
-      keywords: 'adsense einnahmen rechner, google adsense einnahmen rechner, werbeeinnahmen rechner, website werbeeinnahmen berechnen, app werbeeinnahmen rechner, youtube geld rechner, tiktok geld rechner, twitch einnahmen rechner, kick streamer rechner, was zahlt adsense pro klick, adsense einnahmen pro 1000 aufrufe',
+      keywords: 'adsense einnahmen rechner, google adsense einnahmen rechner, werbeeinnahmen rechner, website werbeeinnahmen berechnen, app werbeeinnahmen rechner, youtube geld rechner, tiktok geld rechner, twitch einnahmen rechner, kick streamer rechner, was zahlt adsense pro klick, adsense einnahmen pro 1000 aufrufe, runway calculator, runway rechner',
     },
     admob: {
       title: 'AdMob Rechner 2026 | ARPDAU & eCPM',
@@ -235,14 +235,14 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: 'Runway Rechner 2026 | Wie Lange Reicht Geld?',
       desc: 'Runway-Rechner: Wie viele Jahre reichen Ersparnisse bei monatlicher Entnahme, Rendite und Inflation? SWP-Analyse.',
-      keywords: 'runway rechner, wie lange reicht geld, wie lange reicht 1 million, swp rechner, entnahme rechner rente',
+      keywords: 'runway rechner, wie lange reicht geld, wie lange reicht 1 million, swp rechner, entnahme rechner rente, startup runway calculator, financial runway calculator, free runway calculator, kostenloser runway rechner, startup runway rechner',
     },
   },
   pt: {
     root: {
-      title: 'Calculadora AdSense e AdMob 2026 | Receita',
+      title: 'Calculadora AdSense, AdMob e Runway 2026 | Receita',
       desc: 'Calculadora precisa de receita do Google AdSense, AdMob, YouTube, TikTok, Twitch e Kick. Calcule ganhos de sites, apps móveis e canais de streaming.',
-      keywords: 'calculadora de receita adsense, calculadora ganhos adsense, calculadora receita admob, simulador adsense, ganhos com anuncios site, calculadora dinheiro youtube, calculadora dinheiro tiktok, calculadora ganhos twitch, calculadora kick, quanto paga adsense por clique, quanto ganha no youtube 1000 visualizacoes',
+      keywords: 'calculadora de receita adsense, calculadora ganhos adsense, calculadora receita admob, simulador adsense, ganhos com anuncios site, calculadora dinheiro youtube, calculadora dinheiro tiktok, calculadora ganhos twitch, calculadora kick, quanto paga adsense por clique, quanto ganha no youtube 1000 visualizacoes, runway calculator, calculadora runway grátis',
     },
     admob: {
       title: 'Calculadora AdMob 2026 | ARPDAU e eCPM',
@@ -277,14 +277,14 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: 'Calculadora Runway 2026 | Quanto Tempo Dura?',
       desc: 'Descubra quantos anos suas economias duram com retiradas mensais, rendimento e inflação. Análise SWP.',
-      keywords: 'calculadora runway, quanto tempo dura meu dinheiro, quanto dura 1 milhão, calculadora swp, calculadora aposentadoria',
+      keywords: 'calculadora runway, quanto tempo dura meu dinheiro, quanto dura 1 milhão, calculadora swp, calculadora aposentadoria, startup runway calculator, financial runway calculator, free runway calculator, calculadora runway grátis, calculadora runway startup',
     },
   },
   ko: {
     root: {
       title: '애드센스, 애드몹 & 크리에이터 수익 계산기 2026 | 유튜브·틱톡·트위치·킥',
-      desc: '정확한 구글 애드센스, 애드몹, 유튜브, 틱톡, 트위치, 킥 수익 계산기. 조회수와 구독자 기반의 정밀한 월간 및 연간 수익을 예측합니다.',
-      keywords: '애드센스 수익 계산기, 구글 애드센스 수익 계산, 애드몹 수익 계산기, 웹사이트 광고수익 계산, 앱 광고수익 계산, 유튜브 수익 계산기, 틱톡 수익 계산기, 트위치 수익 계산기, 킥 수익 계산기, 애드센스 클릭당 수익, 애드센스 1000회당 수익',
+      desc: '정확한 구글 애드센스, 애드몹, 유튜브, 틱톡, 트위치, 킥 수익 계산기. 조회수와 구독자 기반의 정밀한 월간 및 연간 수익을 예측합니다. 런웨이 계산 포함.',
+      keywords: '애드센스 수익 계산기, 구글 애드센스 수익 계산, 애드몹 수익 계산기, 웹사이트 광고수익 계산, 앱 광고수익 계산, 유튜브 수익 계산기, 틱톡 수익 계산기, 트위치 수익 계산기, 킥 수익 계산기, 애드센스 클릭당 수익, 애드센스 1000회당 수익, runway calculator, 런웨이 계산기',
     },
     admob: {
       title: '애드몹 수익 계산기 2026 | ARPDAU & eCPM',
@@ -319,14 +319,14 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: '자산수명 계산기 2026 | 은퇴자금 몇 년?',
       desc: '월 인출·수익률·인플레이션으로 저축이 몇 년 버틸지 계산. SWP 손익분기점 포함.',
-      keywords: '자산수명 계산기, 은퇴자금 몇 년, 인출 시뮬레이션, swp 계산기, 10억 몇 년',
+      keywords: '자산수명 계산기, 은퇴자금 몇 년, 인출 시뮬레이션, swp 계산기, 10억 몇 년, startup runway calculator, financial runway calculator, free runway calculator, 무료 런웨이 계산기, 스타트업 런웨이 계산기',
     },
   },
   it: {
     root: {
-      title: 'Calcolatore AdSense & AdMob 2026 | Guadagni',
+      title: 'Calcolatore AdSense, AdMob & Runway 2026 | Guadagni',
       desc: 'Calcolatore accurato dei guadagni di Google AdSense, AdMob, YouTube, TikTok, Twitch e Kick. Calcola Page RPM, ARPDAU e guadagni streaming.',
-      keywords: 'calcolatore guadagni adsense, calcolatore entrate adsense, guadagni pubblicitari sito web, calcolo entrate admob, quanto si guadagna con adsense, calcolatore soldi youtube, calcolatore tiktok, calcolatore guadagni twitch, calcolatore kick, quanto paga adsense per click, quanto si guadagna con youtube 1000 visualizzazioni',
+      keywords: 'calcolatore guadagni adsense, calcolatore entrate adsense, guadagni pubblicitari sito web, calcolo entrate admob, quanto si guadagna con adsense, calcolatore soldi youtube, calcolatore tiktok, calcolatore guadagni twitch, calcolatore kick, quanto paga adsense per click, quanto si guadagna con youtube 1000 visualizzazioni, runway calculator, calcolatore runway gratuito',
     },
     admob: {
       title: 'Calcolatore AdMob 2026 | ARPDAU ed eCPM',
@@ -361,7 +361,7 @@ const LOCALIZED_PLATFORM_METADATA = {
     runway: {
       title: 'Calcolatore Runway 2026 | Quanto Dura?',
       desc: 'Scopri quanti anni dureranno i risparmi con prelievi mensili, rendimento e inflazione. Analisi SWP.',
-      keywords: 'calcolatore runway, quanto durano i miei risparmi, quanto dura 1 milione, calcolatore swp, calcolatore pensione',
+      keywords: 'calcolatore runway, quanto durano i miei risparmi, quanto dura 1 milione, calcolatore swp, calcolatore pensione, startup runway calculator, financial runway calculator, free runway calculator, calcolatore runway gratuito, calcolatore runway startup',
     },
   },
 };
