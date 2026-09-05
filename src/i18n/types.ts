@@ -64,6 +64,13 @@ export interface TranslationDictionary {
     tiktokSubtitle: string;
     twitchSubtitle: string;
     kickSubtitle: string;
+    admobIntro: string;
+    adsenseIntro: string;
+    youtubeIntro: string;
+    tiktokIntro: string;
+    twitchIntro: string;
+    kickIntro: string;
+    runwayIntro: string;
     reset: string;
     switchToAdSense: string;
     switchToAdMob: string;
@@ -308,6 +315,10 @@ export interface TranslationDictionary {
     allCategory: string;
     adsenseCategory: string;
     admobCategory: string;
+    youtubeCategory: string;
+    tiktokCategory: string;
+    twitchCategory: string;
+    kickCategory: string;
     formulasCategory: string;
     strategyCategory: string;
   };

@@ -56,7 +56,7 @@ export const LanguageProvider: React.FC<{
       // Preserve current platform path when switching language
       const currentPath = window.location.pathname;
       const segments = currentPath.split("/").filter(Boolean);
-      const validPlatforms = ["adsense", "youtube", "tiktok", "twitch", "kick"];
+      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway"];
       const currentPlat = segments.find((s) => validPlatforms.includes(s.toLowerCase()));
       let newPath = "/";
       if (newLang !== "en") {
@@ -105,24 +105,16 @@ export const LanguageProvider: React.FC<{
     });
   }, []);
 
+  // NOTE: Per-page <title> / meta / canonical / OG tags are owned by the
+  // platform-aware SEO effect in App.tsx (mirrors scripts/prerender.mjs
+  // PLATFORM_METADATA). Do NOT set generic t.meta.* here — that would
+  // overwrite the correct per-calculator tags after hydration and cause
+  // Google to index /youtube, /tiktok, /twitch with AdSense titles/descs.
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.documentElement.lang = language;
-      if (t.meta?.title) document.title = t.meta.title;
-      if (t.meta?.description) {
-        document.querySelector('meta[name="description"]')?.setAttribute("content", t.meta.description);
-        document.querySelector('meta[property="og:description"]')?.setAttribute("content", t.meta.description);
-        document.querySelector('meta[property="twitter:description"]')?.setAttribute("content", t.meta.description);
-      }
-      if (t.meta?.keywords) {
-        document.querySelector('meta[name="keywords"]')?.setAttribute("content", t.meta.keywords);
-      }
-      if (t.meta?.title) {
-        document.querySelector('meta[property="og:title"]')?.setAttribute("content", t.meta.title);
-        document.querySelector('meta[property="twitter:title"]')?.setAttribute("content", t.meta.title);
-      }
     }
-  }, [language, t]);
+  }, [language]);
 
   return (
     <LanguageContext.Provider

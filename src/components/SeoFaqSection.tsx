@@ -1,15 +1,34 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { getFaqsForLanguage, FAQItem } from "../data/faqs";
 import { useTranslation } from "../i18n/LanguageContext";
 import { ChevronDown, HelpCircle, Search, Filter } from "lucide-react";
 
-export const SeoFaqSection: React.FC = () => {
+export const SeoFaqSection: React.FC<{ platform?: string }> = ({ platform = "admob" }) => {
   const { t, language } = useTranslation();
   // Collapsed (off) by default
   const [isSectionOpen, setIsSectionOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  // Default FAQ filter follows the active calculator so each page surfaces
+  // its own topical Q&A first (helps Google match page <-> snippet).
+  const platformCategory = useMemo(() => {
+    switch (platform) {
+      case "youtube": return "YouTube";
+      case "tiktok": return "TikTok";
+      case "twitch": return "Twitch";
+      case "kick": return "Kick";
+      case "adsense": return "AdSense";
+      case "admob": return "AdMob";
+      default: return "All";
+    }
+  }, [platform]);
+  const [selectedCategory, setSelectedCategory] = useState<string>(platformCategory);
+
+  // Keep filter in sync when the user switches calculators client-side.
+  useEffect(() => {
+    setSelectedCategory(platformCategory);
+    setOpenIndex(0);
+  }, [platformCategory]);
 
   const faqsList = useMemo(() => getFaqsForLanguage(language), [language]);
 
@@ -17,19 +36,28 @@ export const SeoFaqSection: React.FC = () => {
     { id: "All", label: t.faqs.allCategory },
     { id: "AdSense", label: t.faqs.adsenseCategory },
     { id: "AdMob", label: t.faqs.admobCategory },
+    { id: "YouTube", label: t.faqs.youtubeCategory },
+    { id: "TikTok", label: t.faqs.tiktokCategory },
+    { id: "Twitch", label: t.faqs.twitchCategory },
+    { id: "Kick", label: t.faqs.kickCategory },
     { id: "Formulas", label: t.faqs.formulasCategory },
     { id: "Strategy", label: t.faqs.strategyCategory },
   ], [t]);
 
   const filteredFaqs = useMemo(() => {
-    return faqsList.filter((item: FAQItem) => {
+    const matches = (item: FAQItem) => {
       const matchesCat = selectedCategory === "All" || item.category === selectedCategory;
       const matchesSearch =
         searchQuery.trim() === "" ||
         item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.answer.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCat && matchesSearch;
-    });
+    };
+    const byCat = faqsList.filter(matches);
+    // Some language packs only ship AdSense/AdMob Q&A — never render an empty
+    // FAQ section; fall back to the full list instead.
+    if (byCat.length === 0 && searchQuery.trim() === "") return faqsList;
+    return byCat;
   }, [faqsList, selectedCategory, searchQuery]);
 
   const toggle = (idx: number) => {
@@ -60,7 +88,7 @@ export const SeoFaqSection: React.FC = () => {
               </span>
             </div>
             <p className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">
-              {isSectionOpen ? "Click to collapse FAQ section" : "Common questions about AdSense, AdMob, YouTube, Twitch & Kick (Click to expand)"}
+              {isSectionOpen ? "Click to collapse FAQ section" : "Common questions about AdSense, AdMob, YouTube, TikTok, Twitch & Kick (Click to expand)"}
             </p>
           </div>
         </div>

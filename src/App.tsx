@@ -181,6 +181,7 @@ interface AppContentProps {
 
 import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
 import { COUNTRIES } from "./data/geoTiers";
+import { getPlatformSeo } from "./data/platformSeo";
 import { NotFoundPage } from "./components/NotFoundPage";
 
 // Strict route validation — only whitelisted paths return 200, everything else is 404
@@ -543,6 +544,29 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     }
   }, [language]);
 
+  // Platform-aware SEO sync (P0): keep <head> identical to the prerendered
+  // per-calculator tags (scripts/prerender.mjs) after hydration and on
+  // client-side navigation. Without this, generic meta would overwrite the
+  // correct /youtube, /tiktok, /twitch titles and Google would index
+  // AdSense text on creator pages.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const seo = getPlatformSeo(activePlatform, language);
+    if (!seo) return; // trust/legal/404 pages keep their prerendered tags
+    document.title = seo.title;
+    const setMeta = (sel: string, val: string) =>
+      document.querySelector(sel)?.setAttribute("content", val);
+    setMeta('meta[name="title"]', seo.title);
+    setMeta('meta[name="description"]', seo.desc);
+    setMeta('meta[property="og:title"]', seo.title);
+    setMeta('meta[property="og:description"]', seo.desc);
+    setMeta('meta[name="twitter:title"]', seo.title);
+    setMeta('meta[name="twitter:description"]', seo.desc);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", seo.canonical);
+    setMeta('meta[property="og:url"]', seo.canonical);
+    document.querySelector('meta[name="twitter:url"]')?.setAttribute("content", seo.canonical);
+  }, [activePlatform, language]);
+
   const handleCurrencyChange = (newCurrency: CurrencyCode) => {
     setCurrency(newCurrency);
     if (typeof window !== "undefined") {
@@ -750,6 +774,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.youtubeTitle,
           titleColor: "text-red-600 dark:text-red-400",
           subtitle: t.hero.youtubeSubtitle,
+          intro: t.hero.youtubeIntro,
         };
       case "tiktok":
         return {
@@ -758,6 +783,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.tiktokTitle,
           titleColor: "text-cyan-600 dark:text-cyan-400",
           subtitle: t.hero.tiktokSubtitle,
+          intro: t.hero.tiktokIntro,
         };
       case "twitch":
         return {
@@ -766,6 +792,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.twitchTitle,
           titleColor: "text-purple-600 dark:text-purple-400",
           subtitle: t.hero.twitchSubtitle,
+          intro: t.hero.twitchIntro,
         };
       case "kick":
         return {
@@ -774,6 +801,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.kickTitle,
           titleColor: "text-emerald-600 dark:text-emerald-400",
           subtitle: t.hero.kickSubtitle,
+          intro: t.hero.kickIntro,
         };
       case "runway":
         return {
@@ -782,6 +810,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: "Money Runway Calculator",
           titleColor: "text-amber-600 dark:text-amber-400",
           subtitle: "How long will your savings last? Model withdrawals, returns and inflation.",
+          intro: t.hero.runwayIntro,
         };
       case "adsense":
         return {
@@ -790,6 +819,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.adsenseTitle,
           titleColor: "text-blue-600 dark:text-blue-400",
           subtitle: t.hero.adsenseSubtitle,
+          intro: t.hero.adsenseIntro,
         };
       default:
         return {
@@ -798,6 +828,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           title: t.hero.admobTitle,
           titleColor: "text-emerald-600 dark:text-emerald-400",
           subtitle: t.hero.admobSubtitle,
+          intro: t.hero.admobIntro,
         };
     }
   };
@@ -885,6 +916,13 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono mt-0.5">
                     {heroInfo.subtitle}
                   </p>
+                  {/* Visible platform-specific SEO intro: tells Google exactly what
+                      this calculator page is about (unique per platform, SSR-rendered) */}
+                  {heroInfo.intro && (
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 font-mono mt-1.5 max-w-3xl leading-relaxed">
+                      {heroInfo.intro}
+                    </p>
+                  )}
                 </div>
 
                 {/* Reset Defaults Button */}
@@ -1186,7 +1224,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
             {/* SEO FAQs */}
             <section className="cv-auto">
               <Suspense fallback={null}>
-                <SeoFaqSection />
+                <SeoFaqSection platform={activePlatform} />
               </Suspense>
             </section>
             </>
