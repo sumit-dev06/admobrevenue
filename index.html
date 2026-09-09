@@ -40,32 +40,13 @@
     <link rel="alternate" hreflang="ko" href="https://realtools.store/ko" />
     <link rel="alternate" hreflang="it" href="https://realtools.store/it" />
 
-    <!-- Google tag (gtag.js) - Performance Deferred -->
+    <!-- Google tag (gtag.js) - load immediately so pageviews are never missed -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QM0YG2LXTC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-QM0YG2LXTC');
-
-      (function() {
-        var loaded = false;
-        function loadGtag() {
-          if (loaded) return;
-          loaded = true;
-          var s = document.createElement('script');
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-QM0YG2LXTC';
-          s.async = true;
-          document.head.appendChild(s);
-        }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() { setTimeout(loadGtag, 2500); });
-        } else {
-          window.addEventListener('load', function() { setTimeout(loadGtag, 2500); });
-        }
-        ['touchstart', 'scroll', 'mousemove', 'keydown', 'click'].forEach(function(evt) {
-          window.addEventListener(evt, loadGtag, { once: true, passive: true });
-        });
-      })();
     </script>
 
     <!-- Site Name & Web App Identity for Google Search Snippets -->

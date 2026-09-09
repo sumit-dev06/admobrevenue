@@ -210,6 +210,7 @@ interface AppContentProps {
 }
 
 import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
+import { trackPageView } from "./utils/analytics";
 import { COUNTRIES } from "./data/geoTiers";
 import { getPlatformSeo } from "./data/platformSeo";
 import { NotFoundPage } from "./components/NotFoundPage";
@@ -627,8 +628,12 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   // AdSense text on creator pages.
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Always track the pageview, even for trust/legal/404 pages without SEO data.
     const seo = getPlatformSeo(activePlatform, language);
-    if (!seo) return; // trust/legal/404 pages keep their prerendered tags
+    if (!seo) {
+      trackPageView(window.location.pathname + window.location.search);
+      return; // trust/legal/404 pages keep their prerendered tags
+    }
     document.title = seo.title;
     const setMeta = (sel: string, val: string) =>
       document.querySelector(sel)?.setAttribute("content", val);
@@ -641,6 +646,10 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", seo.canonical);
     setMeta('meta[property="og:url"]', seo.canonical);
     document.querySelector('meta[name="twitter:url"]')?.setAttribute("content", seo.canonical);
+
+    // SPA pageview: initial gtag('config') covers first load, this covers
+    // every pushState navigation between calculators.
+    trackPageView(window.location.pathname + window.location.search, seo.title);
   }, [activePlatform, language]);
 
   const handleCurrencyChange = (newCurrency: CurrencyCode) => {
