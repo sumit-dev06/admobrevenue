@@ -8,6 +8,8 @@ import {
   TwitchInputs,
   KickInputs,
   RunwayInputs,
+  PayCommissionInputs,
+  FuelInputs,
 } from "./types";
 import { SupportedLanguage } from "./i18n/types";
 import { LanguageProvider, useTranslation } from "./i18n/LanguageContext";
@@ -32,6 +34,9 @@ import { Footer } from "./components/Footer";
 import { OptimizationTips } from "./components/OptimizationTips";
 import { HomeHub } from "./components/HomeHub";
 import { RunwaySummary, RunwayBreakdown, RunwaySeoSection } from "./components/RunwayCalculator";
+import { RunwayZipCalculator, RunwayZipSeo } from "./components/RunwayZipPage";
+import { PayCommissionForm, PayCommissionSummary, PayCommissionSeoSection } from "./components/PayCommissionCalculator";
+import { FuelForm, FuelSummary, FuelSeoSection } from "./components/FuelCalculator";
 import { FormulaDeepDive } from "./components/FormulaDeepDive";
 import { EditorialSeoSection } from "./components/EditorialSeoSection";
 import { SeoFaqSection } from "./components/SeoFaqSection";
@@ -175,8 +180,33 @@ const DEFAULT_RUNWAY_INPUTS: RunwayInputs = {
   targetCountry: "US",
 };
 
+const DEFAULT_PAY_INPUTS: PayCommissionInputs = {
+  payLevel: 5,
+  currentBasic: 29200,
+  fitmentFactor: 1.92,
+  currentDaPercent: 60,
+  hraClass: "Y",
+  monthlyTa: 3600,
+  accountCountry: "IN",
+  targetCountry: "IN",
+};
+
+const DEFAULT_FUEL_INPUTS: FuelInputs = {
+  distance: 300,
+  distanceUnit: "km",
+  efficiency: 15,
+  efficiencyUnit: "kmpl",
+  fuelPrice: 100,
+  fuelPriceUnit: "per_litre",
+  roundTrip: false,
+  tripsPerMonth: 4,
+  passengers: 1,
+  accountCountry: "US",
+  targetCountry: "US",
+};
+
 interface AppContentProps {
-  initialPlatform?: "home" | "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "runway" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
+  initialPlatform?: "home" | "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "runway" | "8th-pay-commission" | "fuel-cost-calculator" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
 }
 
 import { detectUserLocation, fetchUserLocationIP, LANGUAGE_DEFAULTS } from "./utils/geoDetection";
@@ -186,8 +216,8 @@ import { NotFoundPage } from "./components/NotFoundPage";
 
 // Strict route validation — only whitelisted paths return 200, everything else is 404
 const SUPPORTED_LANGUAGES = ["es", "ja", "fr", "de", "pt", "ko", "it"] as const;
-const VALID_PLATFORMS = ["home", "admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "about", "contact", "privacy", "terms", "disclaimer"] as const;
-const LOCALIZED_CALC_PLATFORMS = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway"] as const;
+const VALID_PLATFORMS = ["home", "admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "8th-pay-commission", "fuel-cost-calculator", "about", "contact", "privacy", "terms", "disclaimer"] as const;
+const LOCALIZED_CALC_PLATFORMS = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "fuel-cost-calculator"] as const;
 
 function parseRoute(pathname: string): { platform: string; isNotFound: boolean } {
   const cleaned = pathname.toLowerCase().replace(/\/$/, "");
@@ -359,6 +389,43 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     return defaultInputs;
   });
 
+  // 8th Pay Commission Inputs (India-only)
+  const [payInputs, setPayInputs] = useState<PayCommissionInputs>(() => {
+    const defaultInputs: PayCommissionInputs = { ...DEFAULT_PAY_INPUTS };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_pay_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse Pay Commission inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
+
+  // Fuel Cost Inputs (global)
+  const [fuelInputs, setFuelInputs] = useState<FuelInputs>(() => {
+    const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
+    const defaultInputs: FuelInputs = {
+      ...DEFAULT_FUEL_INPUTS,
+      accountCountry: detected.countryCode,
+      targetCountry: detected.countryCode,
+    };
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("adrev_fuel_inputs");
+      if (saved) {
+        try {
+          return { ...defaultInputs, ...JSON.parse(saved) };
+        } catch (e) {
+          console.error("Failed to parse Fuel inputs", e);
+        }
+      }
+    }
+    return defaultInputs;
+  });
+
   // AdMob Inputs (Page 1) (persisted, defaulted to user location)
   const [adMobInputs, setAdMobInputs] = useState<AdMobInputs>(() => {
     const detected = typeof window !== "undefined" ? detectUserLocation() : { countryCode: "US", currencyCode: "USD" as CurrencyCode, language: "en" as SupportedLanguage };
@@ -471,6 +538,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
         setTwitchInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
         setKickInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
         setRunwayInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
+        setFuelInputs((prev) => prev.accountCountry === syncDetected.countryCode ? { ...prev, accountCountry: ip.countryCode, targetCountry: ip.countryCode } : prev);
       }
     });
     return () => { cancelled = true; };
@@ -539,6 +607,14 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
             accountCountry: defaults.countryCode,
             targetCountry: defaults.countryCode,
           }));
+
+          // Fuel (global — follows language region like other tools)
+          setFuelInputs((prev) => ({
+            ...prev,
+            accountCountry: defaults.countryCode,
+            targetCountry: defaults.countryCode,
+          }));
+          // Note: Pay Commission stays India-locked regardless of language.
         }
       }
     }
@@ -636,6 +712,19 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       }
     }
     setRunwayInputs(newInputs);
+  };
+
+  const handlePayChange = (newInputs: PayCommissionInputs) => {
+    setPayInputs(newInputs);
+  };
+
+  const handleFuelChange = (newInputs: FuelInputs) => {
+    if (newInputs.targetCountry !== fuelInputs.targetCountry) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("adrev_user_selected_country", "true");
+      }
+    }
+    setFuelInputs(newInputs);
   };
 
   // Persist platform, currency, and inputs to localStorage whenever changed
@@ -765,6 +854,18 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     }
   }, [runwayInputs]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_pay_inputs", JSON.stringify(payInputs));
+    }
+  }, [payInputs]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("adrev_fuel_inputs", JSON.stringify(fuelInputs));
+    }
+  }, [fuelInputs]);
+
   const getPlatformHeroInfo = () => {
     switch (activePlatform) {
       case "youtube":
@@ -811,6 +912,24 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           titleColor: "text-amber-600 dark:text-amber-400",
           subtitle: "How long will your savings last? Model withdrawals, returns and inflation.",
           intro: t.hero.runwayIntro,
+        };
+      case "8th-pay-commission":
+        return {
+          badge: "India · Central Govt",
+          badgeColor: "border-orange-500 text-orange-600 dark:text-orange-400 bg-orange-500/10",
+          title: "8th Pay Commission Calculator",
+          titleColor: "text-orange-600 dark:text-orange-400",
+          subtitle: "Project your revised salary at any fitment factor, with DA, HRA, arrears & pension.",
+          intro: "Estimate your 8th CPC revised basic pay from your 7th CPC basic across fitment scenarios 1.92×–3.83×, with current vs revised gross, HRA slabs, arrears from 1 Jan 2026 and pension refixation. India only — projections, not official figures.",
+        };
+      case "fuel-cost-calculator":
+        return {
+          badge: "Global · Everyday Tool",
+          badgeColor: "border-teal-500 text-teal-600 dark:text-teal-400 bg-teal-500/10",
+          title: "Fuel Cost Calculator",
+          titleColor: "text-teal-600 dark:text-teal-400",
+          subtitle: "What will your trip cost? Fuel needed, per-km cost and monthly estimate.",
+          intro: "Calculate total fuel cost from distance, mileage and pump price in any country — with km/miles, litre/gallon and mpg converters, round-trip and ride-split maths. Free, private, worldwide.",
         };
       case "adsense":
         return {
@@ -898,7 +1017,23 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
           <HomeHub onSelect={handlePlatformChange} />
         )}
 
-        {["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway"].includes(activePlatform) && (
+        {activePlatform === "runway" && (
+          <>
+            {/* Money Runway page mirrors moneyCalucator.zip layout (own H1, no generic hero).
+                SEO tags/canonical/JSON-LD still come from prerender + getPlatformSeo. */}
+            <RunwayZipCalculator
+              inputs={runwayInputs}
+              onChange={handleRunwayChange}
+              currency={currency}
+              onCurrencyChange={handleCurrencyChange}
+            />
+            <section className="cv-auto">
+              <RunwayZipSeo />
+            </section>
+          </>
+        )}
+
+        {["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "8th-pay-commission", "fuel-cost-calculator"].includes(activePlatform) && (
           <>
             {/* Page Hero Banner */}
             <section className="border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 bg-neutral-50/50 dark:bg-neutral-900/30">
@@ -942,6 +1077,8 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                       else if (activePlatform === "twitch") setTwitchInputs(DEFAULT_TWITCH_INPUTS);
                       else if (activePlatform === "kick") setKickInputs(DEFAULT_KICK_INPUTS);
                       else if (activePlatform === "runway") setRunwayInputs(DEFAULT_RUNWAY_INPUTS);
+                      else if (activePlatform === "8th-pay-commission") setPayInputs(DEFAULT_PAY_INPUTS);
+                      else if (activePlatform === "fuel-cost-calculator") setFuelInputs(DEFAULT_FUEL_INPUTS);
                       showToast("Reset to defaults!");
                     }}
                     className="px-2.5 py-1.5 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-rose-500 text-neutral-600 dark:text-neutral-400 hover:text-rose-500 transition-colors bg-white dark:bg-neutral-900 text-[11px] cursor-pointer"
@@ -1007,18 +1144,17 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                     />
                   </Suspense>
                 )}
-                {activePlatform === "runway" && (
-                  <>
-                    <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading Runway Calculator...</div>}>
-                      <RunwayCalculator
-                        inputs={runwayInputs}
-                        onChange={handleRunwayChange}
-                        currency={currency}
-                        onCurrencyChange={handleCurrencyChange}
-                      />
-                    </Suspense>
-                    <RunwayBreakdown inputs={runwayInputs} currency={currency} />
-                  </>
+                {activePlatform === "8th-pay-commission" && (
+                  <PayCommissionForm
+                    inputs={payInputs}
+                    onChange={handlePayChange}
+                  />
+                )}
+                {activePlatform === "fuel-cost-calculator" && (
+                  <FuelForm
+                    inputs={fuelInputs}
+                    onChange={handleFuelChange}
+                  />
                 )}
 
                 {/* Optimization Recommendations (AdMob / AdSense) */}
@@ -1185,13 +1321,17 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                   </>
                 )}
 
-                {activePlatform === "runway" && (
-                  <RunwaySummary inputs={runwayInputs} currency={currency} />
+                {activePlatform === "8th-pay-commission" && (
+                  <PayCommissionSummary inputs={payInputs} />
+                )}
+
+                {activePlatform === "fuel-cost-calculator" && (
+                  <FuelSummary inputs={fuelInputs} currency={currency} />
                 )}
               </div>
             </section>
 
-{activePlatform !== "runway" && (
+{["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform) && (
             <>
             {/* Keyword-Rich Editorial SEO Section */}
             <section className="cv-auto">
@@ -1229,9 +1369,14 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
             </section>
             </>
             )}
-            {activePlatform === "runway" && (
+            {activePlatform === "8th-pay-commission" && (
               <section className="cv-auto">
-                <RunwaySeoSection />
+                <PayCommissionSeoSection />
+              </section>
+            )}
+            {activePlatform === "fuel-cost-calculator" && (
+              <section className="cv-auto">
+                <FuelSeoSection />
               </section>
             )}
           </>
@@ -1303,7 +1448,7 @@ export function App({
   initialPlatform,
   initialLanguage,
 }: {
-  initialPlatform?: "home" | "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "runway" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
+  initialPlatform?: "home" | "admob" | "adsense" | "youtube" | "tiktok" | "twitch" | "kick" | "runway" | "8th-pay-commission" | "fuel-cost-calculator" | "about" | "contact" | "privacy" | "terms" | "disclaimer" | "404";
   initialLanguage?: SupportedLanguage;
 } = {}) {
   return (

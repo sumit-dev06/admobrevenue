@@ -71,7 +71,7 @@ export function yearsAndMonths(totalMonths: number | null): string {
   return `${y} year${y === 1 ? "" : "s"}, ${m} month${m === 1 ? "" : "s"}`;
 }
 
-export function calculateRunway(inputs: RunwayInputs): RunwayResults {
+export function calculateRunway(inputs: RunwayInputs, opts?: { ignoreMinimum?: boolean }): RunwayResults {
   const p = Math.max(0, Number(inputs.principal) || 0);
   const r = Number(inputs.annualReturn) || 0;
   const w = Math.max(0, Number(inputs.monthlyWithdrawal) || 0);
@@ -86,7 +86,7 @@ export function calculateRunway(inputs: RunwayInputs): RunwayResults {
       overdraw: true, breakeven, totalWithdrawn: 0, totalInterest: 0, rows: [], yearly: [],
     };
   }
-  if (p < MIN_PRINCIPAL) {
+  if (p < MIN_PRINCIPAL && !opts?.ignoreMinimum) {
     return {
       months: null, neverDepletes: false, invalid: true, tooSmall: true,
       overdraw: false, breakeven, totalWithdrawn: 0, totalInterest: 0, rows: [], yearly: [],

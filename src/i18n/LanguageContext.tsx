@@ -56,7 +56,7 @@ export const LanguageProvider: React.FC<{
       // Preserve current platform path when switching language
       const currentPath = window.location.pathname;
       const segments = currentPath.split("/").filter(Boolean);
-      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway"];
+      const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "fuel-cost-calculator"];
       const currentPlat = segments.find((s) => validPlatforms.includes(s.toLowerCase()));
       let newPath = "/";
       if (newLang !== "en") {

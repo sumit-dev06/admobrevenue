@@ -8,6 +8,8 @@ import {
   TwitchIcon,
   KickIcon,
   RunwayIcon,
+  PayCommissionIcon,
+  FuelIcon,
 } from "./PlatformIcons";
 
 interface HomeHubProps {
@@ -24,75 +26,119 @@ interface ToolCard {
   accent: string;
 }
 
-const TOOLS: ToolCard[] = [
+interface ToolCategory {
+  title: string;
+  blurb: string;
+  tools: ToolCard[];
+}
+
+const CATEGORIES: ToolCategory[] = [
   {
-    id: "adsense",
-    name: "AdSense Calculator",
-    outcome: "See what 50,000 pageviews actually pay across 26 niches.",
-    chips: ["Page RPM", "26 niches", "AdBlock loss"],
-    icon: AdSenseIcon,
-    iconWrap: "bg-blue-500/10 text-blue-500",
-    accent: "hover:border-blue-500",
+    title: "Creator & Ad Revenue",
+    blurb: "What your traffic, views and streams are worth.",
+    tools: [
+      {
+        id: "adsense",
+        name: "AdSense Calculator",
+        outcome: "See what 50,000 pageviews actually pay across 26 niches.",
+        chips: ["Page RPM", "26 niches", "AdBlock loss"],
+        icon: AdSenseIcon,
+        iconWrap: "bg-blue-500/10 text-blue-500",
+        accent: "hover:border-blue-500",
+      },
+      {
+        id: "admob",
+        name: "AdMob Calculator",
+        outcome: "Forecast app ARPDAU and eCPM by format and mediation.",
+        chips: ["ARPDAU", "Rewarded $35", "+30% lift"],
+        icon: AdMobIcon,
+        iconWrap: "bg-emerald-500/10 text-emerald-500",
+        accent: "hover:border-emerald-500",
+      },
+      {
+        id: "youtube",
+        name: "YouTube Calculator",
+        outcome: "Long-form, Shorts, memberships and sponsors in one number.",
+        chips: ["RPM by niche", "Mid-roll +45%", "Shorts pool"],
+        icon: YouTubeIcon,
+        iconWrap: "bg-red-500/10 text-red-500",
+        accent: "hover:border-red-500",
+      },
+      {
+        id: "tiktok",
+        name: "TikTok Calculator",
+        outcome: "Creator Rewards, qualified views and LIVE diamonds, decoded.",
+        chips: ["$0.40–$1.10 RPM", "LIVE gifts", "Shop cut"],
+        icon: TikTokIcon,
+        iconWrap: "bg-cyan-500/10 text-cyan-500",
+        accent: "hover:border-cyan-500",
+      },
+      {
+        id: "twitch",
+        name: "Twitch Calculator",
+        outcome: "Subs, Partner Plus splits, AIP ads and Bits per hour.",
+        chips: ["50/50–70/30", "AIP $4.50", "$0.01/bit"],
+        icon: TwitchIcon,
+        iconWrap: "bg-purple-500/10 text-purple-500",
+        accent: "hover:border-purple-500",
+      },
+      {
+        id: "kick",
+        name: "Kick Calculator",
+        outcome: "The 95/5 split and KCP hourly pay, side by side with Twitch.",
+        chips: ["$4.74 net/sub", "$16–$40/hr", "100% tips"],
+        icon: KickIcon,
+        iconWrap: "bg-emerald-400/10 text-emerald-400",
+        accent: "hover:border-emerald-400",
+      },
+    ],
   },
   {
-    id: "admob",
-    name: "AdMob Calculator",
-    outcome: "Forecast app ARPDAU and eCPM by format and mediation.",
-    chips: ["ARPDAU", "Rewarded $35", "+30% lift"],
-    icon: AdMobIcon,
-    iconWrap: "bg-emerald-500/10 text-emerald-500",
-    accent: "hover:border-emerald-500",
+    title: "Salary & Money",
+    blurb: "Pay revisions, savings and how long money lasts.",
+    tools: [
+      {
+        id: "8th-pay-commission",
+        name: "8th Pay Commission Calculator",
+        outcome: "Project your revised basic at any fitment factor, 1.92×–3.83×. India only.",
+        chips: ["Fitment 1.92×", "HRA slabs", "Arrears"],
+        icon: PayCommissionIcon,
+        iconWrap: "bg-orange-500/10 text-orange-500",
+        accent: "hover:border-orange-500",
+      },
+      {
+        id: "runway",
+        name: "Money Runway Calculator",
+        outcome: "How many years will your savings survive monthly withdrawals?",
+        chips: ["Breakeven/mo", "Inflation step-up", "SWP math"],
+        icon: RunwayIcon,
+        iconWrap: "bg-amber-500/10 text-amber-500",
+        accent: "hover:border-amber-500",
+      },
+    ],
   },
   {
-    id: "youtube",
-    name: "YouTube Calculator",
-    outcome: "Long-form, Shorts, memberships and sponsors in one number.",
-    chips: ["RPM by niche", "Mid-roll +45%", "Shorts pool"],
-    icon: YouTubeIcon,
-    iconWrap: "bg-red-500/10 text-red-500",
-    accent: "hover:border-red-500",
-  },
-  {
-    id: "runway",
-    name: "Money Runway Calculator",
-    outcome: "How many years will your savings survive monthly withdrawals?",
-    chips: ["Breakeven/mo", "Inflation step-up", "SWP math"],
-    icon: RunwayIcon,
-    iconWrap: "bg-amber-500/10 text-amber-500",
-    accent: "hover:border-amber-500",
-  },
-  {
-    id: "tiktok",
-    name: "TikTok Calculator",
-    outcome: "Creator Rewards, qualified views and LIVE diamonds, decoded.",
-    chips: ["$0.40–$1.10 RPM", "LIVE gifts", "Shop cut"],
-    icon: TikTokIcon,
-    iconWrap: "bg-cyan-500/10 text-cyan-500",
-    accent: "hover:border-cyan-500",
-  },
-  {
-    id: "twitch",
-    name: "Twitch Calculator",
-    outcome: "Subs, Partner Plus splits, AIP ads and Bits per hour.",
-    chips: ["50/50–70/30", "AIP $4.50", "$0.01/bit"],
-    icon: TwitchIcon,
-    iconWrap: "bg-purple-500/10 text-purple-500",
-    accent: "hover:border-purple-500",
-  },
-  {
-    id: "kick",
-    name: "Kick Calculator",
-    outcome: "The 95/5 split and KCP hourly pay, side by side with Twitch.",
-    chips: ["$4.74 net/sub", "$16–$40/hr", "100% tips"],
-    icon: KickIcon,
-    iconWrap: "bg-emerald-400/10 text-emerald-400",
-    accent: "hover:border-emerald-400",
+    title: "Everyday Tools",
+    blurb: "Practical calculators for daily life, anywhere in the world.",
+    tools: [
+      {
+        id: "fuel-cost-calculator",
+        name: "Fuel Cost Calculator",
+        outcome: "Trip fuel cost from distance, mileage and pump price. Global.",
+        chips: ["km / miles", "mpg converter", "Split fare"],
+        icon: FuelIcon,
+        iconWrap: "bg-teal-500/10 text-teal-500",
+        accent: "hover:border-teal-500",
+      },
+    ],
   },
 ];
 
 const POPULAR_SEARCHES: { label: string; platform: string }[] = [
   { label: "how much does youtube pay per 1000 views", platform: "youtube" },
   { label: "adsense page rpm calculator", platform: "adsense" },
+  { label: "8th pay commission salary calculator fitment factor", platform: "8th-pay-commission" },
+  { label: "fuel cost calculator per km", platform: "fuel-cost-calculator" },
   { label: "how long will 1 crore last", platform: "runway" },
   { label: "tiktok creator rewards per 1000 views", platform: "tiktok" },
   { label: "twitch sub calculator 70/30 split", platform: "twitch" },
@@ -106,18 +152,59 @@ export const HomeHub: React.FC<HomeHubProps> = ({ onSelect }) => {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return TOOLS;
-    return TOOLS.filter(
-      (t) =>
-        t.name.toLowerCase().includes(q) ||
-        t.outcome.toLowerCase().includes(q) ||
-        t.chips.some((c) => c.toLowerCase().includes(q))
-    );
+    if (!q) return CATEGORIES;
+    return CATEGORIES.map((cat) => ({
+      ...cat,
+      tools: cat.tools.filter(
+        (t) =>
+          t.name.toLowerCase().includes(q) ||
+          t.outcome.toLowerCase().includes(q) ||
+          t.chips.some((c) => c.toLowerCase().includes(q)) ||
+          cat.title.toLowerCase().includes(q)
+      ),
+    })).filter((cat) => cat.tools.length > 0);
   }, [query]);
+
+  const resultCount = filtered.reduce((n, c) => n + c.tools.length, 0);
 
   const go = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     onSelect(id);
+  };
+
+  const renderCard = (tool: ToolCard) => {
+    const Icon = tool.icon;
+    return (
+      <a
+        key={tool.id}
+        href={`/${tool.id}`}
+        onClick={(e) => go(e, tool.id)}
+        className={`group p-5 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all hover:shadow-lg hover:-translate-y-0.5 ${tool.accent}`}
+      >
+        <div className="flex items-start justify-between gap-2">
+          <div className={`p-2 rounded-xl ${tool.iconWrap}`}>
+            <Icon className="w-5 h-5" />
+          </div>
+          <ArrowUpRight className="w-4 h-4 text-neutral-300 dark:text-neutral-700 group-hover:text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
+        </div>
+        <h3 className="mt-3 text-sm font-mono font-black text-neutral-950 dark:text-white">
+          {tool.name}
+        </h3>
+        <p className="mt-1 text-xs font-mono text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          {tool.outcome}
+        </p>
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {tool.chips.map((c) => (
+            <span
+              key={c}
+              className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
+            >
+              {c}
+            </span>
+          ))}
+        </div>
+      </a>
+    );
   };
 
   return (
@@ -135,87 +222,68 @@ export const HomeHub: React.FC<HomeHubProps> = ({ onSelect }) => {
         <div className="relative p-6 sm:p-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-dashed border-neutral-300 dark:border-neutral-700 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-600 dark:text-neutral-300 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            RealTools — 7 free calculators
+            RealTools — 9 free calculators & tools
           </div>
           <h1 className="text-2xl sm:text-4xl font-black font-mono tracking-tight text-neutral-950 dark:text-white leading-tight">
-            Every money question,
+            Every calculation,
             <br />
             answered with <span className="text-emerald-600 dark:text-emerald-400">your numbers</span>.
           </h1>
           <p className="mt-3 text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xl">
-            Ad revenue, streaming payouts and savings runway — computed in your browser from 2026
-            benchmarks. No sign-up. Nothing leaves your device.
+            Ad revenue, streaming payouts, government salary revisions, savings runway and everyday
+            costs — computed in your browser from 2026 data. No sign-up. Nothing leaves your device.
           </p>
 
           {/* Glass search */}
           <div className="mt-5 relative max-w-xl">
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400" aria-hidden="true" />
-            <label htmlFor="hub-search" className="sr-only">Search calculators</label>
+            <label htmlFor="hub-search" className="sr-only">Search tools and calculators</label>
             <input
               id="hub-search"
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Try “youtube rpm”, “runway”, “kick split”…"
+              placeholder="Try “pay commission”, “fuel”, “youtube rpm”…"
               className="w-full pl-10 pr-4 py-2.5 rounded-xl text-xs font-mono bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-emerald-500"
             />
           </div>
 
           <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
-            <span><strong className="text-neutral-900 dark:text-white">7</strong> tools</span>
+            <span><strong className="text-neutral-900 dark:text-white">9</strong> tools</span>
             <span><strong className="text-neutral-900 dark:text-white">8</strong> languages</span>
             <span><strong className="text-neutral-900 dark:text-white">0</strong> data stored</span>
-            <span><strong className="text-neutral-900 dark:text-white">2026</strong> benchmarks</span>
+            <span><strong className="text-neutral-900 dark:text-white">2026</strong> data</span>
           </div>
         </div>
       </section>
 
-      {/* Tool grid */}
-      <section aria-label="All calculators">
-        <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3">
-          {query ? `${filtered.length} result${filtered.length === 1 ? "" : "s"}` : "All calculators"}
-        </h2>
-        {filtered.length === 0 ? (
+      {/* Tool categories */}
+      <section aria-label="All tools and calculators">
+        {query && (
+          <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3">
+            {`${resultCount} result${resultCount === 1 ? "" : "s"}`}
+          </h2>
+        )}
+        {resultCount === 0 ? (
           <div className="p-8 text-center text-xs font-mono text-neutral-500 border border-dashed border-neutral-300 dark:border-neutral-800 rounded-2xl">
-            No calculator matches “{query}”. Try “rpm”, “subs” or “runway”.
+            No tool matches “{query}”. Try “rpm”, “fuel”, “salary” or “runway”.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {filtered.map((tool) => {
-              const Icon = tool.icon;
-              return (
-                <a
-                  key={tool.id}
-                  href={`/${tool.id}`}
-                  onClick={(e) => go(e, tool.id)}
-                  className={`group p-5 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all hover:shadow-lg hover:-translate-y-0.5 ${tool.accent}`}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className={`p-2 rounded-xl ${tool.iconWrap}`}>
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-neutral-300 dark:text-neutral-700 group-hover:text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-3 text-sm font-mono font-black text-neutral-950 dark:text-white">
-                    {tool.name}
-                  </h3>
-                  <p className="mt-1 text-xs font-mono text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                    {tool.outcome}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {tool.chips.map((c) => (
-                      <span
-                        key={c}
-                        className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
-                      >
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+          filtered.map((cat) => (
+            <div key={cat.title} className="mb-5 last:mb-0">
+              <div className="mb-3">
+                <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-900 dark:text-white">
+                  {cat.title}
+                </h2>
+                <p className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 mt-0.5">
+                  {cat.blurb}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {cat.tools.map(renderCard)}
+              </div>
+            </div>
+          ))
         )}
       </section>
 
@@ -223,7 +291,7 @@ export const HomeHub: React.FC<HomeHubProps> = ({ onSelect }) => {
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {[
           { icon: ShieldCheck, title: "Private by design", desc: "Every calculation runs locally. Your inputs never touch a server." },
-          { icon: RefreshCw, title: "2026 benchmarks", desc: "Niche RPMs, platform splits and seasonality from current data." },
+          { icon: RefreshCw, title: "2026 data", desc: "Niche RPMs, platform splits, pay matrices and mileage math from current sources." },
           { icon: Languages, title: "8 languages", desc: "Full UI plus per-country keywords — not machine-translated chrome." },
         ].map((f) => (
           <div key={f.title} className="p-4 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30">

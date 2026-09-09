@@ -1,15 +1,18 @@
-# AdMob & AdSense Revenue Calculator
+# RealTools — Free Online Calculators & Tools
 
-> RealTools is a free, highly accurate forecasting engine for digital publishers and mobile app developers. The site provides a deterministic calculator to forecast Google AdMob (mobile app) ARPDAU and Google AdSense (website) Page RPM. It utilizes verified industry benchmarks, geographic tier multipliers, and ad format statistics to help developers accurately project their ad monetization income.
+> RealTools is a free hub of accurate online calculators and tools. The site provides deterministic calculators for creator ad revenue (AdSense, AdMob, YouTube, TikTok, Twitch, Kick), salary and money planning (8th Pay Commission India, money runway/SWP), and everyday costs (fuel cost) — all computed privately in the browser.
 
 - Company type: Indie Developer / Free Utility
-- Products: Google AdMob Revenue Calculator (Estimates app earnings using ARPDAU, Impressions, Ad Formats, and Real-Time Bidding metrics); Google AdSense Revenue Calculator (Estimates web earnings using Pageviews, Viewability, Geo-distribution, and AdBlocker rates).
-- Services: Digital Monetization Forecasting, Ad Network Revenue Estimation, A/B Scenario Planning.
-- Keywords: admob revenue calculator, adsense revenue calculator, mobile ad income, app earnings analysis, arpdau calculator, page rpm calculator, google ad revenue, ecpm forecasting, tier 1 ecpm, rewarded video revenue, anchor ads viewability, ad monetization tool.
+- Products: Google AdMob Revenue Calculator; Google AdSense Revenue Calculator; YouTube Money Calculator; TikTok Money Calculator; Twitch Money Calculator; Kick Earnings Calculator; 8th Pay Commission Salary Calculator (India); Money Runway Calculator; Fuel Cost Calculator (global).
+- Services: Creator Revenue Forecasting, Salary Revision Estimation, Savings Runway Planning, Trip Cost Estimation.
+- Keywords: admob revenue calculator, adsense revenue calculator, youtube money calculator, tiktok money calculator, 8th pay commission salary calculator, fuel cost calculator, money runway calculator, page rpm calculator, arpdau calculator.
 
 ## Website
 
-- [Homepage](https://realtools.store): Official Calculator
+- [Homepage](https://realtools.store): All Calculators & Tools
+- [8th Pay Commission Calculator](https://realtools.store/8th-pay-commission): Projected revised salary at any fitment factor (India)
+- [Fuel Cost Calculator](https://realtools.store/fuel-cost-calculator): Trip fuel cost estimator (global)
+- [Money Runway Calculator](https://realtools.store/runway): How long will your money last
 
 ## Resources
 

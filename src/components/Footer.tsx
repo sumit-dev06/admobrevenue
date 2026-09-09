@@ -44,6 +44,12 @@ export const Footer = React.memo(() => {
               <a href="/runway" className="hover:text-amber-500 transition-colors">
                 Money Runway Calculator
               </a>
+              <a href="/8th-pay-commission" className="hover:text-orange-500 transition-colors">
+                8th Pay Commission Calculator
+              </a>
+              <a href="/fuel-cost-calculator" className="hover:text-teal-500 transition-colors">
+                Fuel Cost Calculator
+              </a>
               <a href="/about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
                 {t.nav.about}
               </a>

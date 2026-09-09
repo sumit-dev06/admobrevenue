@@ -8,7 +8,7 @@
 // /youtube, /tiktok, /twitch with AdSense titles/descriptions.
 //
 // Shape: PLATFORM_SEO[lang][platform] = { title, desc }
-// platform: home | admob | adsense | youtube | tiktok | twitch | kick | runway
+// platform: home | admob | adsense | youtube | tiktok | twitch | kick | runway | 8th-pay-commission | fuel-cost-calculator
 // Missing lang/platform falls back to English (see getPlatformSeo below).
 
 export interface SeoEntry {
@@ -50,6 +50,14 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
       title: 'Startup Runway Calculator 2026 | Financial Runway Tool',
       desc: 'Free runway calculator. See how long savings or startup cash lasts with withdrawals, returns and inflation rises. SWP breakeven analysis for 2026. | RealTools',
     },
+    '8th-pay-commission': {
+      title: '8th Pay Commission Salary Calculator 2026 | Fitment Factor Tool India',
+      desc: 'Calculate projected 8th Pay Commission salary for central govt employees. Try fitment factors 1.92x–3.83x with DA, HRA slabs, arrears and pension. | RealTools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Fuel Cost Calculator 2026 | Trip Petrol & Diesel Cost Estimator',
+      desc: 'Free fuel cost calculator for any country. Enter distance, mileage and pump price to get trip cost, fuel needed, per-km cost and monthly estimate. | RealTools',
+    },
   },
   es: {
     home: {
@@ -83,6 +91,10 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
     runway: {
       title: 'Calculadora Runway 2026 | Cuánto Durará Mi Dinero',
       desc: 'Calculadora de runway: descubre cuántos años duran tus ahorros con retiros mensuales, rentabilidad e inflación. Análisis breakeven SWP. | RealTools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Calculadora de Combustible 2026 | Costo de Viaje por km',
+      desc: 'Calculadora gratis de costo de combustible. Ingresa distancia, consumo y precio para obtener costo del viaje, litros y gasto mensual. | RealTools',
     },
   },
   ja: {
@@ -118,6 +130,10 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
       title: '資産寿命計算ツール 2026 | 老後資金は何年もつ？',
       desc: '毎月の取り崩し・運用利回り・インフレから資産の寿命を計算。SWP損益分岐点つき。 | RealTools',
     },
+    'fuel-cost-calculator': {
+      title: '燃料費計算ツール 2026 | ガソリン代・燃費シミュレーター',
+      desc: '距離・燃費・燃料単価から旅行の燃料費・必要量・月額を無料計算。世界対応。 | RealTools',
+    },
   },
   fr: {
     home: {
@@ -151,6 +167,10 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
     runway: {
       title: 'Calculateur Runway 2026 | Combien de Temps ?',
       desc: "Calculez combien d'années dureront vos économies avec retraits mensuels, rendement et inflation. Analyse SWP. | RealTools",
+    },
+    'fuel-cost-calculator': {
+      title: 'Calculateur Carburant 2026 | Coût Trajet au km',
+      desc: "Calculateur gratuit du coût carburant. Distance, consommation et prix pour un coût de trajet, litres et budget mensuel. | RealTools",
     },
   },
   de: {
@@ -186,6 +206,10 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
       title: 'Runway Rechner 2026 | Wie Lange Reicht Geld?',
       desc: 'Runway-Rechner: Wie viele Jahre reichen Ersparnisse bei monatlicher Entnahme, Rendite und Inflation? SWP-Analyse. | RealTools',
     },
+    'fuel-cost-calculator': {
+      title: 'Spritkosten Rechner 2026 | Fahrtkosten pro km',
+      desc: 'Kostenloser Spritkosten-Rechner. Strecke, Verbrauch und Preis eingeben für Fahrtkosten, Liter und Monatskosten. | RealTools',
+    },
   },
   pt: {
     home: {
@@ -219,6 +243,10 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
     runway: {
       title: 'Calculadora Runway 2026 | Quanto Tempo Dura?',
       desc: 'Descubra quantos anos suas economias duram com retiradas mensais, rendimento e inflação. Análise SWP. | RealTools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Calculadora de Combustível 2026 | Custo por km',
+      desc: 'Calculadora grátis de custo de combustível. Distância, consumo e preço para custo da viagem, litros e gasto mensal. | RealTools',
     },
   },
   ko: {
@@ -254,6 +282,10 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
       title: '자산수명 계산기 2026 | 은퇴자금 몇 년?',
       desc: '월 인출·수익률·인플레이션으로 저축이 몇 년 버틸지 계산. SWP 손익분기점 포함. | RealTools',
     },
+    'fuel-cost-calculator': {
+      title: '연료비 계산기 2026 | 주행 유류비 예측',
+      desc: '거리·연비·유가를 입력해 여행 연료비·필요량·월 지출을 무료 계산. 전 세계 지원. | RealTools',
+    },
   },
   it: {
     home: {
@@ -288,10 +320,14 @@ export const PLATFORM_SEO: Record<string, Record<string, SeoEntry>> = {
       title: 'Calcolatore Runway 2026 | Quanto Dura?',
       desc: 'Scopri quanti anni dureranno i risparmi con prelievi mensili, rendimento e inflazione. Analisi SWP. | RealTools',
     },
+    'fuel-cost-calculator': {
+      title: 'Calcolatore Carburante 2026 | Costo per km',
+      desc: 'Calcolatore gratis del costo carburante. Distanza, consumo e prezzo per costo viaggio, litri e spesa mensile. | RealTools',
+    },
   },
 };
 
-const CALC_PLATFORMS = new Set(['home', 'admob', 'adsense', 'youtube', 'tiktok', 'twitch', 'kick', 'runway']);
+const CALC_PLATFORMS = new Set(['home', 'admob', 'adsense', 'youtube', 'tiktok', 'twitch', 'kick', 'runway', '8th-pay-commission', 'fuel-cost-calculator']);
 
 /** Canonical URL for a platform + language (mirrors scripts/prerender.mjs). */
 export function canonicalFor(platform: string, lang: string): string {

@@ -366,6 +366,72 @@ export interface RunwayResults {
 }
 
 // ==========================================
+// 8TH PAY COMMISSION (INDIA) TYPES
+// ==========================================
+export type HraCityClass = "X" | "Y" | "Z";
+
+export interface PayCommissionInputs {
+  payLevel: number; // 1 - 18
+  currentBasic: number; // 7th CPC basic pay in INR
+  fitmentFactor: number; // e.g. 1.92
+  currentDaPercent: number; // e.g. 60
+  hraClass: HraCityClass; // X 30% / Y 20% / Z 10%
+  monthlyTa: number; // Transport Allowance base (excl. DA) in INR
+  accountCountry?: string;
+  targetCountry?: string;
+}
+
+export interface PayCommissionResults {
+  revisedBasic: number; // rounded to nearest 100
+  currentDa: number;
+  currentHra: number;
+  currentTaWithDa: number;
+  currentGross: number;
+  revisedHra: number;
+  revisedTa: number; // TA with DA reset to 0
+  revisedGross: number;
+  monthlyIncrease: number;
+  percentHike: number; // vs current gross
+  effectiveHikeVsBasicDa: number; // vs basic + DA (Patel method)
+  revisedPension: number; // 50% of revised basic
+  currentPension: number; // 50% of current basic
+  arrearsPerMonth: number;
+}
+
+// ==========================================
+// FUEL COST (GLOBAL) TYPES
+// ==========================================
+export type DistanceUnit = "km" | "mi";
+export type EfficiencyUnit = "kmpl" | "l100km" | "mpg_us" | "mpg_uk";
+export type FuelPriceUnit = "per_litre" | "per_us_gallon" | "per_uk_gallon";
+
+export interface FuelInputs {
+  distance: number;
+  distanceUnit: DistanceUnit;
+  efficiency: number;
+  efficiencyUnit: EfficiencyUnit;
+  fuelPrice: number;
+  fuelPriceUnit: FuelPriceUnit;
+  roundTrip: boolean;
+  tripsPerMonth: number;
+  passengers: number;
+  accountCountry?: string;
+  targetCountry?: string;
+}
+
+export interface FuelResults {
+  distanceKm: number;
+  fuelNeededLitres: number;
+  fuelNeededUsGallons: number;
+  pricePerLitre: number;
+  singleTripCost: number;
+  costPerKm: number;
+  monthlyCost: number;
+  perPersonCost: number;
+  invalid: boolean;
+}
+
+// ==========================================
 // KICK STREAMER TYPES
 // ==========================================
 export interface KickInputs {

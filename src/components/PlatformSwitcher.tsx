@@ -7,6 +7,8 @@ import {
   TwitchIcon,
   KickIcon,
   RunwayIcon,
+  PayCommissionIcon,
+  FuelIcon,
   HomeIcon,
 } from "./PlatformIcons";
 import { useTranslation } from "../i18n/LanguageContext";
@@ -95,6 +97,24 @@ export const PlatformSwitcher: React.FC<PlatformSwitcherProps> = ({
       iconColor: "text-amber-500",
       activeIconColor: "text-white",
       tag: "SWP",
+    },
+    {
+      id: "8th-pay-commission",
+      label: "8th Pay",
+      icon: PayCommissionIcon,
+      activeColor: "bg-orange-600 text-white shadow-orange-500/20",
+      iconColor: "text-orange-500",
+      activeIconColor: "text-white",
+      tag: "India",
+    },
+    {
+      id: "fuel-cost-calculator",
+      label: "Fuel Cost",
+      icon: FuelIcon,
+      activeColor: "bg-teal-600 text-white shadow-teal-500/20",
+      iconColor: "text-teal-500",
+      activeIconColor: "text-white",
+      tag: "Global",
     },
   ];
 

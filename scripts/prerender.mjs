@@ -64,6 +64,18 @@ const PLATFORM_METADATA = {
     keywords: 'Kick earnings calculator, kick stream calculator, kick revenue calculator, kick sub calculator, kick 95 5 split calculator, kick creator program hourly rate, kick vs twitch earnings calculator, kick streamer income, how much does kick pay streamers, kick money calculator, kick crypto tipping, realtools',
     canonical: 'https://realtools.store/kick',
   },
+  '8th-pay-commission': {
+    title: '8th Pay Commission Salary Calculator 2026 | Fitment Factor Tool India',
+    desc: 'Calculate projected 8th Pay Commission salary for central govt employees. Try fitment factors 1.92x–3.83x with DA, HRA slabs, arrears and pension. | RealTools',
+    keywords: '8th pay commission salary calculator, 8th cpc salary calculator, 8th pay commission fitment factor calculator, 8th pay commission basic pay calculator, 8th pay commission arrears calculator, 8th pay commission pension calculator, 8th pay commission level wise salary, what will be my salary in 8th pay commission, realtools',
+    canonical: 'https://realtools.store/8th-pay-commission',
+  },
+  'fuel-cost-calculator': {
+    title: 'Fuel Cost Calculator 2026 | Trip Petrol & Diesel Cost Estimator',
+    desc: 'Free fuel cost calculator for any country. Enter distance, mileage and pump price to get trip cost, fuel needed, per-km cost and monthly estimate. | RealTools',
+    keywords: 'fuel cost calculator, trip fuel cost calculator, petrol cost calculator, diesel cost calculator, car fuel cost per km calculator, mileage fuel cost calculator, road trip gas cost calculator, fuel consumption cost calculator, how much fuel will my trip use, realtools',
+    canonical: 'https://realtools.store/fuel-cost-calculator',
+  },
 };
 
 // ==========================================
@@ -111,6 +123,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Calculadora de runway: descubre cuántos años duran tus ahorros con retiros mensuales, rentabilidad e inflación. Análisis breakeven SWP. | RealTools',
       keywords: 'calculadora runway, cuanto durará mi dinero, cuanto dura 1 millón, calculadora swp, calculadora retiro jubilación, calculadora ahorros, startup runway calculator, financial runway calculator, free runway calculator, calculadora runway gratis, calculadora financiera startup, realtools',
     },
+    'fuel-cost-calculator': {
+      title: 'Calculadora de Combustible 2026 | Costo de Viaje por km',
+      desc: 'Calculadora gratis de costo de combustible. Ingresa distancia, consumo y precio para obtener costo del viaje, litros y gasto mensual. | RealTools',
+      keywords: 'calculadora de combustible, calculadora costo viaje gasolina, costo por km calculadora, consumo combustible calculadora, cuanto cuesta mi viaje en gasolina, realtools',
+    },
   },
   ja: {
     root: {
@@ -152,6 +169,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       title: '資産寿命計算ツール 2026 | 老後資金は何年もつ？',
       desc: '毎月の取り崩し・運用利回り・インフレから資産の寿命を計算。SWP損益分岐点つき。 | RealTools',
       keywords: '資産寿命 計算, 老後資金 何年, 取り崩し シミュレーション, swp 計算, 1億円 何年, startup runway calculator, financial runway calculator, free runway calculator, 無料 runway 計算, スタートアップ runway 計算, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: '燃料費計算ツール 2026 | ガソリン代・燃費シミュレーター',
+      desc: '距離・燃費・燃料単価から旅行の燃料費・必要量・月額を無料計算。世界対応。 | RealTools',
+      keywords: '燃料費 計算, ガソリン代 計算, 燃費 計算, 旅行 ガソリン代, 月 燃料費 計算, realtools',
     },
   },
   fr: {
@@ -195,6 +217,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Calculez combien d\'années dureront vos économies avec retraits mensuels, rendement et inflation. Analyse SWP. | RealTools',
       keywords: 'calculateur runway, combien de temps dureront mes économies, calculateur swp, calculateur retraite retraits, startup runway calculator, financial runway calculator, free runway calculator, calculateur runway gratuit, calculateur runway startup, realtools',
     },
+    'fuel-cost-calculator': {
+      title: 'Calculateur Carburant 2026 | Coût Trajet au km',
+      desc: 'Calculateur gratuit du coût carburant. Distance, consommation et prix pour un coût de trajet, litres et budget mensuel. | RealTools',
+      keywords: 'calculateur carburant, coût trajet essence, prix au km voiture, consommation carburant calcul, combien coûte mon trajet, realtools',
+    },
   },
   de: {
     root: {
@@ -236,6 +263,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       title: 'Runway Rechner 2026 | Wie Lange Reicht Geld?',
       desc: 'Runway-Rechner: Wie viele Jahre reichen Ersparnisse bei monatlicher Entnahme, Rendite und Inflation? SWP-Analyse. | RealTools',
       keywords: 'runway rechner, wie lange reicht geld, wie lange reicht 1 million, swp rechner, entnahme rechner rente, startup runway calculator, financial runway calculator, free runway calculator, kostenloser runway rechner, startup runway rechner, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Spritkosten Rechner 2026 | Fahrtkosten pro km',
+      desc: 'Kostenloser Spritkosten-Rechner. Strecke, Verbrauch und Preis eingeben für Fahrtkosten, Liter und Monatskosten. | RealTools',
+      keywords: 'spritkosten rechner, fahrtkosten rechner benzin, kosten pro km auto, spritverbrauch kosten rechner, was kostet meine fahrt, realtools',
     },
   },
   pt: {
@@ -279,6 +311,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Descubra quantos anos suas economias duram com retiradas mensais, rendimento e inflação. Análise SWP. | RealTools',
       keywords: 'calculadora runway, quanto tempo dura meu dinheiro, quanto dura 1 milhão, calculadora swp, calculadora aposentadoria, startup runway calculator, financial runway calculator, free runway calculator, calculadora runway grátis, calculadora runway startup, realtools',
     },
+    'fuel-cost-calculator': {
+      title: 'Calculadora de Combustível 2026 | Custo por km',
+      desc: 'Calculadora grátis de custo de combustível. Distância, consumo e preço para custo da viagem, litros e gasto mensal. | RealTools',
+      keywords: 'calculadora de combustível, custo viagem gasolina, custo por km carro, consumo combustível cálculo, quanto custa minha viagem, realtools',
+    },
   },
   ko: {
     root: {
@@ -320,6 +357,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       title: '자산수명 계산기 2026 | 은퇴자금 몇 년?',
       desc: '월 인출·수익률·인플레이션으로 저축이 몇 년 버틸지 계산. SWP 손익분기점 포함. | RealTools',
       keywords: '자산수명 계산기, 은퇴자금 몇 년, 인출 시뮬레이션, swp 계산기, 10억 몇 년, startup runway calculator, financial runway calculator, free runway calculator, 무료 런웨이 계산기, 스타트업 런웨이 계산기, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: '연료비 계산기 2026 | 주행 유류비 예측',
+      desc: '거리·연비·유가를 입력해 여행 연료비·필요량·월 지출을 무료 계산. 전 세계 지원. | RealTools',
+      keywords: '연료비 계산기, 주행 유류비 계산, km당 유류비, 연비 계산기, 여행 기름값 계산, realtools',
     },
   },
   it: {
@@ -363,6 +405,11 @@ const LOCALIZED_PLATFORM_METADATA = {
       desc: 'Scopri quanti anni dureranno i risparmi con prelievi mensili, rendimento e inflazione. Analisi SWP. | RealTools',
       keywords: 'calcolatore runway, quanto durano i miei risparmi, quanto dura 1 milione, calcolatore swp, calcolatore pensione, startup runway calculator, financial runway calculator, free runway calculator, calcolatore runway gratuito, calcolatore runway startup, realtools',
     },
+    'fuel-cost-calculator': {
+      title: 'Calcolatore Carburante 2026 | Costo per km',
+      desc: 'Calcolatore gratis del costo carburante. Distanza, consumo e prezzo per costo viaggio, litri e spesa mensile. | RealTools',
+      keywords: 'calcolatore carburante, costo viaggio benzina, costo per km auto, consumo carburante calcolo, quanto costa il mio viaggio, realtools',
+    },
   },
 };
 
@@ -371,7 +418,7 @@ const LOCALIZED_PLATFORM_METADATA = {
 // ==========================================
 function generateJsonLd(platformKey, meta, lang = 'en') {
   // Skip rich rating for 404/trust pages to avoid inflated rating
-  const isAppPage = ['admob','adsense','youtube','tiktok','twitch','kick','runway'].includes(platformKey);
+  const isAppPage = ['admob','adsense','youtube','tiktok','twitch','kick','runway','8th-pay-commission','fuel-cost-calculator'].includes(platformKey);
   const schemaApp = {
     '@context': 'https://schema.org',
     '@type': isAppPage ? 'WebApplication' : 'WebPage',
@@ -488,6 +535,14 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
       { q: 'How does Kick 95/5 split work?', a: 'Kick pays $4.74 net per $4.99 sub (95%). Twitch 50/50 pays $2.49. KCP hourly $16–$40 based on CCV adds on top.' },
       { q: 'What is Kick KCP?', a: 'Kick Creator Program hourly stipend for eligible streamers based on average concurrent viewers. Enable KCP in calculator to include.' },
     ],
+    '8th-pay-commission': [
+      { q: 'What is the 8th Pay Commission fitment factor?', a: 'The multiplier converting 7th CPC basic pay to 8th CPC basic pay. Not yet announced; analyst consensus is ~1.92x, unions demand 3.83x. Try every scenario in the calculator above.' },
+      { q: 'When will the 8th Pay Commission be implemented?', a: 'Revised pay is referenced to 1 January 2026 with arrears, but payout follows the report (expected mid-2027) and Cabinet approval.' },
+    ],
+    'fuel-cost-calculator': [
+      { q: 'How do I calculate fuel cost for a trip?', a: 'Fuel needed = distance ÷ mileage, then cost = fuel × pump price. Enter distance, mileage and price above for an exact trip, monthly and per-person cost.' },
+      { q: 'How much fuel will my car use?', a: 'Divide trip distance by mileage in matching units: 300 km at 15 km/L needs 20 litres. Our calculator converts km/L, L/100km and mpg automatically.' },
+    ],
   };
   const faqForPlatform = faqMap[platformKey] || faqMap['adsense'];
   const schemaFaq = {
@@ -553,14 +608,18 @@ try {
       const locale = localeMap[lang] || 'en_US';
       renderedPage = renderedPage.replace(/<meta property="og:locale" content=".*?" \/>/, `<meta property="og:locale" content="${locale}" />`);
       // Fix hreflang per-platform cluster (P0-5) - no trailing slash except root
+      // India-only pages (8th-pay-commission) are English-only: just x-default + en
       const basePath = platformKey && platformKey !== 'home' ? platformKey : (cleanSlug === '404' ? '404' : '');
+      const INDIA_ONLY = new Set(['8th-pay-commission']);
+      const langs = INDIA_ONLY.has(platformKey)
+        ? ['x-default', 'en']
+        : ['x-default', 'en', 'es', 'ja', 'fr', 'de', 'pt', 'pt-BR', 'ko', 'it'];
       const buildHref = (lng, path) => {
         if (!path) return `https://realtools.store/${lng === 'en' || lng === 'x-default' ? '' : lng}`;
         if (lng === 'en') return `https://realtools.store/${path}`;
         if (lng === 'x-default') return `https://realtools.store/${path}`;
         return `https://realtools.store/${lng}/${path}`;
       };
-      const langs = ['x-default', 'en', 'es', 'ja', 'fr', 'de', 'pt', 'pt-BR', 'ko', 'it'];
       const hreflangBlock = langs.map(lng => {
         const href = lng === 'pt-BR' ? buildHref('pt', basePath) : buildHref(lng, basePath);
         return `    <link rel="alternate" hreflang="${lng}" href="${href}" />`;
@@ -622,6 +681,14 @@ try {
   const runwayHtml = render('runway', 'en');
   writePrerender('runway', runwayHtml, PLATFORM_METADATA.runway, 'en', 'runway');
 
+  // 6c. Pre-render 8th Pay Commission page (/8th-pay-commission, India)
+  const payHtml = render('8th-pay-commission', 'en');
+  writePrerender('8th-pay-commission', payHtml, PLATFORM_METADATA['8th-pay-commission'], 'en', '8th-pay-commission');
+
+  // 6d. Pre-render Fuel Cost page (/fuel-cost-calculator, global)
+  const fuelHtml = render('fuel-cost-calculator', 'en');
+  writePrerender('fuel-cost-calculator', fuelHtml, PLATFORM_METADATA['fuel-cost-calculator'], 'en', 'fuel-cost-calculator');
+
   // 7. Pre-render Clean Trust & Legal pages
   const aboutHtml = render('about', 'en');
   writePrerender('about', aboutHtml, { title: 'About Us | RealTools 2026 Free Calculators', desc: 'About RealTools publisher tools and creator revenue forecasting.', canonical: 'https://realtools.store/about', keywords: 'about realtools, monetization engine, revenue calculator team' }, 'en');
@@ -682,6 +749,11 @@ try {
     const langRunwayMeta = { ...langDict.runway, canonical: `https://realtools.store/${lang}/runway` };
     const langRunwayHtml = render('runway', lang);
     writePrerender(`${lang}/runway`, langRunwayHtml, langRunwayMeta, lang, 'runway');
+
+    // Localized Fuel Cost (global tool)
+    const langFuelMeta = { ...langDict['fuel-cost-calculator'], canonical: `https://realtools.store/${lang}/fuel-cost-calculator` };
+    const langFuelHtml = render('fuel-cost-calculator', lang);
+    writePrerender(`${lang}/fuel-cost-calculator`, langFuelHtml, langFuelMeta, lang, 'fuel-cost-calculator');
   }
 
   // 9. Pre-render 404 Not Found page — Cloudflare serves this with 404 status for unknown paths
