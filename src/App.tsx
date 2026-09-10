@@ -254,6 +254,7 @@ function parseRoute(pathname: string): { platform: string; isNotFound: boolean }
 function MainAppContent({ initialPlatform }: AppContentProps) {
   const { t, language, setLanguage } = useTranslation();
   const prevLangRef = useRef<SupportedLanguage>(language);
+  const isFirstMountRef = useRef(true);
 
   // Currency (persisted, defaulted to user's location)
   const [currency, setCurrency] = useState<CurrencyCode>(() => {
@@ -628,10 +629,14 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
   // AdSense text on creator pages.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    // Always track the pageview, even for trust/legal/404 pages without SEO data.
+    // Always sync metadata, even for trust/legal/404 pages without SEO data.
     const seo = getPlatformSeo(activePlatform, language);
     if (!seo) {
-      trackPageView(window.location.pathname + window.location.search);
+      if (!isFirstMountRef.current) {
+        trackPageView(window.location.pathname + window.location.search);
+      } else {
+        isFirstMountRef.current = false;
+      }
       return; // trust/legal/404 pages keep their prerendered tags
     }
     document.title = seo.title;
@@ -647,8 +652,13 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
     setMeta('meta[property="og:url"]', seo.canonical);
     document.querySelector('meta[name="twitter:url"]')?.setAttribute("content", seo.canonical);
 
-    // SPA pageview: initial gtag('config') covers first load, this covers
-    // every pushState navigation between calculators.
+    // Initial page load is handled by the standard gtag('config', 'G-L9P76WQ3E3')
+    // snippet in index.html (which Google's automated tag tester expects).
+    // Subsequent pushState route changes are tracked here.
+    if (isFirstMountRef.current) {
+      isFirstMountRef.current = false;
+      return;
+    }
     trackPageView(window.location.pathname + window.location.search, seo.title);
   }, [activePlatform, language]);
 
