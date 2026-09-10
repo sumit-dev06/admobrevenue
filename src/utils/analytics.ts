@@ -2,7 +2,7 @@
 // The base gtag('config', 'G-QM0YG2LXTC') in index.html already tracks the
 // initial load; this covers pushState route changes (/adsense -> /youtube …)
 // which GA4 would otherwise miss in this single-page app.
-export const GA_MEASUREMENT_ID = "G-QMOYG2LXTC";
+export const GA_MEASUREMENT_ID = "G-L9P76WQ3E3";
 
 declare global {
   interface Window {
