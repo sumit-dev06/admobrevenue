@@ -544,7 +544,224 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
       { q: 'How much fuel will my car use?', a: 'Divide trip distance by mileage in matching units: 300 km at 15 km/L needs 20 litres. Our calculator converts km/L, L/100km and mpg automatically.' },
     ],
   };
-  const faqForPlatform = faqMap[platformKey] || faqMap['adsense'];
+  // Localized FAQ schema for non-AdMob pages (mirrors src/data/faqs.ts +
+  // src/components/PlatformSeoSpotlight.tsx). AdMob keeps the English
+  // faqMap above in every language so its indexed HTML stays identical.
+  const LOCALIZED_FAQ = {
+    es: {
+      adsense: [
+        { q: '¿Cuánto paga AdSense por cada 1.000 visitas?', a: 'Entre $2,50 y más de $45 por cada 1.000 páginas vistas. Finanzas y SaaS con tráfico Tier 1 logran $25–$60 de RPM; entretenimiento promedia $2–$7.' },
+        { q: '¿Cuántas visitas necesito para ganar $1.000 al mes?', a: 'Unas 40.000 con RPM $25 (finanzas) o unas 166.000 con RPM $6 (temática general).' },
+      ],
+      youtube: [
+        { q: '¿Cuánto paga YouTube por cada 1.000 visitas?', a: 'El RPM de videos largos va de $1,50 a más de $35 por 1.000 vistas tras la comisión del 45% de YouTube. Los Shorts se reparten aparte, unos $0,03–$0,09 de RPM.' },
+        { q: '¿Cuántas vistas necesito para ganar $1.000 al mes?', a: 'Unas 200.000 con RPM $5, o unas 50.000 con RPM $20 (finanzas, audiencia EE.UU.).' },
+      ],
+      tiktok: [
+        { q: '¿Cuánto paga TikTok por cada 1.000 visitas?', a: 'El Creator Rewards paga unos $0,40–$1,20 por cada 1.000 vistas calificadas (videos de más de 1 minuto vistos 5+ segundos desde «Para ti»).' },
+        { q: '¿Cuánto valen 1.000 diamantes de TikTok?', a: '1.000 diamantes = $5 netos para el creador. El espectador pagó aproximadamente el doble en monedas.' },
+      ],
+      twitch: [
+        { q: '¿Cuánto paga Twitch por sub?', a: 'Una sub Nivel 1 ($4,99) paga $2,49 con el reparto 50/50 y ~$3,49 con el 70/30 de Partner Plus.' },
+        { q: '¿Cómo consigo el 70/30 en Twitch?', a: 'Mantén 350 Plus Points 3 meses consecutivos con subs de pago recurrentes (Nivel 1 = 1 pt, Nivel 2 = 2, Nivel 3 = 6).' },
+      ],
+      kick: [
+        { q: '¿Cuánto paga Kick por sub?', a: 'Kick paga el 95%: $4,74 netos por cada suscripción de $4,99, casi el doble que los $2,49 de Twitch.' },
+        { q: '¿Qué es el programa KCP de Kick?', a: 'Estipendio horario de unos $16–$40 según espectadores concurrentes (CCV); las propinas directas son 100% netas.' },
+      ],
+      runway: [
+        { q: '¿Cuánto durarán mis ahorros?', a: 'Divide tu saldo entre tu déficit mensual: $60.000 ÷ $5.000/mes = 12 meses. Al 8% anual, el saldo soporta ~0,67% de retiro mensual.' },
+        { q: '¿Es esto una calculadora SWP?', a: 'Sí: retiro mensual fijo con el resto capitalizándose, menos el aumento por inflación.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: '¿Cómo se calcula el costo de combustible de un viaje?', a: 'Combustible = Distancia ÷ Consumo; Costo = Combustible × Precio. Ejemplo: 300 km a 15 km/L necesitan 20 litros.' },
+        { q: '¿Cuánto combustible gasto en 100 km?', a: '100 ÷ tu km/L: con 15 km/L necesitas ~6,7 litros.' },
+      ],
+    },
+    ja: {
+      adsense: [
+        { q: 'AdSenseは1,000回表示でいくら稼げる？', a: '1,000PVあたり約$2.50〜$45以上です。金融・SaaSでTier1トラフィックの場合$25〜$60のページRPM、エンタメ系は$2〜$7が目安です。' },
+        { q: '月$1,000稼ぐのに必要なPV数は？', a: 'RPM$25なら約4万PV、RPM$6なら約16.6万PVが目安です。' },
+      ],
+      youtube: [
+        { q: 'YouTubeは1,000回再生でいくら支払いますか？', a: '長尺動画のRPMは1,000回再生あたり$1.50〜$35以上で、YouTubeの取り分45%控除後です。ショートは別プールで約$0.03〜$0.09のRPMです。' },
+        { q: '月$1,000稼ぐのに必要な再生数は？', a: 'RPM$5なら月約20万回、RPM$20（金融・米国向け）なら約5万回が目安です。' },
+      ],
+      tiktok: [
+        { q: 'TikTokは1,000回視聴でいくら支払いますか？', a: 'Creator Rewardsは対象1,000回視聴あたり約$0.40〜$1.20です（1分超の動画をおすすめで5秒以上視聴のみ対象）。' },
+        { q: '1,000ダイヤモンドはいくら？', a: 'クリエイター受取で$5。視聴者のコイン課金額は約2倍です。' },
+      ],
+      twitch: [
+        { q: 'Twitchのサブスク1件あたりの収益は？', a: '$4.99のTier1サブは通常配分50/50で$2.49、Partner Plusの70/30で約$3.49です。' },
+        { q: '70/30配分になる条件は？', a: '有料継続サブで350ポイントを3ヶ月連続維持（Tier1＝1pt・Tier2＝2pt・Tier3＝6pt）です。' },
+      ],
+      kick: [
+        { q: 'Kickのサブスク1件あたりの収益は？', a: 'Kickは還元率95%で$4.99のサブあたり$4.74が取り分となり、Twitchの約2倍です。' },
+        { q: 'KickのKCP時給とは？', a: '同時視聴者数に応じて約$16〜$40/時を支給し、投げ銭は100%還元です。' },
+      ],
+      runway: [
+        { q: '貯蓄は何年もちますか？', a: '残高÷毎月の不足額が目安：$60,000÷$5,000/月＝12ヶ月です。年利8%なら月0.67%の取り崩しを維持できます。' },
+        { q: 'SWP計算機ですか？', a: 'はい。定額取崩し＋残高運用−インフレ上乗せの計算です。' },
+      ],
+      'fuel-cost-calculator': [
+        { q: '旅行の燃料費の計算方法は？', a: '必要燃料＝距離÷燃費、費用＝燃料×単価です。例：300kmを15km/Lで走行なら20L必要です。' },
+        { q: '100km走行の燃料は？', a: '100÷km/L：15km/Lなら約6.7L必要です。' },
+      ],
+    },
+    fr: {
+      adsense: [
+        { q: 'Combien rapporte AdSense pour 1 000 vues ?', a: 'Environ 2,50 $ à plus de 45 $ pour 1 000 pages vues. Finance et SaaS en Tier 1 atteignent 25–60 $ de RPM ; divertissement moyenne 2–7 $.' },
+        { q: 'Combien de vues pour gagner 1 000 $ par mois ?', a: 'Environ 40 000 à 25 $ RPM (finance) ou 166 000 à 6 $ RPM (généraliste).' },
+      ],
+      youtube: [
+        { q: 'Combien paie YouTube pour 1 000 vues ?', a: 'Le RPM long format va de 1,50 $ à plus de 35 $ pour 1 000 vues après la part de 45 % de YouTube. Les Shorts sont mutualisés à part, environ 0,03–0,09 $ RPM.' },
+        { q: 'Combien de vues pour 1 000 $ par mois ?', a: 'Environ 200 000 à 5 $ RPM, ou 50 000 à 20 $ RPM (finance, audience US).' },
+      ],
+      tiktok: [
+        { q: 'Combien paie TikTok pour 1 000 vues ?', a: 'Le Creator Rewards paie environ 0,40–1,20 $ pour 1 000 vues qualifiées (vidéos de plus de 1 minute vues 5 s+ depuis « Pour toi »).' },
+        { q: 'Combien valent 1 000 diamants TikTok ?', a: '1 000 diamants = 5 $ nets créateur. Le spectateur a payé environ le double en pièces.' },
+      ],
+      twitch: [
+        { q: 'Combien rapporte 1 abonnement Twitch ?', a: 'Un sub Tier 1 (4,99 $) rapporte 2,49 $ en 50/50 et environ 3,49 $ en 70/30 Partner Plus.' },
+        { q: 'Comment débloquer le 70/30 sur Twitch ?', a: 'Conservez 350 Plus Points 3 mois de suite via des subs payants récurrents (Tier 1 = 1 pt, Tier 2 = 2, Tier 3 = 6).' },
+      ],
+      kick: [
+        { q: 'Combien paie Kick par abonnement ?', a: 'Kick reverse 95 % : 4,74 $ nets par abonnement à 4,99 $, soit près du double de Twitch.' },
+        { q: "Qu'est-ce que le programme KCP de Kick ?", a: "Un fixe horaire d'environ 16–40 $ selon les spectateurs simultanés (CCV) ; pourboires directs à 100 % nets." },
+      ],
+      runway: [
+        { q: 'Combien de temps dureront mes économies ?', a: 'Divisez le solde par le manque mensuel : 60 000 $ ÷ 5 000 $/mois = 12 mois. À 8 % annuel, le solde supporte ~0,67 % de retrait mensuel.' },
+        { q: 'Est-ce un calculateur SWP ?', a: "Oui : retrait mensuel fixe avec solde capitalisé, moins la hausse d'inflation." },
+      ],
+      'fuel-cost-calculator': [
+        { q: "Comment calculer le coût carburant d'un trajet ?", a: 'Carburant = Distance ÷ Consommation ; Coût = Carburant × Prix. Exemple : 300 km à 15 km/L = 20 litres.' },
+        { q: 'Combien de carburant pour 100 km ?', a: '100 ÷ votre km/L : à 15 km/L il faut ~6,7 litres.' },
+      ],
+    },
+    de: {
+      adsense: [
+        { q: 'Wie viel zahlt AdSense pro 1.000 Aufrufe?', a: 'Ca. $2,50 bis $45+ pro 1.000 Seitenaufrufe. Finanzen und SaaS mit Tier-1-Traffic erreichen $25–$60 RPM; Entertainment liegt bei $2–$7.' },
+        { q: 'Wie viel Traffic braucht man für $1.000 im Monat?', a: 'Ca. 40.000 Aufrufe bei $25 RPM (Finanzen) oder ca. 166.000 bei $6 RPM.' },
+      ],
+      youtube: [
+        { q: 'Wie viel zahlt YouTube pro 1.000 Aufrufe?', a: 'Der Long-Form-RPM liegt bei $1,50 bis $35+ pro 1.000 Aufrufe nach 45 % YouTube-Anteil. Shorts werden separat gepoolt bei ca. $0,03–$0,09 RPM.' },
+        { q: 'Wie viele Aufrufe braucht man für $1.000 im Monat?', a: 'Ca. 200.000 bei $5 RPM oder ca. 50.000 bei $20 RPM (Finanzen, US-Publikum).' },
+      ],
+      tiktok: [
+        { q: 'Wie viel zahlt TikTok pro 1.000 Aufrufe?', a: 'Das Creator-Rewards-Programm zahlt ca. $0,40–$1,20 pro 1.000 qualifizierte Aufrufe (Originale über 1 Minute mit 5+ Sekunden im Für-Dich-Feed).' },
+        { q: 'Wie viel sind 1.000 TikTok-Diamonds wert?', a: '1.000 Diamonds = $5 netto für Creator. Zuschauer zahlten ca. das Doppelte in Coins.' },
+      ],
+      twitch: [
+        { q: 'Wie viel verdient man pro Twitch-Sub?', a: 'Ein Tier-1-Sub ($4,99) bringt $2,49 bei 50/50 und ca. $3,49 bei 70/30 Partner Plus.' },
+        { q: 'Wie bekommt man den 70/30-Split auf Twitch?', a: '350 Plus Points 3 Monate in Folge aus wiederkehrenden Paid-Subs halten (Tier 1 = 1 Pt, Tier 2 = 2, Tier 3 = 6).' },
+      ],
+      kick: [
+        { q: 'Wie viel zahlt Kick pro Sub?', a: 'Kick zahlt 95 %: $4,74 netto pro $4,99-Abo — fast doppelt so viel wie Twitch.' },
+        { q: 'Was ist das KCP-Programm von Kick?', a: 'Ein Stundensatz von ca. $16–$40 nach Zuschauern (CCV); direkte Trinkgelder sind 100 % netto.' },
+      ],
+      runway: [
+        { q: 'Wie lange reicht mein Geld?', a: 'Saldo ÷ monatliche Lücke: $60.000 ÷ $5.000/Monat = 12 Monate. Bei 8 % p.a. trägt ein Saldo ca. 0,67 % Monatsentnahme.' },
+        { q: 'Ist das ein Entnahmeplan-Rechner?', a: 'Ja: fixe Monatsentnahme bei thesaurierendem Rest, minus Inflationssteigerung.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Wie berechnet man die Spritkosten einer Fahrt?', a: 'Kraftstoff = Strecke ÷ Verbrauch; Kosten = Liter × Preis. Beispiel: 300 km bei 15 km/L = 20 Liter.' },
+        { q: 'Wie viel Sprit braucht man für 100 km?', a: '100 ÷ Ihr km/L: bei 15 km/L ca. 6,7 Liter.' },
+      ],
+    },
+    pt: {
+      adsense: [
+        { q: 'Quanto o AdSense paga por 1.000 visitas?', a: 'Cerca de $2,50 a mais de $45 por 1.000 páginas vistas. Finanças e SaaS com tráfego Tier 1 alcançam $25–$60 de RPM; entretenimento fica em $2–$7.' },
+        { q: 'Quantas visitas preciso para faturar $1.000 por mês?', a: 'Cerca de 40.000 com RPM $25 (finanças) ou 166.000 com RPM $6 (nicho geral).' },
+      ],
+      youtube: [
+        { q: 'Quanto o YouTube paga por 1.000 visualizações?', a: 'O RPM de vídeos longos vai de $1,50 a mais de $35 por 1.000 views após os 45% do YouTube. Shorts são rateados à parte, cerca de $0,03–$0,09 de RPM.' },
+        { q: 'Quantas views preciso para $1.000 por mês?', a: 'Cerca de 200.000 com RPM $5, ou 50.000 com RPM $20 (finanças, público EUA).' },
+      ],
+      tiktok: [
+        { q: 'Quanto o TikTok paga por 1.000 visualizações?', a: 'O Creator Rewards paga cerca de $0,40–$1,20 por 1.000 views qualificadas (originais acima de 1 min assistidos 5s+ no «Para você»).' },
+        { q: 'Quanto valem 1.000 diamantes do TikTok?', a: '1.000 diamantes = $5 líquidos ao criador. O espectador pagou cerca do dobro em moedas.' },
+      ],
+      twitch: [
+        { q: 'Quanto a Twitch paga por sub?', a: 'Um sub Tier 1 ($4,99) paga $2,49 no 50/50 e ~$3,49 no 70/30 do Partner Plus.' },
+        { q: 'Como consigo o 70/30 na Twitch?', a: 'Mantenha 350 Plus Points por 3 meses seguidos com subs pagas recorrentes (Tier 1 = 1 pt, Tier 2 = 2, Tier 3 = 6).' },
+      ],
+      kick: [
+        { q: 'Quanto a Kick paga por sub?', a: 'A Kick paga 95%: $4,74 líquidos por assinatura de $4,99, quase o dobro da Twitch.' },
+        { q: 'O que é o programa KCP da Kick?', a: 'Fixo horário de cerca de $16–$40 conforme espectadores simultâneos (CCV); gorjetas diretas são 100% líquidas.' },
+      ],
+      runway: [
+        { q: 'Quanto tempo minhas economias duram?', a: 'Divida o saldo pelo déficit mensal: $60.000 ÷ $5.000/mês = 12 meses. A 8% ao ano, o saldo suporta ~0,67% de retirada mensal.' },
+        { q: 'Isto é uma calculadora SWP?', a: 'Sim: saque mensal fixo com o restante capitalizando, menos a alta da inflação.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Como calcular o custo de combustível da viagem?', a: 'Combustível = Distância ÷ Consumo; Custo = Litros × Preço. Exemplo: 300 km a 15 km/L = 20 litros.' },
+        { q: 'Quanto combustível gasto em 100 km?', a: '100 ÷ seu km/L: com 15 km/L precisa de ~6,7 litros.' },
+      ],
+    },
+    ko: {
+      adsense: [
+        { q: '애드센스는 조회수 1,000회당 얼마를 지급하나요?', a: '페이지뷰 1,000회당 약 $2.50~$45 이상입니다. Tier 1 트래픽의 금융·SaaS는 페이지 RPM $25~$60, 엔터는 $2~$7 수준입니다.' },
+        { q: '월 $1,000 버는 데 필요한 조회수는?', a: 'RPM $25면 약 4만뷰, $6이면 약 16.6만뷰가 필요합니다.' },
+      ],
+      youtube: [
+        { q: '유튜브는 조회수 1,000회당 얼마를 지급하나요?', a: '롱폼 RPM은 1,000회당 $1.50~$35 이상이며 유튜브 수수료 45% 제외 후입니다. 쇼츠는 별도 풀로 약 $0.03~$0.09 RPM입니다.' },
+        { q: '월 $1,000 버는 데 필요한 조회수는?', a: 'RPM $5면 월 약 20만회, $20(금융·미국향)이면 약 5만회가 필요합니다.' },
+      ],
+      tiktok: [
+        { q: '틱톡은 조회수 1,000회당 얼마를 지급하나요?', a: '크리에이터 리워드는 적격 조회수 1,000회당 약 $0.40~$1.20을 지급합니다(1분 이상 오리지널을 추천 피드에서 5초 이상 시청만 적격).' },
+        { q: '다이아몬드 1,000개의 가치는?', a: '창작자 수령액 $5. 시청자는 코인으로 약 2배를 결제했습니다.' },
+      ],
+      twitch: [
+        { q: '트위치 구독 1개당 수익은 얼마인가요?', a: '$4.99 Tier 1 구독은 50/50에서 $2.49, 파트너 플러스 70/30에서 약 $3.49입니다.' },
+        { q: '70/30 등급 조건은?', a: '유료 정기구독으로 350포인트를 3개월 연속 유지하세요(Tier 1＝1pt·Tier 2＝2pt·Tier 3＝6pt).' },
+      ],
+      kick: [
+        { q: '킥 구독 1개당 수익은 얼마인가요?', a: '킥은 95%를 지급해 $4.99 구독당 순수익 $4.74로 트위치의 약 2배입니다.' },
+        { q: '킥 KCP 프로그램이란?', a: '동시시청자(CCV)에 따라 약 $16~$40/시를 지급하고 직접 후원은 100% 정산됩니다.' },
+      ],
+      runway: [
+        { q: '내 저축은 몇 년 버틸까요?', a: '잔액÷월 부족액이 기준: $60,000÷$5,000/월＝12개월. 연 8%이면 월 0.67% 인출을 유지할 수 있습니다.' },
+        { q: 'SWP 계산기인가요?', a: '네. 정액 월 인출＋잔액 복리−인플레 반영 계산입니다.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: '여행 연료비는 어떻게 계산하나요?', a: '필요 연료＝거리÷연비, 비용＝연료×단가입니다. 예: 300km를 15km/L로 주행하면 20L가 필요합니다.' },
+        { q: '100km 주행 연료는?', a: '100÷km/L: 15km/L이면 약 6.7L가 필요합니다.' },
+      ],
+    },
+    it: {
+      adsense: [
+        { q: 'Quanto paga AdSense ogni 1.000 visite?', a: 'Circa $2,50–$45+ ogni 1.000 pagine viste. Finanza e SaaS con traffico Tier 1 raggiungono $25–$60 di RPM; intrattenimento in media $2–$7.' },
+        { q: 'Quante visite servono per $1.000 al mese?', a: 'Circa 40.000 con RPM $25 (finanza) o 166.000 con RPM $6 (nicchia generica).' },
+      ],
+      youtube: [
+        { q: 'Quanto paga YouTube ogni 1.000 visualizzazioni?', a: 'Il RPM long-form va da $1,50 a oltre $35 ogni 1.000 views dopo il 45% di YouTube. Gli Shorts sono a parte, circa $0,03–$0,09 di RPM.' },
+        { q: 'Quante views servono per $1.000 al mese?', a: 'Circa 200.000 con RPM $5, o 50.000 con RPM $20 (finanza, pubblico USA).' },
+      ],
+      tiktok: [
+        { q: 'Quanto paga TikTok ogni 1.000 visualizzazioni?', a: 'Il Creator Rewards paga circa $0,40–$1,20 ogni 1.000 views qualificate (originali oltre 1 minuto visti 5s+ da «Per te»).' },
+        { q: 'Quanto valgono 1.000 diamanti TikTok?', a: '1.000 diamanti = $5 netti al creator. Lo spettatore ha pagato circa il doppio in monete.' },
+      ],
+      twitch: [
+        { q: 'Quanto paga Twitch per sub?', a: 'Una sub Tier 1 ($4,99) paga $2,49 al 50/50 e ~$3,49 al 70/30 Partner Plus.' },
+        { q: 'Come sblocco il 70/30 su Twitch?', a: 'Mantieni 350 Plus Points per 3 mesi consecutivi con sub pagate ricorrenti (Tier 1 = 1 pt, Tier 2 = 2, Tier 3 = 6).' },
+      ],
+      kick: [
+        { q: 'Quanto paga Kick per sub?', a: 'Kick paga il 95%: $4,74 netti per abbonamento da $4,99, quasi il doppio di Twitch.' },
+        { q: "Cos'è il programma KCP di Kick?", a: 'Un fisso orario di circa $16–$40 in base agli spettatori simultanei (CCV); mance dirette al 100% nette.' },
+      ],
+      runway: [
+        { q: 'Quanto dureranno i miei risparmi?', a: "Dividi il saldo per il deficit mensile: $60.000 ÷ $5.000/mese = 12 mesi. All'8% annuo, il saldo sostiene ~0,67% di prelievo mensile." },
+        { q: 'È un calcolatore SWP?', a: "Sì: prelievo mensile fisso con resto capitalizzato, meno l'aumento dell'inflazione." },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Come si calcola il costo carburante di un viaggio?', a: 'Carburante = Distanza ÷ Consumo; Costo = Litri × Prezzo. Esempio: 300 km a 15 km/L = 20 litri.' },
+        { q: 'Quanto carburante serve per 100 km?', a: '100 ÷ il tuo km/L: con 15 km/L servono ~6,7 litri.' },
+      ],
+    },
+  };
+  const faqForPlatform = (LOCALIZED_FAQ[lang] && LOCALIZED_FAQ[lang][platformKey] && platformKey !== 'admob')
+    ? LOCALIZED_FAQ[lang][platformKey]
+    : (faqMap[platformKey] || faqMap['adsense']);
   const schemaFaq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -604,6 +821,14 @@ try {
       // Fix OG URL + Twitter URL + locale per-page (P0-5)
       renderedPage = renderedPage.replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${meta.canonical}" />`);
       renderedPage = renderedPage.replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${meta.canonical}" />`);
+      // Fix Twitter title/description name= tags for non-AdMob pages.
+      // (index.html uses name=, not property=, so the property= replaces above are no-ops.
+      // AdMob keeps legacy generic Twitter tags so its indexed HTML stays identical.)
+      if (platformKey && platformKey !== 'admob' && meta?.title && meta?.desc) {
+        renderedPage = renderedPage
+          .replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${meta.title}" />`)
+          .replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${meta.desc}" />`);
+      }
       const localeMap = { en: 'en_US', es: 'es_ES', ja: 'ja_JP', fr: 'fr_FR', de: 'de_DE', pt: 'pt_BR', ko: 'ko_KR', it: 'it_IT' };
       const locale = localeMap[lang] || 'en_US';
       renderedPage = renderedPage.replace(/<meta property="og:locale" content=".*?" \/>/, `<meta property="og:locale" content="${locale}" />`);

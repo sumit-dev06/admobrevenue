@@ -152,10 +152,10 @@ export const ContactPage = React.memo(() => {
               <div className="text-[11px] text-neutral-500 break-all text-center sm:text-left">
                 Direct Email:{" "}
                 <a
-                  href="mailto:adrevenue.help@gmail.com"
+                  href="mailto:contact@realtools.store"
                   className="font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
                 >
-                  adrevenue.help@gmail.com
+                  contact@realtools.store
                 </a>
               </div>
               <button

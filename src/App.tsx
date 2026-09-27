@@ -33,6 +33,11 @@ import { Footer } from "./components/Footer";
 // SEO-critical sections: eager for SSR crawlability (H2s must be in HTML)
 import { OptimizationTips } from "./components/OptimizationTips";
 import { HomeHub } from "./components/HomeHub";
+import { PlatformSeoSpotlight } from "./components/PlatformSeoSpotlight";
+import { YouTubeCalculator } from "./components/YouTubeCalculator";
+import { TikTokCalculator } from "./components/TikTokCalculator";
+import { TwitchCalculator } from "./components/TwitchCalculator";
+import { KickCalculator } from "./components/KickCalculator";
 import { RunwaySummary, RunwayBreakdown, RunwaySeoSection } from "./components/RunwayCalculator";
 import { RunwayZipCalculator, RunwayZipSeo } from "./components/RunwayZipPage";
 import { PayCommissionForm, PayCommissionSummary, PayCommissionSeoSection } from "./components/PayCommissionCalculator";
@@ -43,10 +48,6 @@ import { SeoFaqSection } from "./components/SeoFaqSection";
 import { ComprehensiveGuide } from "./components/ComprehensiveGuide";
 import { GlossarySection } from "./components/GlossarySection";
 // Lazy remaining heavy below-the-fold / modals for performance
-const YouTubeCalculator = lazy(() => import("./components/YouTubeCalculator").then(m => ({ default: m.YouTubeCalculator })));
-const TikTokCalculator = lazy(() => import("./components/TikTokCalculator").then(m => ({ default: m.TikTokCalculator })));
-const TwitchCalculator = lazy(() => import("./components/TwitchCalculator").then(m => ({ default: m.TwitchCalculator })));
-const KickCalculator = lazy(() => import("./components/KickCalculator").then(m => ({ default: m.KickCalculator })));
 const RunwayCalculator = lazy(() => import("./components/RunwayForm").then(m => ({ default: m.RunwayCalculator })));
 const RevenueCharts = lazy(() => import("./components/RevenueCharts").then(m => ({ default: m.RevenueCharts })));
 const EmbedWidgetModal = lazy(() => import("./components/EmbedWidgetModal").then(m => ({ default: m.EmbedWidgetModal })));
@@ -1128,40 +1129,32 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                   />
                 )}
                 {activePlatform === "youtube" && (
-                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading YouTube Calculator...</div>}>
-                    <YouTubeCalculator
-                      inputs={youtubeInputs}
-                      onChange={handleYouTubeChange}
-                      currency={currency}
-                    />
-                  </Suspense>
+                  <YouTubeCalculator
+                    inputs={youtubeInputs}
+                    onChange={handleYouTubeChange}
+                    currency={currency}
+                  />
                 )}
                 {activePlatform === "tiktok" && (
-                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading TikTok Calculator...</div>}>
-                    <TikTokCalculator
-                      inputs={tikTokInputs}
-                      onChange={handleTikTokChange}
-                      currency={currency}
-                    />
-                  </Suspense>
+                  <TikTokCalculator
+                    inputs={tikTokInputs}
+                    onChange={handleTikTokChange}
+                    currency={currency}
+                  />
                 )}
                 {activePlatform === "twitch" && (
-                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading Twitch Calculator...</div>}>
-                    <TwitchCalculator
-                      inputs={twitchInputs}
-                      onChange={handleTwitchChange}
-                      currency={currency}
-                    />
-                  </Suspense>
+                  <TwitchCalculator
+                    inputs={twitchInputs}
+                    onChange={handleTwitchChange}
+                    currency={currency}
+                  />
                 )}
                 {activePlatform === "kick" && (
-                  <Suspense fallback={<div className="p-8 text-center text-xs font-mono">Loading Kick Calculator...</div>}>
-                    <KickCalculator
-                      inputs={kickInputs}
-                      onChange={handleKickChange}
-                      currency={currency}
-                    />
-                  </Suspense>
+                  <KickCalculator
+                    inputs={kickInputs}
+                    onChange={handleKickChange}
+                    currency={currency}
+                  />
                 )}
                 {activePlatform === "8th-pay-commission" && (
                   <PayCommissionForm
@@ -1349,6 +1342,9 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
                 )}
               </div>
             </section>
+
+            {/* Visible per-query answer box (unique per platform/lang, null for admob) */}
+            <PlatformSeoSpotlight platform={activePlatform} />
 
 {["admob", "adsense", "youtube", "tiktok", "twitch", "kick"].includes(activePlatform) && (
             <>

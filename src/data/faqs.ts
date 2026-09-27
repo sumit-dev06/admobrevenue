@@ -194,6 +194,26 @@ export const FAQS_DATA_ES: FAQItem[] = [
     question: '¿Cuánto tráfico necesito para ganar $1.000 al mes?',
     answer: 'En un nicho de Finanzas o Software (RPM $25), necesitas unas 40.000 páginas vistas al mes. En un nicho general (RPM $6), unas 166.000 visitas.',
   },
+  {
+    category: 'YouTube',
+    question: '¿Cuánto paga YouTube por cada 1.000 visitas en 2026?',
+    answer: 'El RPM de videos largos va de $1,50 a más de $35 por 1.000 vistas. Finanzas y SaaS logran $15–$35 en Tier 1; gaming y entretenimiento promedian $2–$6. Los Shorts se reparten aparte con unos $0,03–$0,09 de RPM tras la comisión del 45% de YouTube.',
+  },
+  {
+    category: 'TikTok',
+    question: '¿Cuánto paga TikTok por cada 1.000 visitas y cuánto vale un diamante?',
+    answer: 'El Creator Rewards paga unos $0,40–$1,20 por cada 1.000 vistas calificadas (videos de más de 1 minuto vistos 5+ segundos desde «Para ti»). Cada diamante de regalos LIVE vale $0,005 con un 50% neto: 1.000 diamantes son $5.',
+  },
+  {
+    category: 'Twitch',
+    question: '¿Cuánto paga Twitch por sub y cómo funciona el Partner Plus?',
+    answer: 'Una sub Nivel 1 ($4,99) paga $2,49 con el reparto 50/50 y unos $3,49 con el 70/30 de Partner Plus. El programa da 60/40 con 100 Plus Points y 70/30 con 350 puntos durante 3 meses, más $0,01 por Bit.',
+  },
+  {
+    category: 'Kick',
+    question: '¿Cuánto paga Kick por sub y qué es el programa KCP?',
+    answer: 'Kick paga el 95%: $4,74 netos por cada suscripción de $4,99, casi el doble que Twitch. El programa KCP añade unos $16–$40 por hora según espectadores concurrentes (CCV) y las propinas directas son 100% netas.',
+  },
 ];
 
 export const FAQS_DATA_JA: FAQItem[] = [
@@ -226,6 +246,26 @@ export const FAQS_DATA_JA: FAQItem[] = [
     category: 'Strategy',
     question: '月10万円（約$1,000）を稼ぐにはどれくらいのアクセスが必要ですか？',
     answer: '高単価な金融・ITブログ（RPM $25）なら月間約4万PV、一般的な趣味・ライフスタイル（RPM $6）なら月間約16万〜20万PVが目安となります。',
+  },
+  {
+    category: 'YouTube',
+    question: 'YouTubeは1,000回再生でいくら支払いますか？',
+    answer: '長尺動画のRPMは1,000回再生あたり$1.50〜$35以上です。金融・SaaSはTier1で$15〜$35、ゲーム・エンタメは$2〜$6が目安で、YouTubeの取り分45%控除後です。ショートは別プールで約$0.03〜$0.09のRPMです。',
+  },
+  {
+    category: 'TikTok',
+    question: 'TikTokの報酬単価とダイヤモンドの換金レートはいくらですか？',
+    answer: 'Creator Rewardsは対象1,000回視聴あたり約$0.40〜$1.20です（1分超の動画をおすすめで5秒以上視聴のみ対象）。LIVEギフトのダイヤモンドは1個$0.005で取り分50%、1,000ダイヤで$5です。',
+  },
+  {
+    category: 'Twitch',
+    question: 'Twitchのサブスク報酬とPartner Plusの仕組みは？',
+    answer: 'Tier1サブ（$4.99）は通常配分50/50で$2.49、Partner Plusの70/30で約$3.49です。100ポイントで60/40、350ポイント3ヶ月維持で70/30になり、Bitsは1bit＝$0.01です。',
+  },
+  {
+    category: 'Kick',
+    question: 'Kickのサブスク報酬とKCP時給はいくらですか？',
+    answer: 'Kickは還元率95%で$4.99のサブあたり$4.74が取り分となり、Twitchの約2倍です。KCPプログラムは同時視聴者数に応じて約$16〜$40/時を支給し、投げ銭は100%還元です。',
   },
 ];
 
@@ -260,6 +300,26 @@ export const FAQS_DATA_FR: FAQItem[] = [
     question: 'Combien de trafic est nécessaire pour gagner 1 000 $ par mois ?',
     answer: "Dans une thématique Finance/SaaS (RPM 25 $), il faut environ 40 000 pages vues par mois. Dans une thématique généraliste (RPM 6 $), environ 166 000 pages vues.",
   },
+  {
+    category: 'YouTube',
+    question: 'Combien paie YouTube pour 1 000 vues en 2026 ?',
+    answer: "Le RPM des vidéos longues va de 1,50 $ à plus de 35 $ pour 1 000 vues. Finance et SaaS atteignent 15–35 $ en Tier 1 ; gaming et divertissement moyennent 2–6 $. Les Shorts sont mutualisés à part, environ 0,03–0,09 $ RPM après la part de 45 % de YouTube.",
+  },
+  {
+    category: 'TikTok',
+    question: 'Combien paie TikTok pour 1 000 vues et combien vaut un diamant ?',
+    answer: "Le Creator Rewards paie environ 0,40–1,20 $ pour 1 000 vues qualifiées (vidéos de plus d'1 minute vues 5 s+ depuis « Pour toi »). Chaque diamant de cadeaux LIVE vaut 0,005 $ avec 50 % net : 1 000 diamants = 5 $.",
+  },
+  {
+    category: 'Twitch',
+    question: 'Combien rapporte un sub Twitch et comment fonctionne le Partner Plus ?',
+    answer: "Un sub Tier 1 (4,99 $) rapporte 2,49 $ en 50/50 et environ 3,49 $ en 70/30 Partner Plus. Le programme offre 60/40 à 100 Plus Points et 70/30 à 350 points sur 3 mois, plus 0,01 $ par Bit.",
+  },
+  {
+    category: 'Kick',
+    question: 'Combien paie Kick par sub et que vaut le programme KCP ?',
+    answer: "Kick reverse 95 % : 4,74 $ nets par abonnement à 4,99 $, soit près du double de Twitch. Le programme KCP ajoute environ 16–40 $/heure selon les spectateurs simultanés (CCV) et les pourboires directs sont à 100 % nets.",
+  },
 ];
 
 export const FAQS_DATA_DE: FAQItem[] = [
@@ -292,6 +352,26 @@ export const FAQS_DATA_DE: FAQItem[] = [
     category: 'Strategy',
     question: 'Wie viel Traffic benötigt man für 1.000 $ monatlich?',
     answer: 'In einer lukrativen Nische wie Finanzen (RPM $25) reichen ca. 40.000 Seitenaufrufe/Monat. In allgemeinen Themenbereichen (RPM $6) werden ca. 166.000 Aufrufe benötigt.',
+  },
+  {
+    category: 'YouTube',
+    question: 'Wie viel zahlt YouTube pro 1.000 Aufrufe im Jahr 2026?',
+    answer: 'Der Long-Form-RPM liegt bei $1,50 bis $35+ pro 1.000 Aufrufe. Finanzen und SaaS erreichen $15–$35 in Tier 1; Gaming und Entertainment liegen bei $2–$6. Shorts werden separat gepoolt bei ca. $0,03–$0,09 RPM nach 45 % YouTube-Anteil.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Wie viel zahlt TikTok pro 1.000 Aufrufe und was ist ein Diamond wert?',
+    answer: 'Das Creator-Rewards-Programm zahlt ca. $0,40–$1,20 pro 1.000 qualifizierte Aufrufe (Originale über 1 Minute mit 5+ Sekunden im Für-Dich-Feed). Jeder LIVE-Geschenk-Diamond ist $0,005 wert (50 % netto): 1.000 Diamonds = $5.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Wie viel bringt ein Twitch-Sub und wie funktioniert Partner Plus?',
+    answer: 'Ein Tier-1-Sub ($4,99) bringt $2,49 bei 50/50 und ca. $3,49 bei 70/30 Partner Plus. Das Programm gibt 60/40 ab 100 Plus Points und 70/30 ab 350 Punkten über 3 Monate, plus $0,01 pro Bit.',
+  },
+  {
+    category: 'Kick',
+    question: 'Wie viel zahlt Kick pro Sub und was ist das KCP-Programm?',
+    answer: 'Kick zahlt 95 %: $4,74 netto pro $4,99-Abo — fast doppelt so viel wie Twitch. Das KCP-Programm zahlt ca. $16–$40/Std. nach Zuschauern (CCV) und direkte Trinkgelder sind 100 % netto.',
   },
 ];
 
@@ -326,6 +406,26 @@ export const FAQS_DATA_PT: FAQItem[] = [
     question: 'Quanto tráfego é necessário para faturar $1.000 por mês?',
     answer: 'Em um nicho de Finanças ou Tecnologia (RPM $25), são necessárias cerca de 40.000 visualizações mensais.',
   },
+  {
+    category: 'YouTube',
+    question: 'Quanto o YouTube paga por 1.000 visualizações em 2026?',
+    answer: 'O RPM de vídeos longos vai de $1,50 a mais de $35 por 1.000 views. Finanças e SaaS alcançam $15–$35 no Tier 1; games e entretenimento ficam em $2–$6. Shorts são rateados à parte, cerca de $0,03–$0,09 de RPM após os 45% do YouTube.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Quanto o TikTok paga por 1.000 views e quanto vale um diamante?',
+    answer: 'O Creator Rewards paga cerca de $0,40–$1,20 por 1.000 views qualificadas (originais acima de 1 min assistidos 5s+ no «Para você»). Cada diamante de presentes LIVE vale $0,005 (50% líquido): 1.000 diamantes = $5.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Quanto a Twitch paga por sub e como funciona o Partner Plus?',
+    answer: 'Um sub Tier 1 ($4,99) paga $2,49 no 50/50 e ~$3,49 no 70/30 do Partner Plus. O programa dá 60/40 com 100 Plus Points e 70/30 com 350 pontos por 3 meses, mais $0,01 por Bit.',
+  },
+  {
+    category: 'Kick',
+    question: 'Quanto a Kick paga por sub e o que é o programa KCP?',
+    answer: 'A Kick paga 95%: $4,74 líquidos por assinatura de $4,99, quase o dobro da Twitch. O programa KCP soma cerca de $16–$40/hora conforme espectadores simultâneos (CCV) e gorjetas diretas são 100% líquidas.',
+  },
 ];
 
 export const FAQS_DATA_KO: FAQItem[] = [
@@ -359,6 +459,26 @@ export const FAQS_DATA_KO: FAQItem[] = [
     question: '월 $1,000(약 130만원)의 수익을 내려면 트래픽이 얼마나 필요한가요?',
     answer: '금융/테크 분야(RPM $25)의 경우 월 4만 PV, 일반 라이프스타일(RPM $6) 분야는 월 16만~20만 PV가 필요합니다.',
   },
+  {
+    category: 'YouTube',
+    question: '유튜브는 조회수 1,000회당 얼마를 지급하나요?',
+    answer: '롱폼 RPM은 1,000회당 $1.50~$35 이상입니다. 금융·SaaS는 Tier 1에서 $15~$35, 게임·엔터는 $2~$6 수준이며 유튜브 수수료 45% 제외 후입니다. 쇼츠는 별도 풀로 약 $0.03~$0.09 RPM입니다.',
+  },
+  {
+    category: 'TikTok',
+    question: '틱톡은 조회수 1,000회당 얼마를 주고 다이아몬드 가치는 얼마인가요?',
+    answer: '크리에이터 리워드는 적격 조회수 1,000회당 약 $0.40~$1.20을 지급합니다(1분 이상 오리지널을 추천 피드에서 5초 이상 시청만 적격). LIVE 선물 다이아몬드는 1개당 $0.005(정산율 50%)로 1,000개면 $5입니다.',
+  },
+  {
+    category: 'Twitch',
+    question: '트위치 구독 1개당 수익과 파트너 플러스 조건은?',
+    answer: '$4.99 Tier 1 구독은 50/50에서 $2.49, 파트너 플러스 70/30에서 약 $3.49입니다. 100포인트에 60/40, 350포인트 3개월 유지 시 70/30이 적용되며 비트는 1bit＝$0.01입니다.',
+  },
+  {
+    category: 'Kick',
+    question: '킥 구독 1개당 수익과 KCP 시급은 얼마인가요?',
+    answer: '킥은 95%를 지급해 $4.99 구독당 순수익 $4.74로 트위치의 약 2배입니다. KCP 프로그램은 동시시청자(CCV)에 따라 약 $16~$40/시를 지급하고 직접 후원은 100% 정산됩니다.',
+  },
 ];
 
 export const FAQS_DATA_IT: FAQItem[] = [
@@ -391,6 +511,26 @@ export const FAQS_DATA_IT: FAQItem[] = [
     category: 'Strategy',
     question: 'Quanto traffico serve per guadagnare 1.000 $ al mese?',
     answer: 'In una nicchia come Finanza o Software (RPM 25 $), servono circa 40.000 visualizzazioni al mese. In nicchie generiche (RPM 6 $), circa 166.000 visualizzazioni.',
+  },
+  {
+    category: 'YouTube',
+    question: 'Quanto paga YouTube ogni 1.000 visualizzazioni nel 2026?',
+    answer: 'Il RPM dei video lunghi va da $1,50 a oltre $35 ogni 1.000 views. Finanza e SaaS arrivano a $15–$35 in Tier 1; gaming e intrattenimento in media $2–$6. Gli Shorts sono a parte, circa $0,03–$0,09 di RPM dopo il 45% di YouTube.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Quanto paga TikTok ogni 1.000 views e quanto vale un diamante?',
+    answer: 'Il Creator Rewards paga circa $0,40–$1,20 ogni 1.000 views qualificate (originali oltre 1 minuto visti 5s+ da «Per te»). Ogni diamante dei regali LIVE vale $0,005 (50% netto): 1.000 diamanti = $5.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Quanto paga Twitch per sub e come funziona il Partner Plus?',
+    answer: 'Una sub Tier 1 ($4,99) paga $2,49 al 50/50 e ~$3,49 al 70/30 Partner Plus. Il programma dà 60/40 con 100 Plus Points e 70/30 con 350 punti per 3 mesi, più $0,01 per Bit.',
+  },
+  {
+    category: 'Kick',
+    question: 'Quanto paga Kick per sub e cos’è il programma KCP?',
+    answer: 'Kick paga il 95%: $4,74 netti per abbonamento da $4,99, quasi il doppio di Twitch. Il programma KCP aggiunge circa $16–$40/ora in base agli spettatori simultanei (CCV) e le mance dirette sono al 100% nette.',
   },
 ];
 
