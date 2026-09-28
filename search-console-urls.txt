@@ -1,0 +1,202 @@
+# Search Console — GSC URL Inspection plan (78 URLs, from public/sitemap.xml)
+# FINAL CHANGE 2026-09-12: 57 pages changed (new visible answer box, full SSR forms,
+# per-page Twitter tags, native FAQ schema). 21 pages byte-identical (8 admob + 8 home hubs
+# + 5 trust) keep sitemap lastmod 2026-09-05; changed pages bumped to 2026-09-12.
+# Deploy dist/ BEFORE requesting any indexing.
+#
+# YOUR DONE HISTORY (preserved): /youtube Done | /es/youtube DONE 7/09/2026 |
+# /es/twitch done 8/09/2026 | /ja/twitch done 09/09/2026 | /de/twitch done 10/09/2026 |
+# /ko/tiktok done 11/09/2026 | /fr/tiktok = problem (retry now, fixed).
+
+# ============================================================================
+# NEW EXPANSION — 8 NEW LANGUAGES (72 NEW URLS — Added 2026-09-28)
+# Submit via Google Search Console -> URL Inspection -> Request Indexing
+# ============================================================================
+
+# --- 1. RUSSIAN (ru) — 9 URLs ---
+https://realtools.store/ru
+https://realtools.store/ru/adsense
+https://realtools.store/ru/youtube
+https://realtools.store/ru/tiktok
+https://realtools.store/ru/twitch
+https://realtools.store/ru/kick
+https://realtools.store/ru/admob
+https://realtools.store/ru/runway
+https://realtools.store/ru/fuel-cost-calculator
+
+# --- 2. ARABIC (ar) — 9 URLs ---
+https://realtools.store/ar
+https://realtools.store/ar/adsense
+https://realtools.store/ar/youtube
+https://realtools.store/ar/tiktok
+https://realtools.store/ar/twitch
+https://realtools.store/ar/kick
+https://realtools.store/ar/admob
+https://realtools.store/ar/runway
+https://realtools.store/ar/fuel-cost-calculator
+
+# --- 3. MANDARIN CHINESE (zh) — 9 URLs ---
+https://realtools.store/zh
+https://realtools.store/zh/adsense
+https://realtools.store/zh/youtube
+https://realtools.store/zh/tiktok
+https://realtools.store/zh/twitch
+https://realtools.store/zh/kick
+https://realtools.store/zh/admob
+https://realtools.store/zh/runway
+https://realtools.store/zh/fuel-cost-calculator
+
+# --- 4. TURKISH (tr) — 9 URLs ---
+https://realtools.store/tr
+https://realtools.store/tr/adsense
+https://realtools.store/tr/youtube
+https://realtools.store/tr/tiktok
+https://realtools.store/tr/twitch
+https://realtools.store/tr/kick
+https://realtools.store/tr/admob
+https://realtools.store/tr/runway
+https://realtools.store/tr/fuel-cost-calculator
+
+# --- 5. POLISH (pl) — 9 URLs ---
+https://realtools.store/pl
+https://realtools.store/pl/adsense
+https://realtools.store/pl/youtube
+https://realtools.store/pl/tiktok
+https://realtools.store/pl/twitch
+https://realtools.store/pl/kick
+https://realtools.store/pl/admob
+https://realtools.store/pl/runway
+https://realtools.store/pl/fuel-cost-calculator
+
+# --- 6. INDONESIAN (id) — 9 URLs ---
+https://realtools.store/id
+https://realtools.store/id/adsense
+https://realtools.store/id/youtube
+https://realtools.store/id/tiktok
+https://realtools.store/id/twitch
+https://realtools.store/id/kick
+https://realtools.store/id/admob
+https://realtools.store/id/runway
+https://realtools.store/id/fuel-cost-calculator
+
+# --- 7. DUTCH (nl) — 9 URLs ---
+https://realtools.store/nl
+https://realtools.store/nl/adsense
+https://realtools.store/nl/youtube
+https://realtools.store/nl/tiktok
+https://realtools.store/nl/twitch
+https://realtools.store/nl/kick
+https://realtools.store/nl/admob
+https://realtools.store/nl/runway
+https://realtools.store/nl/fuel-cost-calculator
+
+# --- 8. VIETNAMESE (vi) — 9 URLs ---
+https://realtools.store/vi
+https://realtools.store/vi/adsense
+https://realtools.store/vi/youtube
+https://realtools.store/vi/tiktok
+https://realtools.store/vi/twitch
+https://realtools.store/vi/kick
+https://realtools.store/vi/admob
+https://realtools.store/vi/runway
+https://realtools.store/vi/fuel-cost-calculator
+
+
+# ============================================================================
+# SECTION 1 — ALREADY INDEXED + UNCHANGED -> DO NOTHING (no GSC needed)
+# ============================================================================
+# HTML verified byte-identical after the 2026-09-12 build (asset hashes only).
+https://realtools.store/admob
+# https://realtools.store/  (home hub unchanged - check URL Inspection once: if "Indexed", no action)
+
+# ============================================================================
+# SECTION 3 — INDEXED BUT CHANGED -> REINDEX NOW (priority order)
+# ============================================================================
+# You submitted these before; content changed 2026-09-12, so request indexing again.
+https://realtools.store/youtube (DONE)
+https://realtools.store/es/youtube (DONE)
+https://realtools.store/es/twitch (DONE)
+https://realtools.store/ja/twitch (DONE)
+https://realtools.store/de/twitch  (DONE)
+https://realtools.store/ko/tiktok (DONE)
+
+# ============================================================================
+# SECTION 2 — NOT INDEXED (submit via URL Inspection -> Request Indexing)
+# ============================================================================
+# --- 2A. Changed + never submitted (HIGH VALUE - submit first, EN before locales) ---
+https://realtools.store/adsense (DONE)
+https://realtools.store/tiktok (DONE)
+https://realtools.store/twitch (DONE)
+https://realtools.store/kick  (DONE)
+https://realtools.store/runway (DONE)
+https://realtools.store/fuel-cost-calculator  (DONE)
+https://realtools.store/8th-pay-commission  (DONE)
+https://realtools.store/es/adsense (DONE)
+https://realtools.store/es/tiktok (DONE)
+https://realtools.store/es/kick (DONE)
+https://realtools.store/es/runway (DONE)
+https://realtools.store/es/fuel-cost-calculator (DONE)
+https://realtools.store/ja/adsense (DONE) 
+https://realtools.store/ja/youtube (DONE)
+https://realtools.store/ja/tiktok (DONE)
+https://realtools.store/ja/kick (DONE)
+https://realtools.store/ja/runway (DONE)
+https://realtools.store/ja/fuel-cost-calculator (DONE)
+https://realtools.store/fr/adsense (DONE)
+https://realtools.store/fr/youtube (DONE)
+https://realtools.store/fr/tiktok (DONE)
+https://realtools.store/fr/twitch (DONE)
+https://realtools.store/fr/kick (DONE)
+https://realtools.store/fr/runway (DONE)
+https://realtools.store/fr/fuel-cost-calculator (DONE)
+https://realtools.store/de/adsense (DONE)
+https://realtools.store/de/youtube (DONE)
+https://realtools.store/de/tiktok (DONE)
+https://realtools.store/de/kick (DONE)
+https://realtools.store/de/runway (DONE)
+https://realtools.store/de/fuel-cost-calculator (DONE)
+https://realtools.store/pt/adsense (DONE)
+https://realtools.store/pt/youtube (DONE)
+https://realtools.store/pt/tiktok (DONE)
+https://realtools.store/pt/twitch (DONE)
+https://realtools.store/pt/kick (DONE)
+https://realtools.store/pt/runway (DONE)
+https://realtools.store/pt/fuel-cost-calculator (DONE)
+https://realtools.store/ko/adsense (DONE)
+https://realtools.store/ko/youtube (DONE)
+https://realtools.store/ko/twitch (DONE)
+https://realtools.store/ko/kick (DONE)
+https://realtools.store/ko/runway (DONE)
+https://realtools.store/ko/fuel-cost-calculator
+https://realtools.store/it/adsense (DONE)
+https://realtools.store/it/youtube (DONE)
+https://realtools.store/it/tiktok (DONE)
+https://realtools.store/it/twitch (DONE)
+https://realtools.store/it/kick (DONE)
+https://realtools.store/it/runway (DONE)
+https://realtools.store/it/fuel-cost-calculator (DONE)
+#
+# --- 2B. Unchanged + never submitted (CHECK FIRST - inspect only; request indexing
+#        ONLY if GSC says "not indexed". Skip entirely if already indexed.) ---
+# Localized AdMob (content unchanged 2026-09-12 except FAQ badge count 7->11):
+# https://realtools.store/es/admob (DONE)
+# https://realtools.store/ja/admob (DONE)
+# https://realtools.store/fr/admob (DONE)
+# https://realtools.store/de/admob (DONE)
+# https://realtools.store/pt/admob (DONE)
+# https://realtools.store/ko/admob (DONE)
+# https://realtools.store/it/admob (DONE)
+# Localized home hubs (HTML unchanged):
+# https://realtools.store/es (DONE)
+# https://realtools.store/ja (DONE)
+# https://realtools.store/fr (DONE)
+# https://realtools.store/de (DONE)
+# https://realtools.store/pt (DONE)
+# https://realtools.store/ko (DONE)
+# https://realtools.store/it (DONE)
+# Trust pages (HTML unchanged, optional - submit last):
+# https://realtools.store/about
+# https://realtools.store/contact
+# https://realtools.store/privacy
+# https://realtools.store/terms
+# https://realtools.store/disclaimer
