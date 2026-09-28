@@ -56,6 +56,46 @@ export const LANGUAGE_DEFAULTS: Record<
     currencyCode: "EUR",
     tierDistribution: { tier1: 0, tier2: 100, tier3: 0 },
   },
+  ru: {
+    countryCode: "RU",
+    currencyCode: "RUB",
+    tierDistribution: { tier1: 0, tier2: 60, tier3: 40 },
+  },
+  ar: {
+    countryCode: "SA",
+    currencyCode: "SAR",
+    tierDistribution: { tier1: 50, tier2: 50, tier3: 0 },
+  },
+  zh: {
+    countryCode: "CN",
+    currencyCode: "CNY",
+    tierDistribution: { tier1: 20, tier2: 80, tier3: 0 },
+  },
+  tr: {
+    countryCode: "TR",
+    currencyCode: "TRY",
+    tierDistribution: { tier1: 0, tier2: 100, tier3: 0 },
+  },
+  pl: {
+    countryCode: "PL",
+    currencyCode: "PLN",
+    tierDistribution: { tier1: 0, tier2: 100, tier3: 0 },
+  },
+  id: {
+    countryCode: "ID",
+    currencyCode: "IDR",
+    tierDistribution: { tier1: 0, tier2: 0, tier3: 100 },
+  },
+  nl: {
+    countryCode: "NL",
+    currencyCode: "EUR",
+    tierDistribution: { tier1: 100, tier2: 0, tier3: 0 },
+  },
+  vi: {
+    countryCode: "VN",
+    currencyCode: "VND",
+    tierDistribution: { tier1: 0, tier2: 0, tier3: 100 },
+  },
 };
 
 interface LocationMapping {
@@ -123,31 +163,61 @@ const TIMEZONE_MAP: Record<string, LocationMapping> = {
   "Europe/Lisbon": { country: "PT", currency: "EUR", language: "pt" },
   "America/Sao_Paulo": { country: "BR", currency: "BRL", language: "pt" },
 
-  // Netherlands, Nordic & Other European
-  "Europe/Amsterdam": { country: "NL", currency: "EUR", language: "en" },
+  // Netherlands & Dutch
+  "Europe/Amsterdam": { country: "NL", currency: "EUR", language: "nl" },
   "Europe/Dublin": { country: "IE", currency: "EUR", language: "en" },
   "Europe/Helsinki": { country: "FI", currency: "EUR", language: "en" },
   "Europe/Athens": { country: "GR", currency: "EUR", language: "en" },
   "Europe/Oslo": { country: "NO", currency: "EUR", language: "en" },
   "Europe/Stockholm": { country: "SE", currency: "EUR", language: "en" },
   "Europe/Copenhagen": { country: "DK", currency: "EUR", language: "en" },
-  "Europe/Warsaw": { country: "PL", currency: "EUR", language: "en" },
+  "Europe/Warsaw": { country: "PL", currency: "PLN", language: "pl" },
   "Europe/Prague": { country: "CZ", currency: "EUR", language: "en" },
   "Europe/Budapest": { country: "HU", currency: "EUR", language: "en" },
   "Europe/Bucharest": { country: "RO", currency: "EUR", language: "en" },
-  "Europe/Istanbul": { country: "TR", currency: "USD", language: "en" },
+  "Europe/Istanbul": { country: "TR", currency: "TRY", language: "tr" },
+
+  // Russia & Russian-speaking
+  "Europe/Moscow": { country: "RU", currency: "RUB", language: "ru" },
+  "Asia/Yekaterinburg": { country: "RU", currency: "RUB", language: "ru" },
+  "Asia/Novosibirsk": { country: "RU", currency: "RUB", language: "ru" },
+  "Asia/Vladivostok": { country: "RU", currency: "RUB", language: "ru" },
+  "Europe/Minsk": { country: "BY", currency: "RUB", language: "ru" },
+  "Asia/Almaty": { country: "KZ", currency: "RUB", language: "ru" },
+  "Asia/Tashkent": { country: "UZ", currency: "USD", language: "ru" },
+
+  // China, Taiwan, Hong Kong (Mandarin)
+  "Asia/Shanghai": { country: "CN", currency: "CNY", language: "zh" },
+  "Asia/Chongqing": { country: "CN", currency: "CNY", language: "zh" },
+  "Asia/Taipei": { country: "TW", currency: "TWD", language: "zh" },
+  "Asia/Hong_Kong": { country: "HK", currency: "USD", language: "zh" },
 
   // Japan & Asia Pacific
   "Asia/Tokyo": { country: "JP", currency: "JPY", language: "ja" },
-  "Asia/Seoul": { country: "KR", currency: "USD", language: "ko" },
+  "Asia/Seoul": { country: "KR", currency: "KRW", language: "ko" },
   "Asia/Singapore": { country: "SG", currency: "USD", language: "en" },
   "Asia/Bangkok": { country: "TH", currency: "USD", language: "en" },
   "Asia/Kuala_Lumpur": { country: "MY", currency: "USD", language: "en" },
-  "Asia/Jakarta": { country: "ID", currency: "USD", language: "en" },
+  "Asia/Jakarta": { country: "ID", currency: "IDR", language: "id" },
+  "Asia/Makassar": { country: "ID", currency: "IDR", language: "id" },
+  "Asia/Jayapura": { country: "ID", currency: "IDR", language: "id" },
   "Asia/Manila": { country: "PH", currency: "USD", language: "en" },
-  "Asia/Ho_Chi_Minh": { country: "VN", currency: "USD", language: "en" },
-  "Asia/Dubai": { country: "AE", currency: "USD", language: "en" },
-  "Asia/Riyadh": { country: "SA", currency: "USD", language: "en" },
+  "Asia/Ho_Chi_Minh": { country: "VN", currency: "VND", language: "vi" },
+
+  // Middle East & North Africa (Arabic)
+  "Asia/Riyadh": { country: "SA", currency: "SAR", language: "ar" },
+  "Asia/Dubai": { country: "AE", currency: "AED", language: "ar" },
+  "Asia/Qatar": { country: "QA", currency: "USD", language: "ar" },
+  "Asia/Kuwait": { country: "KW", currency: "USD", language: "ar" },
+  "Asia/Muscat": { country: "OM", currency: "USD", language: "ar" },
+  "Asia/Bahrain": { country: "BH", currency: "USD", language: "ar" },
+  "Asia/Amman": { country: "JO", currency: "USD", language: "ar" },
+  "Asia/Beirut": { country: "LB", currency: "USD", language: "ar" },
+  "Asia/Baghdad": { country: "IQ", currency: "USD", language: "ar" },
+  "Africa/Cairo": { country: "EG", currency: "USD", language: "ar" },
+  "Africa/Casablanca": { country: "MA", currency: "USD", language: "ar" },
+  "Africa/Algiers": { country: "DZ", currency: "USD", language: "ar" },
+  "Africa/Tunis": { country: "TN", currency: "USD", language: "ar" },
   "Asia/Jerusalem": { country: "IL", currency: "USD", language: "en" },
 
   // Australia & New Zealand
@@ -161,7 +231,6 @@ const TIMEZONE_MAP: Record<string, LocationMapping> = {
   // Africa
   "Africa/Johannesburg": { country: "ZA", currency: "USD", language: "en" },
   "Africa/Lagos": { country: "NG", currency: "USD", language: "en" },
-  "Africa/Cairo": { country: "EG", currency: "USD", language: "en" },
   "Africa/Nairobi": { country: "KE", currency: "USD", language: "en" },
   "Africa/Accra": { country: "GH", currency: "USD", language: "en" },
 };
@@ -203,8 +272,29 @@ const LOCALE_MAP: Record<string, LocationMapping> = {
   "es-CL": { country: "CL", currency: "USD", language: "es" },
   "es-CO": { country: "CO", currency: "USD", language: "es" },
   "es": { country: "ES", currency: "EUR", language: "es" },
-  "ko-KR": { country: "KR", currency: "USD", language: "ko" },
-  "ko": { country: "KR", currency: "USD", language: "ko" },
+  "ko-KR": { country: "KR", currency: "KRW", language: "ko" },
+  "ko": { country: "KR", currency: "KRW", language: "ko" },
+  "ru-RU": { country: "RU", currency: "RUB", language: "ru" },
+  "ru": { country: "RU", currency: "RUB", language: "ru" },
+  "ar-SA": { country: "SA", currency: "SAR", language: "ar" },
+  "ar-AE": { country: "AE", currency: "AED", language: "ar" },
+  "ar-EG": { country: "EG", currency: "USD", language: "ar" },
+  "ar": { country: "SA", currency: "SAR", language: "ar" },
+  "zh-CN": { country: "CN", currency: "CNY", language: "zh" },
+  "zh-TW": { country: "TW", currency: "TWD", language: "zh" },
+  "zh-HK": { country: "HK", currency: "USD", language: "zh" },
+  "zh": { country: "CN", currency: "CNY", language: "zh" },
+  "tr-TR": { country: "TR", currency: "TRY", language: "tr" },
+  "tr": { country: "TR", currency: "TRY", language: "tr" },
+  "pl-PL": { country: "PL", currency: "PLN", language: "pl" },
+  "pl": { country: "PL", currency: "PLN", language: "pl" },
+  "id-ID": { country: "ID", currency: "IDR", language: "id" },
+  "id": { country: "ID", currency: "IDR", language: "id" },
+  "nl-NL": { country: "NL", currency: "EUR", language: "nl" },
+  "nl-BE": { country: "BE", currency: "EUR", language: "nl" },
+  "nl": { country: "NL", currency: "EUR", language: "nl" },
+  "vi-VN": { country: "VN", currency: "VND", language: "vi" },
+  "vi": { country: "VN", currency: "VND", language: "vi" },
 };
 
 export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
@@ -227,10 +317,28 @@ export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
     currency = "AUD";
   } else if (code === "BR") {
     currency = "BRL";
+  } else if (code === "RU" || code === "BY") {
+    currency = "RUB";
+  } else if (code === "TR") {
+    currency = "TRY";
+  } else if (code === "ID") {
+    currency = "IDR";
+  } else if (code === "VN") {
+    currency = "VND";
+  } else if (code === "PL") {
+    currency = "PLN";
+  } else if (code === "SA") {
+    currency = "SAR";
+  } else if (code === "AE") {
+    currency = "AED";
+  } else if (code === "CN") {
+    currency = "CNY";
+  } else if (code === "TW") {
+    currency = "TWD";
   } else if ([
     // Europe (Eurozone and European economic area)
     "NO", "DE", "FR", "IT", "ES", "NL", "AT", "BE", "IE", "FI",
-    "PT", "GR", "CH", "SE", "DK", "PL", "CZ", "HU", "RO", "BG",
+    "PT", "GR", "CH", "SE", "DK", "CZ", "HU", "RO", "BG",
     "HR", "SK", "SI", "LT", "LV", "EE", "CY", "MT", "LU", "IS",
     "RS", "BA", "ME", "MK", "AL", "MD", "UA", "AD", "MC", "SM",
     "VA", "LI"
@@ -258,6 +366,22 @@ export function mapCountryToDetails(countryCode: string): GeoLocationDetection {
     language = "it";
   } else if (code === "KR" || code === "KP") {
     language = "ko";
+  } else if (["RU", "BY", "KZ", "KG", "UZ", "TJ", "TM"].includes(code)) {
+    language = "ru";
+  } else if (["SA", "AE", "EG", "QA", "KW", "OM", "BH", "JO", "LB", "IQ", "MA", "DZ", "TN", "LY", "SD", "YE", "SY", "PS"].includes(code)) {
+    language = "ar";
+  } else if (["CN", "TW", "HK", "MO"].includes(code)) {
+    language = "zh";
+  } else if (["TR", "AZ"].includes(code)) {
+    language = "tr";
+  } else if (code === "PL") {
+    language = "pl";
+  } else if (code === "ID") {
+    language = "id";
+  } else if (["NL", "SR"].includes(code)) {
+    language = "nl";
+  } else if (code === "VN") {
+    language = "vi";
   }
 
   return {

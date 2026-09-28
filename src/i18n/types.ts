@@ -6,7 +6,15 @@ export type SupportedLanguage =
   | 'de' // Deutsch
   | 'pt' // Português
   | 'ko' // 한국어
-  | 'it'; // Italiano
+  | 'it' // Italiano
+  | 'ru' // Русский
+  | 'ar' // العربية
+  | 'zh' // 中文
+  | 'tr' // Türkçe
+  | 'pl' // Polski
+  | 'id' // Bahasa Indonesia
+  | 'nl' // Nederlands
+  | 'vi'; // Tiếng Việt
 
 export interface LanguageInfo {
   code: SupportedLanguage;
@@ -14,17 +22,26 @@ export interface LanguageInfo {
   nativeName: string;
   flag: string;
   hreflang: string;
+  dir?: 'ltr' | 'rtl';
 }
 
 export const SUPPORTED_LANGUAGES: LanguageInfo[] = [
-  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸', hreflang: 'en' },
-  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', hreflang: 'es' },
-  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', hreflang: 'ja' },
-  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', hreflang: 'fr' },
-  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', hreflang: 'de' },
-  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇧🇷', hreflang: 'pt' },
-  { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', hreflang: 'ko' },
-  { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', hreflang: 'it' },
+  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸', hreflang: 'en', dir: 'ltr' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', hreflang: 'es', dir: 'ltr' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', hreflang: 'ja', dir: 'ltr' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', hreflang: 'fr', dir: 'ltr' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', hreflang: 'de', dir: 'ltr' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇧🇷', hreflang: 'pt', dir: 'ltr' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', hreflang: 'ko', dir: 'ltr' },
+  { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', hreflang: 'it', dir: 'ltr' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺', hreflang: 'ru', dir: 'ltr' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦', hreflang: 'ar', dir: 'rtl' },
+  { code: 'zh', name: 'Mandarin Chinese', nativeName: '中文', flag: '🇨🇳', hreflang: 'zh', dir: 'ltr' },
+  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷', hreflang: 'tr', dir: 'ltr' },
+  { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱', hreflang: 'pl', dir: 'ltr' },
+  { code: 'id', name: 'Indonesian', nativeName: 'Bahasa Indonesia', flag: '🇮🇩', hreflang: 'id', dir: 'ltr' },
+  { code: 'nl', name: 'Dutch', nativeName: 'Nederlands', flag: '🇳🇱', hreflang: 'nl', dir: 'ltr' },
+  { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt', flag: '🇻🇳', hreflang: 'vi', dir: 'ltr' },
 ];
 
 export interface TranslationDictionary {

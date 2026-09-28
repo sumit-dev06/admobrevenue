@@ -14,6 +14,15 @@ const CURRENCY_LOCALE: Record<CurrencyCode, string> = {
   JPY: "ja-JP",
   BRL: "pt-BR",
   KRW: "ko-KR",
+  RUB: "ru-RU",
+  TRY: "tr-TR",
+  IDR: "id-ID",
+  VND: "vi-VN",
+  PLN: "pl-PL",
+  SAR: "ar-SA",
+  AED: "ar-AE",
+  CNY: "zh-CN",
+  TWD: "zh-TW",
 };
 
 export function formatRunwayMoney(value: number, currency: CurrencyCode): string {

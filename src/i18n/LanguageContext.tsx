@@ -74,6 +74,7 @@ export const LanguageProvider: React.FC<{
         window.history.pushState({}, "", newPath + window.location.search.replace(/[?&]lang=[^&]*/g, "").replace(/^\?$/, ""));
       }
       document.documentElement.lang = newLang;
+      document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
     }
   };
 
@@ -101,18 +102,28 @@ export const LanguageProvider: React.FC<{
         startTransition(() => setLanguageState(ip.language));
         localStorage.setItem("adrev_language", ip.language);
         document.documentElement.lang = ip.language;
+        document.documentElement.dir = ip.language === "ar" ? "rtl" : "ltr";
       }
     });
   }, []);
 
-  // NOTE: Per-page <title> / meta / canonical / OG tags are owned by the
-  // platform-aware SEO effect in App.tsx (mirrors scripts/prerender.mjs
-  // PLATFORM_METADATA). Do NOT set generic t.meta.* here — that would
-  // overwrite the correct per-calculator tags after hydration and cause
-  // Google to index /youtube, /tiktok, /twitch with AdSense titles/descs.
+  // Sync html lang & dir attributes + synchronize URL when opened from specific location without lang prefix
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+      // If user opened without language prefix and location detected a non-English language,
+      // sync the URL prefix so the URL matches the canonical language path
+      const currentPath = window.location.pathname;
+      const segments = currentPath.split("/").filter(Boolean);
+      const hasLangPrefix = SUPPORTED_LANGUAGES.some((l) => l.code === segments[0]);
+      if (!hasLangPrefix && language !== "en") {
+        const validPlatforms = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "fuel-cost-calculator"];
+        const currentPlat = segments.find((s) => validPlatforms.includes(s.toLowerCase()));
+        const target = currentPlat ? `/${language}/${currentPlat}` : `/${language}`;
+        window.history.replaceState({}, "", target + window.location.search + window.location.hash);
+      }
     }
   }, [language]);
 

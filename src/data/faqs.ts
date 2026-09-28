@@ -534,6 +534,190 @@ export const FAQS_DATA_IT: FAQItem[] = [
   },
 ];
 
+export const FAQS_DATA_RU: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'Сколько платит YouTube за 1 000 просмотров (RPM) в 2026 году?',
+    answer: 'В 2026 году RPM длинных видео на YouTube составляет от $1.50 до более $35 за 1 000 просмотров. В нишах финансов, IT и недвижимости доход достигает $15–$35 в Tier 1 странах, а Shorts оплачиваются по $0.03–$0.09 за 1 000 просмотров.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Сколько платит TikTok за 1 000 просмотров и сколько стоят бриллианты?',
+    answer: 'Программа Creator Rewards платит около $0.40–$1.20 за 1 000 засчитанных просмотров (видео >1 мин, от 5 секунд в ленте «Для вас»). 1 000 бриллиантов с подарков LIVE равны $5 чистого дохода.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Сколько платит Twitch за подписку и как получить Partner Plus?',
+    answer: 'Подписка Уровня 1 ($4.99) приносит $2.49 при сплите 50/50 и около $3.49 при 70/30 Partner Plus (требуется 350 Plus Points в течение 3 месяцев подряд).',
+  },
+  {
+    category: 'Kick',
+    question: 'Сколько платит Kick за подписку и что такое программа KCP?',
+    answer: 'Kick выплачивает 95%: автор получает $4.74 с каждой подписки за $4.99, что почти вдвое выше Twitch. Программа KCP дополнительно начисляет от $16 до $40+ в час в зависимости от среднего онлайна (CCV).',
+  },
+];
+
+export const FAQS_DATA_AR: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'كم يدفع يوتيوب مقابل 1000 مشاهدة (RPM) في عام 2026؟',
+    answer: 'يتراوح عائد الألف مشاهدة للفيديوهات الطويلة بين $1.50 إلى أكثر من $35 بعد خصم نسبة يوتيوب 45%. وتصل مجالات التمويل والتقنية إلى $15–$35 في دول المستوى الأول، بينما تدفع فيديوهات Shorts ما بين $0.03–$0.09.',
+  },
+  {
+    category: 'TikTok',
+    question: 'كم يدفع تيك توك مقابل 1000 مشاهدة وكم قيمة الماس؟',
+    answer: 'يدفع برنامج Creator Rewards ما بين $0.40 إلى $1.20 لكل 1000 مشاهدة مؤهلة (فيديوهات >1 دقيقة شوهدت 5 ثوانٍ فأكثر من شريط لك). كل 1000 ماسة من هدايا البث تساوي $5 صافية.',
+  },
+  {
+    category: 'Twitch',
+    question: 'كم يدفع تويتش مقابل الاشتراك وكيف يعمل برنامج Partner Plus؟',
+    answer: 'اشتراك المستوى 1 ($4.99) يدفع $2.49 بنسبة 50/50 ونحو $3.49 بنسبة 70/30 عند تحقيق 350 نقطة بلس لمدة 3 أشهر متتالية.',
+  },
+  {
+    category: 'Kick',
+    question: 'كم يدفع كيك مقابل الاشتراك وما هو برنامج KCP؟',
+    answer: 'يدفع كيك 95% حيث يحصل صانع المحتوى على $4.74 من كل اشتراك بقيمة $4.99. ويضيف برنامج KCP راتباً بين $16 إلى $40+ بالساعة وفقاً لعدد المشاهدين المتزامن.',
+  },
+];
+
+export const FAQS_DATA_ZH: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'YouTube 每 1,000 次播放能赚多少钱 (RPM)？',
+    answer: '2026 年长视频 RPM 约为 $1.50 至 $35+ 美元（已扣除平台 45% 分成）。金融商业类在第一梯队国家可达 $15–$35，Shorts 短视频千次播放收入约为 $0.03–$0.09 美元。',
+  },
+  {
+    category: 'TikTok',
+    question: 'TikTok 每千次播放收益是多少？直播礼物钻石价值几何？',
+    answer: 'Creator Rewards 创作者奖励计划每千次有效播放约为 $0.40–$1.20 美元（需为 1 分钟以上且在推荐流停留 5 秒以上）。直播间 1,000 颗钻石可净兑换 $5 美元。',
+  },
+  {
+    category: 'Twitch',
+    question: 'Twitch 订阅分成是多少？如何获得 70/30 Partner Plus 分成？',
+    answer: '$4.99 美元的 Tier 1 订阅在 50/50 下分成 $2.49，在 70/30 下约为 $3.49。连续 3 个月维持 350 个 Plus 积分即可解锁 70/30 顶格分成。',
+  },
+  {
+    category: 'Kick',
+    question: 'Kick 订阅分成是多少？什么是 KCP 计划？',
+    answer: 'Kick 提供高达 95% 的分成：每单 $4.99 订阅净入 $4.74 美元。KCP 创作者扶持计划根据同时在线人数 (CCV) 提供每小时 $16 至 $40+ 美元的开播底薪。',
+  },
+];
+
+export const FAQS_DATA_TR: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'YouTube 1.000 izlenme başına ne kadar öder (RPM)?',
+    answer: '2026 yılında uzun videolarda 1.000 izlenme başına RPM $1.50 ile $35+ arasındadır. Finans ve teknoloji nişlerinde Tier 1 kitle için $15–$35 seviyelerine çıkar; Shorts için RPM $0.03–$0.09 civarındadır.',
+  },
+  {
+    category: 'TikTok',
+    question: 'TikTok 1.000 izlenmeye ne kadar öder ve elmaslar ne kadar eder?',
+    answer: 'Creator Rewards programı uygun 1.000 izlenme başına yaklaşık $0.40–$1.20 öder (1 dk üzeri, Sizin İçin akışında 5 sn izlenenler). Canlı yayındaki 1.000 hediye elması net $5 değerindedir.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Twitch abonelik başına ne kadar öder ve Partner Plus nasıl açılır?',
+    answer: '$4.99 değerindeki Kademe 1 abonelik standart 50/50 ile $2.49, Partner Plus 70/30 ile yaklaşık $3.49 kazandırır. 70/30 için ardışık 3 ay 350 Plus Puanı tutturulmalıdır.',
+  },
+  {
+    category: 'Kick',
+    question: 'Kick abonelik başına ne kadar öder ve KCP programı nedir?',
+    answer: 'Kick %95 pay verir: $4.99 abonelikten net $4.74 alırsınız. KCP programı ise eşzamanlı izleyici sayısına (CCV) bağlı olarak saatte $16–$40+ ek ödeme yapar.',
+  },
+];
+
+export const FAQS_DATA_PL: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'Ile YouTube płaci za 1 000 wyświetleń (RPM) w 2026 roku?',
+    answer: 'W 2026 roku RPM długich filmów wynosi od $1.50 do ponad $35 za 1 000 odsłon po 45% prowizji YouTube. W niszach finansowych w Tier 1 sięga $15–$35, a dla Shorts wynosi ok. $0.03–$0.09.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Ile TikTok płaci za 1 000 wyświetleń i ile warte są diamenty?',
+    answer: 'Program Creator Rewards wypłaca ok. $0.40–$1.20 za 1 000 zakwalifikowanych wyświetleń (filmy >1 min oglądane 5s+ w Dla Ciebie). 1 000 diamentów z transmisji LIVE to $5 netto dla twórcy.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Ile zarabia się z suba na Twitchu i jak odblokować 70/30?',
+    answer: 'Sub Tier 1 ($4.99) daje $2.49 przy podziale 50/50 oraz ok. $3.49 przy 70/30 Partner Plus (wymaga utrzymania 350 Plus Points przez 3 miesiące z rzędu).',
+  },
+  {
+    category: 'Kick',
+    question: 'Ile Kick płaci za suba i czym jest program KCP?',
+    answer: 'Kick wypłaca 95%: otrzymujesz $4.74 netto za każdego suba $4.99. Program KCP dodaje stawkę godzinową ok. $16–$40+ zależnie od średniej liczby widzów (CCV).',
+  },
+];
+
+export const FAQS_DATA_ID: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'Berapa penghasilan YouTube per 1.000 views (RPM) di 2026?',
+    answer: 'Di tahun 2026, RPM video panjang berkisar antara $1.50 hingga $35+ per 1.000 tayangan setelah potongan YouTube 45%. Niche finansial di Tier 1 mencapai $15–$35, sedangkan Shorts sekitar $0.03–$0.09 RPM.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Berapa bayaran TikTok per 1.000 views dan nilai koin/berlian?',
+    answer: 'Creator Rewards membayar sekitar $0.40–$1.20 per 1.000 penayangan memenuhi syarat (video >1 menit ditonton 5 detik+ di FYP). 1.000 berlian dari hadiah LIVE bernilai bersih $5.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Berapa penghasilan per sub Twitch dan cara dapat Partner Plus?',
+    answer: 'Sub Tier 1 ($4.99) menghasilkan $2.49 pada bagi hasil 50/50 dan ~$3.49 pada 70/30 Partner Plus (memerlukan 350 Plus Points selama 3 bulan berturut-turut).',
+  },
+  {
+    category: 'Kick',
+    question: 'Berapa bayaran sub di Kick dan apa itu program KCP?',
+    answer: 'Kick memberikan bagi hasil 95%: kreator membawa pulang $4.74 dari setiap sub $4.99. Program KCP menambahkan bayaran per jam sekitar $16–$40+ berdasarkan CCV penonton.',
+  },
+];
+
+export const FAQS_DATA_NL: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'Hoeveel betaalt YouTube per 1.000 weergaven (RPM) in 2026?',
+    answer: 'In 2026 varieert de RPM voor lange video\'s van $1.50 tot meer dan $35 per 1.000 weergaven na de 45% commissie van YouTube. Financiële niches in Tier 1 halen $15–$35; Shorts zitten rond $0.03–$0.09.',
+  },
+  {
+    category: 'TikTok',
+    question: 'Hoeveel betaalt TikTok per 1.000 views en wat zijn diamanten waard?',
+    answer: 'Het Creator Rewards programma betaalt ongeveer $0.40–$1.20 per 1.000 gekwalificeerde views (video\'s >1 min, 5s+ bekeken in Voor Jou). 1.000 live diamanten leveren netto $5 op.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Wat verdient een Twitch streamer per sub en hoe werkt Partner Plus?',
+    answer: 'Een Tier 1 sub ($4.99) levert $2.49 op bij 50/50 en ~$3.49 bij de 70/30 Partner Plus verdeling (vereist 350 Plus Points gedurende 3 opeenvolgende maanden).',
+  },
+  {
+    category: 'Kick',
+    question: 'Hoeveel betaalt Kick per abonnee en wat is het KCP programma?',
+    answer: 'Kick keert 95% uit: u houdt $4.74 over aan elk $4.99 abonnement. Het KCP programma biedt een extra uurvergoeding van $16–$40+ op basis van gemiddelde kijkers (CCV).',
+  },
+];
+
+export const FAQS_DATA_VI: FAQItem[] = [
+  {
+    category: 'YouTube',
+    question: 'YouTube trả bao nhiêu tiền cho 1.000 lượt xem (RPM) năm 2026?',
+    answer: 'Năm 2026, RPM video dài dao động từ $1.50 đến hơn $35 trên 1.000 lượt xem sau khi trừ 45% phí YouTube. Chủ đề tài chính ở các nước Tier 1 đạt $15–$35, còn Shorts dao động khoảng $0.03–$0.09.',
+  },
+  {
+    category: 'TikTok',
+    question: 'TikTok trả bao nhiêu cho 1.000 lượt xem và kim cương đáng giá bao nhiêu?',
+    answer: 'Creator Rewards trả khoảng $0.40–$1.20 cho mỗi 1.000 lượt xem hợp lệ (video >1 phút xem 5 giây+ trên Dành cho bạn). 1.000 kim cương từ livestream quy đổi ra $5 tiền mặt.',
+  },
+  {
+    category: 'Twitch',
+    question: 'Twitch trả bao nhiêu cho mỗi gói đăng ký và cách đạt 70/30?',
+    answer: 'Gói Tier 1 ($4.99) trả $2.49 ở mức 50/50 và ~$3.49 ở mức 70/30 Partner Plus (cần duy trì 350 Plus Points trong 3 tháng liên tiếp).',
+  },
+  {
+    category: 'Kick',
+    question: 'Kick trả bao nhiêu cho mỗi gói đăng ký và chương trình KCP là gì?',
+    answer: 'Kick chia sẻ 95%: streamer nhận $4.74 trên mỗi gói đăng ký $4.99. Chương trình KCP hỗ trợ thêm từ $16 đến $40+/giờ tùy theo lượng người xem đồng thời (CCV).',
+  },
+];
+
 export const getFaqsForLanguage = (lang: SupportedLanguage): FAQItem[] => {
   if (lang === 'es') return FAQS_DATA_ES;
   if (lang === 'ja') return FAQS_DATA_JA;
@@ -542,6 +726,14 @@ export const getFaqsForLanguage = (lang: SupportedLanguage): FAQItem[] => {
   if (lang === 'pt') return FAQS_DATA_PT;
   if (lang === 'ko') return FAQS_DATA_KO;
   if (lang === 'it') return FAQS_DATA_IT;
+  if (lang === 'ru') return FAQS_DATA_RU;
+  if (lang === 'ar') return FAQS_DATA_AR;
+  if (lang === 'zh') return FAQS_DATA_ZH;
+  if (lang === 'tr') return FAQS_DATA_TR;
+  if (lang === 'pl') return FAQS_DATA_PL;
+  if (lang === 'id') return FAQS_DATA_ID;
+  if (lang === 'nl') return FAQS_DATA_NL;
+  if (lang === 'vi') return FAQS_DATA_VI;
   return FAQS_DATA_EN;
 };
 

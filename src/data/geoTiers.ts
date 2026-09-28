@@ -10,6 +10,15 @@ export const CURRENCIES: Record<string, CurrencyInfo> = {
   JPY: { code: 'JPY', symbol: '¥', name: 'Japanese Yen', rate: 154.0 },
   BRL: { code: 'BRL', symbol: 'R$', name: 'Brazilian Real', rate: 5.65 },
   KRW: { code: 'KRW', symbol: '₩', name: 'South Korean Won', rate: 1375.0 },
+  RUB: { code: 'RUB', symbol: '₽', name: 'Russian Ruble', rate: 95.0 },
+  TRY: { code: 'TRY', symbol: '₺', name: 'Turkish Lira', rate: 34.0 },
+  IDR: { code: 'IDR', symbol: 'Rp', name: 'Indonesian Rupiah', rate: 15600.0 },
+  VND: { code: 'VND', symbol: '₫', name: 'Vietnamese Dong', rate: 25000.0 },
+  PLN: { code: 'PLN', symbol: 'zł', name: 'Polish Zloty', rate: 3.95 },
+  SAR: { code: 'SAR', symbol: 'SR', name: 'Saudi Riyal', rate: 3.75 },
+  AED: { code: 'AED', symbol: 'AED', name: 'UAE Dirham', rate: 3.67 },
+  CNY: { code: 'CNY', symbol: '¥', name: 'Chinese Yuan', rate: 7.25 },
+  TWD: { code: 'TWD', symbol: 'NT$', name: 'New Taiwan Dollar', rate: 32.0 },
 };
 
 export interface CountryTierInfo {
@@ -65,6 +74,9 @@ export const COUNTRIES: CountryTierInfo[] = [
   // TIER 2 (Medium Purchasing Power, eCPMs $3-$12, Moderate RPMs)
   // ==========================================
   { code: 'ES', name: 'Spain', tier: 'tier2', flag: '🇪🇸', cpmMultiplier: 0.45 },
+  { code: 'CN', name: 'China', tier: 'tier2', flag: '🇨🇳', cpmMultiplier: 0.35 },
+  { code: 'RU', name: 'Russia', tier: 'tier2', flag: '🇷🇺', cpmMultiplier: 0.28 },
+  { code: 'BY', name: 'Belarus', tier: 'tier2', flag: '🇧🇾', cpmMultiplier: 0.22 },
   { code: 'IT', name: 'Italy', tier: 'tier2', flag: '🇮🇹', cpmMultiplier: 0.42 },
   { code: 'BR', name: 'Brazil', tier: 'tier2', flag: '🇧🇷', cpmMultiplier: 0.32 },
   { code: 'MX', name: 'Mexico', tier: 'tier2', flag: '🇲🇽', cpmMultiplier: 0.35 },

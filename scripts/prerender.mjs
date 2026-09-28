@@ -411,8 +411,383 @@ const LOCALIZED_PLATFORM_METADATA = {
       keywords: 'calcolatore carburante, costo viaggio benzina, costo per km auto, consumo carburante calcolo, quanto costa il mio viaggio, realtools',
     },
   },
+  ru: {
+    root: {
+      title: 'Калькулятор Дохода AdSense, AdMob и Runway 2026 | RealTools',
+      desc: 'Точный калькулятор дохода от рекламы Google AdSense, AdMob, YouTube, TikTok, Twitch и Kick. Рассчитайте доходность и срок капитала. | RealTools',
+      keywords: 'калькулятор дохода adsense, калькулятор доходов google adsense, калькулятор дохода с сайта, калькулятор admob, заработок на приложениях, калькулятор дохода ютуб, калькулятор твич, доход тикток, калькулятор kick, калькулятор окупаемости стартапа, сколько можно заработать на рекламе, расчет доходов от рекламы, realtools',
+    },
+    admob: {
+      title: 'Калькулятор Дохода AdMob 2026 | Расчет ARPDAU и eCPM',
+      desc: 'Калькулятор AdMob для iOS и Android. Расчет ARPDAU, eCPM и дневного дохода от Rewarded видео, межстраничных объявлений и медиации. | RealTools',
+      keywords: 'калькулятор admob, калькулятор дохода admob, arpdau калькулятор, admob ecpm калькулятор, доход мобильных приложений, заработок на admob, сколько платит admob, admob ecpm в россии, монетизация мобильных игр, расчет дохода admob, realtools',
+    },
+    adsense: {
+      title: 'Калькулятор Дохода AdSense 2026 | Оценка Page RPM Сайта',
+      desc: 'Точный калькулятор дохода Google AdSense. Рассчитайте Page RPM сайта и прогноз прибыли по 26 тематикам, странам и рекламным блокам. | RealTools',
+      keywords: 'калькулятор дохода google adsense, калькулятор adsense, page rpm калькулятор, доход сайта adsense, сколько платит adsense за клик, сколько платит adsense за 1000 просмотров, цена клика adsense, заработок на adsense калькулятор, доходность сайта калькулятор, как рассчитать доход adsense, realtools',
+    },
+    youtube: {
+      title: 'Калькулятор Дохода YouTube 2026 | RPM, CPM и Shorts',
+      desc: 'Рассчитайте заработок на YouTube: доход от длинных видео, Shorts, спонсорства и интеграций в 15+ тематиках. | RealTools',
+      keywords: 'калькулятор дохода youtube, калькулятор заработка на ютубе, сколько платит ютуб за просмотры, youtube rpm калькулятор, доход от shorts, калькулятор cpm youtube, сколько платит ютуб за 1000 просмотров, сколько платят за 1000000 просмотров на ютубе, монетизация ютуб калькулятор, заработок на шортс, realtools',
+    },
+    tiktok: {
+      title: 'Калькулятор Дохода TikTok 2026 | Creator Rewards и LIVE',
+      desc: 'Калькулятор выплат в TikTok: расчет вознаграждения Creator Rewards за видео >1 мин и конвертация подарков LIVE в реальные деньги. | RealTools',
+      keywords: 'калькулятор дохода tiktok, сколько платит тикток, калькулятор бриллиантов tiktok, выплаты creator rewards, сколько платит тикток за 1000 просмотров, сколько платит тикток за 1 миллион просмотров, калькулятор монет тикток, заработок в тик токе, сколько стоит подарок в тик токе, realtools',
+    },
+    twitch: {
+      title: 'Калькулятор Twitch 2026 | Подписки, Bits и Доход от Рекламы',
+      desc: 'Оцените доход стримера на Twitch: платные подписки Tier 1/2/3, распределение Partner Plus (50/50 и 70/30), реклама AIP и Bits. | RealTools',
+      keywords: 'калькулятор дохода twitch, калькулятор подписок twitch, сколько зарабатывает стример на twitch, партнер плюс twitch, bits в доллары, сколько стоит подписка на твиче, сколько платят за сабку на твиче, калькулятор заработка твич, доход стримера калькулятор, realtools',
+    },
+    kick: {
+      title: 'Калькулятор Kick 2026 | 95/5 Подписки и Ставка KCP',
+      desc: 'Калькулятор заработка на Kick: доход с распределением подписок 95/5 ($4.74 net/sub) и почасовая оплата программы KCP. | RealTools',
+      keywords: 'калькулятор дохода kick, калькулятор стримера kick, разделение 95 5 kick, почасовая оплата kcp kick, kick против twitch, сколько платит кик стримерам, сколько стоит подписка на kick, заработок на kick com, кик стрим калькулятор, realtools',
+    },
+    runway: {
+      title: 'Калькулятор Runway 2026 | На Сколько Хватит Денег',
+      desc: 'Узнайте, на сколько лет хватит накоплений или капитала стартапа при регулярных снятиях, доходности и инфляции. Анализ SWP. | RealTools',
+      keywords: 'калькулятор runway, на сколько хватит сбережений, калькулятор swp, финансовая подушка калькулятор, калькулятор капитала стартапа, на сколько лет хватит миллиона, систематический вывод средств swp, калькулятор финансовой независимости, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Калькулятор Расхода Топлива 2026 | Стоимость Поездки на км',
+      desc: 'Бесплатный калькулятор стоимости бензина и дизеля. Введите расстояние, расход и цену за литр для расчета стоимости поездки. | RealTools',
+      keywords: 'калькулятор топлива, стоимость поездки на бензин, расход топлива на 100 км, расчет бензина на поездку, стоимость километра пути, рассчитать бензин на дорогу туда и обратно, расход бензина на авто калькулятор, realtools',
+    },
+  },
+  ar: {
+    root: {
+      title: 'حاسبة أرباح الإعلانات والسيولة 2026 | RealTools',
+      desc: 'حاسبات مجانية لحساب أرباح أدسنس، أدموب، يوتيوب، تيك توك، تويتش، كيك، وحساب مدرج السيولة للمشاريع. قدر أرباحك وعائداتك بدقة. | RealTools',
+      keywords: 'حاسبة أرباح أدسنس, حاسبة أرباح جوجل أدسنس, حاسبة أرباح أدموب, حاسبة أرباح يوتيوب, حاسبة أرباح تيك توك, أرباح تويتش, أرباح كيك, حساب أرباح المواقع, حاسبة السيولة المالية, كم يربح صناع المحتوى, حاسبة أرباح الإعلانات, realtools',
+    },
+    admob: {
+      title: 'حاسبة أرباح أدموب 2026 | أداة حساب ARPDAU و eCPM',
+      desc: 'حاسبة أدموب دقيقة لتطبيقات iOS وأندرويد. قدر الأرباح اليومية والشهرية لإعلانات المكافأة، البينية، والشاشات الافتتاحية مع الوساطة. | RealTools',
+      keywords: 'حاسبة أدموب, حاسبة أرباح التطبيقات, حساب arpdau, حساب ecpm admob, أرباح إعلانات التطبيقات, كم يدفع ادموب, حاسبة ارباح جوجل ادموب, اعلانات المكافأة ادموب, كيف تربح من تطبيقات الجوال, realtools',
+    },
+    adsense: {
+      title: 'حاسبة أرباح أدسنس 2026 | عائد الألف ظهور Page RPM للمواقع',
+      desc: 'احسب الأرباح المتوقعة لموقعك مع حاسبة أدسنس وعائد الألف ظهور. توقع الإيرادات عبر 26 تخصصاً ودول العالم ومواضع الإعلانات. | RealTools',
+      keywords: 'حاسبة أرباح جوجل أدسنس, حاسبة أدسنس, حساب عائد الألف ظهور, أرباح المواقع من أدسنس, كم يدفع أدسنس لكل نقرة, كم يدفع أدسنس لكل 1000 ظهور, سعر النقرة في ادسنس cpc, حاسبة ارباح المواقع الالكترونية, كيف تحسب ارباح ادسنس, realtools',
+    },
+    youtube: {
+      title: 'حاسبة أرباح يوتيوب 2026 | عائد المشاهدات RPM و Shorts',
+      desc: 'احسب أرباح قناتك على يوتيوب: الفيديوهات الطويلة، وفيديوهات Shorts، والانتساب، والرعايات عبر أكثر من 15 تخصصاً. | RealTools',
+      keywords: 'حاسبة أرباح يوتيوب, كم يدفع يوتيوب لكل 1000 مشاهدة, حاسبة rpm يوتيوب, أرباح يوتيوب شورتس, حاسبة cpm يوتيوب, كم أرباح المليون مشاهدة في اليوتيوب, كم يدفع اليوتيوب على المشاهدات, حاسبة دخل اليوتيوب, شروط الربح من اليوتيوب 2026, realtools',
+    },
+    tiktok: {
+      title: 'حاسبة أرباح تيك توك 2026 | مكافآت المبدعين وهدايا البث',
+      desc: 'احسب أرباح برنامج Creator Rewards للفيديوهات الأطول من دقيقة واحدة وتحويل ماس هدايا البث المباشر LIVE إلى دولارات. | RealTools',
+      keywords: 'حاسبة أرباح تيك توك, كم يدفع تيك توك, تحويل ماس تيك توك لدولار, برنامج مكافآت المبدعين تيك توك, كم يدفع تيك توك على 1000 مشاهدة, كم أرباح مليون مشاهدة في التيك توك, حساب نقاط التيك توك إلى فلوس, كم سعر الأسد في التيك توك, هدايا التيك توك كم تساوي, realtools',
+    },
+    twitch: {
+      title: 'حاسبة أرباح تويتش 2026 | الاشتراكات وإعلانات البث AIP',
+      desc: 'احسب أرباحك على تويتش: اشتراكات المستويات 1/2/3، وتقسيم Partner Plus (50/50 و 70/30)، وإعلانات البث والبتس. | RealTools',
+      keywords: 'حاسبة أرباح تويتش, حاسبة اشتراكات تويتش, كم يربح الستريمر في تويتش, برنامج بارتنر بلس تويتش, تحويل البتس إلى دولار, كم سعر السب في تويتش, كم أرباح البث المباشر في تويتش, realtools',
+    },
+    kick: {
+      title: 'حاسبة أرباح كيك 2026 | تقسيم الاشتراكات 95/5 وراتب KCP',
+      desc: 'احسب أرباح البث على منصة كيك: احتفاظك بنسبة 95% من الاشتراكات ($4.74 صافية) وراتب برنامج KCP بالساعة. | RealTools',
+      keywords: 'حاسبة أرباح كيك, حاسبة بثوث كيك, تقسيم اشتراكات كيك 95 5, راتب كيك بالساعة, كيك مقابل تويتش, كم يدفع كيك للستريمر, شروط الربح من كيك, أرباح الاشتراكات في كيك, realtools',
+    },
+    runway: {
+      title: 'حاسبة مدرج السيولة 2026 | كم ستكفيك مدخراتك؟',
+      desc: 'اكتشف كم سنة ستكفيك أموالك أو رأس مال شركتك الناشئة مع السحوبات الشهرية ونسبة العائد والتضخم. تحليل SWP. | RealTools',
+      keywords: 'حاسبة السيولة المالية, كم ستكفيني مدخراتي, حاسبة swp للسحب المنتظم, حاسبة مصاريف التقاعد, مدرج سيولة الشركات الناشئة, كم يكفي مليون دولار للعيش, حاسبة الادخار والتقاعد المبكر fire, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'حاسبة تكلفة الوقود 2026 | تكلفة استهلاك البنزين لكل كم',
+      desc: 'حاسبة وقود مجانية لأي دولة. أدخل المسافة ومعدل الاستهلاك وسعر اللتر لحساب تكلفة الرحلة وكمية الوقود والتكلفة الشهرية. | RealTools',
+      keywords: 'حاسبة تكلفة الوقود, حساب استهلاك البنزين للرحلة, حساب تكلفة البنزين لكل كيلومتر, كم لتر بنزين لقطع 100 كم, حاسبة صرفية البنزين للسيارة, حساب تكلفة السفر بالسيارة ذهاب وإياب, realtools',
+    },
+  },
+  zh: {
+    root: {
+      title: '广告收益与资金跑道计算器 2026 | RealTools',
+      desc: '精准预估 Google AdSense、AdMob、YouTube、TikTok、Twitch 和 Kick 收益，以及存款与创业资金跑道测算。 | RealTools',
+      keywords: '广告收益计算器, adsense计算器, admob收益计算器, youtube赚钱计算器, tiktok收益计算器, twitch订阅收益, kick收益计算器, 资金跑道计算器, 网站广告收入预估, 创作者收入模拟器, realtools',
+    },
+    admob: {
+      title: 'AdMob 收益计算器 2026 | ARPDAU 与 eCPM 预估工具',
+      desc: '专为 iOS 和 Android 打造的 AdMob 计算器。精准测算激励视频、插屏广告及应用开屏广告的 ARPDAU 与日收益。 | RealTools',
+      keywords: 'admob收益计算器, 应用广告收入计算, arpdau计算器, admob ecpm预估, 移动应用变现, admob激励视频收益, app每千次展示收入, admob中介聚合收益, 独立开发者app变现, realtools',
+    },
+    adsense: {
+      title: 'AdSense 收益计算器 2026 | 网站 Page RPM 与收入预估',
+      desc: '精准测算 Google AdSense 收益。支持 26 个行业垂直领域、全球不同国家流量和广告单元组合的 Page RPM 估算。 | RealTools',
+      keywords: 'Google AdSense收益计算器, adsense收入预估, 网站广告收入测算, 网页rpm计算, adsense每千次展示多少钱, 网站一千次浏览能赚多少, adsense点击单价cpc, 博客流量变现计算, realtools',
+    },
+    youtube: {
+      title: 'YouTube 赚钱计算器 2026 | RPM、CPM 与 Shorts 收益',
+      desc: '测算 YouTube 长视频、Shorts 短视频、频道会员及广告收入。涵盖 15+ 创作垂类与全球受众收益模型。 | RealTools',
+      keywords: 'youtube赚钱计算器, youtube收入预估, youtube千次播放收益, youtube rpm计算器, youtube shorts短视频收益, youtube cpm测算, youtube一百万播放量能赚多少钱, 油管收益怎么算, 油管创作者收入, realtools',
+    },
+    tiktok: {
+      title: 'TikTok 收益计算器 2026 | 创作者奖励与直播礼物工具',
+      desc: '计算 TikTok Creator Rewards 创作者奖励计划收入及 LIVE 直播礼物钻石兑现金额。 | RealTools',
+      keywords: 'tiktok赚钱计算器, tiktok收益计算, tiktok千次播放多少钱, tiktok钻石兑换美元, tiktok创作者基金计算, tiktok播放量怎么变现, tiktok直播礼物折算, tiktok创作者奖励计划收入, realtools',
+    },
+    twitch: {
+      title: 'Twitch 收入计算器 2026 | 订阅分成与 AIP 广告预估',
+      desc: '面向 Twitch 主播的收入计算器：测算 Tier 1/2/3 订阅、Partner Plus (50/50 与 70/30) 分成、Bits 及 AIP 广告时薪。 | RealTools',
+      keywords: 'twitch收入计算器, twitch订阅收益, twitch主播能赚多少钱, partner plus分成, bits折算美元, twitch aip收益, twitch一个订阅多少钱, 游戏主播收入计算器, realtools',
+    },
+    kick: {
+      title: 'Kick 主播收益计算器 2026 | 95/5 分成与 KCP 时薪测算',
+      desc: '测算 Kick 平台 95/5 订阅分成（每订阅净得 $4.74 美元）及 KCP 激励计划的平均时薪与月度总收益。 | RealTools',
+      keywords: 'kick收益计算器, kick主播收入, kick 95 5分成, kick时薪多少, kick对比twitch收益, kick订阅怎么分成, kick直播平台分成比例, kick kcp激励计划, realtools',
+    },
+    runway: {
+      title: '资金跑道计算器 2026 | 存款与创业本金能用多久',
+      desc: '免费资金跑道测算工具。根据每月提取额、年化投资回报与通胀测算存款或创业储备资金的消耗与维持年限。SWP 模型。 | RealTools',
+      keywords: '资金跑道计算器, 存款能用多久, 100万理财够花几年, swp系统提取计算器, 退休金消耗测算, 创业资金储备, 提前退休fire计算器, 资金能维持多少个月, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: '汽车油费计算器 2026 | 自驾出行百公里油耗与费用预估',
+      desc: '输入行驶距离、百公里油耗及油价，一键计算单程及往返总油费、每公里油费成本及拼车人均分摊。 | RealTools',
+      keywords: '油费计算器, 自驾游油费测算, 百公里油耗计算, 每公里多少油钱, 汽车出行燃油成本, 开车往返油费计算, 拼车油费分摊计算, realtools',
+    },
+  },
+  tr: {
+    root: {
+      title: 'AdSense, AdMob ve Runway Gelir Hesaplayıcı 2026 | RealTools',
+      desc: 'Google AdSense, AdMob, YouTube, TikTok, Twitch, Kick ve nakit pisti için ücretsiz gelir hesaplama araçları. Kazanç ve metriklerinizi modelleyin. | RealTools',
+      keywords: 'reklam geliri hesaplayıcı, adsense hesaplayıcı, admob gelir hesaplama, youtube para hesaplama, tiktok para hesaplama, twitch abone geliri, kick hesaplayıcı, runway hesaplayıcı, site reklam geliri hesaplama, içerik üreticisi gelir hesaplama, realtools',
+    },
+    admob: {
+      title: 'AdMob Gelir Hesaplayıcı 2026 | ARPDAU ve eCPM Aracı',
+      desc: 'iOS ve Android uygulamaları için AdMob hesaplayıcı. Ödüllü video, geçiş ve açılış reklamlarında ARPDAU ve eCPM kazançlarını hesaplayın. | RealTools',
+      keywords: 'admob gelir hesaplayıcı, admob hesaplama, arpdau hesaplayıcı, admob ecpm hesaplama, mobil uygulama reklam geliri, admob 1000 gösterim kaç tl, admob ödüllü video geliri, oyun reklam geliri hesaplama, realtools',
+    },
+    adsense: {
+      title: 'AdSense Hesaplayıcı 2026 | Sayfa RPM ve Web Sitesi Geliri',
+      desc: 'Doğru Google AdSense gelir hesaplayıcısı. 26 niş sektör, ülke ve reklam birimi kombinasyonlarıyla web sitenizin sayfa RPM değerini tahmin edin. | RealTools',
+      keywords: 'google adsense gelir hesaplama, adsense hesaplayıcı, sayfa rpm hesaplama, web sitesi reklam geliri, adsense 1000 görüntüleme kaç tl, adsense tbm hesaplama, blog geliri hesaplama, adsense tıklama başına ne kadar verir, realtools',
+    },
+    youtube: {
+      title: 'YouTube Para Hesaplama 2026 | RPM, CPM ve Shorts Kazancı',
+      desc: 'YouTube uzun videolar, Shorts, katıl üyelikleri ve reklam gelirlerini hesaplayın. 15+ içerik kategorisinde kanal kazancınızı öngörün. | RealTools',
+      keywords: 'youtube para hesaplama, youtube gelir hesaplayıcı, youtube 1000 izlenme kaç para, youtube rpm hesaplama, youtube shorts para kazanma, youtube 1 milyon izlenme ne kadar kazandırır, youtube cpm hesaplama, youtube izlenme başı para, realtools',
+    },
+    tiktok: {
+      title: 'TikTok Para Hesaplama 2026 | Creator Rewards ve Canlı Yayın',
+      desc: 'TikTok Creator Rewards Programı izlenme kazançlarını ve Canlı Yayın hediyesi Elmasların nakit karşılığını hesaplayın. | RealTools',
+      keywords: 'tiktok para hesaplama, tiktok kazanç hesaplama, tiktok elmas kaç tl, tiktok izlenme parası, tiktok 1000 izlenme ne kadar, tiktok 1 milyon izlenme kaç para, tiktok hediye fiyatları ve karşılığı, tiktok canlı yayın kazancı hesaplama, realtools',
+    },
+    twitch: {
+      title: 'Twitch Gelir Hesaplayıcı 2026 | Abonelik, Bit ve AIP Reklamı',
+      desc: 'Twitch yayıncıları için kazanç hesaplayıcı: Kademe 1/2/3 abonelikler, Partner Plus (%50/%50 ve %70/%30) payı, Bitler ve AIP reklam geliri. | RealTools',
+      keywords: 'twitch gelir hesaplama, twitch abone parası, twitch yayıncıları ne kadar kazanıyor, partner plus payı, twitch bit hesaplama, twitch 1 abone kaç tl, twitch saatlik reklam geliri, yayıncı kazancı hesaplama, realtools',
+    },
+    kick: {
+      title: 'Kick Gelir Hesaplayıcı 2026 | %95/5 Abone Payı ve KCP Ücreti',
+      desc: 'Kick yayıncı gelirlerini hesaplayın: %95/5 abone payı (abone başına net $4.74) ve KCP programı saatlik kazancı. | RealTools',
+      keywords: 'kick gelir hesaplayıcı, kick yayıncı kazancı, kick 95 5 payı, kick saatlik ücret kcp, kick mi twitch mi, kick abone ücreti ne kadar, kick yayıncılarına ne kadar ödüyor, kick yayın geliri, realtools',
+    },
+    runway: {
+      title: 'Finansal Pist (Runway) Hesaplayıcı 2026 | Birikimim Ne Kadar Yeter?',
+      desc: 'Birikimlerinizin veya girişim sermayenizin aylık harcama, yatırım getirisi ve enflasyon artışıyla kaç yıl yeteceğini hesaplayın. SWP analizi. | RealTools',
+      keywords: 'runway hesaplayıcı, birikimim ne kadar yeter, para ne kadar süre dayanır, swp hesaplayıcı, emeklilik maaş çekim hesaplama, 1 milyon lira ne kadar süre yeter, girişim nakit pisti hesaplama, finansal özgürlük hesaplayıcı, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Yakıt Maliyeti Hesaplayıcı 2026 | Yolculuk Benzin ve Mazot Tutarı',
+      desc: 'Mesafe, yakıt tüketimi ve pompa fiyatını girerek yolculuk yakıt masrafını, kilometre başına maliyeti ve kişi başı ücreti hesaplayın. | RealTools',
+      keywords: 'yakıt hesaplama, yol yakıt maliyeti hesaplama, 100 km de ne kadar yakar, km başına benzin maliyeti, yolculuk masrafı hesaplama, gidiş dönüş benzin hesaplama, araç kilometre maliyeti, realtools',
+    },
+  },
+  pl: {
+    root: {
+      title: 'Kalkulator Dochodów AdSense, AdMob i Runway 2026 | RealTools',
+      desc: 'Bezpłatne kalkulatory zarobków z Google AdSense, AdMob, YouTube, TikTok, Twitch, Kick oraz wyliczania czasu utrzymania kapitału. | RealTools',
+      keywords: 'kalkulator dochodów adsense, kalkulator admob, zarobki na youtube kalkulator, kalkulator tiktok, kalkulator subów twitch, kalkulator kick, kalkulator runway, kalkulator zarobków z reklam, ile zarabia twórca, realtools',
+    },
+    admob: {
+      title: 'Kalkulator Dochodów AdMob 2026 | Narzędzie ARPDAU i eCPM',
+      desc: 'Precyzyjny kalkulator AdMob dla aplikacji na iOS i Androida. Oblicz ARPDAU, eCPM i dzienne zarobki z reklam z nagrodą i pełnoekranowych. | RealTools',
+      keywords: 'kalkulator admob, zarobki z admob, arpdau kalkulator, admob ecpm kalkulator, zarobki z aplikacji mobilnej, ile płaci admob za 1000 wyświetleń, admob rewarded video zarobki, monetyzacja gier mobilnych, realtools',
+    },
+    adsense: {
+      title: 'Kalkulator AdSense 2026 | Page RPM i Szacowanie Zarobków Strony',
+      desc: 'Oblicz potencjalne przychody ze strony www z Google AdSense. Szacuj Page RPM i miesięczny dochód w 26 niszach tematycznych i formatach reklam. | RealTools',
+      keywords: 'kalkulator zarobków google adsense, kalkulator adsense, page rpm kalkulator, ile płaci adsense za 1000 wyświetleń, zarobki z reklam na stronie, ile płaci adsense za kliknięcie cpc, kalkulator zysków z bloga, realtools',
+    },
+    youtube: {
+      title: 'Kalkulator Zarobków YouTube 2026 | RPM, CPM i Shorts',
+      desc: 'Oblicz przychody z YouTube: filmy długometrażowe, YouTube Shorts, wspieranie kanału i stawki RPM w ponad 15 kategoriach tematycznych. | RealTools',
+      keywords: 'kalkulator zarobków youtube, ile płaci youtube za wyświetlenia, youtube rpm kalkulator, zarobki z youtube shorts, ile zarabia się na youtube za 1000 wyświetleń, ile płaci youtube za 1 milion wyświetleń, youtube cpm kalkulator, zarobki youtubera, realtools',
+    },
+    tiktok: {
+      title: 'Kalkulator Zarobków TikTok 2026 | Creator Rewards i LIVE',
+      desc: 'Kalkulator pieniędzy z TikToka: oblicz zarobki z programu Creator Rewards za kwalifikowane wyświetlenia oraz wymianę Diamentów z LIVE. | RealTools',
+      keywords: 'kalkulator tiktok, ile płaci tiktok za wyświetlenia, diamenty tiktok na pln usd, zarobki z tiktoka kalkulator, ile płaci tiktok za 1000 wyświetleń, ile płaci tiktok za 1 mln wyświetleń, kalkulator prezentów tiktok, creator rewards program zarobki, realtools',
+    },
+    twitch: {
+      title: 'Kalkulator Dochodów Twitch 2026 | Subskrypcje, Bity i Reklamy AIP',
+      desc: 'Kalkulator dochodów dla streamerów na Twitchu: suby poziomu 1/2/3, podział Partner Plus (50/50 i 70/30), bity i stawki godzinowe AIP. | RealTools',
+      keywords: 'kalkulator zarobków twitch, kalkulator subów twitch, ile zarabia streamer na twitchu, partner plus twitch podział, bity na pieniądze twitch, ile kosztuje sub na twitchu dla twórcy, twitch aip reklamy kalkulator, realtools',
+    },
+    kick: {
+      title: 'Kalkulator Zarobków Kick 2026 | Podział 95/5 i Stawka KCP',
+      desc: 'Oblicz dochód na platformie Kick: 95% podziału z subskrypcji (4,74 $ netto za suba) oraz wynagrodzenie godzinowe programu KCP. | RealTools',
+      keywords: 'kalkulator zarobków kick, zarobki na kick, podział 95 5 kick, ile płaci kick za godzinę, kick vs twitch zarobki, ile dostaje streamer za suba na kick, kick creator program zarobki, realtools',
+    },
+    runway: {
+      title: 'Kalkulator Runway 2026 | Na Ile Lat Wystarczą Oszczędności?',
+      desc: 'Dowiedz się, na jak długo wystarczą Twoje oszczędności przy regularnych wypłatach, stopie zwrotu z inwestycji i inflacji. Model SWP. | RealTools',
+      keywords: 'kalkulator runway, na ile starczą oszczędności, kalkulator swp, systematyczna wypłata kapitału, ile czasu wystarczy milion, kalkulator wolności finansowej fire, na ile miesięcy wystarczy kapitał, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Kalkulator Kosztu Paliwa 2026 | Koszt Podróży Samochodem na km',
+      desc: 'Wprowadź dystans, średnie spalanie i cenę za litr, aby poznać całkowity koszt paliwa na trasie, koszt na km oraz podział na pasażerów. | RealTools',
+      keywords: 'kalkulator kosztu paliwa, koszt podróży samochodem, ile spali na 100 km, koszt paliwa na km, obliczanie kosztów benzyny na wyjazd, kalkulator spalania benzyny i diesla, koszt przejazdu tam i z powrotem, realtools',
+    },
+  },
+  id: {
+    root: {
+      title: 'Kalkulator Pendapatan AdSense, AdMob & Runway 2026 | RealTools',
+      desc: 'Kalkulator akurat gratis untuk Google AdSense, AdMob, YouTube, TikTok, Twitch, Kick dan proyeksi runway modal usaha. | RealTools',
+      keywords: 'kalkulator pendapatan adsense, kalkulator admob, kalkulator uang youtube, kalkulator tiktok, kalkulator streamer twitch, kalkulator kick, kalkulator runway, hitung pendapatan iklan web dan aplikasi, realtools',
+    },
+    admob: {
+      title: 'Kalkulator Pendapatan AdMob 2026 | Alat Hitung ARPDAU & eCPM',
+      desc: 'Kalkulator AdMob untuk aplikasi iOS & Android. Estimasi penghasilan harian, ARPDAU dan eCPM dari rewarded video, interstitial dan open ads. | RealTools',
+      keywords: 'kalkulator admob, kalkulator penghasilan admob, kalkulator arpdau, admob ecpm kalkulator, penghasilan iklan aplikasi mobile, admob bayar berapa per 1000 tayangan, cara menghitung pendapatan admob, monetisasi game android, realtools',
+    },
+    adsense: {
+      title: 'Kalkulator AdSense 2026 | Estimasi Page RPM & Pendapatan Website',
+      desc: 'Hitung potensi penghasilan website dengan kalkulator Google AdSense. Estimasi Page RPM di 26 kategori niche, lokasi negara, dan format iklan. | RealTools',
+      keywords: 'kalkulator pendapatan google adsense, kalkulator adsense, hitung page rpm, berapa penghasilan adsense per 1000 tayangan, adsense cpc indonesia, cek penghasilan website dari iklan, kalkulator penghasilan blog, realtools',
+    },
+    youtube: {
+      title: 'Kalkulator Uang YouTube 2026 | Estimasi RPM, CPM & Shorts',
+      desc: 'Hitung potensi penghasilan YouTube dari video panjang, YouTube Shorts, langganan channel, dan iklan di 15+ kategori konten. | RealTools',
+      keywords: 'kalkulator uang youtube, kalkulator penghasilan youtube, berapa bayaran youtube per 1000 tayangan, youtube rpm kalkulator, gaji youtube shorts, 1 juta view youtube dapat berapa uang rupiah, estimasi penghasilan youtuber, cek rpm youtube, realtools',
+    },
+    tiktok: {
+      title: 'Kalkulator Uang TikTok 2026 | Creator Rewards & Hadiah LIVE',
+      desc: 'Kalkulator penghasilan TikTok: hitung pendapatan program Creator Rewards dari tayangan berkualifikasi dan konversi Berlian koin hadiah LIVE. | RealTools',
+      keywords: 'kalkulator uang tiktok, berapa penghasilan tiktok, 1000 koin tiktok berapa rupiah, harga berlian tiktok, kalkulator creator rewards tiktok, 1 juta view di tiktok dapat uang berapa, kalkulator hadiah live tiktok, konversi koin tiktok ke rupiah, realtools',
+    },
+    twitch: {
+      title: 'Kalkulator Penghasilan Twitch 2026 | Sub, Bits & Iklan AIP',
+      desc: 'Kalkulator penghasilan streamer Twitch: langganan Tier 1/2/3, bagi hasil Partner Plus (50/50 dan 70/30), donasi Bits, dan tarif iklan AIP. | RealTools',
+      keywords: 'kalkulator uang twitch, berapa gaji streamer twitch, bagi hasil partner plus twitch, konversi bits ke dolar, kalkulator aip twitch, 1 sub twitch berapa rupiah, berapa pendapatan streamer pemula, realtools',
+    },
+    kick: {
+      title: 'Kalkulator Pendapatan Kick 2026 | Bagi Hasil 95/5 & Gaji KCP',
+      desc: 'Kalkulator penghasilan streamer Kick: nikmati bagi hasil 95% per subscriber ($4.74 bersih/sub) dan simulasi gaji per jam program KCP. | RealTools',
+      keywords: 'kalkulator pendapatan kick, penghasilan streamer kick, bagi hasil 95 5 kick, gaji per jam kick kcp, kick vs twitch penghasilan, berapa bayaran streamer kick per sub, cara dapat uang dari live streaming kick, realtools',
+    },
+    runway: {
+      title: 'Kalkulator Runway Keuangan 2026 | Berapa Lama Tabungan Bertahan?',
+      desc: 'Ketahui berapa lama tabungan atau modal startup Anda akan bertahan dengan simulasi penarikan bulanan, imbal hasil investasi, dan inflasi. Analisis SWP. | RealTools',
+      keywords: 'kalkulator runway, berapa lama tabungan saya bertahan, kalkulator swp, kalkulator dana darurat, modal startup bertahan berapa bulan, uang 1 milyar bertahan berapa lama, simulasi dana pensiun bulanan, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Kalkulator Biaya Bahan Bakar 2026 | Estimasi Biaya Bensin per KM',
+      desc: 'Masukkan jarak perjalanan, konsumsi BBM, dan harga per liter untuk menghitung total biaya bensin perjalanan, biaya per kilometer, dan patungan penumpang. | RealTools',
+      keywords: 'kalkulator bensin, hitung biaya bensin perjalanan, konsumsi bbm per km, cara menghitung biaya bahan bakar mobil, estimasi biaya bensin pulang pergi, 1 liter bensin untuk berapa km, patungan bensin mobil, realtools',
+    },
+  },
+  nl: {
+    root: {
+      title: 'AdSense, AdMob & Runway Calculator 2026 | RealTools',
+      desc: 'Nauwkeurige gratis rekenmodellen voor Google AdSense, AdMob, YouTube, TikTok, Twitch, Kick en financiële runway berekeningen. | RealTools',
+      keywords: 'advertentie inkomsten calculator, adsense calculator, admob calculator, youtube geld calculator, tiktok inkomsten, twitch subs calculator, kick verdiensten, runway calculator, online inkomsten berekenen, realtools',
+    },
+    admob: {
+      title: 'AdMob Inkomsten Calculator 2026 | ARPDAU & eCPM Tool',
+      desc: 'AdMob calculator voor iOS & Android apps. Bereken dagelijkse inkomsten, ARPDAU en eCPM voor rewarded video, interstitials en app open ads. | RealTools',
+      keywords: 'admob calculator, admob inkomsten berekenen, arpdau calculator, admob ecpm berekening, app advertentie inkomsten, wat verdient een app met advertenties, admob rewarded video opbrengst, realtools',
+    },
+    adsense: {
+      title: 'AdSense Calculator 2026 | Pagina-RPM & Website Inkomsten',
+      desc: 'Bereken potentiële website-inkomsten met onze Google AdSense calculator. Schat de Pagina-RPM voor 26 niches, landen en advertentie-indelingen. | RealTools',
+      keywords: 'google adsense inkomsten calculator, adsense calculator, pagina rpm berekenen, hoeveel betaalt adsense per 1000 views, website advertentie inkomsten, adsense cpc berekenen, wat verdient een website aan adsense, blog inkomsten berekenen, realtools',
+    },
+    youtube: {
+      title: 'YouTube Geld Calculator 2026 | RPM, CPM & Shorts Inkomsten',
+      desc: 'Bereken potentiële YouTube verdiensten: lange video\'s, YouTube Shorts, kanaallidmaatschappen en advertentie-inkomsten in 15+ niches. | RealTools',
+      keywords: 'youtube geld calculator, wat verdient een youtuber, youtube 1000 weergaven vergoeding, youtube rpm berekenen, youtube shorts inkomsten, hoeveel verdient 1 miljoen weergaven op youtube, youtube inkomsten per video, realtools',
+    },
+    tiktok: {
+      title: 'TikTok Geld Calculator 2026 | Creator Rewards & LIVE Geschenken',
+      desc: 'Bereken uw inkomsten via het TikTok Creator Rewards Programma voor gekwalificeerde views en de waarde van LIVE Diamanten. | RealTools',
+      keywords: 'tiktok geld calculator, hoeveel betaalt tiktok per 1000 weergaven, tiktok diamanten naar euro, creator rewards programma tiktok, hoeveel verdient 1 miljoen views op tiktok, live geschenken omrekenen tiktok, realtools',
+    },
+    twitch: {
+      title: 'Twitch Inkomsten Calculator 2026 | Abonnees, Bits & AIP',
+      desc: 'Bereken verdiensten voor Twitch-streamers: Tier 1/2/3 subs, Partner Plus (50/50 & 70/30) splitsing, Bits en AIP advertentievergoedingen. | RealTools',
+      keywords: 'twitch inkomsten calculator, wat verdient een twitch streamer, partner plus regeling twitch, bits naar euro omrekenen, twitch sub opbrengst, hoeveel levert een tier 1 sub op, twitch aip vergoeding, realtools',
+    },
+    kick: {
+      title: 'Kick Verdiensten Calculator 2026 | 95/5 Verdeling & KCP Uurtarief',
+      desc: 'Bereken inkomsten voor Kick-streamers met de unieke 95/5 abonneeverdeling ($ 4,74 netto per sub) en het KCP uurloon. | RealTools',
+      keywords: 'kick calculator, verdiensten kick streamer, 95 5 verdeling kick, hoeveel betaalt kick per uur, kick versus twitch inkomsten, hoeveel levert een sub op kick op, kick streamer salaris, realtools',
+    },
+    runway: {
+      title: 'Runway Calculator 2026 | Hoe Lang Gaat Mijn Spaargeld Mee?',
+      desc: 'Ontdek hoeveel jaar uw spaargeld of startupkapitaal meegaat bij maandelijkse opnames, beleggingsrendement en inflatie. SWP analyse. | RealTools',
+      keywords: 'runway calculator, hoe lang gaat mijn spaargeld mee, swp calculator, pensioen opname calculator, hoe lang gaat 1 miljoen mee, financiële runway berekenen, systematisch opnameplan calculator, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Brandstofkosten Calculator 2026 | Benzine & Diesel Ritprijs per km',
+      desc: 'Voer afstand, verbruik en literprijs in en bereken direct de brandstofkosten van uw autorit, kosten per kilometer en verdeling per passagier. | RealTools',
+      keywords: 'brandstofkosten berekenen, benzinekosten reis, verbruik per 100 km, wat kost mijn autorit aan benzine, kosten per kilometer auto, brandstofverbruik calculator retour, brandstofkosten delen per persoon, realtools',
+    },
+  },
+  vi: {
+    root: {
+      title: 'Công Cụ Tính Doanh Thu AdSense, AdMob & Runway 2026 | RealTools',
+      desc: 'Công cụ tính toán doanh thu miễn phí cho Google AdSense, AdMob, YouTube, TikTok, Twitch, Kick và tính thời gian cạn vốn khởi nghiệp. | RealTools',
+      keywords: 'công cụ tính doanh thu adsense, tính doanh thu admob, kiếm tiền youtube tính thế nào, tính tiền tiktok, tính sub twitch, tính tiền kick, tính runway tài chính, tính doanh thu quảng cáo website và ứng dụng, realtools',
+    },
+    admob: {
+      title: 'Công Cụ Tính Doanh Thu AdMob 2026 | Công Cụ ARPDAU & eCPM',
+      desc: 'Tính toán doanh thu AdMob cho ứng dụng iOS & Android. Ước tính ARPDAU, eCPM và doanh thu ngày từ quảng cáo thưởng, quảng cáo xen kẽ. | RealTools',
+      keywords: 'tính doanh thu admob, công cụ admob, tính arpdau, admob ecpm calculator, doanh thu quảng cáo ứng dụng di động, admob trả bao nhiêu tiền cho 1000 lượt hiển thị, kiếm tiền từ ứng dụng game admob, realtools',
+    },
+    adsense: {
+      title: 'Công Cụ Tính AdSense 2026 | Ước Tính Page RPM & Doanh Thu Web',
+      desc: 'Tính toán tiềm năng kiếm tiền từ website với Google AdSense. Ước tính Page RPM theo 26 ngách chủ đề, quốc gia và định dạng quảng cáo. | RealTools',
+      keywords: 'công cụ tính doanh thu google adsense, tính tiền adsense, tính page rpm, adsense trả bao nhiêu cho 1000 lượt xem, adsense cpc việt nam, 1 click adsense được bao nhiêu tiền, tính thu nhập website từ quảng cáo, realtools',
+    },
+    youtube: {
+      title: 'Công Cụ Tính Tiền YouTube 2026 | Ước Tính RPM, CPM & Shorts',
+      desc: 'Tính doanh thu YouTube từ video dài, Shorts, hội viên kênh và quảng cáo trên hơn 15 chủ đề nội dung và đối tượng khán giả. | RealTools',
+      keywords: 'tính tiền youtube, youtube trả bao nhiêu cho 1000 view, tính rpm youtube, doanh thu youtube shorts, công cụ tính cpm youtube, 1 triệu view youtube được bao nhiêu tiền tại việt nam, bảng giá view youtube, ước tính thu nhập youtuber, realtools',
+    },
+    tiktok: {
+      title: 'Công Cụ Tính Tiền TikTok 2026 | Creator Rewards & Quà Tặng LIVE',
+      desc: 'Tính thu nhập TikTok từ chương trình Quỹ thưởng Creator Rewards cho lượt xem đủ điều kiện và quy đổi Kim cương quà tặng livestream. | RealTools',
+      keywords: 'tính tiền tiktok, tiktok trả bao nhiêu tiền cho 1000 view, đổi kim cương tiktok sang usd, creator rewards tiktok, kiếm tiền tiktok, 1 triệu view tiktok được bao nhiêu tiền, quy đổi quà tặng livestream tiktok, bảng giá kim cương tiktok, realtools',
+    },
+    twitch: {
+      title: 'Công Cụ Tính Thu Nhập Twitch 2026 | Gói Sub, Bits & Quảng Cáo AIP',
+      desc: 'Tính thu nhập cho streamer Twitch: gói đăng ký Tier 1/2/3, tỷ lệ chia Partner Plus (50/50 và 70/30), Bits và phụ cấp quảng cáo AIP theo giờ. | RealTools',
+      keywords: 'tính tiền twitch, streamer twitch kiếm bao nhiêu tiền, chia sẻ doanh thu partner plus twitch, đổi bits sang usd, tính doanh thu quảng cáo twitch, 1 sub twitch được bao nhiêu tiền, thu nhập của streamer twitch, realtools',
+    },
+    kick: {
+      title: 'Công Cụ Tính Thu Nhập Kick 2026 | Tỷ Lệ Chia 95/5 & Lương KCP',
+      desc: 'Tính toán thu nhập streamer trên Kick: nhận 95% doanh thu đăng ký ($4.74 thực nhận/sub) và lương giờ theo chương trình KCP. | RealTools',
+      keywords: 'tính tiền kick, thu nhập streamer kick, tỷ lệ chia 95 5 kick, kick trả bao nhiêu tiền một giờ, kick so với twitch, lương streamer kick theo giờ, kiếm tiền livestream trên kick, realtools',
+    },
+    runway: {
+      title: 'Công Cụ Tính Runway Tài Chính 2026 | Tiền Tiết Kiệm Sống Được Bao Lâu?',
+      desc: 'Tìm hiểu tiền tiết kiệm hoặc vốn khởi nghiệp duy trì được bao lâu khi rút định kỳ hàng tháng, có lợi nhuận đầu tư và lạm phát. Mô hình SWP. | RealTools',
+      keywords: 'tính runway tài chính, tiền tiết kiệm duy trì được bao lâu, công cụ swp, rút tiền hưu trí có hệ thống, 1 tỷ sống được bao lâu, tính thời gian cạn vốn khởi nghiệp, mô hình rút vốn định kỳ swp, realtools',
+    },
+    'fuel-cost-calculator': {
+      title: 'Công Cụ Tính Chi Phí Xăng Xe 2026 | Ước Tính Tiền Xăng Theo Km',
+      desc: 'Nhập quãng đường, mức tiêu hao nhiên liệu và giá xăng tại trạm để tính toán chi phí xăng cho chuyến đi, chi phí mỗi km và chia theo đầu người. | RealTools',
+      keywords: 'tính tiền xăng, tính chi phí xăng xe chuyến đi, 100km tốn bao nhiêu lít xăng, tiền xăng mỗi km, tính chi phí đi xe đường dài, tính tiền xăng khứ hồi cả đi lẫn về, chia tiền xăng theo đầu người, realtools',
+    },
+  },
 };
-
 // ==========================================
 // 3. GENERATE RICH JSON-LD STRUCTURED DATA
 // ==========================================
@@ -758,6 +1133,249 @@ function generateJsonLd(platformKey, meta, lang = 'en') {
         { q: 'Quanto carburante serve per 100 km?', a: '100 ÷ il tuo km/L: con 15 km/L servono ~6,7 litri.' },
       ],
     },
+    ru: {
+      adsense: [
+        { q: 'Сколько платит AdSense за 1 000 просмотров?', a: 'От $2.50 до $45+ за 1 000 просмотров страниц. Тематики финансов и SaaS в странах Tier 1 достигают $25–$60 Page RPM; развлечения — $2–$7.' },
+        { q: 'Сколько просмотров нужно для заработка $1 000 в месяц?', a: 'Около 40 000 просмотров при RPM $25 (финансы) или около 166 000 при RPM $6 (общая тематика).' },
+      ],
+      youtube: [
+        { q: 'Сколько платит YouTube за 1 000 просмотров?', a: 'RPM длинных видео составляет от $1.50 до $35+ после вычета 45% доли YouTube. Shorts оплачиваются из отдельного пула — около $0.03–$0.09 RPM.' },
+        { q: 'Сколько просмотров нужно, чтобы зарабатывать $1 000 в месяц?', a: 'При RPM $5 нужно ~200 000 просмотров; при RPM $20 (финансы, аудитория США) — ~50 000 просмотров.' },
+      ],
+      tiktok: {
+        adsense: [], // not used
+      },
+      tiktok: [
+        { q: 'Сколько платит TikTok за 1 000 просмотров?', a: 'Программа Creator Rewards платит $0.40–$1.20 за 1 000 квалифицированных просмотров (видео >1 мин, от 5 сек в ленте «Для вас»).' },
+        { q: 'Сколько стоят 1 000 бриллиантов в TikTok?', a: '1 000 бриллиантов = $5 чистого дохода автору. Зрители платят примерно вдвое больше при покупке монет.' },
+      ],
+      twitch: [
+        { q: 'Сколько приносит 1 подписка на Twitch?', a: 'Подписка Tier 1 ($4.99) приносит $2.49 при сплите 50/50 и ~$3.49 при сплите 70/30 Partner Plus.' },
+        { q: 'Как получить сплит 70/30 на Twitch?', a: 'Удерживайте 350 Plus Points в течение 3 месяцев подряд с регулярных платных подписок.' },
+      ],
+      kick: [
+        { q: 'Сколько платит Kick за подписку?', a: 'Kick отдает 95%: $4.74 чистыми с подписки $4.99 — почти вдвое больше, чем $2.49 на Twitch.' },
+        { q: 'Что такое программа KCP на Kick?', a: 'Почасовая ставка около $16–$40+ в зависимости от среднего онлайна (CCV); донаты поступают на 100% автору.' },
+      ],
+      runway: [
+        { q: 'На сколько хватит сбережений?', a: 'Разделите капитал на ежемесячный дефицит: $60 000 ÷ $5 000/мес = 12 месяцев. При доходности 8% капитал поддерживает снятие ~0.67%/мес практически бессрочно.' },
+        { q: 'Это калькулятор SWP?', a: 'Да: фиксированное ежемесячное снятие с капитализацией остатка минус индексация на инфляцию.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Как рассчитать стоимость топлива для поездки?', a: 'Топливо = Расстояние ÷ Расход; Стоимость = Литры × Цена. Пример: 300 км при 15 км/л требуют 20 литров.' },
+        { q: 'Сколько топлива потребуется на 100 км?', a: '100 ÷ ваш показатель км/л: при 15 км/л нужно ~6.7 л. При 7 л/100 км — ровно 7 литров.' },
+      ],
+    },
+    ar: {
+      adsense: [
+        { q: 'كم يدفع أدسنس مقابل 1,000 مشاهدة؟', a: 'ما بين 2.50$ إلى 45+$ لكل 1,000 مشاهدة. مجالات التمويل و SaaS تحقق 25–60$ RPM؛ بينما الترفيه 2–7$.' },
+        { q: 'كم مشاهدة أحتاج لأربح 1,000 دولار شهرياً؟', a: 'حوالي 40,000 مشاهدة في التمويل (RPM 25$) أو 166,000 مشاهدة في المجالات العامة (RPM 6$).' },
+      ],
+      youtube: [
+        { q: 'كم يدفع يوتيوب مقابل 1,000 مشاهدة؟', a: 'يتراوح RPM للفيديوهات الطويلة بين 1.50$ إلى 35+$ بعد خصم نسبة يوتيوب 45%. وتدفع فيديوهات Shorts نحو 0.03–0.09$.' },
+        { q: 'كم مشاهدة أحتاج لأربح 1,000 دولار شهرياً؟', a: 'عند RPM بقيمة 5$ تحتاج ~200,000 مشاهدة؛ وعند 20$ (جمهور أمريكي وتمويل) تحتاج ~50,000 مشاهدة.' },
+      ],
+      tiktok: [
+        { q: 'كم يدفع تيك توك مقابل 1,000 مشاهدة؟', a: 'يدفع برنامج Creator Rewards نحو 0.40–1.20$ لكل 1,000 مشاهدة مؤهلة (فيديوهات >1 دقيقة شوهدت 5 ثوانٍ فأكثر من شريط لك).' },
+        { q: 'كم تساوي 1,000 ماسة في تيك توك؟', a: '1,000 ماسة = 5 دولارات صافية لصانع المحتوى بعد خصم المنصة.' },
+      ],
+      twitch: [
+        { q: 'كم يدفع اشتراك تويتش للمذيع؟', a: 'اشتراك المستوى 1 ($4.99) يمنح 2.49$ بنسبة 50/50 ونحو 3.49$ بنسبة 70/30 في برنامج Partner Plus.' },
+        { q: 'كيف أحصل على نسبة 70/30 في تويتش؟', a: 'حافظ على 350 نقطة بلس لمدة 3 أشهر متتالية من اشتراكات مدفوعة متكررة.' },
+      ],
+      kick: [
+        { q: 'كم تدفع منصة كيك مقابل الاشتراك؟', a: 'تحتفظ كيك بـ 5% وتمنح المذيع 95%: 4.74$ صافية للاشتراك بقيمة 4.99$ — ضعف تويتش تقريباً.' },
+        { q: 'ما هو برنامج KCP في كيك؟', a: 'راتب بالساعة يتراوح بين 16–40+$ حسب عدد المشاهدين المتزامن؛ والتبرعات المباشرة 100% صافية.' },
+      ],
+      runway: [
+        { q: 'كم ستكفيك مدخراتك المالية؟', a: 'اقسم رصيدك على العجز الشهري: 60,000$ ÷ 5,000$/شهر = 12 شهراً. وبعائد استثماري 8% يدعم الرصيد سحب 0.67% شهرياً بصورة مستمرة.' },
+        { q: 'هل هذه حاسبة SWP؟', a: 'نعم — سحب شهري ثابت مع نمو الرصيد المتبقي مطروحاً منه زيادة التضخم.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'كيف تحسب تكلفة الوقود لرحلتك؟', a: 'الوقود المطلوب = المسافة ÷ معدل الاستهلاك؛ التكلفة = الوقود × السعر. مثال: 300 كم بمعدل 15 كم/لتر تستهلك 20 لتراً.' },
+        { q: 'كم وقوداً تحتاج سيارتي لقطع 100 كم؟', a: '100 ÷ كم/لتر لسيارتك: عند 15 كم/لتر تحتاج ~6.7 لتر. وعند 7 لتر/100 كم تحتاج 7 لترات بالضبط.' },
+      ],
+    },
+    zh: {
+      adsense: [
+        { q: 'Google AdSense 每千次展示收入是多少？', a: '每千次页面展示 (Page RPM) 约为 $2.50 到 $45+ 美元。第一梯队金融 SaaS 网站可达 $25–$60 RPM；娱乐游戏类平均 $2–$7。' },
+        { q: '每月想赚 $1,000 美元需要多少访问量？', a: '高单价领域（RPM $25）约需 40,000 次展示；大众综合类（RPM $6）约需 166,000 次展示。' },
+      ],
+      youtube: [
+        { q: 'YouTube 每 1,000 次播放能赚多少钱？', a: '长视频千次播放净收入 RPM 约为 $1.50 至 $35+ 美元（已扣除 45% 分成）。Shorts 短视频独立分成池，RPM 约为 $0.03–$0.09。' },
+        { q: '每月赚 $1,000 美元需要多少播放量？', a: '按 $5 RPM 计算约需 20 万次月播放；按 $20 RPM（欧美高客单金融）只需约 5 万次播放。' },
+      ],
+      tiktok: [
+        { q: 'TikTok 每 1,000 次播放收益是多少？', a: 'Creator Rewards 创作者奖励计划每千次有效播放约为 $0.40–$1.20 美元（需为 1 分钟以上且在推荐流停留 5 秒以上）。' },
+        { q: 'TikTok 1,000 颗钻石值多少钱？', a: '1,000 颗钻石创作者净得 $5 美元。观众充值金币所付金额约为该数字的两倍。' },
+      ],
+      twitch: [
+        { q: 'Twitch 1 个订阅主播能拿多少分成？', a: '$4.99 美元的 Tier 1 订阅在 50/50 下分成 $2.49，在 Partner Plus 70/30 下可分约 $3.49。' },
+        { q: '如何解锁 Twitch 70/30 顶格分成？', a: '连续 3 个月通过付费循环订阅维持 350 个 Plus 积分（不含 Prime 和一次性赠送订阅）。' },
+      ],
+      kick: [
+        { q: 'Kick 每个订阅主播能赚多少？', a: 'Kick 平台仅抽取 5%，主播得 95%：每 $4.99 订阅净得 $4.74 美元，几乎是 Twitch $2.49 的两倍。' },
+        { q: 'Kick 的 KCP 激励计划是什么？', a: '根据同时在线人数 (CCV) 每小时补贴 $16–$40+ 美元；直接打赏 100% 归主播所有。' },
+      ],
+      runway: [
+        { q: '我的存款或启动资金能支撑多久？', a: '将本金除以每月净支出：$60,000 ÷ $5,000/月 = 12 个月。若在年化 8% 回报下，每月提取 0.67% 可长期维持不枯竭。' },
+        { q: '这是 SWP 系统提取计划计算器吗？', a: '是的 — 支持固定月提取、剩余本金复利增值，并扣除通胀递增影响。' },
+      ],
+      'fuel-cost-calculator': [
+        { q: '如何计算自驾出行的油费成本？', a: '耗油量 = 行驶距离 ÷ 百公里油耗；油费 = 耗油量 × 每升单价。例如：行驶 300 公里，车况 15 km/L 需耗油 20 升。' },
+        { q: '开车 100 公里需要消耗多少升汽油？', a: '100 ÷ 你的 km/L：若为 15 km/L 约需 6.7 升；若标称为 7 L/100km 则正好为 7 升。' },
+      ],
+    },
+    tr: {
+      adsense: [
+        { q: 'AdSense 1.000 görüntüleme başına ne kadar öder?', a: '1.000 sayfa görüntüleme başına yaklaşık $2.50 ile $45+ arasındadır. Finans ve SaaS siteleri $25–$60 sayfa RPM kazanırken; eğlence $2–$7 ortalamasındadır.' },
+        { q: 'Ayda $1.000 kazanmak için kaç görüntüleme gerekir?', a: 'Finans gibi nişlerde ($25 RPM) yaklaşık 40.000; genel konularda ($6 RPM) yaklaşık 166.000 görüntüleme gerekir.' },
+      ],
+      youtube: [
+        { q: 'YouTube 1.000 izlenme başına ne kadar öder?', a: 'Uzun video RPM oranları 1.000 izlenme başına $1.50 ile $35+ arasındadır (%45 YouTube kesintisi sonrası). Shorts havuzdan yaklaşık $0.03–$0.09 RPM öder.' },
+        { q: 'Ayda $1.000 kazanmak için kaç izlenme gerekir?', a: '$5 RPM ile ayda yaklaşık 200.000 izlenme; $20 RPM ile (finans, ABD kitlesi) yaklaşık 50.000 izlenme gerekir.' },
+      ],
+      tiktok: [
+        { q: 'TikTok 1.000 izlenme başına ne kadar öder?', a: 'Creator Rewards Programı 1.000 nitelikli izlenme başına yaklaşık $0.40–$1.20 öder (1 dk üzeri ve 5 sn izlenen videolar).' },
+        { q: '1.000 TikTok Elması kaç dolar eder?', a: '1.000 Elmas üreticiye net $5 kazandırır. İzleyiciler bu jetonları alırken yaklaşık iki katını öder.' },
+      ],
+      twitch: [
+        { q: '1 Twitch abonesi yayıncıya ne kadar kazandırır?', a: '$4.99 Kademe 1 abone, standart 50/50 paylaşımda $2.49 ve Partner Plus 70/30 paylaşımında ~$3.49 öder.' },
+        { q: 'Twitch 70/30 paylaşımını nasıl açarım?', a: 'Yenilenen ücretli abonelerle üst üste 3 ay boyunca 350 Plus Puanını koruyun.' },
+      ],
+      kick: [
+        { q: 'Kick abone başına ne kadar öder?', a: 'Kick yalnızca %5 keser ve yayıncılara %95 öder: $4.99 abonelik başına net $4.74 — Twitch\'in $2.49 tabanının neredeyse iki katı.' },
+        { q: 'Kick KCP programı nedir?', a: 'Eşzamanlı izleyici sayısına göre saatte ~$16–$40+ taban ücret; doğrudan bağışlar %100 nettir.' },
+      ],
+      runway: [
+        { q: 'Birikimlerim veya sermayem ne kadar süre yeter?', a: 'Toplam paranızı aylık açığınıza bölün: $60.000 ÷ $5.000/ay = 12 ay. Yıllık %8 getiri ile bir bakiye aylık yaklaşık %0.67 çekimi neredeyse süresiz destekler.' },
+        { q: 'Bu bir SWP hesaplayıcı mıdır?', a: 'Evet — kalan bakiyenin bileşik büyüdüğü ve enflasyon artışının düşüldüğü sabit aylık çekim hesaplayıcısıdır.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Bir seyahatin yakıt maliyeti nasıl hesaplanır?', a: 'Gereken Yakıt = Mesafe ÷ Yakıt Tüketimi; Maliyet = Yakıt × Pompa Fiyatı. Örnek: 15 km/L ile 300 km için 20 litre gerekir.' },
+        { q: 'Aracım 100 km\'de ne kadar yakıt harcar?', a: '100 ÷ km/L değeriniz: 15 km/L ile ~6.7 litre; 7 L/100km değeriyle tam 7 litre harcanır.' },
+      ],
+    },
+    pl: {
+      adsense: [
+        { q: 'Ile płaci AdSense za 1 000 wyświetleń?', a: 'Średnio od 2,50 $ do ponad 45 $ za 1 000 odsłon. Finanse i SaaS z ruchem Tier 1 osiągają 25–60 $ Page RPM; rozrywka 2–7 $.' },
+        { q: 'Ile odsłon potrzeba, aby zarobić 1 000 $ miesięcznie?', a: 'Około 40 000 odsłon w tematyce finansowej (RPM 25 $) lub 166 000 odsłon w tematyce ogólnej (RPM 6 $).' },
+      ],
+      youtube: [
+        { q: 'Ile płaci YouTube za 1 000 wyświetleń?', a: 'Stawka RPM dla długich filmów wynosi od 1,50 $ do ponad 35 $ (po potrąceniu 45% prowizji YouTube). Shorts to około 0,03–0,09 $ RPM.' },
+        { q: 'Ile wyświetleń potrzeba, aby zarobić 1 000 $ miesięcznie?', a: 'Przy RPM 5 $ potrzeba ~200 000 wyświetleń; przy RPM 20 $ (finanse, USA) ~50 000 wyświetleń.' },
+      ],
+      tiktok: [
+        { q: 'Ile płaci TikTok za 1 000 wyświetleń?', a: 'Program Creator Rewards płaci około 0,40–1,20 $ za 1 000 kwalifikowanych wyświetleń (filmy >1 min oglądane przez min. 5 s).' },
+        { q: 'Ile warte jest 1 000 Diamentów na TikToku?', a: '1 000 Diamentów = 5 $ netto dla twórcy. Widzowie płacą za monety około dwukrotnie więcej.' },
+      ],
+      twitch: [
+        { q: 'Ile zarabia streamer za suba na Twitchu?', a: 'Subskrypcja Poziomu 1 (4,99 $) daje 2,49 $ przy podziale 50/50 i ~3,49 $ w Partner Plus 70/30.' },
+        { q: 'Jak odblokować podział 70/30 na Twitchu?', a: 'Utrzymaj 350 punktów Plus przez 3 kolejne miesiące z odnawialnych płatnych subów.' },
+      ],
+      kick: [
+        { q: 'Ile płaci Kick za subskrypcję?', a: 'Kick pobiera tylko 5% i wypłaca 95%: 4,74 $ netto za suba 4,99 $ — prawie dwukrotnie więcej niż 2,49 $ na Twitchu.' },
+        { q: 'Czym jest program KCP na Kick?', a: 'Stawka godzinowa około 16–40 $+/godz. zależnie od liczby widzów (CCV); napiwki trafiają w 100% do streamera.' },
+      ],
+      runway: [
+        { q: 'Na jak długo wystarczą moje oszczędności?', a: 'Podziel oszczędności przez miesięczny deficyt: 60 000 $ ÷ 5 000 $/mies. = 12 miesięcy. Przy stopie zwrotu 8% kapitał wspiera wypłatę ~0,67%/mies. niemal bezterminowo.' },
+        { q: 'Czy to kalkulator SWP?', a: 'Tak — stała miesięczna wypłata z reinwestycją reszty środków pomniejszona o inflację.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Jak obliczyć koszt paliwa na podróż?', a: 'Potrzebne paliwo = Dystans ÷ Spalanie; Koszt = Paliwo × Cena. Przykład: 300 km przy 15 km/l wymaga 20 litrów.' },
+        { q: 'Ile paliwa zużyje samochód na 100 km?', a: '100 ÷ Twoje km/l: przy 15 km/l potrzeba ~6,7 litra. Przy 7 l/100km dokładnie 7 litrów.' },
+      ],
+    },
+    id: {
+      adsense: [
+        { q: 'Berapa penghasilan AdSense per 1.000 tayangan?', a: 'Sekitar $2.50 hingga $45+ per 1.000 tayangan halaman. Niche keuangan dan SaaS menghasilkan RPM $25–$60; hiburan rata-rata $2–$7.' },
+        { q: 'Berapa tayangan yang dibutuhkan untuk menghasilkan $1.000 sebulan?', a: 'Sekitar 40.000 tayangan pada niche keuangan ($25 RPM) atau sekitar 166.000 tayangan pada niche umum ($6 RPM).' },
+      ],
+      youtube: [
+        { q: 'Berapa penghasilan YouTube per 1.000 tayangan?', a: 'RPM video panjang berkisar antara $1.50 hingga $35+ setelah potongan 45% YouTube. Shorts menghasilkan sekitar $0.03–$0.09 RPM.' },
+        { q: 'Berapa penayangan yang dibutuhkan untuk dapat $1.000 per bulan?', a: 'Pada RPM $5 butuh ~200.000 tayangan per bulan; pada RPM $20 (keuangan, audiens AS) butuh ~50.000 tayangan.' },
+      ],
+      tiktok: [
+        { q: 'Berapa bayaran TikTok per 1.000 tayangan?', a: 'Program Creator Rewards membayar sekitar $0.40–$1.20 per 1.000 tayangan berkualifikasi (video >1 menit ditonton min 5 detik di FYP).' },
+        { q: 'Berapa nilai 1.000 Berlian TikTok?', a: '1.000 Berlian = $5 bersih bagi kreator. Penonton membayar kira-kira dua kali lipat dalam koin.' },
+      ],
+      twitch: [
+        { q: 'Berapa penghasilan 1 subscriber di Twitch?', a: 'Sub Tier 1 ($4.99) menghasilkan $2.49 pada bagi hasil 50/50 dan ~$3.49 pada Partner Plus 70/30.' },
+        { q: 'Bagaimana cara membuka bagi hasil 70/30 di Twitch?', a: 'Pertahankan 350 Plus Points selama 3 bulan berturut-turut dari sub berbayar berulang.' },
+      ],
+      kick: [
+        { q: 'Berapa penghasilan Kick per subscriber?', a: 'Kick hanya mengambil 5% dan memberikan 95%: $4.74 bersih per sub $4.99 — hampir dua kali lipat Twitch ($2.49).' },
+        { q: 'Apa itu program KCP di Kick?', a: 'Gaji per jam sekitar $16–$40+/jam berdasarkan rata-rata penonton serentak (CCV); donasi langsung 100% bersih.' },
+      ],
+      runway: [
+        { q: 'Berapa lama tabungan atau modal saya akan bertahan?', a: 'Bagi saldo dengan defisit bulanan: $60.000 ÷ $5.000/bln = 12 bulan. Imbal hasil 8% per tahun mendukung penarikan ~0.67%/bulan hampir selamanya.' },
+        { q: 'Apakah ini kalkulator SWP?', a: 'Ya — penarikan bulanan tetap dengan sisa saldo yang terus berbunga, dikurangi kenaikan inflasi.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Bagaimana cara menghitung biaya bahan bakar untuk perjalanan?', a: 'Bahan bakar yang dibutuhkan = Jarak ÷ Konsumsi BBM; Biaya = Liter × Harga Pompa. Contoh: 300 km dengan 15 km/L butuh 20 liter.' },
+        { q: 'Berapa banyak bahan bakar yang dibutuhkan mobil untuk 100 km?', a: '100 ÷ km/L mobil Anda: pada 15 km/L butuh ~6.7 liter. Pada 7 L/100km tepat 7 liter.' },
+      ],
+    },
+    nl: {
+      adsense: [
+        { q: 'Hoeveel betaalt AdSense per 1.000 weergaven?', a: 'Ongeveer $ 2,50 tot $ 45+ per 1.000 paginaweergaven. Financiën en SaaS in Tier 1 behalen $ 25–$ 60 Pagina-RPM; entertainment $ 2–$ 7.' },
+        { q: 'Hoeveel weergaven heb ik nodig om $ 1.000 per maand te verdienen?', a: 'Ongeveer 40.000 weergaven bij een RPM van $ 25 (financiën) of 166.000 weergaven bij een RPM van $ 6 (algemeen).' },
+      ],
+      youtube: [
+        { q: 'Hoeveel betaalt YouTube per 1.000 weergaven?', a: 'De RPM voor lange video\'s varieert van $ 1,50 tot $ 35+ na de 45% inhouding van YouTube. Shorts leveren circa $ 0,03–$ 0,09 RPM op.' },
+        { q: 'Hoeveel weergaven heb ik nodig voor $ 1.000 per maand?', a: 'Bij een RPM van $ 5 heeft u ~200.000 weergaven nodig; bij $ 20 (financiën, VS-publiek) ~50.000 weergaven.' },
+      ],
+      tiktok: [
+        { q: 'Hoeveel betaalt TikTok per 1.000 weergaven?', a: 'Het Creator Rewards Programma betaalt circa $ 0,40–$ 1,20 per 1.000 gekwalificeerde views (video\'s >1 minuut bekeken vanaf 5s in Voor jou).' },
+        { q: 'Hoeveel zijn 1.000 TikTok Diamanten waard?', a: '1.000 Diamanten = $ 5 netto voor de maker. Kijkers betalen ongeveer het dubbele in munten.' },
+      ],
+      twitch: [
+        { q: 'Hoeveel verdient een streamer per Twitch-sub?', a: 'Een Tier 1-sub ($ 4,99) levert $ 2,49 op bij 50/50 en ~$ 3,49 bij 70/30 Partner Plus.' },
+        { q: 'Hoe ontgrendel ik de 70/30-verdeling op Twitch?', a: 'Behoud 350 Plus Points gedurende 3 opeenvolgende maanden via terugkerende betaalde subs.' },
+      ],
+      kick: [
+        { q: 'Hoeveel betaalt Kick per abonnee?', a: 'Kick houdt slechts 5% in en betaalt 95% uit: $ 4,74 netto per abonnement van $ 4,99 — bijna het dubbele van Twitch ($ 2,49).' },
+        { q: 'Wat is het KCP-programma van Kick?', a: 'Een uurtarief van circa $ 16–$ 40+/uur op basis van gelijktijdige kijkers (CCV); directe fooien zijn 100% netto.' },
+      ],
+      runway: [
+        { q: 'Hoe lang gaan mijn spaargelden mee?', a: 'Deel uw saldo door uw maandelijkse tekort: $ 60.000 ÷ $ 5.000/mnd = 12 maanden. Bij 8% jaarlijks rendement ondersteunt een saldo vrijwel onbeperkt een maandelijkse opname van ~0,67%.' },
+        { q: 'Is dit een SWP-calculator?', a: 'Ja — een vaste maandelijkse opname waarbij het resterende bedrag rendeert, minus inflatiestijging.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Hoe bereken je de brandstofkosten voor een reis?', a: 'Brandstof nodig = Afstand ÷ Verbruik; Kosten = Brandstof × Pompprijs. Voorbeeld: 300 km bij 15 km/L vereist 20 liter.' },
+        { q: 'Hoeveel brandstof verbruikt mijn auto voor 100 km?', a: '100 ÷ uw km/L: bij 15 km/L heeft u ~6,7 liter nodig. Bij 7 L/100km precies 7 liter.' },
+      ],
+    },
+    vi: {
+      adsense: [
+        { q: 'Google AdSense trả bao nhiêu tiền cho 1.000 lượt xem?', a: 'Từ $2.50 đến hơn $45 cho mỗi 1.000 lượt xem trang (Page RPM). Mảng tài chính và SaaS đạt $25–$60 RPM; giải trí trung bình $2–$7.' },
+        { q: 'Cần bao nhiêu lượt xem để kiếm được $1.000 mỗi tháng?', a: 'Khoảng 40.000 lượt xem với chủ đề tài chính (RPM $25) hoặc khoảng 166.000 lượt xem với chủ đề tổng hợp (RPM $6).' },
+      ],
+      youtube: [
+        { q: 'YouTube trả bao nhiêu tiền cho 1.000 lượt xem?', a: 'RPM video dài dao động từ $1.50 đến hơn $35 sau khi trừ 45% phí YouTube. Shorts được chia từ quỹ riêng khoảng $0.03–$0.09 RPM.' },
+        { q: 'Cần bao nhiêu lượt xem để kiếm $1.000 mỗi tháng?', a: 'Ở mức RPM $5 cần ~200.000 lượt xem/tháng; ở mức RPM $20 (tài chính, khán giả Mỹ) chỉ cần ~50.000 lượt xem.' },
+      ],
+      tiktok: [
+        { q: 'TikTok trả bao nhiêu tiền cho 1.000 lượt xem?', a: 'Chương trình Creator Rewards trả khoảng $0.40–$1.20 cho mỗi 1.000 lượt xem đủ điều kiện (video gốc >1 phút xem trên 5 giây từ Dành cho bạn).' },
+        { q: '1.000 Kim cương TikTok trị giá bao nhiêu tiền?', a: '1.000 Kim cương = $5 thực nhận cho nhà sáng tạo. Người xem nạp xu gấp khoảng 2 lần mức đó.' },
+      ],
+      twitch: [
+        { q: '1 lượt đăng ký kênh Twitch mang lại bao nhiêu tiền?', a: 'Gói sub Tier 1 ($4.99) trả $2.49 theo tỷ lệ 50/50 và ~$3.49 theo tỷ lệ Partner Plus 70/30.' },
+        { q: 'Làm thế nào để mở khóa mức chia 70/30 trên Twitch?', a: 'Duy trì 350 Điểm Plus trong 3 tháng liên tiếp từ các lượt đăng ký trả phí định kỳ.' },
+      ],
+      kick: [
+        { q: 'Kick trả bao nhiêu tiền cho mỗi lượt đăng ký?', a: 'Kick giữ lại 5% và trả 95%: $4.74 thực nhận cho mỗi sub $4.99 — gần gấp đôi mức $2.49 của Twitch.' },
+        { q: 'Chương trình KCP trên Kick là gì?', a: 'Phụ cấp theo giờ khoảng $16–$40+/giờ tùy theo lượng người xem đồng thời (CCV); tiền ủng hộ trực tiếp nhận đủ 100%.' },
+      ],
+      runway: [
+        { q: 'Tiền tiết kiệm hoặc vốn khởi nghiệp của tôi sẽ duy trì được bao lâu?', a: 'Lấy tổng tiền chia cho số tiền chi tiêu ròng: $60.000 ÷ $5.000/tháng = 12 tháng. Ở mức lợi nhuận 8%/năm, khoản tiền duy trì rút ~0.67%/tháng gần như vô hạn.' },
+        { q: 'Đây có phải là công cụ tính SWP không?', a: 'Đúng — tính toán rút tiền định kỳ hàng tháng với số dư còn lại tiếp tục sinh lời trừ đi lạm phát hàng năm.' },
+      ],
+      'fuel-cost-calculator': [
+        { q: 'Làm thế nào để tính chi phí xăng dầu cho một chuyến đi?', a: 'Nhiên liệu cần = Khoảng cách ÷ Mức tiêu hao; Chi phí = Nhiên liệu × Giá xăng. Ví dụ: 300 km ở mức 15 km/L cần 20 lít.' },
+        { q: 'Xe của tôi sẽ tiêu thụ bao nhiêu xăng cho 100 km?', a: '100 ÷ chỉ số km/L của bạn: ở mức 15 km/L cần ~6.7 lít. Ở mức 7 L/100km cần chính xác 7 lít.' },
+      ],
+    },
   };
   const faqForPlatform = (LOCALIZED_FAQ[lang] && LOCALIZED_FAQ[lang][platformKey] && platformKey !== 'admob')
     ? LOCALIZED_FAQ[lang][platformKey]
@@ -829,7 +1447,7 @@ try {
           .replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${meta.title}" />`)
           .replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${meta.desc}" />`);
       }
-      const localeMap = { en: 'en_US', es: 'es_ES', ja: 'ja_JP', fr: 'fr_FR', de: 'de_DE', pt: 'pt_BR', ko: 'ko_KR', it: 'it_IT' };
+      const localeMap = { en: 'en_US', es: 'es_ES', ja: 'ja_JP', fr: 'fr_FR', de: 'de_DE', pt: 'pt_BR', ko: 'ko_KR', it: 'it_IT', ru: 'ru_RU', ar: 'ar_SA', zh: 'zh_CN', tr: 'tr_TR', pl: 'pl_PL', id: 'id_ID', nl: 'nl_NL', vi: 'vi_VN' };
       const locale = localeMap[lang] || 'en_US';
       renderedPage = renderedPage.replace(/<meta property="og:locale" content=".*?" \/>/, `<meta property="og:locale" content="${locale}" />`);
       // Fix hreflang per-platform cluster (P0-5) - no trailing slash except root
@@ -838,7 +1456,7 @@ try {
       const INDIA_ONLY = new Set(['8th-pay-commission']);
       const langs = INDIA_ONLY.has(platformKey)
         ? ['x-default', 'en']
-        : ['x-default', 'en', 'es', 'ja', 'fr', 'de', 'pt', 'pt-BR', 'ko', 'it'];
+        : ['x-default', 'en', 'es', 'ja', 'fr', 'de', 'pt', 'pt-BR', 'ko', 'it', 'ru', 'ar', 'zh', 'tr', 'pl', 'id', 'nl', 'vi'];
       const buildHref = (lng, path) => {
         if (!path) return `https://realtools.store/${lng === 'en' || lng === 'x-default' ? '' : lng}`;
         if (lng === 'en') return `https://realtools.store/${path}`;
@@ -849,7 +1467,7 @@ try {
         const href = lng === 'pt-BR' ? buildHref('pt', basePath) : buildHref(lng, basePath);
         return `    <link rel="alternate" hreflang="${lng}" href="${href}" />`;
       }).join('\n');
-      renderedPage = renderedPage.replace(/(<link rel="alternate" hreflang=".*?".*?\/>\s*){8,10}/, hreflangBlock + '\n');
+      renderedPage = renderedPage.replace(/(<link rel="alternate" hreflang=".*?".*?\/>\s*){8,25}/, hreflangBlock + '\n');
     }
 
     if (meta) {
@@ -931,7 +1549,7 @@ try {
   writePrerender('disclaimer', disclaimerHtml, { title: 'Earnings Disclaimer & Methodology | RealTools', desc: 'Earnings disclaimer, statistical accuracy, and calculation methodology for digital advertising networks. | RealTools', canonical: 'https://realtools.store/disclaimer', keywords: 'earnings disclaimer, revenue calculation methodology, realtools' }, 'en');
 
   // 8. Pre-render 7 Localized clean versions for ALL platforms with precise localized metadata
-  const languages = ['es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'];
+  const languages = ['es', 'ja', 'fr', 'de', 'pt', 'ko', 'it', 'ru', 'ar', 'zh', 'tr', 'pl', 'id', 'nl', 'vi'];
   for (const lang of languages) {
     const langDict = LOCALIZED_PLATFORM_METADATA[lang];
 

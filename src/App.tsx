@@ -217,7 +217,7 @@ import { getPlatformSeo } from "./data/platformSeo";
 import { NotFoundPage } from "./components/NotFoundPage";
 
 // Strict route validation — only whitelisted paths return 200, everything else is 404
-const SUPPORTED_LANGUAGES = ["es", "ja", "fr", "de", "pt", "ko", "it"] as const;
+const SUPPORTED_LANGUAGES = ["es", "ja", "fr", "de", "pt", "ko", "it", "ru", "ar", "zh", "tr", "pl", "id", "nl", "vi"] as const;
 const VALID_PLATFORMS = ["home", "admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "8th-pay-commission", "fuel-cost-calculator", "about", "contact", "privacy", "terms", "disclaimer"] as const;
 const LOCALIZED_CALC_PLATFORMS = ["admob", "adsense", "youtube", "tiktok", "twitch", "kick", "runway", "fuel-cost-calculator"] as const;
 
@@ -645,6 +645,7 @@ function MainAppContent({ initialPlatform }: AppContentProps) {
       document.querySelector(sel)?.setAttribute("content", val);
     setMeta('meta[name="title"]', seo.title);
     setMeta('meta[name="description"]', seo.desc);
+    if (seo.keywords) setMeta('meta[name="keywords"]', seo.keywords);
     setMeta('meta[property="og:title"]', seo.title);
     setMeta('meta[property="og:description"]', seo.desc);
     setMeta('meta[name="twitter:title"]', seo.title);

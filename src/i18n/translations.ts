@@ -1,4 +1,12 @@
 import { SupportedLanguage, TranslationDictionary } from "./types";
+import { ru } from "./locales/ru";
+import { ar } from "./locales/ar";
+import { zh } from "./locales/zh";
+import { tr } from "./locales/tr";
+import { pl } from "./locales/pl";
+import { id } from "./locales/id";
+import { nl } from "./locales/nl";
+import { vi } from "./locales/vi";
 
 export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
   en: {
@@ -2713,4 +2721,12 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
       disclaimerNote: "Strumento di stima indipendente. Google AdSense e AdMob sono marchi registrati di Google LLC.",
     },
   },
+  ru,
+  ar,
+  zh,
+  tr,
+  pl,
+  id,
+  nl,
+  vi,
 };
